@@ -1,13 +1,18 @@
-# Archives and backups
+.DS_Store
+Thumbs.db
+desktop.ini
+
+application/cache/*
+!application/cache/index.html
+!application/cache/.htaccess
+
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
+
 *.zip
 *.tar.gz
 *.rar
 
-# Logs
 error_log
 *.log
-
-# OS generated files
-.DS_Store
-Thumbs.db
-desktop.ini
