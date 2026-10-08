@@ -3,20 +3,16 @@
 <div class="crm-dashboard-container">
     <div class="crm-page-header">
         <div class="crm-page-title-wrap">
-            <h1 class="crm-page-title">
-                <svg class="crm-svg-lg text-primary" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
-                Executive Workspace
-            </h1>
-            <p class="crm-page-subtitle">Real-time pipeline overview, commercial projections, and operational schedule</p>
+            <h1 class="crm-page-title">Dashboard</h1>
         </div>
         <div class="crm-page-actions">
             <a href="<?php echo base_url(); ?>manager/leads" class="crm-btn-secondary">
                 <svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                View Pipeline
+                <span>View Leads</span>
             </a>
             <a href="<?php echo base_url(); ?>manager/leads/add" class="crm-btn-primary">
                 <svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                New Lead
+                <span>New Lead</span>
             </a>
         </div>
     </div>
@@ -42,7 +38,6 @@
                 </div>
             </div>
             <div class="crm-metric-number"><?php echo !empty($dashboard_count['count_leads']) ? $dashboard_count['count_leads'] : 0; ?></div>
-            <div class="crm-metric-sub">Active individual pipeline</div>
         </a>
 
         <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-metric-card">
@@ -53,7 +48,6 @@
                 </div>
             </div>
             <div class="crm-metric-number"><?php echo !empty($dashboard_Tcount['count_leads']) ? $dashboard_Tcount['count_leads'] : 0; ?></div>
-            <div class="crm-metric-sub">Organization total pipeline</div>
         </a>
 
         <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-metric-card">
@@ -64,7 +58,6 @@
                 </div>
             </div>
             <div class="crm-metric-number"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></div>
-            <div class="crm-metric-sub">Pending scheduled touchpoints</div>
         </a>
 
         <a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-metric-card">
@@ -75,7 +68,6 @@
                 </div>
             </div>
             <div class="crm-metric-number"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></div>
-            <div class="crm-metric-sub">Confirmed consultations</div>
         </a>
 
         <a href="<?php echo base_url(); ?>manager/team/members" class="crm-metric-card">
@@ -86,7 +78,6 @@
                 </div>
             </div>
             <div class="crm-metric-number"><?php echo !empty($dashboard_Tcount['count_user']) ? $dashboard_Tcount['count_user'] : 0; ?></div>
-            <div class="crm-metric-sub">Active staff members</div>
         </a>
 
         <a href="<?php echo base_url(); ?>manager/verticals" class="crm-metric-card">
@@ -97,7 +88,6 @@
                 </div>
             </div>
             <div class="crm-metric-number"><?php echo !empty($dashboard_count['count_vetricals']) ? $dashboard_count['count_vetricals'] : 0; ?></div>
-            <div class="crm-metric-sub">Assigned sector verticals</div>
         </a>
     </div>
 
@@ -107,11 +97,11 @@
                 <div class="crm-panel-header">
                     <h2>
                         <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-                        Pipeline Stage Breakdown
+                        Pipeline Stages
                     </h2>
                     <div class="crm-tab-buttons" id="pipelineTabs">
-                        <button type="button" class="crm-tab-btn active" data-target="#tabMyPipeline">My Pipeline</button>
-                        <button type="button" class="crm-tab-btn" data-target="#tabTeamPipeline">Team Pipeline</button>
+                        <button type="button" class="crm-tab-btn active" data-target="#tabMyPipeline">My Leads</button>
+                        <button type="button" class="crm-tab-btn" data-target="#tabTeamPipeline">Team Leads</button>
                     </div>
                 </div>
                 <div class="crm-panel-body" style="padding:0;">
@@ -120,7 +110,7 @@
                             <thead>
                                 <tr>
                                     <th>Stage</th>
-                                    <th style="text-align:right;">Leads Count</th>
+                                    <th style="text-align:right;">Count</th>
                                     <th style="text-align:right;">Action</th>
                                 </tr>
                             </thead>
@@ -145,7 +135,7 @@
                                     </td>
                                     <td style="text-align:right;">
                                         <a href="<?php echo base_url(); ?>manager/leads?status%5B%5D=<?php echo $li['status_id']; ?>" class="crm-btn-sm">
-                                            <span>View Leads</span>
+                                            <span>View</span>
                                             <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
                                         </a>
                                     </td>
@@ -155,7 +145,7 @@
                                 } else { ?>
                                 <tr>
                                     <td colspan="3" style="text-align:center; padding:28px; color:var(--crm-text-muted);">
-                                        No active leads found in this pipeline stage.
+                                        No active leads found.
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -168,7 +158,7 @@
                             <thead>
                                 <tr>
                                     <th>Stage</th>
-                                    <th style="text-align:right;">Leads Count</th>
+                                    <th style="text-align:right;">Count</th>
                                     <th style="text-align:right;">Action</th>
                                 </tr>
                             </thead>
@@ -193,7 +183,7 @@
                                     </td>
                                     <td style="text-align:right;">
                                         <a href="<?php echo base_url(); ?>manager/team/leads?status%5B%5D=<?php echo $li['status_id']; ?>" class="crm-btn-sm">
-                                            <span>View Leads</span>
+                                            <span>View</span>
                                             <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
                                         </a>
                                     </td>
@@ -217,17 +207,16 @@
                 <div class="crm-panel-header">
                     <h2>
                         <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                        Annual Projections &amp; Performance
+                        Projections
                     </h2>
                     <a href="<?php echo base_url(); ?>manager/performance-report" class="header-action">
-                        Full Report &rarr;
+                        Reports &rarr;
                     </a>
                 </div>
                 <div class="crm-panel-body">
                     <div style="margin-bottom: 24px;">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                            <span style="font-size:13px; font-weight:600; color:var(--crm-text-main);">My Lead Projections (12 Months)</span>
-                            <span style="font-size:12px; color:var(--crm-text-muted);">Target vs Progress</span>
+                            <span style="font-size:13px; font-weight:600; color:var(--crm-text-main);">My Projections</span>
                         </div>
                         <div style="height: 180px; position:relative;">
                             <canvas id="barChart2" style="height:180px; width:100%;"></canvas>
@@ -236,8 +225,7 @@
 
                     <div style="padding-top:20px; border-top:1px solid var(--crm-border);">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                            <span style="font-size:13px; font-weight:600; color:var(--crm-text-main);">Team Lead Projections</span>
-                            <span style="font-size:12px; color:var(--crm-text-muted);">Aggregate Team Output</span>
+                            <span style="font-size:13px; font-weight:600; color:var(--crm-text-main);">Team Projections</span>
                         </div>
                         <div style="height: 180px; position:relative;">
                             <canvas id="barChart4" style="height:180px; width:100%;"></canvas>
@@ -256,7 +244,7 @@
                 <div class="crm-panel-header">
                     <h2>
                         <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
-                        Follow-ups Schedule
+                        Follow-ups
                     </h2>
                     <a href="<?php echo base_url(); ?>manager/leads/followups" class="header-action">All &rarr;</a>
                 </div>
@@ -267,7 +255,7 @@
                     <ul class="crm-activity-list">
                         <li>
                             <a href="<?php echo base_url(); ?>manager/leads/followups?type=1" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot red"></span>All Missed</span>
+                                <span class="status-label"><span class="crm-status-dot red"></span>Missed</span>
                                 <span class="crm-badge-val red"><?php echo !empty($dashboard_f['total_missed']) ? $dashboard_f['total_missed'] : 0; ?></span>
                             </a>
                         </li>
@@ -279,7 +267,7 @@
                         </li>
                         <li>
                             <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot sky"></span>Due Today</span>
+                                <span class="status-label"><span class="crm-status-dot sky"></span>Today</span>
                                 <span class="crm-badge-val sky"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></span>
                             </a>
                         </li>
@@ -291,7 +279,7 @@
                         </li>
                         <li>
                             <a href="<?php echo base_url(); ?>manager/leads/followups?type=5" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot emerald"></span>All Future</span>
+                                <span class="status-label"><span class="crm-status-dot emerald"></span>Future</span>
                                 <span class="crm-badge-val emerald"><?php echo !empty($dashboard_f['total_future']) ? $dashboard_f['total_future'] : 0; ?></span>
                             </a>
                         </li>
@@ -303,7 +291,7 @@
                 <div class="crm-panel-header">
                     <h2>
                         <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        Meetings Schedule
+                        Meetings
                     </h2>
                     <a href="<?php echo base_url(); ?>manager/leads/meetings" class="header-action">All &rarr;</a>
                 </div>
@@ -314,7 +302,7 @@
                     <ul class="crm-activity-list">
                         <li>
                             <a href="<?php echo base_url(); ?>manager/leads/meetings?type=1" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot red"></span>All Missed</span>
+                                <span class="status-label"><span class="crm-status-dot red"></span>Missed</span>
                                 <span class="crm-badge-val red"><?php echo !empty($dashboard_m['total_missed']) ? $dashboard_m['total_missed'] : 0; ?></span>
                             </a>
                         </li>
@@ -326,7 +314,7 @@
                         </li>
                         <li>
                             <a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot sky"></span>Due Today</span>
+                                <span class="status-label"><span class="crm-status-dot sky"></span>Today</span>
                                 <span class="crm-badge-val sky"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></span>
                             </a>
                         </li>
@@ -338,7 +326,7 @@
                         </li>
                         <li>
                             <a href="<?php echo base_url(); ?>manager/leads/meetings?type=5" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot emerald"></span>All Future</span>
+                                <span class="status-label"><span class="crm-status-dot emerald"></span>Future</span>
                                 <span class="crm-badge-val emerald"><?php echo !empty($dashboard_m['total_future']) ? $dashboard_m['total_future'] : 0; ?></span>
                             </a>
                         </li>
@@ -350,26 +338,26 @@
                 <div class="crm-panel-header">
                     <h2>
                         <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        Quick Operations
+                        Quick Actions
                     </h2>
                 </div>
                 <div class="crm-panel-body" style="padding:14px;">
                     <div style="display:flex; flex-direction:column; gap:8px;">
                         <a href="<?php echo base_url(); ?>manager/team/assignleads" class="crm-quick-btn">
                             <svg class="crm-svg text-primary" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-                            <span>Assign Team Leads</span>
+                            <span>Assign Leads</span>
                         </a>
                         <a href="<?php echo base_url(); ?>manager/team/chart" class="crm-quick-btn">
                             <svg class="crm-svg text-primary" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="5" y1="16" x2="12" y2="12"/><line x1="19" y1="16" x2="12" y2="12"/></svg>
-                            <span>Hierarchy Chart</span>
+                            <span>Team Hierarchy</span>
                         </a>
                         <a href="<?php echo base_url(); ?>manager/verticals/add" class="crm-quick-btn">
                             <svg class="crm-svg text-primary" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                            <span>Add Business Vertical</span>
+                            <span>Add Vertical</span>
                         </a>
                         <a href="<?php echo base_url(); ?>manager/performance-report" class="crm-quick-btn">
                             <svg class="crm-svg text-primary" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                            <span>Department Analytics</span>
+                            <span>Performance Report</span>
                         </a>
                     </div>
                 </div>
