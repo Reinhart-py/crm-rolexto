@@ -1,397 +1,263 @@
 <?php require_once(APPPATH."views/manager/elements/header.php"); ?>
 
-<!-- Content Wrapper. Contains page content -->
-<style>
-  .box.box-info.leftbox {
-    height: calc(100% - 20px);
-}
-</style>
 <div class="content-wrapper container">
 
-    <!-- Content Header (Page header) -->
-
     <section class="content-header">
-        <h1> <i class="fa fa-dashboard"></i> Dashboard</h1>
+        <h1><i class="fa fa-tachometer"></i> Dashboard</h1>
     </section>
-
-    <!-- Main content -->
 
     <section class="content">
 
+        <div class="crm-kpi-grid">
 
-        <div class="row count-widget">
-
-         <div class="col-xs-6 col-sm-3">
-                <!-- small box -->
-                <div class="small-box bg-aqua">
-                    <div class="inner">
-                        <h3><?php echo $dashboard_count['count_leads']; ?></h3>
-                        <p>My Leads</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="<?php echo base_url(); ?>manager/leads" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>manager/leads" class="crm-kpi-card">
+                <div class="crm-kpi-top">
+                    <span class="crm-kpi-label">My Leads</span>
+                    <div class="crm-kpi-icon indigo"><i class="fa fa-bullseye"></i></div>
                 </div>
+                <div class="crm-kpi-value"><?php echo $dashboard_count['count_leads']; ?></div>
+                <div class="crm-kpi-footer">
+                    <span>Individual pipeline</span>
+                    <span class="action">View leads <i class="fa fa-arrow-right"></i></span>
+                </div>
+            </a>
 
+            <a href="<?php echo base_url(); ?>manager/verticals" class="crm-kpi-card">
+                <div class="crm-kpi-top">
+                    <span class="crm-kpi-label">My Verticals</span>
+                    <div class="crm-kpi-icon emerald"><i class="fa fa-building-o"></i></div>
+                </div>
+                <div class="crm-kpi-value"><?php echo $dashboard_count['count_vetricals']; ?></div>
+                <div class="crm-kpi-footer">
+                    <span>Assigned sectors</span>
+                    <span class="action">View verticals <i class="fa fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <a href="<?php echo base_url(); ?>manager/team/members" class="crm-kpi-card">
+                <div class="crm-kpi-top">
+                    <span class="crm-kpi-label">Team Members</span>
+                    <div class="crm-kpi-icon purple"><i class="fa fa-users"></i></div>
+                </div>
+                <div class="crm-kpi-value"><?php echo $dashboard_Tcount['count_user']; ?></div>
+                <div class="crm-kpi-footer">
+                    <span>Active staff</span>
+                    <span class="action">Manage team <i class="fa fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-kpi-card">
+                <div class="crm-kpi-top">
+                    <span class="crm-kpi-label">Team Leads</span>
+                    <div class="crm-kpi-icon blue"><i class="fa fa-line-chart"></i></div>
+                </div>
+                <div class="crm-kpi-value"><?php echo $dashboard_Tcount['count_leads']; ?></div>
+                <div class="crm-kpi-footer">
+                    <span>Organization pipeline</span>
+                    <span class="action">View team leads <i class="fa fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-kpi-card">
+                <div class="crm-kpi-top">
+                    <span class="crm-kpi-label">Team Verticals</span>
+                    <div class="crm-kpi-icon amber"><i class="fa fa-sitemap"></i></div>
+                </div>
+                <div class="crm-kpi-value"><?php echo $dashboard_Tcount['count_vetricals']; ?></div>
+                <div class="crm-kpi-footer">
+                    <span>Portfolio coverage</span>
+                    <span class="action">View verticals <i class="fa fa-arrow-right"></i></span>
+                </div>
+            </a>
+
+            <div class="crm-kpi-card">
+                <div class="crm-kpi-top">
+                    <span class="crm-kpi-label">Team Birthdays</span>
+                    <div class="crm-kpi-icon rose"><i class="fa fa-birthday-cake"></i></div>
+                </div>
+                <div class="crm-kpi-value"><?php echo $dashboard_Tcount['count_today_birth']; ?></div>
+                <div class="crm-kpi-footer">
+                    <span>Today's birthdays</span>
+                    <span class="action">Celebrations <i class="fa fa-smile-o"></i></span>
+                </div>
             </div>
 
-
-            <div class="col-xs-6 col-sm-3">
-                <!-- small box -->
-                <div class="small-box bg-yellow">
-                    <div class="inner">
-                        <h3>0</h3>
-                        <p>.......</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>           
-
-           
-
-            <div class="col-xs-6 col-sm-3">
-                <!-- small box -->
-                <div class="small-box bg-green">
-                    <div class="inner">
-                        <h3><?php echo $dashboard_count['count_vetricals']; ?></h3>
-                        <p>My Verticals</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="<?php echo base_url(); ?>manager/verticals" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="col-xs-6 col-sm-3">
-                <!-- small box -->
-                <div class="small-box bg-red">
-                    <div class="inner">
-                        <h3><?php echo $dashboard_Tcount['count_user']; ?></h3>
-                        <p>Team Member</p>
-                    </div>
-                    <div class="icon">
-                        <i class="ion ion-bag"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-           
-     </div>
-
-
-        <div class="row count-widget">
-
-<div class="col-xs-6 col-sm-3">
-       <!-- small box -->
-       <div class="small-box bg-aqua">
-           <div class="inner">
-               <h3><?php echo $dashboard_Tcount['count_leads']; ?></h3>
-               <p>Team Leads</p>
-           </div>
-           <div class="icon">
-               <i class="ion ion-bag"></i>
-           </div>
-           <a href="<?php echo base_url(); ?>manager/team/leads" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-       </div>
-
-   </div>
-
-
-
-   <div class="col-xs-6 col-sm-3">
-                <!-- small box -->
-      <div class="small-box bg-yellow">
-          <div class="inner">
-              <h3>0</h3>
-              <p>.......</p>
-          </div>
-          <div class="icon">
-              <i class="ion ion-bag"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-      </div>
-
-
-    </div>
-
-
-
-   <div class="col-xs-6 col-sm-3">
-       <!-- small box -->
-       <div class="small-box bg-green">
-           <div class="inner">
-               <h3><?php echo $dashboard_Tcount['count_vetricals']; ?></h3>
-               <p>Team Verticals</p>
-           </div>
-           <div class="icon">
-               <i class="ion ion-bag"></i>
-           </div>
-           <a href="<?php echo base_url(); ?>manager/team/verticals" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-       </div>
-   </div>
-   
-   <div class="col-xs-6 col-sm-3">
-       <!-- small box -->
-       <div class="small-box bg-red">
-           <div class="inner">
-               <h3><?php echo $dashboard_Tcount['count_today_birth']; ?></h3>
-               <p>Team Birthday</p>
-           </div>
-           <div class="icon">
-               <i class="ion ion-bag"></i>
-           </div>
-           <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-       </div>
-
-   </div>
-</div>
+        </div>
 
         <div class="row">
             <div class="col-sm-4">
-            <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">My Lead Stats</h3>            
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-            <ul class="nav nav-stacked">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">My Lead Stats</h3>
+                    </div>
+                    <div class="box-body">
+                        <ul class="crm-stat-list">
                             <?php
                             $myleadp1= array();
                             $myleadp2= array();
                             foreach($dashboard_lead as $li){
                                 $myleadp1[]= "'".$li['status']."'";
                                 $myleadp2[]= $li['lead_count'];  
-                                ?>
-                            <li><a href="<?php echo base_url(); ?>manager/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id'] ?>"><?php echo $li['status']; ?> <span
-                                        class="pull-right badge bg-blue"><?php echo $li['lead_count']; ?></span></a>
+                            ?>
+                            <li>
+                                <a href="<?php echo base_url(); ?>manager/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id'] ?>">
+                                    <span><?php echo $li['status']; ?></span>
+                                    <span class="crm-badge"><?php echo $li['lead_count']; ?></span>
+                                </a>
                             </li>
                             <?php } ?>
-
                         </ul>
-            </div>
-           
-          </div>
-
-          </div>
-
-          <div class="col-sm-8">
-
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Previous Performance</h3>            
-            </div>
-           
-           
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="barChart3"></canvas>
-              </div>
-            </div>
-           
-           
-          </div>
-
-<!--
-
-            <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">My Lead Graph</h3>            
-            </div>
-           
-           
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="barChart"></canvas>
-              </div>
-            </div>
-           
-           
-          </div>  -->
-
-          </div>
-          
-          </div>
-
-
-           <div class="row" style="display:flex">
-            <div class="col-sm-4">
-            <div class="box box-info leftbox">
-            <div class="box-header with-border">
-              <h3 class="box-title">Team Lead Stats</h3>            
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <ul class="nav nav-stacked">
-                  <?php
-                  $myTleadp1= array();
-                  $myTleadp2= array();
-                    foreach($dashboard_lead_team as $li){
-                      $myTleadp1[]= "'".$li['status']."'";
-                      $myTleadp2[]= $li['lead_count'];  
-                      
-                      ?>
-                  <li><a href="<?php echo base_url(); ?>manager/team/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id'] ?>"><?php echo $li['status']; ?> <span
-                              class="pull-right badge bg-blue"><?php echo $li['lead_count']; ?></span></a>
-                  </li>
-                  <?php } ?>
-                  
-
-              </ul>
-            </div>
-           
-          </div>
-
-          </div>
-
-          <div class="col-sm-8">
-
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Team Projection</h3>            
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-            <canvas id="barChart4"></canvas>
-            </div>
-           
-          </div>
-
-
-           <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">My Projection</h3>            
+                    </div>
+                </div>
             </div>
 
-            <div class="box-body">
-              <canvas id="barChart2"></canvas>
-            </div>
-           
-          </div> 
-
-          </div>
-        
-            </div>
-            
-            
-             <div class="row">
-			<div class="col-sm-3">
-                <!-- Widget: user widget style 1 -->
+            <div class="col-sm-8">
                 <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">My Followups</h3>            
-            </div>
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Previous Performance</h3>
+                    </div>
                     <div class="box-body">
-                    <canvas id="pieChart1" style="height:250px"></canvas>
+                        <div class="chart">
+                            <canvas id="barChart3"></canvas>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                    <div class="box-footer no-padding">
-                        <ul class="nav nav-stacked">                            
-                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=1">All Missed<span class="pull-right badge bg-red"><?php echo $dashboard_f['total_missed']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=2">Last 7 Days<span class="pull-right badge bg-orange"><?php echo $dashboard_f['total_lastweek']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=3">Today<span class="pull-right badge bg-skyblue"><?php echo $dashboard_f['total_today']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=4">Next 7 Days<span class="pull-right badge bg-blue"><?php echo $dashboard_f['total_nextweek']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=5">All Future<span class="pull-right badge bg-green"><?php echo $dashboard_f['total_future']; ?></span></a></li>                          
+        <div class="row" style="display:flex">
+            <div class="col-sm-4">
+                <div class="box box-info leftbox" style="height: calc(100% - 24px);">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Team Lead Stats</h3>
+                    </div>
+                    <div class="box-body">
+                        <ul class="crm-stat-list">
+                            <?php
+                            $myTleadp1= array();
+                            $myTleadp2= array();
+                            foreach($dashboard_lead_team as $li){
+                                $myTleadp1[]= "'".$li['status']."'";
+                                $myTleadp2[]= $li['lead_count'];  
+                            ?>
+                            <li>
+                                <a href="<?php echo base_url(); ?>manager/team/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id'] ?>">
+                                    <span><?php echo $li['status']; ?></span>
+                                    <span class="crm-badge"><?php echo $li['lead_count']; ?></span>
+                                </a>
+                            </li>
+                            <?php } ?>
                         </ul>
                     </div>
+                </div>
+            </div>
 
-                   
+            <div class="col-sm-8">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Team Projection</h3>
+                    </div>
+                    <div class="box-body">
+                        <canvas id="barChart4"></canvas>
+                    </div>
                 </div>
 
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">My Projection</h3>
+                    </div>
+                    <div class="box-body">
+                        <canvas id="barChart2"></canvas>
+                    </div>
+                </div>
             </div>
-            
+        </div>
+
+        <div class="row">
             <div class="col-sm-3">
-                <!-- Widget: user widget style 1 -->
-                <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">My Meetings</h3>            
-            </div>
-
-                     <div class="box-body">
-                    <canvas id="pieChart2" style="height:250px"></canvas>
+                <div class="crm-widget-box">
+                    <div class="box-header">
+                        <h3 class="box-title">My Followups</h3>
                     </div>
-
-                    <div class="box-footer no-padding">
-                        <ul class="nav nav-stacked">
-                        <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=1">All Missed<span class="pull-right badge bg-red"><?php echo $dashboard_m['total_missed']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=2">Last 7 Days<span class="pull-right badge bg-orange"><?php echo $dashboard_m['total_lastweek']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=3">Today<span class="pull-right badge bg-skyblue"><?php echo $dashboard_m['total_today']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=4">Next 7 Days<span class="pull-right badge bg-blue"><?php echo $dashboard_m['total_nextweek']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=5">All Future<span class="pull-right badge bg-green"><?php echo $dashboard_m['total_future']; ?></span></a></li>
-
+                    <div class="box-body">
+                        <canvas id="pieChart1" style="height:220px; max-height:220px"></canvas>
+                    </div>
+                    <div class="box-footer">
+                        <ul class="crm-sub-list">
+                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=1"><span><span class="crm-pill-dot red"></span>All Missed</span><span class="crm-sub-badge red"><?php echo $dashboard_f['total_missed']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=2"><span><span class="crm-pill-dot orange"></span>Last 7 Days</span><span class="crm-sub-badge orange"><?php echo $dashboard_f['total_lastweek']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=3"><span><span class="crm-pill-dot skyblue"></span>Today</span><span class="crm-sub-badge skyblue"><?php echo $dashboard_f['total_today']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=4"><span><span class="crm-pill-dot blue"></span>Next 7 Days</span><span class="crm-sub-badge blue"><?php echo $dashboard_f['total_nextweek']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=5"><span><span class="crm-pill-dot green"></span>All Future</span><span class="crm-sub-badge green"><?php echo $dashboard_f['total_future']; ?></span></a></li>
                         </ul>
                     </div>
                 </div>
-
             </div>
-
-            
-
 
             <div class="col-sm-3">
-                <!-- Widget: user widget style 1 -->
-                <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Team Followups</h3>            
-            </div>
-
-                     <div class="box-body">
-                    <canvas id="pieChart3" style="height:250px"></canvas>
+                <div class="crm-widget-box">
+                    <div class="box-header">
+                        <h3 class="box-title">My Meetings</h3>
                     </div>
-
-                    <div class="box-footer no-padding">
-                        <ul class="nav nav-stacked">
-                        <li><a href="<?php echo base_url(); ?>manager/team/followups?type=1">All Missed<span class="pull-right badge bg-red"><?php echo $dashboard_Tf['total_missed']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/team/followups?type=2">Last 7 Days<span class="pull-right badge bg-orange"><?php echo $dashboard_Tf['total_lastweek']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/team/followups?type=3">Today<span class="pull-right badge bg-skyblue"><?php echo $dashboard_Tf['total_today']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/team/followups?type=4">Next 7 Days<span class="pull-right badge bg-blue"><?php echo $dashboard_Tf['total_nextweek']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/team/followups?type=5">All Future<span class="pull-right badge bg-green"><?php echo $dashboard_Tf['total_future']; ?></span></a></li>
+                    <div class="box-body">
+                        <canvas id="pieChart2" style="height:220px; max-height:220px"></canvas>
+                    </div>
+                    <div class="box-footer">
+                        <ul class="crm-sub-list">
+                            <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=1"><span><span class="crm-pill-dot red"></span>All Missed</span><span class="crm-sub-badge red"><?php echo $dashboard_m['total_missed']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=2"><span><span class="crm-pill-dot orange"></span>Last 7 Days</span><span class="crm-sub-badge orange"><?php echo $dashboard_m['total_lastweek']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=3"><span><span class="crm-pill-dot skyblue"></span>Today</span><span class="crm-sub-badge skyblue"><?php echo $dashboard_m['total_today']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=4"><span><span class="crm-pill-dot blue"></span>Next 7 Days</span><span class="crm-sub-badge blue"><?php echo $dashboard_m['total_nextweek']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=5"><span><span class="crm-pill-dot green"></span>All Future</span><span class="crm-sub-badge green"><?php echo $dashboard_m['total_future']; ?></span></a></li>
                         </ul>
                     </div>
                 </div>
-
-
-            </div>
-            
-			<div class="col-sm-3">
-                <!-- Widget: user widget style 1 -->
-                <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Team Meetings</h3>            
             </div>
 
-                     <div class="box-body">
-                    <canvas id="pieChart4" style="height:250px"></canvas>
+            <div class="col-sm-3">
+                <div class="crm-widget-box">
+                    <div class="box-header">
+                        <h3 class="box-title">Team Followups</h3>
                     </div>
-
-                    <div class="box-footer no-padding">
-                        <ul class="nav nav-stacked">
-                        <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=1">All Missed<span class="pull-right badge bg-red"><?php echo $dashboard_Tm['total_missed']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=2">Last 7 Days<span class="pull-right badge bg-orange"><?php echo $dashboard_Tm['total_lastweek']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=3">Today<span class="pull-right badge bg-skyblue"><?php echo $dashboard_Tm['total_today']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=4">Next 7 Days<span class="pull-right badge bg-blue"><?php echo $dashboard_Tm['total_nextweek']; ?></span></a></li>
-                            <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=5">All Future<span class="pull-right badge bg-green"><?php echo $dashboard_Tm['total_future']; ?></span></a></li>
+                    <div class="box-body">
+                        <canvas id="pieChart3" style="height:220px; max-height:220px"></canvas>
+                    </div>
+                    <div class="box-footer">
+                        <ul class="crm-sub-list">
+                            <li><a href="<?php echo base_url(); ?>manager/team/followups?type=1"><span><span class="crm-pill-dot red"></span>All Missed</span><span class="crm-sub-badge red"><?php echo $dashboard_Tf['total_missed']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/followups?type=2"><span><span class="crm-pill-dot orange"></span>Last 7 Days</span><span class="crm-sub-badge orange"><?php echo $dashboard_Tf['total_lastweek']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/followups?type=3"><span><span class="crm-pill-dot skyblue"></span>Today</span><span class="crm-sub-badge skyblue"><?php echo $dashboard_Tf['total_today']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/followups?type=4"><span><span class="crm-pill-dot blue"></span>Next 7 Days</span><span class="crm-sub-badge blue"><?php echo $dashboard_Tf['total_nextweek']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/followups?type=5"><span><span class="crm-pill-dot green"></span>All Future</span><span class="crm-sub-badge green"><?php echo $dashboard_Tf['total_future']; ?></span></a></li>
                         </ul>
                     </div>
                 </div>
-
-
-               
             </div>
 
-</div>
-      
+            <div class="col-sm-3">
+                <div class="crm-widget-box">
+                    <div class="box-header">
+                        <h3 class="box-title">Team Meetings</h3>
+                    </div>
+                    <div class="box-body">
+                        <canvas id="pieChart4" style="height:220px; max-height:220px"></canvas>
+                    </div>
+                    <div class="box-footer">
+                        <ul class="crm-sub-list">
+                            <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=1"><span><span class="crm-pill-dot red"></span>All Missed</span><span class="crm-sub-badge red"><?php echo $dashboard_Tm['total_missed']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=2"><span><span class="crm-pill-dot orange"></span>Last 7 Days</span><span class="crm-sub-badge orange"><?php echo $dashboard_Tm['total_lastweek']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=3"><span><span class="crm-pill-dot skyblue"></span>Today</span><span class="crm-sub-badge skyblue"><?php echo $dashboard_Tm['total_today']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=4"><span><span class="crm-pill-dot blue"></span>Next 7 Days</span><span class="crm-sub-badge blue"><?php echo $dashboard_Tm['total_nextweek']; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/meetings?type=5"><span><span class="crm-pill-dot green"></span>All Future</span><span class="crm-sub-badge green"><?php echo $dashboard_Tm['total_future']; ?></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <!-- /.content -->
-
 </div>
-
-<!-- /.content-wrapper -->
 <?php
 
 if(!empty($myleadp1)){  $myleadstr1= implode(', ',$myleadp1); }

@@ -46,6 +46,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap/developer.css">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/multiselect/multiselect.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/crm-theme.css">
 
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
@@ -79,7 +80,7 @@
 <div class="x_row align-items-center">
 <div class="x_col-12 x_col-md-4 text-center text-md-left">
 <div class="main-logo">
-<a href="<?php echo base_url(); ?>manager/dashboard"> <span class="logo-lg"> <img src="https://crm.rolextogroup.com/assets/dist/img/manager-logo-new.png" height=""/> </span> <span class="logo-mini">SRJ</span> </a> 
+<a href="<?php echo base_url(); ?>manager/dashboard"> <span class="logo-lg"> <img src="<?php echo base_url(); ?>assets/dist/img/manager-logo-new.png" alt="Rolexto CRM" height="42"/> </span> <span class="logo-mini">SRJ</span> </a> 
 </div>
 </div>
 <div class="X_col-12 x_col-md-8 ">
