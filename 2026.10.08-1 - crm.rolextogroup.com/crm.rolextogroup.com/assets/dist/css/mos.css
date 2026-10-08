@@ -1,0 +1,47 @@
+.bgbody{background:#e72646 url(../img/back_bg.jpg)repeat left top!important;}
+.mos_login{    width: auto; max-width: 1024px;      margin-top: 5%;}
+.app_screen  span{    display: block;   position: relative;  left: -21px;}
+.app_screen img{ max-width:105%;}
+.login_area{   margin-top: 10%;}
+.login_area .form-control{height: 42px;
+    border: 0;
+    border-radius: 4px;}
+.login_area .form-control-feedback{    top: 4px;}
+
+.login_area .btn{    width: 100%; background: #191818; text-transform: uppercase;  font-weight: 600;  font-size: 15px;}
+
+
+.d-flex{    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;}
+
+    .align-items-center {
+        -webkit-box-align: center!important;
+        -ms-flex-align: center!important;
+        align-items: center!important;
+    }
+
+    .col {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+
+
+
+   .fpass {    
+    font-weight: 700;
+    color: #ea1d25;
+    font-size: 15px;
+    margin-top: 8px;
+    display: inline-block;
+    }
+
+    .fpass:hover {
+        color: #00235b;
+    }

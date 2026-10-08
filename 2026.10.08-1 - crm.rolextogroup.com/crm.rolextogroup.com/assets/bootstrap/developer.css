@@ -1,0 +1,12 @@
+.estimate span{    font-style: italic;
+    padding: 0px 10px;}
+.estimate p{ font-size: 16px;} 
+
+
+#countdown{ list-style:none;}
+#countdown li{ float:left; padding:0px 10px; color:#060; font-weight:bold;}
+#countdown li h6{ color:#060; font-weight:bold; font-size:24px;}
+table.dataTable td span.no_show{ display:none;}
+table.dataTable td.dt-nowrap {
+    white-space: nowrap;
+}

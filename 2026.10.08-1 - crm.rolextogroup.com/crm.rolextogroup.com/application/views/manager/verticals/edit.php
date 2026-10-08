@@ -1,0 +1,381 @@
+<?php require_once(APPPATH."views/manager/elements/header.php"); ?>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="container">
+<div class="content-wrapper"> 
+  
+  <!-- Content Header (Page header) -->
+  
+  <section class="content-header">
+    <h1> Verticals </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li class="active">Verticals</li>
+    </ol>
+  </section>
+  
+  <!-- Main content -->
+  
+  <section class="content"> 
+    
+    <!-- SELECT2 EXAMPLE -->
+    
+   
+     <?php echo get_message($this->session->flashdata('error_message'),'error_message'); ?> <?php echo get_message($this->session->flashdata('message'),'message'); ?>
+     
+      <form role="form" action="<?php echo base_url(); ?>manager/verticals/edit/<?php echo base64_encode($list['id']); ?>" method="post" name="add_form">
+      
+       <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">Initial Fields</h3>
+      </div>
+      
+      <!-- /.box-header -->
+      
+      <div class="box-body" >
+      
+      <div class="row">
+       
+        
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Company Name<span>*</span></label>
+              <input type="text" name="company_name" class="form-control" style="text-transform: capitalize;" value="<?php echo $list['company_name']; ?>" required="" >
+            </div>
+          </div>
+
+           <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>POC Name<span>*</span></label>
+              <input type="text" required class="form-control" name="poc" value="<?php echo $list['poc']; ?>"  >
+            </div>
+          </div>
+         
+
+          
+
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Email-ID</label>
+              <input type="email" class="form-control" name="email" value="<?php echo $list['email']; ?>" >
+            </div>
+          </div>
+
+
+           <div class="col-lg-3 col-sm-6">
+            <div class="form-group">
+              <label>POC Contact Number</label>
+              <input type="text" class="form-control" name="contact1" value="<?php echo $list['contact1']; ?>" >
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6">
+            <div class="form-group">
+              <label>POC Alt Contact Number</label>
+              <input type="text" class="form-control" name="contact2" value="<?php echo $list['contact2']; ?>">
+            </div>
+          </div>
+
+
+          
+          <div class="col-lg-3 col-sm-6">
+            <div class="form-group">
+              <label>Whatsapp Web</label>
+              <input type="text" class="form-control" name="whatsapp_web" value="<?php echo $list['whatsapp_web']; ?>" >
+            </div>
+          </div>
+
+
+           <div class="col-lg-3 col-sm-6">
+            <div class="form-group">
+              <label>Designation</label>
+              <input type="text" class="form-control" name="designation" value="<?php echo $list['designation']; ?>"  >
+            </div>
+          </div>
+
+
+
+
+          <div class="col-lg-6 col-sm-6">
+            <div class="form-group">
+              <label>Category<span>*</span></label>
+              <select class="form-control" required name="category" id="catselect" onchange="getSubCat()">
+              <option value="">Select Category</option>
+             
+                <?php if(isset($cat_list) && !empty($cat_list)){
+                  foreach($cat_list as $cli){
+                ?>
+                <option <?php if($list['category']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['title']; ?></option>
+            <?php } }  ?>
+          </select>
+          </div>
+          </div>
+
+            <div class="col-lg-6 col-sm-6">
+            <div class="form-group">
+              <label>SubCategory</label>
+              <select class="form-control" required name="sub_category" id="subcatselect">
+              <option value="">Choose Sub Category</option>
+              <?php if(isset($scat_list) && !empty($scat_list)){
+                  foreach($scat_list as $cli){
+                ?>
+                <option <?php if($list['sub_category']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['title']; ?></option>
+            <?php } }  ?>
+          </select>
+          </div>
+          </div>
+
+          
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Last Follow Up Date</label>
+              <input type="text" class="form-control datepicker" name="lastfollowup_date" value="<?php echo simple_date($list['lastfollowup_date']); ?>" >
+            </div>
+          </div>
+
+
+           <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Next Follow Up Date</label>
+              <input type="text" class="form-control datepicker2" name="followup_date" value="<?php echo simple_date($list['followup_date']); ?>"  >
+            </div>
+          </div>
+
+        
+
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Status<span>*</span></label>
+              <select class="form-control" required name="status">
+              <option value="">Select Status</option>
+             
+                <?php if(isset($st_list) && !empty($st_list)){
+                  foreach($st_list as $cli){
+                ?>
+                <option  <?php if($list['status']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['title']; ?></option>
+            <?php } }  ?>
+          </select>
+            </div>
+          </div>
+
+
+
+          
+
+      
+
+           <div class="col-lg-6 col-sm-6">
+            <div class="form-group">
+              <label>Nationality</label>
+              <select id="country2" class="form-control" name="nationality" onchange="get_state2()">                          
+              <option value="">Select</option>
+                          <?php if(isset($c_list) && !empty($c_list)){
+                            foreach($c_list as $cli){
+                          ?>
+                          <option <?php if($list['nationality']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['name']; ?></option>
+                      <?php } }  ?>
+                    </select>
+            </div>
+          </div>
+
+
+          <div class="col-lg-6 col-sm-6">
+            <div class="form-group">
+              <label>Nationality Area(State / Province / Emirate)</label>
+               <select id="state2" class="form-control" name="nationality_area">
+               <option value="">Select</option> 
+               <?php if(isset($area_list) && !empty($area_list)){
+                              foreach($area_list as $cli){
+                            ?>
+                            <option <?php if($list['nationality_area']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['name']; ?></option>
+                        <?php } }  ?>
+               </select>
+              
+            </div>
+          </div>
+
+
+
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Country</label>
+              <select id="country" class="form-control" name="country" onchange="get_state()">                          
+              <option value="">Select</option>
+                          <?php if(isset($c_list) && !empty($c_list)){
+                            foreach($c_list as $cli){
+                          ?>
+                          <option <?php if($list['country']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['name']; ?></option>
+                      <?php } }  ?>
+                    </select>
+            </div>
+          </div>
+
+
+
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>State / Province / Emirate</label>
+               <select id="state" class="form-control" name="state">
+               <option value="">Select</option> 
+               <?php if(isset($state_list) && !empty($state_list)){
+                              foreach($state_list as $cli){
+                            ?>
+                            <option <?php if($list['state']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['name']; ?></option>
+                        <?php } }  ?>
+               </select>
+              
+            </div>
+          </div>
+
+
+          
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" class="form-control" name="city"  value="<?php echo $list['city']; ?>" >
+            </div>
+          </div>
+          
+
+          
+            <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Source Details</label>
+              <input type="text" class="form-control" name="lead_source"  value="<?php echo $list['lead_source']; ?>" >
+            </div>
+          </div> 
+
+
+           <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Address 1</label>
+              <input type="text" name="address" class="form-control" value="<?php echo $list['address']; ?>" />
+            </div>
+          </div>
+
+           <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Address 2</label>
+              <input type="text" name="address2" class="form-control" value="<?php echo $list['address2']; ?>" />
+            </div>
+          </div>    
+         
+
+      
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Remark</label>
+              <textarea class="form-control" name="remark" ><?php echo $list['remark']; ?></textarea>              
+            </div>
+          </div> 
+
+          
+
+        </div>
+      </div>
+    </div>
+
+
+      
+      <div class="box-footer text-center">
+                <button id="add_btn" type="submit" class="btn btn-info">Submit</button>
+                <button type="reset" class="btn btn-default">Cancel</button>
+              </div>
+              
+         
+              
+     </form>
+  
+    
+    <!-- /.box --> 
+    
+  </section>
+  
+  <!-- /.content --> 
+  
+</div>
+
+<!-- /.content-wrapper --> 
+</div>
+<script>
+
+
+
+
+
+
+
+ $(document).ready(function () { 
+
+  $(document).on("click", "#add_btn", function () {
+
+    
+
+   $('form[name=add_form]').validate({         
+
+  submitHandler: function(form) {
+
+      form.submit();
+
+    }
+
+  });
+
+});
+
+
+
+});
+
+
+
+
+</script>
+<script>
+function get_state()
+{  
+        var stateID = $("#country").val();     
+        $.ajax({
+          type: "POST",
+          data: 'c_id='+stateID,
+          url: "<?php echo base_url(); ?>" + "ci_admin_user/get_state",
+          success:function(result){
+            if(result){
+              $('#state').html(result);
+            }           
+        }
+        });
+}
+function get_state2()
+{  
+        var stateID = $("#country2").val();     
+        $.ajax({
+          type: "POST",
+          data: 'c_id='+stateID,
+          url: "<?php echo base_url(); ?>" + "ci_admin_user/get_state",
+          success:function(result){
+            if(result){
+              $('#state2').html(result);
+            }           
+        }
+        });
+}
+
+function getSubCat()
+{  
+        var stateID = $("#catselect").val();     
+        $.ajax({
+          type: "POST",
+          data: 'c_id='+stateID,
+          url: "<?php echo base_url(); ?>" + "ci_admin_terms/getSubCatAjax",
+          success:function(result){
+            if(result){
+              $('#subcatselect').html(result);
+            }           
+        }
+        });
+}
+
+</script>
+<?php require_once(APPPATH."views/manager/elements/footer.php"); ?>

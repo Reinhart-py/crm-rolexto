@@ -1,0 +1,1556 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class Ci_admin_model extends CI_model {
+	 function __construct() {
+    parent::__construct();
+	$this->load->database();
+	
+	}
+	
+	   public function dashboard_countdata(){
+
+		$manager_id= $this->session->userdata('manager_id');
+
+			$data = array();
+			$today= date('Y-m-d');
+		 $sql="select t1.count_leads,t2.count_vetricals from 
+		 (SELECT count(id) as count_leads FROM ci_leads WHERE created_by=".$manager_id.") as t1,		 
+		 (SELECT count(id) as count_vetricals FROM ci_verticals WHERE created_by=".$manager_id.") as t2";
+		
+		 $rows = $this->db->query($sql);	
+		if($rows->num_rows()>=1){
+			foreach($rows->result_array() as  $row){
+				$data = $row;	
+				}
+			}
+			return $data; 
+		}
+
+		public function dashboard_Tcountdata(){
+
+			$team_array= $this->fetchTeamList($this->session->userdata('manager_id'),'');
+			$team_str= implode(',',$team_array);
+	
+				$data = array();
+				$today= date('Y-m-d');
+			 $sql="select t1.count_user,t2.count_today_birth,t3.count_leads,t4.count_vetricals from 
+			 (SELECT count(id) as count_user FROM ci_user WHERE FIND_IN_SET(id,'".$team_str."')>0) as t1,		
+			 (SELECT count(id) as count_today_birth FROM ci_user WHERE FIND_IN_SET(id,'".$team_str."')>0 AND dob='".$today."') as t2,
+			 (SELECT count(id) as count_leads FROM ci_leads WHERE FIND_IN_SET(created_by,'".$team_str."')>0) as t3,
+			 (SELECT count(id) as count_vetricals FROM ci_verticals WHERE FIND_IN_SET(created_by,'".$team_str."')>0) as t4";
+			
+			 $rows = $this->db->query($sql);	
+			if($rows->num_rows()>=1){
+				foreach($rows->result_array() as  $row){
+					$data = $row;	
+					}
+				}
+				return $data; 
+			}
+        public function dashboard_leaddata(){
+
+			$manager_id= $this->session->userdata('manager_id');
+	
+
+			$data = array();
+			$today= date('Y-m-d');
+		 $sql="SELECT A.id as status_id, A.status, (select count(id) FROM ci_leads WHERE status=A.id AND created_by=".$manager_id." ) as lead_count FROM ci_status as A";
+		$rows = $this->db->query($sql);	
+		if($rows->num_rows()>=1){
+			foreach($rows->result_array() as  $row){
+				$data[] = $row;	
+				}
+			}
+			return $data; 
+		}
+
+		public function dashboard_leaddataT(){
+
+			$team_array= $this->fetchTeamList($this->session->userdata('manager_id'),'');
+			$team_str= implode(',',$team_array);
+			
+
+			$data = array();
+			$today= date('Y-m-d');
+		 $sql="SELECT A.id as status_id, A.status, (select count(id) FROM ci_leads WHERE FIND_IN_SET(created_by,'".$team_str."')>0 AND status=A.id ) as lead_count FROM ci_status as A";
+		$rows = $this->db->query($sql);	
+		if($rows->num_rows()>=1){
+			foreach($rows->result_array() as  $row){
+				$data[] = $row;	
+				}
+			}
+			return $data; 
+		}
+
+	
+		public function dashboard_followups($type){
+			$manager_id= $this->session->userdata('manager_id');
+			$today = date('Y-m-d');
+			$last_date= date('Y-m-d', strtotime("-7 day"));
+			$next_date= date('Y-m-d', strtotime("+7 day"));
+
+			if($type==0){
+
+				$sql = "SELECT ( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date<'$today' AND a.status NOT IN (42,43,44) AND a.followup_date!='' and a.created_by=".$manager_id.") AS total_missed,
+				( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date<'$today' AND a.status NOT IN (42,43,44) AND a.followup_date>='$last_date' AND a.followup_date!='' and a.created_by=".$manager_id.") AS total_lastweek,
+				( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date='$today' AND a.status NOT IN (42,43,44) AND a.followup_date!='' and a.created_by=".$manager_id.") AS total_today,
+				( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date>'$today' AND a.status NOT IN (42,43,44) AND a.followup_date!='' AND a.followup_date<='$next_date' and a.created_by=".$manager_id.") AS total_nextweek,
+				( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date>'$today' AND a.status NOT IN (42,43,44) AND a.followup_date!='' and a.created_by=".$manager_id.") AS total_future"; 
+
+			}else{
+
+				$team_array= $this->fetchTeamList($this->session->userdata('manager_id'),'');
+				$team_str= implode(',',$team_array);
+
+				$sql = "SELECT ( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date<'$today' AND a.status NOT IN (42,43,44) AND a.followup_date!='' AND FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_missed,
+				( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date<'$today' AND a.followup_date>='$last_date' AND a.status NOT IN (42,43,44) AND a.followup_date!='' and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_lastweek,
+				( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date='$today' AND a.followup_date!='' AND a.status NOT IN (42,43,44)  and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_today,
+				( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date>'$today'  AND a.status NOT IN (42,43,44)  AND a.followup_date!='' AND a.followup_date<='$next_date' and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_nextweek,
+				( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.followup_date>'$today'  AND a.status NOT IN (42,43,44)  AND a.followup_date!='' and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_future"; 
+			}
+						
+		
+			$rows = $this->db->query($sql);
+			if($rows->num_rows()>=1){
+			foreach($rows->result_array() as  $row){
+				$data[] = $row;	
+			}
+			}
+			return $data[0];
+	
+	}
+
+
+	public function dashboard_meetings($type){
+		$manager_id= $this->session->userdata('manager_id');
+		$today = date('Y-m-d');
+		$last_date= date('Y-m-d', strtotime("-7 day"));
+		$next_date= date('Y-m-d', strtotime("+7 day"));
+
+		if($type==0){
+
+			$sql = "SELECT ( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date<'$today' AND a.status NOT IN (42,43,44)  AND a.m_date!='' and a.created_by=".$manager_id.") AS total_missed,
+		( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date<'$today' AND a.status NOT IN (42,43,44)  AND a.m_date>='$last_date' AND a.m_date!='' and a.created_by=".$manager_id.") AS total_lastweek,
+		( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date='$today' AND a.status NOT IN (42,43,44)  AND a.m_date!='' and a.created_by=".$manager_id.") AS total_today,
+		( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date>'$today' AND a.status NOT IN (42,43,44)  AND a.m_date!='' AND a.m_date<='$next_date' and a.created_by=".$manager_id.") AS total_nextweek,
+		( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date>'$today' AND a.status NOT IN (42,43,44)  AND a.m_date!='' and a.created_by=".$manager_id.") AS total_future"; 
+
+		}else{
+
+			$team_array= $this->fetchTeamList($this->session->userdata('manager_id'),'');
+			$team_str= implode(',',$team_array);
+
+			$sql = "SELECT ( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date<'$today' AND a.status NOT IN (42,43,44)  AND a.m_date!='' and  FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_missed,
+		( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date<'$today' AND a.status NOT IN (42,43,44)  AND a.m_date>='$last_date' AND a.m_date!='' and  FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_lastweek,
+		( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date='$today' AND a.status NOT IN (42,43,44)  AND a.m_date!='' and  FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_today,
+		( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date>'$today' AND a.status NOT IN (42,43,44)  AND a.m_date!='' AND a.m_date<='$next_date' and  FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_nextweek,
+		( SELECT COUNT(DISTINCT id) FROM ci_leads as a WHERE a.m_date>'$today' AND a.status NOT IN (42,43,44)  AND a.m_date!='' and  FIND_IN_SET(a.created_by,'".$team_str."')>0) AS total_future"; 
+		}
+					
+		
+		$rows = $this->db->query($sql);
+		if($rows->num_rows()>=1){
+		foreach($rows->result_array() as  $row){
+			$data[] = $row;	
+		}
+		}
+		return $data[0];
+
+}
+
+public function dashboard_TeamPro($table='ci_leads'){
+	
+	$team_array= $this->fetchTeamList($this->session->userdata('manager_id'),'');
+	$team_str= implode(',',$team_array);
+			
+		$loop =array();	
+		$loop1 =array();		
+	 	$loop[]=  date('Y-m-d');
+	 	$loop1[]=  date('M Y');
+	for ($i = 1; $i < 12; $i++) {
+	  	$loop[]= date('Y-m-d', strtotime("-$i month"));
+	 	$loop1[]= date('M Y', strtotime("-$i month"));
+	}
+//print_r( $loop);
+			 $sql = "SELECT  COUNT(id) as total,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[0]') and year(a.close_date)=year('$loop[0]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_0, ( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[1]') and year(a.close_date)=year('$loop[1]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_1, ( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[2]') and year(a.close_date)=year('$loop[2]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_2,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[3]') and year(a.close_date)=year('$loop[3]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_3,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[4]') and year(a.close_date)=year('$loop[4]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_4,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[5]') and year(a.close_date)=year('$loop[5]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_5,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[6]') and year(a.close_date)=year('$loop[6]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_6,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[7]') and year(a.close_date)=year('$loop[7]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_7,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[8]') and year(a.close_date)=year('$loop[8]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_8,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[9]') and year(a.close_date)=year('$loop[9]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_9,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[10]') and year(a.close_date)=year('$loop[10]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_10,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[11]') and year(a.close_date)=year('$loop[11]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_11 FROM ".$table." WHERE FIND_IN_SET(created_by,'".$team_str."')>0"; 
+				$rows = $this->db->query($sql);
+				 if($rows->num_rows()>=1){				
+					foreach($rows->result_array() as  $row){
+						$data['lead_number'] = $row;	
+					}
+				}
+				$data['month_name'] = $loop1;			
+				return $data;			
+			
+			}
+
+
+
+			public function dashboard_MyPro($table='ci_leads'){
+
+				//$team_str= $this->session->userdata('manager_id');
+				$team_array[]= $this->session->userdata('manager_id');
+				$team_str= implode(',',$team_array);
+						
+					$loop =array();	
+					$loop1 =array();		
+					 $loop[]=  date('Y-m-d');
+					 $loop1[]=  date('M Y');
+				for ($i = 1; $i < 12; $i++) {
+					  $loop[]= date("Y-m-d", strtotime("-$i month"));
+					 $loop1[]= date("M Y", strtotime("-$i month"));
+				}
+				$sql = "SELECT  COUNT(id) as total,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[0]') and year(a.close_date)=year('$loop[0]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_0, ( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[1]') and year(a.close_date)=year('$loop[1]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_1, ( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[2]') and year(a.close_date)=year('$loop[2]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_2,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[3]') and year(a.close_date)=year('$loop[3]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_3,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[4]') and year(a.close_date)=year('$loop[4]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_4,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[5]') and year(a.close_date)=year('$loop[5]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_5,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[6]') and year(a.close_date)=year('$loop[6]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_6,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[7]') and year(a.close_date)=year('$loop[7]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_7,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[8]') and year(a.close_date)=year('$loop[8]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_8,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[9]') and year(a.close_date)=year('$loop[9]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_9,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[10]') and year(a.close_date)=year('$loop[10]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_10,( SELECT SUM(mrr) FROM ".$table." a WHERE month(a.close_date)=month('$loop[11]') and year(a.close_date)=year('$loop[11]') and FIND_IN_SET(a.created_by,'".$team_str."')>0) AS pt_11 FROM ".$table." WHERE FIND_IN_SET(created_by,'".$team_str."')>0"; 
+
+							$rows = $this->db->query($sql);
+							 if($rows->num_rows()>=1){				
+								foreach($rows->result_array() as  $row){
+									$data['lead_number'] = $row;	
+								}
+							}
+							$data['month_name'] = $loop1;			
+							return $data;			
+						
+						}
+
+			
+	
+	public function checkDuplicate($value,$col,$table) {
+    $this->db->where($col,$value);
+    $query = $this->db->get($table);
+    $count_row = $query->num_rows();
+    if ($count_row > 0) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
+
+ public function checkDuplicate_other_row($con,$table)
+	{
+		if(!empty($con))
+		{
+			$this->db->where($con);
+		}
+		$query = $this->db->get($table);
+		 $count_row = $query->num_rows();
+		 if ($count_row > 0) {
+       			 return TRUE;
+   			 } else {
+       		 return FALSE;
+   			 }
+   }
+
+
+ public function checkDuplicateUsername($username) {
+
+
+
+    $this->db->where('c_username', $username);
+
+
+
+    $query = $this->db->get('ci_user');
+
+
+
+    $count_row = $query->num_rows();
+
+
+
+    if ($count_row > 0) {
+
+        return TRUE;
+
+    } else {
+
+        return FALSE;
+
+    }
+
+}
+
+
+
+    // get the parent category for select box values 
+	 public function get_users($limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='')
+	 {
+	   			$result=array();
+			  $this->db->select(array('A.*','B.title as role','C.name as manager_name','D.name as country_name','E.name as state_name'));
+			  $this->db->from('ci_user as A');
+			  $this->db->join('ci_roles as B','A.user_type=B.id','LEFT');
+			  $this->db->join('ci_user as C','A.manager=C.id','LEFT');
+			  $this->db->join('countries as D','A.country=D.id','LEFT');
+			  $this->db->join('states as E','A.state=E.id','LEFT');
+			   if(!empty($search))
+			  {
+			    $where = '(A.name LIKE "%'.$search.'%" OR A.emp_id LIKE "%'.$search.'%"  OR A.mobile LIKE "%'.$search.'%" OR A.email LIKE "%'.$search.'%")';	
+               $this->db->where($where);
+			  }	
+
+			   $where1="A.user_level > ".$this->session->userdata('manager_level');	
+			   $this->db->where($where1);
+
+		     $this->db->order_by($order_by,$sort_by);
+			  if(!empty($limit_per_page))
+			  {
+			   $this->db->limit($limit_per_page, $page_index);
+			  }
+			  $data = $this->db->get();
+			// $this->db->last_query();
+		foreach($data->result_array() as $row)
+		{
+			$result[]= $row;
+			
+			
+		}
+		return $result;
+	 }
+
+	 // get the parent category for select box values 
+	 public function get_Myleads($d1='', $d2='', $mrr1='', $mrr2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='', $lCat='',$user_name='',$country='',$state='')
+	 {			 
+	 			$date1=date("Y-m-d",strtotime($d1) );
+	 			$date2=date("Y-m-d",strtotime($d2) );
+	   			$result=array();
+			  $this->db->select(array('A.*','B.name as owner_name','C.status as lead_status','B.user_level','E.title as servicecat'));
+			  $this->db->from('ci_leads as A');
+			  $this->db->join('ci_user as B','A.created_by=B.id','LEFT');
+			  $this->db->join('ci_status as C','A.status=C.id','LEFT');
+			  $this->db->join('ci_terms as E','A.s_cat=E.id','LEFT');
+			 
+			   if(!empty($d1) && !empty($d2))
+			  {
+			    $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+               $this->db->where($where);
+			  }	
+			  if((!empty($mrr1) OR  ($mrr1=='0')) && !empty($mrr2))
+			  {
+			    $where = '(A.mrr BETWEEN '.$mrr1.' AND '.$mrr2.')';	
+               $this->db->where($where);
+			  }	
+
+			   if(!empty($category))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.s_cat, "'.$category.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  
+			  if(!empty($lCat))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.lead_cat, "'.$lCat.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+
+			  if(!empty($user_name))
+			  {
+			  //$multipleWhere= 'FIND_IN_SET(A.country, "'.$user_name.'")>0 ';
+               $this->db->where('B.name',$user_name);
+			  }				  
+
+			  if(!empty($country))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.country, "'.$country.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+
+			  if(!empty($state))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.state, "'.$state.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  			  
+			   if(!empty($status))
+			  { 
+				$multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }				  
+			   if(!empty($search))
+			  {
+			    $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+               $this->db->where($where);
+			  }	
+			  //if ($this->session->userdata('manager_id') !=1) {
+			   $where1="A.created_by = ".$this->session->userdata('manager_id');	
+			   $this->db->where($where1);
+			 // }		
+			   if(!empty($order_by) && !empty($sort_by)){
+			     $this->db->order_by($order_by,$sort_by);
+			   }else{
+			     $this->db->order_by('A.id','DESC');
+			   }
+		     
+			  if(!empty($limit_per_page))
+			  {
+			   $this->db->limit($limit_per_page, $page_index);
+			  }
+			  $data = $this->db->get();
+		//	echo $this->db->last_query();
+		foreach($data->result_array() as $row)
+		{
+			$result[]= $row;
+			
+			
+		}
+		return $result;
+	 }	 
+	 
+	// get the parent category for select box values 
+	 public function get_Allleads($limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='')
+	 {
+	   			$result=array();
+			  $this->db->select(array('A.*','B.name as owner_name','C.status as lead_status','B.user_level'));
+			  $this->db->from('ci_leads as A');
+			  $this->db->join('ci_user as B','A.created_by=B.id','LEFT');
+			  $this->db->join('ci_status as C','A.status=C.id','LEFT');
+			 
+
+			   if(!empty($search))
+			  {
+			    $where = '(A.customer_name LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.poc LIKE "%'.$search.'%" OR A.contact1 LIKE "%'.$search.'%")';	
+               $this->db->where($where);
+			  }	
+			   $where1="B.id = ".$this->session->userdata('manager_id');	
+			   $this->db->where($where1);		
+		     $this->db->order_by($order_by,$sort_by);
+			  if(!empty($limit_per_page))
+			  {
+			   $this->db->limit($limit_per_page, $page_index);
+			  }
+			  $data = $this->db->get();
+			// $this->db->last_query();
+		foreach($data->result_array() as $row)
+		{
+			$result[]= $row;
+			
+			
+		}
+		return $result;
+	 }	
+
+
+	 // get the parent category for select box values 
+	 public function getLeadsFollowups($d1='', $d2='', $mrr1='', $mrr2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='',$type='', $lCat='',$user_name='',$country='',$state='')
+	 {			 
+	 			$date1=date("Y-m-d",strtotime($d1) );
+	 			$date2=date("Y-m-d",strtotime($d2) );
+	   			$result=array();
+			  $this->db->select(array('A.*','B.name as owner_name','C.status as lead_status','B.user_level','E.title as servicecat'));
+			  $this->db->from('ci_leads as A');
+			  $this->db->join('ci_user as B','A.created_by=B.id','LEFT');
+			  $this->db->join('ci_status as C','A.status=C.id','LEFT');
+			  $this->db->join('ci_terms as E','A.s_cat=E.id','LEFT');
+			 
+			  if(!empty($type)){
+				$where="A.status NOT IN (42,43,44) AND B.id = ".$this->session->userdata('manager_id')." AND A.followup_date!=''";	
+				
+				$today = date('Y-m-d');
+						$last_date= date('Y-m-d', strtotime("-7 day"));
+						$next_date= date('Y-m-d', strtotime("+7 day"));
+
+					   if($type==1)
+					   {
+						   $where.= " AND A.followup_date < '$today'";
+					   }elseif($type==2)
+					   {
+						$where.= " AND A.followup_date between '$last_date' AND '$today' ";
+						
+					   }elseif($type==3)
+					   {
+						$where.= " AND A.followup_date = '$today'";
+					   }elseif($type==4)
+					   {
+						$where.= " AND A.followup_date between '$today' AND '$next_date' ";
+					   }elseif($type==5)
+					   {
+						 $where.= " AND A.followup_date > '$today'";
+					   }
+					   if(isset($where)){
+						$this->db->where($where);
+					   } 
+
+			  }
+
+			   if(!empty($d1) && !empty($d2))
+			  {
+			    $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+               $this->db->where($where);
+			  }	
+
+			  if((!empty($mrr1) OR  ($mrr1=='0')) && !empty($mrr2))
+			  {
+				$where = '(A.mrr BETWEEN '.$mrr1.' AND '.$mrr2.')';	
+			   $this->db->where($where);
+			  }	 
+			  
+			  if(!empty($user_name))
+			  {
+			  //$multipleWhere= 'FIND_IN_SET(A.country, "'.$user_name.'")>0 ';
+               $this->db->where('B.name',$user_name);
+			  }				  
+
+			  if(!empty($country))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.country, "'.$country.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+
+			  if(!empty($state))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.state, "'.$state.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  	
+	
+			   if(!empty($category))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.s_cat, "'.$category.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }
+			   if(!empty($lCat))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.lead_cat, "'.$lCat.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }			  
+			   if(!empty($status))
+			  { 
+				$multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }				  
+			   if(!empty($search))
+			  {
+			    $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+               $this->db->where($where);
+			  }	
+			  //if ($this->session->userdata('manager_id') !=1) {
+			   $where1="A.created_by = ".$this->session->userdata('manager_id');	
+			   $this->db->where($where1);
+			  //}		
+			   if(!empty($order_by) && !empty($sort_by)){
+			     $this->db->order_by($order_by,$sort_by);
+			   }else{
+			     $this->db->order_by('A.id','DESC');
+			   }
+
+			  if(!empty($limit_per_page))
+			  {
+			   $this->db->limit($limit_per_page, $page_index);
+			  }
+
+			  $data = $this->db->get();
+			//echo $this->db->last_query();
+		foreach($data->result_array() as $row)
+		{
+			$result[]= $row;
+			
+			
+		}
+		return $result;
+	 }		 
+
+
+	 public function getLeadsMeetings($d1='', $d2='', $mrr1='', $mrr2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='',$type='', $lCat='',$user_name='',$country='',$state='')
+	 {
+	   			$result=array();
+			  $this->db->select(array('A.*','B.name as owner_name','C.status as lead_status','B.user_level','E.title as servicecat'));
+			  $this->db->from('ci_leads as A');
+			  $this->db->join('ci_user as B','A.created_by=B.id','LEFT');
+			  $this->db->join('ci_status as C','A.status=C.id','LEFT');
+			  $this->db->join('ci_terms as E','A.s_cat=E.id','LEFT');
+			 
+			  if((!empty($mrr1) OR  ($mrr1=='0')) && !empty($mrr2))
+			  {
+				$where = '(A.mrr BETWEEN '.$mrr1.' AND '.$mrr2.')';	
+			   $this->db->where($where);
+			  } 
+
+			   if(!empty($type))
+			  {
+			$where="A.status NOT IN (42,43,44) AND B.id = ".$this->session->userdata('manager_id')." AND A.m_date!=''";	
+			
+			
+			$today = date('Y-m-d');
+					$last_date= date('Y-m-d', strtotime("-7 day"));
+					$next_date= date('Y-m-d', strtotime("+7 day"));
+
+				   if($type==1)
+				   {
+					   $where.= " AND A.m_date < '$today'";
+				   }elseif($type==2)
+				   {
+					$where.= " AND A.m_date between '$today' AND '$last_date' ";
+				   }elseif($type==3)
+				   {
+					$where.= " AND A.m_date = '$today'";
+				   }elseif($type==4)
+				   {
+					$where.= " AND A.m_date between '$today' AND '$next_date' ";
+				   }elseif($type==5)
+				   {
+					 $where.= " AND A.m_date > '$today'";
+				   }
+				   if(isset($where)){
+					$this->db->where($where);
+				   }
+
+			  }	
+
+
+			   if(!empty($d1) && !empty($d2))
+			  {
+			    $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+               $this->db->where($where);
+			  }	
+			   if(!empty($category))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.s_cat, "'.$category.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  
+			   if(!empty($lCat))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.lead_cat, "'.$lCat.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+
+			  
+			  if(!empty($user_name))
+			  {
+			  //$multipleWhere= 'FIND_IN_SET(A.country, "'.$user_name.'")>0 ';
+               $this->db->where('B.name',$user_name);
+			  }				  
+
+			  if(!empty($country))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.country, "'.$country.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+
+			  if(!empty($state))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.state, "'.$state.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  	
+			  			  
+			   if(!empty($status))
+			  { 
+				$multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }				  
+			   if(!empty($search))
+			  {
+			    $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+               $this->db->where($where);
+			  }	
+			  //if ($this->session->userdata('manager_id') !=1) {
+			   $where1="A.created_by = ".$this->session->userdata('manager_id');	
+			   $this->db->where($where1);
+			  //}	
+		   if(!empty($order_by) && !empty($sort_by)){
+		     $this->db->order_by($order_by,$sort_by);
+		   }else{
+		     $this->db->order_by('A.id','DESC');
+		   }
+
+
+			  if(!empty($limit_per_page))
+			  {
+			   $this->db->limit($limit_per_page, $page_index);
+			  }
+
+			
+			  $data = $this->db->get();
+			 //echo $this->db->last_query();
+		foreach($data->result_array() as $row)
+		{
+			$result[]= $row;
+			
+			
+		}
+		return $result;
+	 }	
+
+	
+
+	  // get the parent category for select box values 
+	  public function getTeamLeads($d1='', $d2='', $mrr1='', $mrr2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='', $lCat='',$user_name='',$country='',$state='')
+	  {			 
+		$team_array= $this->fetchTeamList($this->session->userdata('manager_id'),'');
+		$team_str= implode(',',$team_array);
+
+				  $date1=date("Y-m-d",strtotime($d1) );
+				  $date2=date("Y-m-d",strtotime($d2) );
+					$result=array();
+			   $this->db->select(array('A.*','B.name as owner_name','C.status as lead_status','B.user_level','E.title as servicecat'));
+			   $this->db->from('ci_leads as A');
+			   $this->db->join('ci_user as B','A.created_by=B.id','LEFT');
+			   $this->db->join('ci_status as C','A.status=C.id','LEFT');
+			   $this->db->join('ci_terms as E','A.s_cat=E.id','LEFT');
+			  
+				if(!empty($d1) && !empty($d2))
+			   {
+				 $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+				$this->db->where($where);
+			   }	
+
+			  if((!empty($mrr1) OR  ($mrr1=='0')) && !empty($mrr2))
+			  {
+				$where = '(A.mrr BETWEEN '.$mrr1.' AND '.$mrr2.')';	
+			   $this->db->where($where);
+			  } 
+
+				if(!empty($category))
+			   {
+			   $multipleWhere= 'FIND_IN_SET(A.s_cat, "'.$category.'")>0 ';
+				$this->db->where($multipleWhere);
+			   }	
+			   
+			    if(!empty($lCat))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.lead_cat, "'.$lCat.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  			  
+			  if(!empty($user_name))
+			  {
+			  //$multipleWhere= 'FIND_IN_SET(A.country, "'.$user_name.'")>0 ';
+               $this->db->where('B.name',$user_name);
+			  }				  
+
+			  if(!empty($country))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.country, "'.$country.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+
+			  if(!empty($state))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.state, "'.$state.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  	
+			  			  
+				if(!empty($status))
+			   { 
+				 $multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+				$this->db->where($multipleWhere);
+			   }				  
+				if(!empty($search))
+			   {
+				 $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+				$this->db->where($where);
+			   }	
+			   $where1="FIND_IN_SET(A.created_by,'".$team_str."')>0";	
+				//$where1="A.status NOT IN (42,43,44) AND FIND_IN_SET(A.created_by,'".$team_str."')>0";	
+				$this->db->where($where1);
+			 	
+				if(!empty($order_by) && !empty($sort_by)){
+				  $this->db->order_by($order_by,$sort_by);
+				}else{
+				  $this->db->order_by('A.id','DESC');
+				}
+			  
+			   if(!empty($limit_per_page))
+			   {
+				$this->db->limit($limit_per_page, $page_index);
+			   }
+			   $data = $this->db->get();
+			// echo $this->db->last_query();
+		 foreach($data->result_array() as $row)
+		 {
+			 $result[]= $row;
+			 
+			 
+		 }
+		 return $result;
+	  }	
+	  
+	  
+	  
+	  // get the parent category for select box values 
+	  public function getTeamAssignLeads($d1='', $d2='', $mrr1='', $mrr2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='', $lCat='',$user_name='',$country='',$state='')
+	  {			 
+		
+
+				  $date1=date("Y-m-d",strtotime($d1) );
+				  $date2=date("Y-m-d",strtotime($d2) );
+					$result=array();
+			   $this->db->select(array('A.*','B.name as owner_name','C.status as lead_status','B.user_level','E.title as servicecat'));
+			   $this->db->from('ci_leads as A');
+			   $this->db->join('ci_user as B','A.created_by=B.id','LEFT');
+			   $this->db->join('ci_status as C','A.status=C.id','LEFT');
+			   $this->db->join('ci_terms as E','A.s_cat=E.id','LEFT');
+			  
+				if(!empty($d1) && !empty($d2))
+			   {
+				 $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+				$this->db->where($where);
+			   }	
+
+			  if((!empty($mrr1) OR  ($mrr1=='0')) && !empty($mrr2))
+			  {
+				$where = '(A.mrr BETWEEN '.$mrr1.' AND '.$mrr2.')';	
+			   $this->db->where($where);
+			  } 
+
+				if(!empty($category))
+			   {
+			   $multipleWhere= 'FIND_IN_SET(A.s_cat, "'.$category.'")>0 ';
+				$this->db->where($multipleWhere);
+			   }			   
+			  			  
+			   if(!empty($user_name))
+			   {
+			   //$multipleWhere= 'FIND_IN_SET(A.country, "'.$user_name.'")>0 ';
+				$this->db->where('B.name',$user_name);
+			   }				  
+ 
+			   if(!empty($country))
+			   {
+			   $multipleWhere= 'FIND_IN_SET(A.country, "'.$country.'")>0 ';
+				$this->db->where($multipleWhere);
+			   }	
+ 
+			   if(!empty($state))
+			   {
+			   $multipleWhere= 'FIND_IN_SET(A.state, "'.$state.'")>0 ';
+				$this->db->where($multipleWhere);
+			   }					   
+				   
+
+			    if(!empty($lCat))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.lead_cat, "'.$lCat.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }			  
+				if(!empty($status))
+			   { 
+				 $multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+				$this->db->where($multipleWhere);
+			   }				  
+				if(!empty($search))
+			   {
+				 $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+				$this->db->where($where);
+			   }	
+			  
+				$where1="A.status NOT IN (42,43,44) AND A.lead_assign =".$this->session->userdata('manager_id');	
+				$this->db->where($where1);
+			 	
+				if(!empty($order_by) && !empty($sort_by)){
+				  $this->db->order_by($order_by,$sort_by);
+				}else{
+				  $this->db->order_by('A.id','DESC');
+				}
+			  
+			   if(!empty($limit_per_page))
+			   {
+				$this->db->limit($limit_per_page, $page_index);
+			   }
+			   $data = $this->db->get();
+			// echo $this->db->last_query();
+		 foreach($data->result_array() as $row)
+		 {
+			 $result[]= $row;
+			 
+			 
+		 }
+		 return $result;
+	  }	 
+ 
+
+
+
+	  // get the parent category for select box values 
+	  public function getTeamFollowups($d1='', $d2='', $mrr1='', $mrr2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='',$type='', $lCat='',$user_name='',$country='',$state='')
+	  {			 
+		$team_array= $this->fetchTeamList($this->session->userdata('manager_id'),'');
+		$team_str= implode(',',$team_array);
+
+				  $date1=date("Y-m-d",strtotime($d1) );
+				  $date2=date("Y-m-d",strtotime($d2) );
+					$result=array();
+			   $this->db->select(array('A.*','B.name as owner_name','C.status as lead_status','B.user_level','E.title as servicecat'));
+			   $this->db->from('ci_leads as A');
+			   $this->db->join('ci_user as B','A.created_by=B.id','LEFT');
+			   $this->db->join('ci_status as C','A.status=C.id','LEFT');
+			   $this->db->join('ci_terms as E','A.s_cat=E.id','LEFT');
+			   $where="A.status NOT IN (42,43,44) AND FIND_IN_SET(A.created_by,'".$team_str."')>0 AND A.followup_date!=''";	
+			   if(!empty($type)){
+				
+				 
+				 $today = date('Y-m-d');
+						 $last_date= date('Y-m-d', strtotime("-7 day"));
+						 $next_date= date('Y-m-d', strtotime("+7 day"));
+						if($type==1)
+						{
+							$where.= " AND A.followup_date < '$today'";
+						}elseif($type==2)
+						{
+							$where.= " AND A.followup_date<'$today' AND A.followup_date>='$last_date' ";
+						}elseif($type==3)
+						{
+						 $where.= " AND A.followup_date = '$today'";
+						}elseif($type==4)
+						{
+						 $where.= " AND A.followup_date between '$today' AND '$next_date' ";
+						}elseif($type==5)
+						{
+						  $where.= " AND A.followup_date > '$today'";
+						}
+						if(isset($where)){
+						 $this->db->where($where);
+						} 
+ 
+			   }
+ 
+				if(!empty($d1) && !empty($d2))
+			   {
+				 $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+				$this->db->where($where);
+			   }	
+			   if((!empty($mrr1) OR  ($mrr1=='0')) && !empty($mrr2))
+			   {
+				 $where = '(A.mrr BETWEEN '.$mrr1.' AND '.$mrr2.')';	
+				$this->db->where($where);
+			   }
+			   			   			  			  
+				if(!empty($user_name))
+				{
+				//$multipleWhere= 'FIND_IN_SET(A.country, "'.$user_name.'")>0 ';
+				$this->db->where('B.name',$user_name);
+				}				  
+
+				if(!empty($country))
+				{
+				$multipleWhere= 'FIND_IN_SET(A.country, "'.$country.'")>0 ';
+				$this->db->where($multipleWhere);
+				}	
+
+				if(!empty($state))
+				{
+				$multipleWhere= 'FIND_IN_SET(A.state, "'.$state.'")>0 ';
+				$this->db->where($multipleWhere);
+				}						
+ 
+				if(!empty($category))
+			   {
+			   $multipleWhere= 'FIND_IN_SET(A.s_cat, "'.$category.'")>0 ';
+				$this->db->where($multipleWhere);
+			   }	
+			   
+			    if(!empty($lCat))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.lead_cat, "'.$lCat.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  
+			  			  
+				if(!empty($status))
+			   { 
+				 $multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+				$this->db->where($multipleWhere);
+			   }				  
+				if(!empty($search))
+			   {
+				 $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+				$this->db->where($where);
+			   }	
+			   
+			   $where1="A.status NOT IN (42,43,44) AND FIND_IN_SET(A.created_by,'".$team_str."')>0";	
+				$this->db->where($where1);
+			  
+				if(!empty($order_by) && !empty($sort_by)){
+				  $this->db->order_by($order_by,$sort_by);
+				}else{
+				  $this->db->order_by('A.id','DESC');
+				}
+ 
+			   if(!empty($limit_per_page))
+			   {
+				$this->db->limit($limit_per_page, $page_index);
+			   }
+ 
+			   $data = $this->db->get();
+			 //$this->db->last_query();
+		 foreach($data->result_array() as $row)
+		 {
+			 $result[]= $row;
+			 
+			 
+		 }
+		 return $result;
+	  }		 
+
+
+
+	 public function getTeamLeadsMeetings($d1='', $d2='', $mrr1='', $mrr2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='',$type='', $lCat='',$user_name='',$country='',$state='')
+	 {
+				$team_array= $this->fetchTeamList($this->session->userdata('manager_id'),'');
+				$team_str= implode(',',$team_array);
+
+	   			$result=array();
+			  $this->db->select(array('A.*','B.name as owner_name','C.status as lead_status','B.user_level','E.title as servicecat'));
+			  $this->db->from('ci_leads as A');
+			  $this->db->join('ci_user as B','A.created_by=B.id','LEFT');
+			  $this->db->join('ci_status as C','A.status=C.id','LEFT');
+			  $this->db->join('ci_terms as E','A.s_cat=E.id','LEFT');
+			 
+			  $where="A.status NOT IN (42,43,44) AND FIND_IN_SET(A.created_by,'".$team_str."')>0 AND A.m_date!=''";	
+			
+
+			   if(!empty($type))
+			  {
+			
+			
+			$today = date('Y-m-d');
+					$last_date= date('Y-m-d', strtotime("-7 day"));
+					$next_date= date('Y-m-d', strtotime("+7 day"));
+				   if($type==1)
+				   {
+					   $where.= " AND A.m_date < '$today'";
+				   }elseif($type==2)
+				   {
+					$where.= " AND A.m_date<'$today' AND A.m_date>='$last_date' ";
+				   }elseif($type==3)
+				   {
+					$where.= " AND A.m_date = '$today'";
+				   }elseif($type==4)
+				   {
+					$where.= " AND A.m_date between '$today' AND '$next_date' ";
+				   }elseif($type==5)
+				   {
+					 $where.= " AND A.m_date > '$today'";
+				   }
+				   if(isset($where)){
+					$this->db->where($where);
+				   }
+
+			  }	
+
+
+			   if(!empty($d1) && !empty($d2))
+			  {
+			    $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+               $this->db->where($where);
+			  }	
+			  if((!empty($mrr1) OR  ($mrr1=='0')) && !empty($mrr2))
+			  {
+			    $where = '(A.mrr BETWEEN '.$mrr1.' AND '.$mrr2.')';	
+               $this->db->where($where);
+			  }	
+
+
+			   if(!empty($category))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.s_cat, "'.$category.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }			
+			  
+			   if(!empty($lCat))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.lead_cat, "'.$lCat.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  			   			   			  			  
+				if(!empty($user_name))
+				{
+				//$multipleWhere= 'FIND_IN_SET(A.country, "'.$user_name.'")>0 ';
+				$this->db->where('B.name',$user_name);
+				}				  
+
+				if(!empty($country))
+				{
+				$multipleWhere= 'FIND_IN_SET(A.country, "'.$country.'")>0 ';
+				$this->db->where($multipleWhere);
+				}	
+
+				if(!empty($state))
+				{
+				$multipleWhere= 'FIND_IN_SET(A.state, "'.$state.'")>0 ';
+				$this->db->where($multipleWhere);
+				}						
+
+			  	  
+			   if(!empty($status))
+			  { 
+				$multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }				  
+			   if(!empty($search))
+			  {
+			    $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+               $this->db->where($where);
+			  }	
+			  
+			  //$where1="A.status NOT IN (42,43,44) AND FIND_IN_SET(A.created_by,'".$team_str."')>0";	
+			//	$this->db->where($where1);
+			  	
+				if(!empty($order_by) && !empty($sort_by)){
+					$this->db->order_by($order_by,$sort_by);
+				}else{
+					$this->db->order_by('A.id','DESC');
+				}
+
+
+			  if(!empty($limit_per_page))
+			  {
+			   $this->db->limit($limit_per_page, $page_index);
+			  }
+
+			
+			  $data = $this->db->get();
+			//echo $this->db->last_query();
+		foreach($data->result_array() as $row)
+		{
+			$result[]= $row;
+			
+			
+		}
+		return $result;
+	 }	
+
+
+	 public function getTeamAssignedMeetings($d1='', $d2='', $mrr1='', $mrr2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='',$type='', $lCat='',$user_name='',$country='',$state='')
+	 {
+
+			
+	   			$result=array();
+				$this->db->select(array('Z.a1','A.*','B.name as owner_name','C.status as lead_status','B.user_level','E.title as servicecat'));
+				$this->db->from('ci_meetings as Z');
+				$this->db->join('ci_leads as A','A.id=Z.lead_id','LEFT');
+				$this->db->join('ci_user as B','A.created_by=B.id','LEFT');
+				$this->db->join('ci_status as C','A.status=C.id','LEFT');	
+				$this->db->join('ci_terms as E','A.s_cat=E.id','LEFT');	 
+				//("select max(id) from ci_meetings as e2 where e2.lead_id = A.id")
+				$where="A.status NOT IN (42,43,44) AND Z.a1=".$this->session->userdata('manager_id')." AND A.m_date!=''";				
+				
+					$today = date('Y-m-d');
+					$last_date= date('Y-m-d', strtotime("-7 day"));
+					$next_date= date('Y-m-d', strtotime("+7 day"));
+				   if($type==1)
+				   {
+					   $where.= " AND A.m_date < '$today'";
+				   }elseif($type==2)
+				   {
+					$where.= " AND A.m_date<'$today' AND A.m_date>='$last_date' ";
+				   }elseif($type==3)
+				   {
+					$where.= " AND A.m_date = '$today'";
+				   }elseif($type==4)
+				   {
+					$where.= " AND A.m_date between '$today' AND '$next_date' ";
+				   }elseif($type==5)
+				   {
+					 $where.= " AND A.m_date > '$today'";
+				   }
+				   if(isset($where)){
+					$this->db->where($where);
+				   } 
+
+
+				   if(!empty($d1) && !empty($d2))
+				   {
+					 $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+					$this->db->where($where);
+				   }	
+				   if((!empty($mrr1) OR  ($mrr1=='0')) && !empty($mrr2))
+				   {
+					 $where = '(A.mrr BETWEEN '.$mrr1.' AND '.$mrr2.')';	
+					$this->db->where($where);
+				   }			   
+				   
+				   			  			   			   			  			  
+					if(!empty($user_name))
+					{
+					//$multipleWhere= 'FIND_IN_SET(A.country, "'.$user_name.'")>0 ';
+					$this->db->where('B.name',$user_name);
+					}				  
+
+					if(!empty($country))
+					{
+					$multipleWhere= 'FIND_IN_SET(A.country, "'.$country.'")>0 ';
+					$this->db->where($multipleWhere);
+					}	
+
+					if(!empty($state))
+					{
+					$multipleWhere= 'FIND_IN_SET(A.state, "'.$state.'")>0 ';
+					$this->db->where($multipleWhere);
+					}				
+ 
+					if(!empty($category))
+				   {
+				   $multipleWhere= 'FIND_IN_SET(A.s_cat, "'.$category.'")>0 ';
+					$this->db->where($multipleWhere);
+				   }	
+				   
+				    if(!empty($lCat))
+			  {
+			  $multipleWhere= 'FIND_IN_SET(A.lead_cat, "'.$lCat.'")>0 ';
+               $this->db->where($multipleWhere);
+			  }	
+			  			  
+					if(!empty($status))
+				   { 
+					 $multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+					$this->db->where($multipleWhere);
+				   }				  
+					if(!empty($search))
+				   {
+					 $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+					$this->db->where($where);
+				   }	
+					   
+					 if(!empty($order_by) && !empty($sort_by)){
+						 $this->db->order_by($order_by,$sort_by);
+					 }else{
+						 $this->db->order_by('A.id','DESC');
+					 }
+	 
+	 
+				   if(!empty($limit_per_page))
+				   {
+					$this->db->limit($limit_per_page, $page_index);
+				   }
+			
+			  $data = $this->db->get();
+		//echo $this->db->last_query();
+		foreach($data->result_array() as $row)
+		{
+			$result[]= $row;
+			
+			
+		}
+		return $result;
+	 }
+
+	
+	 public function getSingleLead($id)
+	 {
+			  $result=array();
+			  $this->db->select(array('A.*','B.user_level','B.name as created_name','D.name as country_name','E.name as state_name','F.title as pcat_name','G.title as psubcat_name','H.name as assigned_name'));
+			  $this->db->from('ci_leads as A');
+			  $this->db->join('ci_user as B','A.created_by=B.id','LEFT');			
+			  $this->db->join('countries as D','A.country=D.id','LEFT');
+			  $this->db->join('states as E','A.state=E.id','LEFT');
+			  $this->db->join('ci_terms as F','A.s_cat=F.id','LEFT');
+			  $this->db->join('ci_terms as G','A.p_cat=G.id','LEFT');
+			  $this->db->join('ci_user as H','A.lead_assign=H.id','LEFT');
+			 $this->db->where('A.id',$id);
+			
+			  $this->db->limit(5);
+			  $data = $this->db->get();
+				foreach($data->result_array() as $row)
+				{
+					$result= $row;
+				}
+				return $result;
+	 }
+
+	 public function getSingleUser($id)
+	 {
+			  $result=array();
+			  $this->db->select(array('A.*','D.name as country_name','E.name as state_name'));
+			  $this->db->from('ci_user as A');			
+			  $this->db->join('countries as D','A.country=D.id','LEFT');
+			  $this->db->join('states as E','A.state=E.id','LEFT');
+			 $this->db->where('A.id',$id);
+			
+			  $this->db->limit(5);
+			  $data = $this->db->get();
+				foreach($data->result_array() as $row)
+				{
+					$result= $row;
+				}
+				return $result;
+	 }
+
+	  // get the parent category for select box values 
+
+	  public function getShortVerticals($id)
+	  {
+					$result=array();
+				   $this->db->select(array('A.id','A.poc','A.company_name'));
+				   $this->db->from('ci_verticals as A');
+				   $this->db->where('A.created_by',$id);			
+				   $data = $this->db->get();
+				 // $this->db->last_query();
+				 foreach($data->result_array() as $row)
+				 {
+					 $result[]= $row;
+				 }
+				 return $result;
+	  }	
+
+ 	public function getMyVerticals($d1='', $d2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='',$type='')
+	  {
+
+					
+
+					$result=array();
+				   $this->db->select(array('A.*','B.title as vertical_status','C.title as v_cat','D.title as v_subcat'));
+				   $this->db->from('ci_verticals as A');
+				   $this->db->join('ci_terms as B','A.status=B.id','LEFT');
+				   $this->db->join('ci_terms as C','A.category=C.id','LEFT');
+				   $this->db->join('ci_terms as D','A.sub_category=D.id','LEFT'); 
+				   $this->db->where('A.created_by',$this->session->userdata('manager_id'));
+				   $today = date('Y-m-d');
+					$last_date= date('Y-m-d', strtotime("-7 day"));
+					$next_date= date('Y-m-d', strtotime("+7 day"));
+				   if($type==1)
+				   {
+					   $where = "A.followup_date < '$today'";
+				   }elseif($type==2)
+				   {
+					$where = "A.followup_date between '$today' AND '$last_date' ";
+				   }elseif($type==3)
+				   {
+					$where = "A.followup_date = '$today'";
+				   }elseif($type==4)
+				   {
+					$where = "A.followup_date between '$today' AND '$next_date' ";
+				   }elseif($type==5)
+				   {
+					 $where = "A.followup_date > '$today'";
+				   }
+				   if(isset($where)){
+					$this->db->where($where);
+				   }
+
+				   if(!empty($d1) && !empty($d2))
+				   {
+					 $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+					$this->db->where($where);
+				   }	
+					if(!empty($category))
+				   {
+				   $multipleWhere= 'FIND_IN_SET(A.category, "'.$category.'")>0 ';
+					$this->db->where($multipleWhere);
+				   }				  
+					if(!empty($status))
+				   { 
+					 $multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+					$this->db->where($multipleWhere);
+				   }				  
+					if(!empty($search))
+				   {
+					 $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+					$this->db->where($where);
+				   }	
+					   
+					 if(!empty($order_by) && !empty($sort_by)){
+						 $this->db->order_by($order_by,$sort_by);
+					 }else{
+						 $this->db->order_by('A.id','DESC');
+					 }
+	 
+	 
+				   if(!empty($limit_per_page))
+				   {
+					$this->db->limit($limit_per_page, $page_index);
+				   }
+				   
+
+				   $data = $this->db->get();
+				 // $this->db->last_query();
+				 foreach($data->result_array() as $row)
+				 {
+					 $result[]= $row;
+				 }
+				 return $result;
+	  }	
+
+	  public function getTeamVerticals($d1='', $d2='', $limit_per_page='', $page_index='', $order_by='',$sort_by='', $search='', $status='', $category='',$type='')
+	  {
+
+					$team_array= $this->fetchTeamList($this->session->userdata('manager_id'),'');
+					$team_str= implode(',',$team_array);
+		
+					$result=array();
+				   $this->db->select(array('A.*','B.title as vertical_status','C.title as v_cat','D.title as v_subcat'));
+				   $this->db->from('ci_verticals as A');
+				   $this->db->join('ci_terms as B','A.status=B.id','LEFT');
+				   $this->db->join('ci_terms as C','A.category=C.id','LEFT');
+				   $this->db->join('ci_terms as D','A.sub_category=D.id','LEFT'); 
+				   
+				   $where3="FIND_IN_SET(A.created_by,'".$team_str."')>0";
+				   if(isset($where3)){
+					$this->db->where($where3);
+				   }
+				   
+				   $where='';
+
+				   	$today = date('Y-m-d');
+					$last_date= date('Y-m-d', strtotime("-7 day"));
+					$next_date= date('Y-m-d', strtotime("+7 day"));
+				   if($type==1)
+				   {
+					   $where.= "A.followup_date < '$today'";
+				   }elseif($type==2)
+				   {
+					$where.= "A.followup_date between '$today' AND '$last_date' ";
+				   }elseif($type==3)
+				   {
+					$where.= "A.followup_date = '$today'";
+				   }elseif($type==4)
+				   {
+					$where.= "A.followup_date between '$today' AND '$next_date' ";
+				   }elseif($type==5)
+				   {
+					 $where.= "A.followup_date > '$today'";
+				   }
+				   if(isset($where) && !empty($where)){
+					$this->db->where($where);
+				   }
+
+				   if(!empty($d1) && !empty($d2))
+				   {
+					 $where = '(A.created BETWEEN "'.$date1.'" AND "'.$date2.'")';	
+					$this->db->where($where);
+				   }	
+					if(!empty($category))
+				   {
+				   $multipleWhere= 'FIND_IN_SET(A.s_cat, "'.$category.'")>0 ';
+					$this->db->where($multipleWhere);
+				   }				  
+					if(!empty($status))
+				   { 
+					 $multipleWhere= 'FIND_IN_SET(A.status, "'.$status.'")>0 ';
+					$this->db->where($multipleWhere);
+				   }				  
+					if(!empty($search))
+				   {
+					 $where = '(A.lead_id LIKE "%'.$search.'%" OR A.mrr LIKE "%'.$search.'%"  OR A.contact1 LIKE "%'.$search.'%" OR A.id LIKE "%'.$search.'%")';	
+					$this->db->where($where);
+				   }	
+				   
+				   
+					   
+					 if(!empty($order_by) && !empty($sort_by)){
+						 $this->db->order_by($order_by,$sort_by);
+					 }else{
+						 $this->db->order_by('A.id','DESC');
+					 }
+	 
+	 
+				   if(!empty($limit_per_page))
+				   {
+					$this->db->limit($limit_per_page, $page_index);
+				   }
+				   
+
+				   
+
+				   $data = $this->db->get();
+				 // $this->db->last_query();
+				 foreach($data->result_array() as $row)
+				 {
+					 $result[]= $row;
+				 }
+				 return $result;
+	  }	 
+		// get the parent category for select box values 
+		public function getSingleVertical($id)
+		{
+						$result=array();
+					$this->db->select(array('A.*','B.title as vertical_status','C.title as v_cat','D.title as v_subcat','E.name as n_country','F.name as n_state','G.name as r_country','H.name as r_state'));
+					$this->db->from('ci_verticals as A');
+					$this->db->join('ci_terms as B','A.status=B.id','LEFT');
+					$this->db->join('ci_terms as C','A.category=C.id','LEFT');
+					$this->db->join('ci_terms as D','A.sub_category=D.id','LEFT');
+
+						$this->db->join('countries as E','A.nationality=E.id','LEFT');
+						$this->db->join('states as F','A.nationality_area=F.id','LEFT');
+						$this->db->join('countries as G','A.country=G.id','LEFT');
+						$this->db->join('states as H','A.state=H.id','LEFT');
+						
+					$this->db->where('A.id',$id); 
+					$data = $this->db->get();
+					// $this->db->last_query();
+					foreach($data->result_array() as $row)
+					{
+						$result= $row;
+					}
+					return $result;
+		}	
+
+	  public function fetchTeamList($parent = 0, $user_tree_array = '') {
+ 
+		if (!is_array($user_tree_array))
+		$user_tree_array = array();
+	 
+	 	$sql = "SELECT name,id FROM ci_user WHERE manager=".$parent." AND id!=".$parent;
+	  
+	  	$rows = $this->db->query($sql);	
+		if($rows->num_rows()>=1){
+			foreach($rows->result_array() as  $row){
+				
+				$user_tree_array[] = $row['id'];
+				$user_tree_array = $this->fetchTeamList($row['id'], $user_tree_array);	
+				}
+			}
+
+			return $user_tree_array;
+			
+
+	  
+	}
+
+	  public function get_member($mid){
+
+        $this->db->select('id,name');
+        $this->db->from('ci_user');
+        $this->db->where('manager', $mid);
+
+        $parent = $this->db->get();
+        
+        $categories = $parent->result();
+        $i=0;
+        foreach($categories as $p_cat){
+
+            $categories[$i]->sub = $this->sub_member($p_cat->id);
+            $i++;
+        }
+        return $categories;
+    }
+
+    public function sub_member($id){
+
+        $this->db->select('id,name');
+        $this->db->from('ci_user');
+        $this->db->where('manager', $id);
+
+        $child = $this->db->get();
+        $categories = $child->result();
+        $i=0;
+        foreach($categories as $p_cat){
+
+            $categories[$i]->sub = $this->sub_member($p_cat->id);
+            $i++;
+        }
+        return $categories;       
+	}
+	
+	public function get_teamMember($id)
+	{
+			$result=array();
+			 $this->db->select(array('A.*','B.title as role','C.name as manager_name','D.name as country_name','E.name as state_name'));
+			 $this->db->from('ci_user as A');
+			 $this->db->join('ci_roles as B','A.user_type=B.id','LEFT');
+			 $this->db->join('ci_user as C','A.manager=C.id','LEFT');
+			 $this->db->join('countries as D','A.country=D.id','LEFT');
+			 $this->db->join('states as E','A.state=E.id','LEFT');
+			 $this->db->where('A.manager', $id);
+			 $data = $this->db->get();
+		   // $this->db->last_query();
+	   foreach($data->result_array() as $row)
+	   {
+		   $result[]= $row;
+		   
+		   
+	   }
+	   return $result;
+	}
+
+}

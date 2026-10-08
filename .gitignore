@@ -1,0 +1,13 @@
+# Archives and backups
+*.zip
+*.tar.gz
+*.rar
+
+# Logs
+error_log
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini

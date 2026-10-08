@@ -1,0 +1,202 @@
+<?php require_once(APPPATH."views/manager/elements/header.php"); ?>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper px-4"> <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1> <?php echo $info['page_heading']; ?> </h1>
+  </section>
+  <!-- Main content -->
+  <section class="content"> <!-- /.row -->
+    <div class="row"> <!-- form close-->
+      <div class="col-xs-12">
+
+      <div class="box  p-4">
+      <div class="x_row">
+      <div class="x_col"> 
+
+            <div class="pull-right">
+             <?php /* <form class="form-inline" method="get">
+                <select class="form-control" name="order_by">
+                  <option <?php if(isset($_GET['order_by']) && $_GET['order_by']=='A.created'){ echo 'selected'; } ?> value="A.created">Date</option>
+                  <option <?php if(isset($_GET['order_by']) && $_GET['order_by']=='A.name'){ echo 'selected'; } ?> value="A.name">Name</option>
+                  <option <?php if(isset($_GET['order_by']) && $_GET['order_by']=='A.c_username'){ echo 'selected'; } ?> value="A.c_username">Username</option>
+                  <option <?php if(isset($_GET['order_by']) && $_GET['order_by']=='A.user_type'){ echo 'selected'; } ?> value="A.user_type">Category</option>
+                  <option <?php if(isset($_GET['order_by']) && $_GET['order_by']=='A.status'){ echo 'selected'; } ?> value="A.status">Status</option>
+                 
+                  
+                  
+                </select>
+                <select class="form-control" name="sort_by">
+                  <option <?php if(isset($_GET['sort_by']) && $_GET['sort_by']=='DESC'){ echo 'selected'; } ?> value="DESC">DESC</option>
+                  <option <?php if(isset($_GET['sort_by']) && $_GET['sort_by']=='ASC'){ echo 'selected'; } ?> value="ASC">ASC</option>
+                </select>
+                <input type="text" class="form-control" name="search" value="<?php if(isset($_GET['search'])){ echo $_GET['search']; } ?>" />
+                <button type="submit" class="btn btn-success">Search</button>
+                <a href="<?php echo base_url(); ?>manager/users" class="btn btn-danger"> Reset</a>
+                 
+               <!-- <a href="<?php //echo base_url(); ?>manager/players/add/" class="btn btn-info">Add New</a>-->
+              </form> */ ?>
+              <a href="<?php echo base_url(); ?>manager/users/add" class="btn btn-success"> Add New</a>
+            </div>
+
+      </div> 
+      </div>
+      </div>
+
+        <div class="box">
+
+          <div class="box-body"> 
+          <?php echo get_message($this->session->flashdata('error_message'),'error_message'); ?> 
+          <?php echo get_message($this->session->flashdata('message'),'message'); ?>
+            <?php if(isset($product_list) && !empty($product_list))				{?>
+            <div>
+
+         
+              <table id="example_user" class="table table-hover table-bordered table-striped" style="width:100%" >
+                <thead>
+                  <tr>
+                    <th>S.N.</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Manager/Upline</th>
+                    <th>Category</th>
+                    <th>Created Date</th>   
+                 	  <th>Status</th>                                                  
+                    <th width="200">Action</th>              
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($product_list as $k=>$li){ ?>
+                  <tr>
+                    <td><?php echo ($k+1); ?></td>
+                    <td style="text-transform:capitalize;"><?php echo $li['name']; ?> </td>
+                    <td><a href="mailto:<?php echo $li['c_username']; ?>"><?php echo $li['c_username']; ?></a></td>
+                    <td><?php echo $li['manager_name']; ?></td>
+                     <td><?php echo $li['role']; ?></td>
+                     <td><span class="no_show"><?php echo date('Ymd',strtotime($li['created'])); ?></span><?php echo simple_date($li['created']); ?></td>
+                    <td><?php if($li['admin_status']==1){?>
+                      <span class="label label-success round">Enabled</span>
+                      <?php }elseif($li['admin_status']==0){?>
+                      <span class="label label-danger round">Disabled</span>
+                      <?php } ?></td>
+                 
+                                     
+                    
+                 
+                  <td>
+                    <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-warning">Action</button>
+                  <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li> <a href="<?php echo base_url(); ?>manager/users/view/<?php echo $li['id']; ?>" data-toggle="tooltip" title="View">Preview</a> </li>                  
+                    <li> <a href="<?php echo base_url(); ?>manager/users/edit/<?php echo $li['id']; ?>" data-toggle="tooltip" title="Edit">Edit</i></a> </li>
+                    <li> <a href="<?php echo base_url(); ?>manager/users/cedit/<?php echo $li['id']; ?>" data-toggle="tooltip" title="Credential">Credential</i></a> </li>
+                    <li class="divider"></li>
+                    <li><?php if($li['admin_status']==0){?>
+               <a data-id="<?php echo $li['id'];?>" data-admin_status="0"  id="btn_block" data-toggle="tooltip" title="Enable User">Enable</button> 
+                <?php }else{?>
+               <a data-id="<?php echo $li['id'];?>" data-admin_status="1" id="btn_unblock" data-toggle="tooltip" title="Disable User">Disable</button> <?php } ?> </li>
+                  </ul>
+                </div>
+
+
+                    </td>
+                  </tr>
+                  <?php	} ?>
+                </tbody>
+              </table>
+              <?php if (isset($links)) {  echo $links; } ?>
+            </div>
+            <?php }	else{	 ?>
+            
+            <div class="alert alert-info"> No Data Found </div>
+            <?php }?>
+            <!-- /.box-body --> </div>
+        </div>
+        <!-- /.box --> </div>
+    </div>
+  </section>
+</div>
+<script>
+function do_confirm(){    
+job=confirm("Are you sure to delete this record... ");    
+if(job!=true)    {        
+return false;    
+}}</script>
+ <script type="text/javascript">       
+
+$(document).ready(function(){
+$("#example_user").DataTable({
+      "pageLength": 50,     
+      rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+      responsive: true,
+    
+         columnDefs: [
+        	{ targets: [5,7], className:"dt-nowrap",}       
+    	]
+    });
+ 
+  
+  $(document).on("click","#btn_block", function(){ 
+	    
+   var id = $(this).data("id");
+   var admin_status = $(this).data("admin_status");
+	
+	if (confirm("Are you sure to unblock User?")) {
+	
+    $.ajax({
+      type: "POST",
+      url: "<?php  echo base_url(); ?>" + "ci_admin_user/ajax_edit_status",     
+      data:"admin_status="+admin_status+"&id="+id,     
+      success:function(result){
+         if (result == 'ok'){
+             location.reload();
+        }
+			  else{
+			   alert("Error : Not update Confirm status")
+			  }
+      }      
+		});
+	}
+   });
+
+ }); 
+ 
+  $(document).ready(function(){
+  $(document).on("click","#btn_unblock", function(){ 
+	    
+   var id = $(this).data("id");
+   var admin_status = $(this).data("admin_status");
+	
+	if (confirm("Are you sure to block User?")) {
+	
+	  $.ajax({
+      type: "POST",
+      url: "<?php  echo base_url(); ?>" + "ci_admin_user/ajax_edit_status",     
+      data:"admin_status="+admin_status+"&id="+id,     
+      success:function(result){
+         if (result == 'ok'){
+             location.reload();
+        }
+			  else{
+			   alert("Error : Not update Confirm status")
+			  }
+      }      
+		});
+	}
+   });
+
+ }); 
+	 
+ 
+  </script>
+
+<?php require_once(APPPATH."views/manager/elements/footer.php"); ?>
+
+ 

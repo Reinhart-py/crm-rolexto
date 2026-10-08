@@ -1,0 +1,961 @@
+<?php require_once(APPPATH."views/manager/elements/header.php"); ?>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="container">
+<div class="content-wrapper"> 
+  
+  <!-- Content Header (Page header) -->
+  
+  <section class="content-header">
+    <h1> Leads </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+      <li class="active">Leads</li>
+    </ol>
+  </section>
+  
+  <!-- Main content -->
+  
+  <section class="content"> 
+    
+    <!-- SELECT2 EXAMPLE -->
+    
+   
+     <?php echo get_message($this->session->flashdata('error_message'),'error_message'); ?> <?php echo get_message($this->session->flashdata('message'),'message'); ?>
+     
+     <div class="my-profile">
+<div class="box box-default">
+      <div class="box-header">
+		<div class="col-sm-12">
+        <h3 class="box-title" style="text-transform:capitalize"><b>
+          <?php if((isset($slist['customer']))&&(!empty($slist['customer']))){echo $slist['customer'];}else echo ""; ?>
+          </b></h3>    
+          </div>
+          </div>
+<div class="box-body" >
+      
+        <div class="row">
+  <div class="col-md-6">
+      <div class="table-responsive border">
+          <table class="table">
+        
+              <tr>
+                <th scope="col">Lead No.</th>
+                <td><?php echo $slist['lead_id']; ?></td>
+
+                
+              </tr>
+     <tr>
+              <th scope="col">Lead Assigned To   </th>
+              <td scope="col"><?php echo $slist['assigned_name']; ?></td>              
+            
+              </tr>
+            
+
+          </table>
+      </div>
+ </div>
+
+  <div class="col-md-6">
+      <div class="table-responsive border">
+          <table class="table">
+          
+				
+              <tr>
+              <th scope="col">Created By </th>
+              <td scope="col"><?php echo $slist['created_name']; ?></td>              
+            
+              </tr>
+
+        
+              <tr>
+              <th scope="col"> Created At  </th>
+              <td scope="col"><?php echo $slist['created']; ?></td>              
+            
+              </tr>
+
+
+
+
+
+
+          </table>
+      </div>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+     
+      <form role="form" action="<?php echo base_url(); ?>manager/leads/edit/<?php echo base64_encode($list['id']); ?>/<?php echo $action; ?>" method="post" name="add_form">
+      
+       <div class="box box-default">
+      <div class="box-header with-border pt-3">
+        <h3 class="box-title">Initial Category Fields</h3>
+      </div>
+      
+      <!-- /.box-header -->
+      
+      <div class="box-body" >
+      
+        <div class="row">
+         
+          
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Customer Name<span>*</span></label>
+                <input type="text" name="customer" class="form-control" style="text-transform: capitalize;" required="" value="<?php echo $list['customer']; ?>" >
+              </div>
+            </div>
+
+             <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>POC Name<span>*</span></label>
+                <input type="text" required class="form-control" name="poc" value="<?php echo $list['poc']; ?>" >
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>POC Contact Number<span>*</span></label>
+                <input type="text" required class="form-control" name="contact1" value="<?php echo $list['contact1']; ?>" >
+              </div>
+            </div>
+
+             <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" value="<?php echo $list['email']; ?>">
+              </div>
+            </div>
+           
+           
+
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Account Number</label>
+                <input type="text" class="form-control" name="a_number" value="<?php echo $list['a_number']; ?>" >
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Account Under Vertical</label>
+                <input type="text" class="form-control" name="a_department" value="<?php echo $list['a_department']; ?>" >
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Current Monthly Revenue Amount</label>
+                <input type="text" class="form-control" name="r_amount" value="<?php echo $list['r_amount']; ?>" >
+              </div>
+            </div>
+              <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Current Monthly Revenue Date</label>
+                <input type="text" class="form-control datepicker" name="r_date" value="<?php echo $list['r_date']; ?>" >
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Category<span>*</span></label>
+                <select class="form-control" required style="width: 100%;" name="category">
+                  <option <?php if($list['category']=='New'){ echo "selected"; } ?> value="New" selected="selected">New</option>
+                  <option <?php if($list['category']=='Existing'){ echo "selected"; } ?> value="Existing">Existing</option>                  
+                </select>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Service Category<span>*</span></label>
+                <select class="form-control" required style="width: 100%;" name="s_cat" id="pcatselect" onchange="getpSubCat()">
+                <option value="">Select Category</option>
+             
+             <?php if(isset($p_cat) && !empty($p_cat)){
+               foreach($p_cat as $cli){
+             ?>
+             <option <?php if($list['s_cat']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['title']; ?></option>
+         <?php } }  ?>                 
+                </select>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Product Category</label>
+                <select class="form-control"  style="width: 100%;" name="p_cat" id="psubcatselect">
+                <option value="">Choose Sub Category</option>
+              <?php if(isset($scat_list) && !empty($scat_list)){
+                  foreach($scat_list as $cli){
+                ?>
+                <option <?php if($list['p_cat']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['title']; ?></option>
+            <?php } }  ?>                             
+                </select>
+              </div>
+            </div>
+              <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Product Details</label>
+                <input type="text" class="form-control" name="p_details" value="<?php echo $list['p_details']; ?>" >
+              </div>
+            </div>
+             <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Qty</label>
+                <input type="text" class="form-control" name="qty" value="<?php echo $list['qty']; ?>">
+              </div>
+            </div>
+             <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>MRC<span>*</span></label>
+                <input type="text" required name="mrc" class="form-control" value="<?php echo $list['mrc']; ?>">
+              </div>
+            </div>
+             <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Revenue<span>*</span></label>
+                <input type="text" required name="revenue" class="form-control" value="<?php echo $list['revenue']; ?>">
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>MRR<span>*</span></label>
+                <input type="text" name="mrr" class="form-control" value="<?php echo $list['mrr']; ?>" readonly>
+              </div>
+            </div>
+           
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Location</label>
+                <input type="text" class="form-control" name="location" value="<?php echo $list['location']; ?>" >
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Status<span>*</span></label>
+                <select class="form-control" required name="status">
+                <option value="">Select Status</option>
+
+                  <?php if(isset($st_list) && !empty($st_list)){
+                    foreach($st_list as $cli){
+                  ?>
+                  <option <?php if($list['status']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['status']; ?></option>
+              <?php } }  ?>
+            </select>
+              </div>
+            </div>
+            <?php /* <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Next Follow Up Date</label>
+                <input type="text" class="form-control datepicker" name="followup_date" value="<?php echo $list['followup_date']; ?>"  >
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Next Follow Up Time</label>               
+
+                <div class="input-group bootstrap-timepicker timepicker">
+                  <input  type="text" class="form-control input-small timepicker" name="followup_time" value="<?php echo $list['followup_time']; ?>">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+
+              </div>
+            </div> */ ?>
+             <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Exp. Close Date<span>*</span></label>
+                <input type="text" class="form-control datepicker2" name="close_date" required value="<?php echo date('d-m-Y', strtotime($list['close_date']));  ?>" >
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Remarks</label>
+                <textarea class="form-control" name="remark"><?php echo $list['remark']; ?></textarea>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+        <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">More Category Field</h3>
+      </div>
+      
+      <!-- /.box-header -->
+      
+      <div class="box-body" >
+      
+        <div class="row">
+
+
+           <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" name="address" class="form-control" value="<?php echo $list['address']; ?>" />
+              </div>
+            </div>
+
+           
+           
+
+           <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Country</label>
+                <select id="country" class="form-control" name="country" onchange="get_state()">                          
+
+                            <?php if(isset($c_list) && !empty($c_list)){
+                              foreach($c_list as $cli){
+                            ?>
+                            <option <?php if($list['country']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['name']; ?></option>
+                        <?php } }  ?>
+                      </select>
+              </div>
+            </div>
+
+
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>State / Province / Emirate</label>
+                 <select id="state" class="form-control" name="state">
+                 <option value="">Select</option> 
+                 <?php if(isset($state_list) && !empty($state_list)){
+                              foreach($state_list as $cli){
+                            ?>
+                            <option <?php if($list['state']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['name']; ?></option>
+                        <?php } }  ?>
+                 </select>
+                
+              </div>
+              
+            </div>
+
+             <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" name="city" value="<?php echo $list['city']; ?>"  >
+              </div>
+            </div>
+
+             <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Alternate POC Name</label>
+                <input type="text" class="form-control" name="poc2" value="<?php echo $list['poc2']; ?>">
+              </div>
+            </div>
+             <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Alternate POC Contact Number</label>
+                <input type="text" class="form-control" name="contact2" value="<?php echo $list['contact2']; ?>">
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Channel partner</label>
+                 <select class="form-control" style="width: 100%;" name="c_partner">
+                  <option value="SRJ Electronics Trading LLC" selected="selected">SRJ Electronics Trading LLC</option>                                    
+                </select>
+              </div>
+            </div>
+
+             <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>One time charges</label>
+                <input type="text" class="form-control" name="otc"  value="<?php echo $list['otc']; ?>" >
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Lead Category</label>
+                
+                 <select class="form-control" style="width: 100%;" name="lead_cat" >
+                <option value="">Select Category</option>
+               
+                  <?php if(isset($lc_list) && !empty($lc_list)){
+                    foreach($lc_list as $cli){
+                  ?>
+                  <option <?php if($list['lead_cat']==$cli['id']){ echo "selected"; } ?> value="<?php echo $cli['id']; ?>" ><?php echo $cli['title']; ?></option>
+              <?php } }  ?>                 
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Lead Assigned To</label>               
+                <select class="form-control select2" name="lead_assign" style="width: 100%;">
+                <option value="">Select</option>
+                <?php if(isset($u_list) && !empty($u_list))
+                  { 
+                    foreach($u_list as $li){
+                  ?>
+
+                  <option <?php if($list['lead_assign']==$li['id']){ echo "selected"; } ?> value="<?php echo $li['id']; ?>"><?php echo $li['name']; ?></option>          
+
+               <?php } } ?>
+              </select>
+
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Website / Source Link</label>
+                <input type="text" class="form-control" name="lead_source" value="<?php echo $list['lead_source']; ?>">
+              </div>
+            </div>
+
+            
+            
+           
+           
+        
+        </div>
+        
+        <!-- /.row --> 
+        
+      </div>
+
+    </div>
+
+
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">Followup Update</h3>
+      </div>
+      
+      <!-- /.box-header -->
+      
+      <div class="box-body" >
+      
+        <div class="row">
+
+        
+            <?php if(!empty($follow_list)){ 
+                foreach($follow_list as $li){
+              ?>
+           <div class="col-lg-2 col-sm-6">
+              <div class="form-group">
+                <label>Date</label>
+                <input type="hidden" name="flead_id[]" value="<?php echo $li['id']; ?>">
+                <input type="text" class="form-control" name="followup_date[]" value="<?php echo simple_date($li['followup_date']); ?>" readonly="">
+                </div>
+            </div>
+
+              <div class="col-lg-2 col-sm-6">
+              <div class="form-group">
+                <label>Time</label>              
+                <input type="text" class="form-control" name="followup_time[]" value="<?php echo $li['followup_time']; ?>" readonly="">
+                </div>
+            </div>
+
+              <div class="col-lg-8 col-sm-6">
+              <div class="form-group">
+                <label>Remark</label>               
+                <input type="text" class="form-control" name="followup_remark[]" value="<?php echo $li['followup_remark']; ?>" >
+                </div>
+            </div>
+            
+           
+          <?php } } ?>
+
+            <div class="col-lg-2 col-sm-6">
+              <div class="form-group">
+                <label>Date</label>
+                <input type="hidden" name="flead_id[]" value="0">
+                <input type="text" class="form-control datepicker2" name="followup_date[]">
+                </div>
+            </div>
+
+               <div class="col-lg-2 col-sm-6">
+              <div class="form-group">
+                <label>Time</label>
+              <div class="input-group bootstrap-timepicker timepicker">              
+                <input type="text" class="form-control input-small timepicker" name="followup_time[]">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+                </div>
+            </div>
+
+               <div class="col-lg-8 col-sm-6">
+              <div class="form-group">
+                <label>Remark</label>             
+                <input type="text" class="form-control" name="followup_remark[]">
+                </div>
+            </div>
+          
+
+        </div>
+      </div>
+    </div>
+
+
+     <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">Meeting Update</h3>
+      </div>
+      
+      <!-- /.box-header -->
+      
+      <div class="box-body" >
+
+        <?php if(!empty($meeting_list)){ 
+          foreach($meeting_list as $lim){
+        ?>
+
+        <div class="row remark_row">
+          <div class="col-md-7">
+
+        <div class="row">
+
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Date</label>
+                <input type="hidden" name="mlead_id[]" value="<?php echo $li['id']; ?>">
+                <input type="text" class="form-control" name="m_date[]" value="<?php echo simple_date($lim['m_date']); ?>" readonly="">
+              </div>
+            </div>
+            
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Time</label>
+                <input type="text" class="form-control" name="m_time[]" value="<?php echo $lim['m_time']; ?>" readonly="">
+              </div>
+            </div>
+
+               <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>POC</label>
+                <input type="text" class="form-control" name="m_poc[]" value="<?php echo $lim['m_poc']; ?>" readonly="" >
+              </div>
+            </div>
+            
+
+
+        <!--    <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" name="m_address"  >
+              </div>
+            </div> -->
+
+
+            <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Attendee 1</label>   
+              <select class="form-control select2" name="a1[]" style="width: 100%;" disabled="disabled">
+              <option value="">Select</option>
+              <?php if(isset($u_list) && !empty($u_list))
+                { 
+                  foreach($u_list as $li){
+                ?>
+
+                <option <?php if($lim['a1']==$li['id']){ echo "selected"; } ?> value="<?php echo $li['id']; ?>"><?php echo $li['name']; ?></option>          
+
+            <?php } } ?>
+            </select>
+
+              </div>
+
+            </div>
+
+
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+              <label>Attendee 2</label>
+              <select class="form-control select2" name="a2[]" style="width: 100%;" disabled="disabled">
+              <option value="">Select</option>
+              <?php if(isset($u_list) && !empty($u_list))
+                { 
+                  foreach($u_list as $li){
+                ?>
+
+                <option <?php if($lim['a2']==$li['id']){ echo "selected"; } ?> value="<?php echo $li['id']; ?>"><?php echo $li['name']; ?></option>          
+
+            <?php } } ?>
+            </select>
+
+              </div>
+            </div>
+
+
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Mobile</label>
+                <input type="text" class="form-control" name="m_mobile[]" value="<?php echo $lim['m_mobile']; ?>" readonly="">
+              </div>
+            </div>
+
+
+        </div>
+
+
+
+          </div>
+
+          <div class="col-md-5">
+
+          <div class="form-group remark-group">
+                <label>Remark</label>
+                <textarea type="text" class="form-control" name="m_remark[]" ><?php echo $lim['m_remark']; ?></textarea>
+              </div>
+
+          </div>
+
+      </div>
+
+    <?php } }  ?>
+
+
+      <div class="row remark_row">
+          <div class="col-md-7">
+
+        <div class="row">
+
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Date</label>
+                <input type="hidden" name="mlead_id[]" value="0">
+                <input type="text" class="form-control datepicker2" name="m_date[]"  >
+              </div>
+            </div>
+            
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Next Meeting Time</label>
+               
+                <div class="input-group bootstrap-timepicker timepicker">
+                  <input  type="text" class="form-control input-small timepicker" name="m_time[]">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                </div>
+              </div>
+            </div>
+
+               <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>POC</label>
+                <input type="text" class="form-control" name="m_poc[]"  >
+              </div>
+            </div>
+</div>
+<div class="row">
+
+        <!--    <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" name="m_address[]"  >
+              </div>
+            </div> -->
+
+
+            <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Attendee 1</label>
+
+              <select class="form-control select2" name="a1[]" style="width: 100%;">
+              <option value="">Select</option>
+              <?php if(isset($u_list) && !empty($u_list))
+                { 
+                  foreach($u_list as $li){
+                ?>
+                <option value="<?php echo $li['id']; ?>"><?php echo $li['name']; ?></option>          
+            <?php } } ?>
+            </select>
+
+            </div>
+            </div>
+
+
+            <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Attendee 2</label>
+
+              <select class="form-control select2" name="a2[]" style="width: 100%;">
+              <option value="">Select</option>
+              <?php if(isset($u_list) && !empty($u_list))
+                { 
+                  foreach($u_list as $li){
+                ?>
+
+                <option value="<?php echo $li['id']; ?>"><?php echo $li['name']; ?></option>          
+
+            <?php } } ?>
+            </select>
+
+            </div>
+            </div>
+
+
+            <div class="col-lg-4 col-sm-6">
+              <div class="form-group">
+                <label>Mobile</label>
+                <input type="text" class="form-control" name="m_mobile[]"  >
+              </div>
+            </div>
+
+
+        </div>
+
+
+
+          </div>
+
+          <div class="col-md-5">
+          <div class="form-group remark-group">
+                <label>Remark</label>
+                <textarea type="text" class="form-control"  name="m_remark[]"></textarea>
+              </div>
+
+          </div>
+
+      </div>
+
+
+
+      </div>
+    </div>
+
+
+      <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">Vertical Selection</h3>
+      </div>
+      
+      <!-- /.box-header -->
+     
+      <div class="box-body" >
+      
+        <div class="row">
+       
+
+          <div class="col-lg-2 col-sm-6">
+              <div class="form-group">
+                <label>Select Vertical</label>
+                <select class="form-control select2" name="vertical_id" style="width: 100%;">
+                <option value="">Select</option>
+                <?php if(isset($v_list) && !empty($v_list))
+                  { 
+                    foreach($v_list as $li){
+                  ?>
+
+                  <option <?php if(isset($list['vertical_id']) AND ($list['vertical_id']==$li['id'])){ echo "selected"; } ?> value="<?php echo $li['id']; ?>"><?php echo $li['poc']; ?>- <?php echo $li['company_name']; ?></option>          
+
+               <?php } } ?>
+            </select>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-sm-6">
+              <div class="form-group">
+                <label>Amount to Pay</label>
+                <input type="text" class="form-control only_number" name="v_amount" value="<?php echo $list['v_amount']; ?>"  >
+              </div>
+            </div>
+
+            <div class="col-lg-8 col-sm-6">
+              <div class="form-group">
+                <label>Remark</label>
+                <input type="text" class="form-control only_number" name="v_remark" value="<?php echo $list['v_remark']; ?>"  >
+              </div>
+            </div>             
+
+        </div>
+        </div>
+        </div>
+
+
+       <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">Back Office Update</h3>
+      </div>
+      
+      <!-- /.box-header -->
+      
+      <div class="box-body" >
+      
+        <div class="row">
+
+          <table class="table tale-border">
+            <tr>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Reference</th>
+              <th>Remarks</th>
+            </tr>
+            <?php if(!empty($bo_list)){ 
+                for($i=0;$i<=6;$i++){
+              ?>
+            <tr>
+              <td>
+                <input type="hidden" name="bo_id[]" value="<?php echo $bo_list[$i]['id']; ?>">
+                <input type="text" class="form-control" name="bo_cat[]" value="<?php echo $bo_list[$i]['bo_cat']; ?>" readonly="">
+              </td>
+              <td>
+              <input type="text" class="form-control datepicker" name="bo_date[]" value="<?php echo $bo_list[$i]['bo_date']; ?>" ></td>
+              <?php if($i==1 || $i==4){ ?>
+
+              <td colspan="3">
+                <select style="display:none;" class="form-control" style="width: 100%;" name="bo_status[]">
+                  <option value="">Not Applicable</option>
+                                     
+                </select>
+             <input type="hidden" class="form-control" name="bo_ref[]" value=""  >
+             <input type="text" class="form-control" name="bo_remark[]" value="<?php echo $bo_list[$i]['bo_remark']; ?>"></td>
+              <?php
+
+              }else{ ?>
+              <td>
+                <select class="form-control" style="width: 100%;" name="bo_status[]">
+                  <option <?php if($bo_list[$i]['bo_status']=="Not Applicable"){ echo "selected"; } ?> value="Not Applicable">Not Applicable</option>
+                  <option <?php if($bo_list[$i]['bo_status']=="Pending Approval"){ echo "selected"; } ?> value="Pending Approval">Pending Approval</option>
+                  <option <?php if($bo_list[$i]['bo_status']=="Query"){ echo "selected"; } ?> value="Query">Query</option>
+                  <option <?php if($bo_list[$i]['bo_status']=="Approved"){ echo "selected"; } ?> value="Approved">Approved</option> 
+                  <option <?php if($bo_list[$i]['bo_status']=="Expired"){ echo "selected"; } ?> value="Expired">Expired</option> 
+                  <option <?php if($bo_list[$i]['bo_status']=="Other"){ echo "selected"; } ?> value="Other">Other</option>                    
+                </select>
+              </td>
+              <td><input type="text" class="form-control" name="bo_ref[]" value="<?php echo $bo_list[$i]['bo_ref']; ?>"  ></td>
+              <td><input type="text" class="form-control" name="bo_remark[]" value="<?php echo $bo_list[$i]['bo_remark']; ?>"></td>
+              <?php } ?>
+            </tr>
+          <?php } } ?>
+
+          </table>
+
+        </div>
+      </div>
+    </div>
+      
+      <div class="box-footer text-center">
+                <button id="add_btn" type="submit" class="btn btn-info">Submit</button>              
+                <a href="<?php echo $info2['back_url']; ?>" class="btn btn-default">Cancel</button>   
+              
+              </div>
+              
+         
+              
+     </form>
+  
+    
+    <!-- /.box --> 
+    
+  </section>
+  
+  <!-- /.content --> 
+  
+</div>
+
+<!-- /.content-wrapper --> 
+</div>
+<script>
+
+
+
+
+
+
+
+ $(document).ready(function () { 
+
+  $(document).on("click", "#add_btn", function () {
+
+    
+
+   $('form[name=add_form]').validate({         
+
+  submitHandler: function(form) {
+
+      form.submit();
+
+    }
+
+  });
+
+});
+
+var input = $('[name="mrc"],[name="revenue"]'),
+    input1 = $('[name="mrc"]'),
+    input2 = $('[name="revenue"]'),
+    input3 = $('[name="mrr"]');
+input.change(function () {
+    input3.val((parseInt(input1.val()) || 0) + (parseInt(input2.val()) || 0));
+});
+
+
+
+});
+
+
+
+
+</script>
+<script>
+
+   function get_state()
+{
+  
+      var stateID = $("#country").val();     
+        $.ajax({
+              type: "POST",
+        data: 'c_id='+stateID,
+          url: "<?php echo base_url(); ?>" + "ci_admin_user/get_state",
+        success:function(result){
+        if(result)
+        {
+        $('#state').html(result);
+        }
+        else
+        {
+        alert('error');
+        }
+        }
+          });
+
+
+}
+
+function check_cname()
+{
+  
+      var c_name =$(".c_username").val();     
+        $.ajax({
+              type: "POST",
+        data: 'c_name='+c_name,
+          url: "<?php echo base_url(); ?>" + "ci_admin_user/check_name",
+        success:function(data){
+        if(data=='done')
+        {
+        $('.alert_msg').text('');
+        }
+        else
+        {
+        $('.c_username').val('');
+        $('.alert_msg').text('Company name already exist.');
+        }
+        }
+          });
+
+
+}
+
+function getpSubCat()
+{  
+        var stateID = $("#pcatselect").val();     
+        $.ajax({
+          type: "POST",
+          data: 'c_id='+stateID,
+          url: "<?php echo base_url(); ?>" + "ci_admin_terms/getSubCatAjax",
+          success:function(result){
+            if(result){
+              $('#psubcatselect').html(result);
+            }           
+        }
+        });
+}
+</script>
+<?php require_once(APPPATH."views/manager/elements/footer.php"); ?>
