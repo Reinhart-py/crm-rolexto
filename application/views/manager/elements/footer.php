@@ -275,9 +275,17 @@ $(document).ready(function() {
     $('#crmSidebar').toggleClass('crm-sidebar-collapsed');
     $('.crm-app-shell').toggleClass('crm-app-shell-expanded');
   });
-  $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
+  $('.crm-nav-item.has-sub .nav-arrow').on('click', function(e) {
     e.preventDefault();
-    $(this).parent('.crm-nav-item').toggleClass('open');
+    e.stopPropagation();
+    $(this).closest('.crm-nav-item').toggleClass('open');
+  });
+  $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
+    var href = $(this).attr('href');
+    if (!href || href === '#' || href === 'javascript:void(0);') {
+      e.preventDefault();
+      $(this).parent('.crm-nav-item').toggleClass('open');
+    }
   });
   $('#crmThemeToggle').on('click', function(e) {
     e.preventDefault();

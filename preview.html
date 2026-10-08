@@ -1,753 +1,1105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<title>Rolexto CRM - Dashboard</title>
-
-<link rel="shortcut icon" href="assets/dist/img/favicon.jpg" type="image/x-icon">
-<link rel="icon" href="assets/dist/img/favicon.jpg" type="image/jpeg">
-
-<script>
-(function() {
-  var saved = localStorage.getItem('crm_theme');
-  var pref = saved ? saved : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', pref);
-})();
-</script>
-
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/dist/css/crm-theme.css">
-
-<script src="assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/plugins/chartjs/Chart.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rolexto CRM | Enterprise Operations Workspace</title>
+  <link rel="icon" type="image/x-icon" href="./assets/dist/img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/dist/css/crm-theme.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<body class="crm-body">
+  <div class="crm-shell">
+    <aside class="crm-sidebar" id="sidebar">
+      <div class="crm-brand-wrap">
+        <a href="#dashboard" class="crm-brand" data-view="dashboard">
+          <div class="crm-brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="crm-brand-text">
+            <div class="crm-brand-title">Rolexto</div>
+            <div class="crm-brand-subtitle">Executive Suite</div>
+          </div>
+        </a>
+      </div>
 
-<aside class="crm-sidebar" id="crmSidebar">
-  <a href="#" class="crm-sidebar-brand">
-    <img src="assets/dist/img/favicon.jpg" alt="Rolexto">
-    <div class="brand-text">
-      <span class="brand-title">Rolexto CRM</span>
-      <span class="brand-badge">Enterprise</span>
+      <nav class="crm-nav">
+        <div class="crm-nav-section-label">Core Workspace</div>
+        <div class="crm-nav-item">
+          <a href="#dashboard" class="crm-nav-link active" data-view="dashboard">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+            </span>
+            <span class="nav-text">Dashboard</span>
+          </a>
+        </div>
+        <div class="crm-nav-item">
+          <a href="#leads" class="crm-nav-link" data-view="leads">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <span class="nav-text">Client Pipeline</span>
+            <span class="crm-badge primary ml-auto">128</span>
+          </a>
+        </div>
+        <div class="crm-nav-item">
+          <a href="#followups" class="crm-nav-link" data-view="followups">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <span class="nav-text">Follow-ups</span>
+            <span class="crm-badge warning ml-auto">12</span>
+          </a>
+        </div>
+        <div class="crm-nav-item">
+          <a href="#meetings" class="crm-nav-link" data-view="meetings">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <span class="nav-text">Consultations</span>
+          </a>
+        </div>
+
+        <div class="crm-nav-section-label mt-4">Enterprise Insights</div>
+        <div class="crm-nav-item">
+          <a href="#team" class="crm-nav-link" data-view="team">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <span class="nav-text">Advisor Roster</span>
+          </a>
+        </div>
+        <div class="crm-nav-item">
+          <a href="#verticals" class="crm-nav-link" data-view="verticals">
+            <span class="nav-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </span>
+            <span class="nav-text">Practice Portfolios</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="crm-sidebar-footer">
+        <div class="crm-nav-card">
+          <div class="crm-nav-card-title">Rolexto Intelligence</div>
+          <div class="crm-nav-card-text">AI Deal Forecasting & Smart Routing active across all 3 global desks.</div>
+          <button class="crm-btn crm-btn-secondary crm-btn-sm w-full mt-2" id="btn-sync-data">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crm-btn-icon"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            Live Sync Feed
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="crm-main">
+      <header class="crm-topbar">
+        <div class="crm-topbar-left">
+          <button class="crm-icon-btn mobile-only" id="btn-toggle-sidebar" aria-label="Toggle Navigation">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="crm-breadcrumbs">
+            <span class="crm-crumb-root">Workspace</span>
+            <span class="crm-crumb-sep">/</span>
+            <span class="crm-crumb-current" id="topbar-crumb-title">Executive Dashboard</span>
+          </div>
+        </div>
+
+        <div class="crm-topbar-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crm-topbar-search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="global-search-input" placeholder="Search accounts, transactions, advisors..." autocomplete="off">
+        </div>
+
+        <div class="crm-topbar-actions">
+          <button class="crm-btn crm-btn-primary" id="btn-open-lead-modal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crm-btn-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>Register Client</span>
+          </button>
+
+          <button class="crm-icon-btn" id="btn-notifications" aria-label="Notifications" title="Alerts & Logs">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge-dot"></span>
+          </button>
+
+          <button class="crm-icon-btn" id="btn-theme-toggle" aria-label="Toggle Theme" title="Switch Theme">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+
+          <div class="crm-user-profile">
+            <div class="crm-avatar">AA</div>
+            <div class="crm-user-details">
+              <div class="crm-user-name">Andrea Althaus</div>
+              <div class="crm-user-role">Managing Director</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="crm-content">
+        <section class="crm-view-page active" id="view-dashboard">
+          <div class="crm-page-header">
+            <div>
+              <h1 class="crm-page-title">Executive Dashboard</h1>
+              <p class="crm-page-subtitle">Real-time enterprise pipeline volume, advisory activities, and financial projections.</p>
+            </div>
+            <div class="crm-filter-pills">
+              <button class="crm-filter-pill active" data-period="quarter">This Quarter</button>
+              <button class="crm-filter-pill" data-period="month">This Month</button>
+              <button class="crm-filter-pill" data-period="week">This Week</button>
+            </div>
+          </div>
+
+          <div class="crm-kpi-grid">
+            <div class="crm-card crm-kpi-card tint-blue">
+              <div class="crm-kpi-top">
+                <div class="crm-kpi-info">
+                  <div class="crm-kpi-label">Total Accounts</div>
+                  <div class="crm-kpi-value" id="kpi-accounts">128</div>
+                </div>
+                <div class="crm-kpi-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+              </div>
+              <div class="crm-kpi-delta positive">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crm-kpi-delta-icon"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                <span>+14.2%</span>
+                <span class="crm-kpi-delta-caption">vs last cycle</span>
+              </div>
+            </div>
+
+            <div class="crm-card crm-kpi-card tint-emerald">
+              <div class="crm-kpi-top">
+                <div class="crm-kpi-info">
+                  <div class="crm-kpi-label">Pipeline Value</div>
+                  <div class="crm-kpi-value">$240.6M</div>
+                </div>
+                <div class="crm-kpi-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+              </div>
+              <div class="crm-kpi-delta positive">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crm-kpi-delta-icon"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                <span>+22.8%</span>
+                <span class="crm-kpi-delta-caption">expansion</span>
+              </div>
+            </div>
+
+            <div class="crm-card crm-kpi-card tint-purple">
+              <div class="crm-kpi-top">
+                <div class="crm-kpi-info">
+                  <div class="crm-kpi-label">Deal Win Rate</div>
+                  <div class="crm-kpi-value">65.4%</div>
+                </div>
+                <div class="crm-kpi-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+              </div>
+              <div class="crm-kpi-delta positive">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crm-kpi-delta-icon"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                <span>+8.1%</span>
+                <span class="crm-kpi-delta-caption">target 60%</span>
+              </div>
+            </div>
+
+            <div class="crm-card crm-kpi-card tint-amber">
+              <div class="crm-kpi-top">
+                <div class="crm-kpi-info">
+                  <div class="crm-kpi-label">Open Consultations</div>
+                  <div class="crm-kpi-value">34</div>
+                </div>
+                <div class="crm-kpi-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+              </div>
+              <div class="crm-kpi-delta">
+                <span>8 scheduled today</span>
+              </div>
+            </div>
+
+            <div class="crm-card crm-kpi-card tint-rose">
+              <div class="crm-kpi-top">
+                <div class="crm-kpi-info">
+                  <div class="crm-kpi-label">Due Reminders</div>
+                  <div class="crm-kpi-value">12</div>
+                </div>
+                <div class="crm-kpi-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+              </div>
+              <div class="crm-kpi-delta">
+                <span style="color:var(--crm-danger); font-weight:700;">Action required</span>
+              </div>
+            </div>
+
+            <div class="crm-card crm-kpi-card tint-slate">
+              <div class="crm-kpi-top">
+                <div class="crm-kpi-info">
+                  <div class="crm-kpi-label">Avg Engagement Score</div>
+                  <div class="crm-kpi-value">9.4/10</div>
+                </div>
+                <div class="crm-kpi-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+              </div>
+              <div class="crm-kpi-delta positive">
+                <span>Premium Quality</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="crm-grid-2col mt-4">
+            <div class="crm-card">
+              <div class="crm-card-header">
+                <div>
+                  <h3 class="crm-card-title">Commercial Trajectory</h3>
+                  <p class="crm-card-subtitle">Quarterly pipeline generation across key practices</p>
+                </div>
+                <div class="crm-filter-pills">
+                  <button class="crm-filter-pill active" id="chart-toggle-revenue">Revenue</button>
+                  <button class="crm-filter-pill" id="chart-toggle-deals">Volume</button>
+                </div>
+              </div>
+              <div class="crm-chart-container">
+                <canvas id="mainTrendChart"></canvas>
+              </div>
+            </div>
+
+            <div class="crm-card">
+              <div class="crm-card-header">
+                <div>
+                  <h3 class="crm-card-title">Portfolio Allocation</h3>
+                  <p class="crm-card-subtitle">Current distribution across advisory divisions</p>
+                </div>
+              </div>
+              <div class="crm-chart-container" style="max-height: 240px; display:flex; justify-content:center;">
+                <canvas id="portfolioChart"></canvas>
+              </div>
+              <div class="flex justify-around mt-3 pt-3 border-t text-sm">
+                <div class="text-center">
+                  <div class="font-bold text-gray-900">$110M</div>
+                  <div class="text-xs text-gray-500">Real Estate</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-bold text-gray-900">$78M</div>
+                  <div class="text-xs text-gray-500">Corporate</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-bold text-gray-900">$52M</div>
+                  <div class="text-xs text-gray-500">Residency</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="crm-card mt-4">
+            <div class="crm-card-header">
+              <div>
+                <h3 class="crm-card-title">Active Opportunities</h3>
+                <p class="crm-card-subtitle">High priority institutional prospects & private wealth mandates</p>
+              </div>
+              <button class="crm-btn crm-btn-secondary crm-btn-sm" data-view="leads">View All Clients</button>
+            </div>
+            <div class="crm-table-responsive">
+              <table class="crm-table">
+                <thead>
+                  <tr>
+                    <th>Account / Entity</th>
+                    <th>Practice Group</th>
+                    <th>Stage</th>
+                    <th>Valuation</th>
+                    <th>Lead Executive</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="font-semibold text-gray-900">Alpha Horizon Real Estate</div>
+                      <div class="text-xs text-gray-500">Marcus Sterling &bull; marcus@alphahorizon.ae</div>
+                    </td>
+                    <td><span class="crm-badge primary">Luxury Real Estate</span></td>
+                    <td><span class="crm-badge warning">Due Diligence</span></td>
+                    <td class="font-bold">$4.2M</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="crm-avatar" style="width:28px;height:28px;font-size:11px;">KL</div>
+                        <span>Karim Larsson</span>
+                      </div>
+                    </td>
+                    <td>
+                      <button class="crm-btn crm-btn-secondary crm-btn-sm btn-quick-view" data-lead="Alpha Horizon">Review</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="font-semibold text-gray-900">Global FinTech Ventures</div>
+                      <div class="text-xs text-gray-500">Elena Rostova &bull; elena@fintechventures.ch</div>
+                    </td>
+                    <td><span class="crm-badge info">Corporate Structuring</span></td>
+                    <td><span class="crm-badge primary">Term Sheet Issued</span></td>
+                    <td class="font-bold">$12.5M</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="crm-avatar" style="width:28px;height:28px;font-size:11px;">SJ</div>
+                        <span>Sophia Jensen</span>
+                      </div>
+                    </td>
+                    <td>
+                      <button class="crm-btn crm-btn-secondary crm-btn-sm btn-quick-view" data-lead="Global FinTech">Review</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="font-semibold text-gray-900">Apex Capital Partners</div>
+                      <div class="text-xs text-gray-500">David Vance &bull; dvance@apexcap.sg</div>
+                    </td>
+                    <td><span class="crm-badge success">Golden Visa / Mobility</span></td>
+                    <td><span class="crm-badge success">Mandate Executed</span></td>
+                    <td class="font-bold">$6.8M</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="crm-avatar" style="width:28px;height:28px;font-size:11px;">TH</div>
+                        <span>Tariq Hassan</span>
+                      </div>
+                    </td>
+                    <td>
+                      <button class="crm-btn crm-btn-secondary crm-btn-sm btn-quick-view" data-lead="Apex Capital">Review</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="crm-view-page" id="view-leads">
+          <div class="crm-page-header">
+            <div>
+              <h1 class="crm-page-title">Client Pipeline & Accounts</h1>
+              <p class="crm-page-subtitle">Comprehensive registry of high-value prospects, mandates, and relationships.</p>
+            </div>
+            <button class="crm-btn crm-btn-primary" id="btn-leads-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crm-btn-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add New Client</span>
+            </button>
+          </div>
+
+          <div class="crm-card">
+            <div class="crm-card-header">
+              <div class="crm-filter-pills" id="pipeline-status-tabs">
+                <button class="crm-filter-pill active" data-status="all">All Accounts (128)</button>
+                <button class="crm-filter-pill" data-status="new">New Inquiries (24)</button>
+                <button class="crm-filter-pill" data-status="active">In Advisory (62)</button>
+                <button class="crm-filter-pill" data-status="closed">Mandated (42)</button>
+              </div>
+              <div class="crm-topbar-search" style="max-width:240px; margin:0;">
+                <input type="text" id="leads-table-filter" placeholder="Filter pipeline table...">
+              </div>
+            </div>
+
+            <div class="crm-table-responsive">
+              <table class="crm-table" id="leads-master-table">
+                <thead>
+                  <tr>
+                    <th>Account / Contact</th>
+                    <th>Email & Mobile</th>
+                    <th>Practice</th>
+                    <th>Stage</th>
+                    <th>Expected Fee</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="leads-tbody">
+                  <tr data-status="active">
+                    <td class="font-semibold text-gray-900">Vanguard Holdings Ltd</td>
+                    <td>vanguard@holdings.uk &bull; +44 20 7946 0912</td>
+                    <td><span class="crm-badge info">Corporate Structuring</span></td>
+                    <td>Technical Assessment</td>
+                    <td class="font-bold">$8,400,000</td>
+                    <td><span class="crm-badge primary">In Progress</span></td>
+                    <td><button class="crm-btn crm-btn-secondary crm-btn-sm btn-row-action">Open Dossier</button></td>
+                  </tr>
+                  <tr data-status="new">
+                    <td class="font-semibold text-gray-900">Crestview Residences</td>
+                    <td>oliver@crestview.ae &bull; +971 4 312 9900</td>
+                    <td><span class="crm-badge primary">Luxury Real Estate</span></td>
+                    <td>First Consultation</td>
+                    <td class="font-bold">$3,150,000</td>
+                    <td><span class="crm-badge warning">New Inquiry</span></td>
+                    <td><button class="crm-btn crm-btn-secondary crm-btn-sm btn-row-action">Open Dossier</button></td>
+                  </tr>
+                  <tr data-status="closed">
+                    <td class="font-semibold text-gray-900">Dr. Aris Thorne Family Office</td>
+                    <td>athorne@thorne-fo.mc &bull; +377 98 06 20 00</td>
+                    <td><span class="crm-badge success">Golden Visa / Mobility</span></td>
+                    <td>Final Settlement</td>
+                    <td class="font-bold">$15,000,000</td>
+                    <td><span class="crm-badge success">Mandated</span></td>
+                    <td><button class="crm-btn crm-btn-secondary crm-btn-sm btn-row-action">Open Dossier</button></td>
+                  </tr>
+                  <tr data-status="active">
+                    <td class="font-semibold text-gray-900">Zephyr Technologies</td>
+                    <td>finance@zephyr-tech.sg &bull; +65 6789 0123</td>
+                    <td><span class="crm-badge info">Corporate Structuring</span></td>
+                    <td>Contract Drafting</td>
+                    <td class="font-bold">$6,200,000</td>
+                    <td><span class="crm-badge primary">In Progress</span></td>
+                    <td><button class="crm-btn crm-btn-secondary crm-btn-sm btn-row-action">Open Dossier</button></td>
+                  </tr>
+                  <tr data-status="new">
+                    <td class="font-semibold text-gray-900">Azure Bay Resorts</td>
+                    <td>contact@azurebay.gr &bull; +30 210 334 1000</td>
+                    <td><span class="crm-badge primary">Luxury Real Estate</span></td>
+                    <td>Inbound Evaluation</td>
+                    <td class="font-bold">$9,800,000</td>
+                    <td><span class="crm-badge warning">New Inquiry</span></td>
+                    <td><button class="crm-btn crm-btn-secondary crm-btn-sm btn-row-action">Open Dossier</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="crm-view-page" id="view-followups">
+          <div class="crm-page-header">
+            <div>
+              <h1 class="crm-page-title">Client Follow-up Protocol</h1>
+              <p class="crm-page-subtitle">Priority client touchpoints, reminder schedules, and pending commitments.</p>
+            </div>
+            <button class="crm-btn crm-btn-primary" id="btn-add-task">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crm-btn-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Schedule Reminder</span>
+            </button>
+          </div>
+
+          <div class="crm-grid-2col">
+            <div class="crm-card">
+              <div class="crm-card-header">
+                <div>
+                  <h3 class="crm-card-title">Due Reminders</h3>
+                  <p class="crm-card-subtitle">Mark as completed as you finish calls and email exchanges</p>
+                </div>
+                <span class="crm-badge warning" id="tasks-remaining-badge">4 Reminders Pending</span>
+              </div>
+              <div class="crm-task-list" id="task-items-container">
+                <div class="crm-task-row">
+                  <input type="checkbox" class="crm-task-chk" id="task-1">
+                  <label for="task-1" class="crm-task-label">
+                    <div class="font-semibold text-gray-900">Alpha Horizon Real Estate - Transmit Revised Term Sheet</div>
+                    <div class="text-xs text-gray-500">Scheduled for 14:00 today &bull; Lead: Karim Larsson</div>
+                  </label>
+                  <span class="crm-badge danger">High Priority</span>
+                </div>
+                <div class="crm-task-row">
+                  <input type="checkbox" class="crm-task-chk" id="task-2">
+                  <label for="task-2" class="crm-task-label">
+                    <div class="font-semibold text-gray-900">Global FinTech Ventures - Due Diligence Call with General Counsel</div>
+                    <div class="text-xs text-gray-500">Scheduled for 16:30 today &bull; Lead: Sophia Jensen</div>
+                  </label>
+                  <span class="crm-badge warning">Urgent</span>
+                </div>
+                <div class="crm-task-row">
+                  <input type="checkbox" class="crm-task-chk" id="task-3">
+                  <label for="task-3" class="crm-task-label">
+                    <div class="font-semibold text-gray-900">Crestview Residences - Confirm Valuation Survey Onsite Visit</div>
+                    <div class="text-xs text-gray-500">Tomorrow, 10:00 &bull; Lead: Tariq Hassan</div>
+                  </label>
+                  <span class="crm-badge info">Standard</span>
+                </div>
+                <div class="crm-task-row">
+                  <input type="checkbox" class="crm-task-chk" id="task-4">
+                  <label for="task-4" class="crm-task-label">
+                    <div class="font-semibold text-gray-900">Dr. Aris Thorne - Transmit Passport Document Certifications</div>
+                    <div class="text-xs text-gray-500">Tomorrow, 12:00 &bull; Lead: Andrea Althaus</div>
+                  </label>
+                  <span class="crm-badge success">Ready</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="crm-card">
+              <div class="crm-card-header">
+                <div>
+                  <h3 class="crm-card-title">Follow-up SLA Metrics</h3>
+                  <p class="crm-card-subtitle">Response timeline performance across advisors</p>
+                </div>
+              </div>
+              <div class="crm-metric-row mb-3">
+                <div class="flex justify-between text-sm mb-1">
+                  <span>First Inquiry Contact SLA (< 2 hrs)</span>
+                  <span class="font-bold text-gray-900">96.8%</span>
+                </div>
+                <div class="crm-progress-track">
+                  <div class="crm-progress-bar" style="width: 96.8%; background: var(--crm-primary);"></div>
+                </div>
+              </div>
+              <div class="crm-metric-row mb-3">
+                <div class="flex justify-between text-sm mb-1">
+                  <span>Due Diligence Dossier Transmittal</span>
+                  <span class="font-bold text-gray-900">89.2%</span>
+                </div>
+                <div class="crm-progress-track">
+                  <div class="crm-progress-bar" style="width: 89.2%; background: var(--crm-accent);"></div>
+                </div>
+              </div>
+              <div class="crm-metric-row">
+                <div class="flex justify-between text-sm mb-1">
+                  <span>Contract Revisions Velocity (< 24 hrs)</span>
+                  <span class="font-bold text-gray-900">92.4%</span>
+                </div>
+                <div class="crm-progress-track">
+                  <div class="crm-progress-bar" style="width: 92.4%; background: var(--crm-info);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="crm-view-page" id="view-meetings">
+          <div class="crm-page-header">
+            <div>
+              <h1 class="crm-page-title">Executive Consultations & Calendar</h1>
+              <p class="crm-page-subtitle">Schedule of private advisory sessions, partner pitches, and board reviews.</p>
+            </div>
+            <button class="crm-btn crm-btn-primary" id="btn-schedule-meeting">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="crm-btn-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Schedule Session</span>
+            </button>
+          </div>
+
+          <div class="crm-grid-3col">
+            <div class="crm-card tint-blue">
+              <div class="flex justify-between items-start">
+                <span class="crm-badge primary">10:00 - 11:30</span>
+                <span class="text-xs font-semibold text-gray-500">Boardroom A &bull; Zoom</span>
+              </div>
+              <h4 class="font-bold text-base mt-2 text-gray-900">Global FinTech Ventures</h4>
+              <p class="text-xs text-gray-600 mt-1">Cross-Border Tax & Legal Entity Restructuring Strategy</p>
+              <div class="flex items-center gap-2 mt-4 pt-3 border-t">
+                <div class="crm-avatar" style="width:28px;height:28px;font-size:11px;">SJ</div>
+                <div class="text-xs font-medium">Sophia Jensen & 3 attendees</div>
+              </div>
+            </div>
+
+            <div class="crm-card tint-emerald">
+              <div class="flex justify-between items-start">
+                <span class="crm-badge success">13:30 - 14:30</span>
+                <span class="text-xs font-semibold text-gray-500">DIFC Tower 2</span>
+              </div>
+              <h4 class="font-bold text-base mt-2 text-gray-900">Apex Capital Partners</h4>
+              <p class="text-xs text-gray-600 mt-1">Family Wealth Residency & Real Estate Allocation Review</p>
+              <div class="flex items-center gap-2 mt-4 pt-3 border-t">
+                <div class="crm-avatar" style="width:28px;height:28px;font-size:11px;">TH</div>
+                <div class="text-xs font-medium">Tariq Hassan & 2 attendees</div>
+              </div>
+            </div>
+
+            <div class="crm-card tint-purple">
+              <div class="flex justify-between items-start">
+                <span class="crm-badge info">16:00 - 17:00</span>
+                <span class="text-xs font-semibold text-gray-500">Virtual Session</span>
+              </div>
+              <h4 class="font-bold text-base mt-2 text-gray-900">Vanguard Holdings Ltd</h4>
+              <p class="text-xs text-gray-600 mt-1">Corporate Banking KYC & Compliance Signoff</p>
+              <div class="flex items-center gap-2 mt-4 pt-3 border-t">
+                <div class="crm-avatar" style="width:28px;height:28px;font-size:11px;">KL</div>
+                <div class="text-xs font-medium">Karim Larsson & 1 attendee</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="crm-view-page" id="view-team">
+          <div class="crm-page-header">
+            <div>
+              <h1 class="crm-page-title">Advisory Roster & Performance</h1>
+              <p class="crm-page-subtitle">Track individual advisor pipeline quotas, win rates, and active client volume.</p>
+            </div>
+            <button class="crm-btn crm-btn-secondary crm-btn-sm" id="btn-export-roster">Export Report</button>
+          </div>
+
+          <div class="crm-card">
+            <div class="crm-table-responsive">
+              <table class="crm-table">
+                <thead>
+                  <tr>
+                    <th>Advisor</th>
+                    <th>Practice</th>
+                    <th>Active Accounts</th>
+                    <th>Closed Volume</th>
+                    <th>Win Ratio</th>
+                    <th>Client Rating</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="crm-avatar">SJ</div>
+                        <div>
+                          <div class="font-semibold text-gray-900">Sophia Jensen</div>
+                          <div class="text-xs text-gray-500">Principal Partner</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="crm-badge info">Corporate Structuring</span></td>
+                    <td class="font-bold">42</td>
+                    <td class="font-bold">$84.5M</td>
+                    <td><span class="crm-badge success">74%</span></td>
+                    <td>9.8 / 10</td>
+                    <td><span class="crm-badge success">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="crm-avatar">KL</div>
+                        <div>
+                          <div class="font-semibold text-gray-900">Karim Larsson</div>
+                          <div class="text-xs text-gray-500">Senior Director</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="crm-badge primary">Luxury Real Estate</span></td>
+                    <td class="font-bold">38</td>
+                    <td class="font-bold">$92.0M</td>
+                    <td><span class="crm-badge success">68%</span></td>
+                    <td>9.5 / 10</td>
+                    <td><span class="crm-badge success">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="crm-avatar">TH</div>
+                        <div>
+                          <div class="font-semibold text-gray-900">Tariq Hassan</div>
+                          <div class="text-xs text-gray-500">Managing Partner</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="crm-badge success">Golden Visa / Mobility</span></td>
+                    <td class="font-bold">29</td>
+                    <td class="font-bold">$46.2M</td>
+                    <td><span class="crm-badge success">62%</span></td>
+                    <td>9.2 / 10</td>
+                    <td><span class="crm-badge success">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="crm-view-page" id="view-verticals">
+          <div class="crm-page-header">
+            <div>
+              <h1 class="crm-page-title">Practice Portfolios & Divisions</h1>
+              <p class="crm-page-subtitle">Commercial divisions within Rolexto Group enterprise operations.</p>
+            </div>
+          </div>
+
+          <div class="crm-grid-3col">
+            <div class="crm-card">
+              <div class="crm-kpi-icon-wrap" style="background:#e0f2fe; color:#0284c7; width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <h3 class="font-bold text-lg text-gray-900">Luxury Real Estate</h3>
+              <p class="text-xs text-gray-600 mt-1">High-end residential developments, private islands, and commercial assets across Dubai, London, and Zurich.</p>
+              <div class="mt-4 pt-3 border-t flex justify-between items-center">
+                <span class="text-xs text-gray-500">Active Pipeline</span>
+                <span class="font-bold text-gray-900">$110.2M</span>
+              </div>
+            </div>
+
+            <div class="crm-card">
+              <div class="crm-kpi-icon-wrap" style="background:#f3e8ff; color:#7c3aed; width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <h3 class="font-bold text-lg text-gray-900">Corporate Structuring</h3>
+              <p class="text-xs text-gray-600 mt-1">Cross-border SPVs, holding company setup, banking onboarding, and jurisdictional regulatory licensing.</p>
+              <div class="mt-4 pt-3 border-t flex justify-between items-center">
+                <span class="text-xs text-gray-500">Active Pipeline</span>
+                <span class="font-bold text-gray-900">$78.4M</span>
+              </div>
+            </div>
+
+            <div class="crm-card">
+              <div class="crm-kpi-icon-wrap" style="background:#dcfce7; color:#16a34a; width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h3 class="font-bold text-lg text-gray-900">Golden Visa & Mobility</h3>
+              <p class="text-xs text-gray-600 mt-1">Tier-1 European and UAE Golden Visa advisory, citizenship programs, and global tax residency transfers.</p>
+              <div class="mt-4 pt-3 border-t flex justify-between items-center">
+                <span class="text-xs text-gray-500">Active Pipeline</span>
+                <span class="font-bold text-gray-900">$52.0M</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
-  </a>
-
-  <div class="crm-sidebar-nav">
-    <div class="crm-nav-group-title">Overview</div>
-    <ul class="crm-nav-list">
-      <li class="crm-nav-item">
-        <a href="#" class="crm-nav-link active">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
-          <span>Dashboard</span>
-        </a>
-      </li>
-    </ul>
-
-    <div class="crm-nav-group-title">Commercial &amp; Pipeline</div>
-    <ul class="crm-nav-list">
-      <li class="crm-nav-item has-sub open">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          <span>My Leads</span>
-          <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </a>
-        <ul class="crm-subnav-list">
-          <li><a href="#" class="crm-subnav-link">All My Leads</a></li>
-          <li><a href="#" class="crm-subnav-link">+ Add New Lead</a></li>
-        </ul>
-      </li>
-      <li class="crm-nav-item">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
-          <span>Follow-ups</span>
-        </a>
-      </li>
-      <li class="crm-nav-item">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <span>Meetings</span>
-        </a>
-      </li>
-      <li class="crm-nav-item">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          <span>My Performance</span>
-        </a>
-      </li>
-    </ul>
-
-    <div class="crm-nav-group-title">Team Operations</div>
-    <ul class="crm-nav-list">
-      <li class="crm-nav-item has-sub">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          <span>Team Leads</span>
-          <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </a>
-        <ul class="crm-subnav-list">
-          <li><a href="#" class="crm-subnav-link">All Team Leads</a></li>
-          <li><a href="#" class="crm-subnav-link">Assign Leads</a></li>
-        </ul>
-      </li>
-      <li class="crm-nav-item has-sub">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-          <span>Team Members</span>
-          <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </a>
-        <ul class="crm-subnav-list">
-          <li><a href="#" class="crm-subnav-link">Member Directory</a></li>
-          <li><a href="#" class="crm-subnav-link">Hierarchy Chart</a></li>
-        </ul>
-      </li>
-      <li class="crm-nav-item">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>Team Follow-ups</span>
-        </a>
-      </li>
-      <li class="crm-nav-item has-sub">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <span>Team Meetings</span>
-          <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </a>
-        <ul class="crm-subnav-list">
-          <li><a href="#" class="crm-subnav-link">All Meetings</a></li>
-          <li><a href="#" class="crm-subnav-link">Assign Meetings</a></li>
-        </ul>
-      </li>
-      <li class="crm-nav-item">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          <span>Department Report</span>
-        </a>
-      </li>
-    </ul>
-
-    <div class="crm-nav-group-title">Verticals Portfolio</div>
-    <ul class="crm-nav-list">
-      <li class="crm-nav-item has-sub">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
-          <span>My Verticals</span>
-          <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </a>
-        <ul class="crm-subnav-list">
-          <li><a href="#" class="crm-subnav-link">All Verticals</a></li>
-          <li><a href="#" class="crm-subnav-link">+ Add Vertical</a></li>
-        </ul>
-      </li>
-      <li class="crm-nav-item">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="5" y1="16" x2="12" y2="12"/><line x1="19" y1="16" x2="12" y2="12"/></svg>
-          <span>Team Verticals</span>
-        </a>
-      </li>
-    </ul>
-
-    <div class="crm-nav-group-title">Administration</div>
-    <ul class="crm-nav-list">
-      <li class="crm-nav-item has-sub">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span>Users</span>
-          <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-        </a>
-        <ul class="crm-subnav-list">
-          <li><a href="#" class="crm-subnav-link">All Users</a></li>
-          <li><a href="#" class="crm-subnav-link">+ Add New User</a></li>
-        </ul>
-      </li>
-      <li class="crm-nav-item">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Roles &amp; Access</span>
-        </a>
-      </li>
-      <li class="crm-nav-item">
-        <a href="#" class="crm-nav-link">
-          <svg class="crm-svg nav-icon" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-          <span>System Terms</span>
-        </a>
-      </li>
-    </ul>
   </div>
 
-  <div class="crm-sidebar-footer">
-    <a href="#" class="crm-user-profile">
-      <div class="crm-user-avatar">RA</div>
-      <div class="crm-user-info">
-        <span class="crm-user-name">Rolexto Admin</span>
-        <span class="crm-user-role">Administrator</span>
+  <div class="crm-modal-backdrop" id="new-lead-modal">
+    <div class="crm-modal">
+      <div class="crm-modal-header">
+        <div>
+          <h3 class="crm-modal-title">Register New Client Mandate</h3>
+          <p class="crm-modal-subtitle">Add a prospect or private client to Rolexto CRM workspace.</p>
+        </div>
+        <button class="crm-modal-close" id="btn-close-lead-modal" aria-label="Close dialog">&times;</button>
       </div>
-    </a>
-    <a href="#" class="crm-logout-btn" title="Logout">
-      <svg class="crm-svg" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-    </a>
+      <form id="form-new-lead">
+        <div class="crm-form-group">
+          <label class="crm-form-label" for="inp-lead-name">Account / Entity Name</label>
+          <input type="text" class="crm-input" id="inp-lead-name" placeholder="e.g. Sterling Heritage Capital" required>
+        </div>
+        <div class="crm-form-grid">
+          <div class="crm-form-group">
+            <label class="crm-form-label" for="inp-lead-email">Primary Email</label>
+            <input type="email" class="crm-input" id="inp-lead-email" placeholder="contact@sterling.ae" required>
+          </div>
+          <div class="crm-form-group">
+            <label class="crm-form-label" for="inp-lead-phone">Contact Phone</label>
+            <input type="tel" class="crm-input" id="inp-lead-phone" placeholder="+971 50 123 4567" required>
+          </div>
+        </div>
+        <div class="crm-form-grid">
+          <div class="crm-form-group">
+            <label class="crm-form-label" for="inp-lead-practice">Practice Group</label>
+            <select class="crm-select" id="inp-lead-practice">
+              <option value="Real Estate">Luxury Real Estate</option>
+              <option value="Corporate">Corporate Structuring</option>
+              <option value="Visa">Golden Visa & Mobility</option>
+            </select>
+          </div>
+          <div class="crm-form-group">
+            <label class="crm-form-label" for="inp-lead-val">Estimated Valuation ($)</label>
+            <input type="text" class="crm-input" id="inp-lead-val" placeholder="$5,000,000" required>
+          </div>
+        </div>
+        <div class="crm-modal-footer">
+          <button type="button" class="crm-btn crm-btn-secondary" id="btn-cancel-lead-modal">Cancel</button>
+          <button type="submit" class="crm-btn crm-btn-primary">Confirm & Create</button>
+        </div>
+      </form>
+    </div>
   </div>
-</aside>
 
-<div class="crm-app-shell">
-  <header class="crm-topbar">
-    <div class="crm-topbar-left">
-      <button type="button" class="crm-sidebar-toggle-btn" id="crmSidebarToggle" title="Toggle Navigation">
-        <svg class="crm-svg" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <div class="crm-breadcrumbs">
-        <a href="#">Workspace</a>
-        <span>/</span>
-        <span class="current">Dashboard</span>
-      </div>
+  <div class="crm-toast" id="crm-toast">
+    <div class="crm-toast-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
+    <div class="crm-toast-text" id="crm-toast-msg">Operation completed successfully.</div>
+  </div>
 
-    <div class="crm-topbar-right">
-      <button type="button" class="crm-theme-toggle" id="crmThemeToggle" title="Switch Theme" aria-label="Switch Theme">
-        <svg class="crm-svg sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="crm-svg moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navLinks = document.querySelectorAll('[data-view]');
+      const viewPages = document.querySelectorAll('.crm-view-page');
+      const topbarCrumb = document.getElementById('topbar-crumb-title');
+      const sidebar = document.getElementById('sidebar');
+      const sidebarToggle = document.getElementById('btn-toggle-sidebar');
+      const themeToggle = document.getElementById('btn-theme-toggle');
+      const toast = document.getElementById('crm-toast');
+      const toastMsg = document.getElementById('crm-toast-msg');
 
-      <div class="crm-contact-pill hidden-xs">
-        <a href="mailto:hr@rolextogroup.com">
-          <svg class="crm-svg-sm" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          hr@rolextogroup.com
-        </a>
-        <span>&bull;</span>
-        <a href="tel:+971585637737">
-          <svg class="crm-svg-sm" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          +971 58 563 7737
-        </a>
-      </div>
+      const viewTitles = {
+        'dashboard': 'Executive Dashboard',
+        'leads': 'Client Pipeline & Accounts',
+        'followups': 'Client Follow-up Protocol',
+        'meetings': 'Executive Consultations',
+        'team': 'Advisory Roster & Performance',
+        'verticals': 'Practice Portfolios & Divisions'
+      };
 
-      <a href="#" class="crm-btn-primary">
-        <svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        <span>New Lead</span>
-      </a>
-    </div>
-  </header>
+      function showToast(msg) {
+        if (!toast) return;
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3200);
+      }
 
-  <main class="crm-main-content">
-    <div class="crm-dashboard-container">
-        <div class="crm-page-header">
-            <div class="crm-page-title-wrap">
-                <h1 class="crm-page-title">Dashboard</h1>
-            </div>
-            <div class="crm-page-actions">
-                <a href="#" class="crm-btn-secondary">
-                    <svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                    <span>View Leads</span>
-                </a>
-                <a href="#" class="crm-btn-primary">
-                    <svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    <span>New Lead</span>
-                </a>
-            </div>
-        </div>
+      function switchView(viewName) {
+        if (!viewName) return;
+        viewPages.forEach(p => p.classList.remove('active'));
+        const targetPage = document.getElementById('view-' + viewName);
+        if (targetPage) {
+          targetPage.classList.add('active');
+          if (topbarCrumb && viewTitles[viewName]) {
+            topbarCrumb.textContent = viewTitles[viewName];
+          }
+        }
+        navLinks.forEach(link => {
+          if (link.getAttribute('data-view') === viewName) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+        if (sidebar && sidebar.classList.contains('open')) {
+          sidebar.classList.remove('open');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
 
-        <div class="crm-alert-banner">
-            <div class="crm-alert-icon">
-                <svg class="crm-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <div class="crm-alert-text">
-                <strong>Today's Celebrations:</strong> You have 1 team birthday today.
-            </div>
-            <a href="#" class="crm-alert-link">View Team</a>
-        </div>
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = this.getAttribute('data-view');
+          switchView(target);
+          history.pushState(null, '', '#' + target);
+        });
+      });
 
-        <div class="crm-metric-strip">
-            <a href="#" class="crm-metric-card">
-                <div class="crm-metric-header">
-                    <span class="crm-metric-title">My Leads</span>
-                    <div class="crm-metric-icon-wrap blue">
-                        <svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                    </div>
-                </div>
-                <div class="crm-metric-number">42</div>
-            </a>
+      const initialHash = window.location.hash.replace('#', '') || 'dashboard';
+      if (viewTitles[initialHash]) {
+        switchView(initialHash);
+      } else {
+        switchView('dashboard');
+      }
 
-            <a href="#" class="crm-metric-card">
-                <div class="crm-metric-header">
-                    <span class="crm-metric-title">Team Leads</span>
-                    <div class="crm-metric-icon-wrap purple">
-                        <svg class="crm-svg" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-                    </div>
-                </div>
-                <div class="crm-metric-number">158</div>
-            </a>
+      window.addEventListener('popstate', function () {
+        const hash = window.location.hash.replace('#', '') || 'dashboard';
+        if (viewTitles[hash]) {
+          switchView(hash);
+        }
+      });
 
-            <a href="#" class="crm-metric-card">
-                <div class="crm-metric-header">
-                    <span class="crm-metric-title">Today's Follow-ups</span>
-                    <div class="crm-metric-icon-wrap amber">
-                        <svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                </div>
-                <div class="crm-metric-number">7</div>
-            </a>
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function () {
+          sidebar.classList.toggle('open');
+        });
+      }
 
-            <a href="#" class="crm-metric-card">
-                <div class="crm-metric-header">
-                    <span class="crm-metric-title">Today's Meetings</span>
-                    <div class="crm-metric-icon-wrap emerald">
-                        <svg class="crm-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                </div>
-                <div class="crm-metric-number">3</div>
-            </a>
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          const current = document.documentElement.getAttribute('data-theme');
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          showToast('Switched to ' + next + ' mode');
+        });
+      }
 
-            <a href="#" class="crm-metric-card">
-                <div class="crm-metric-header">
-                    <span class="crm-metric-title">Team Members</span>
-                    <div class="crm-metric-icon-wrap slate">
-                        <svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-                    </div>
-                </div>
-                <div class="crm-metric-number">12</div>
-            </a>
+      const modal = document.getElementById('new-lead-modal');
+      const openModalBtn = document.getElementById('btn-open-lead-modal');
+      const leadsAddBtn = document.getElementById('btn-leads-add');
+      const closeModalBtn = document.getElementById('btn-close-lead-modal');
+      const cancelModalBtn = document.getElementById('btn-cancel-lead-modal');
+      const newLeadForm = document.getElementById('form-new-lead');
 
-            <a href="#" class="crm-metric-card">
-                <div class="crm-metric-header">
-                    <span class="crm-metric-title">Verticals</span>
-                    <div class="crm-metric-icon-wrap rose">
-                        <svg class="crm-svg" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
-                    </div>
-                </div>
-                <div class="crm-metric-number">6</div>
-            </a>
-        </div>
+      function openModal() {
+        if (modal) modal.classList.add('show');
+      }
+      function closeModal() {
+        if (modal) modal.classList.remove('show');
+      }
 
-        <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <div class="crm-panel-card">
-                    <div class="crm-panel-header">
-                        <h2>
-                            <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-                            Pipeline Stages
-                        </h2>
-                        <div class="crm-tab-buttons" id="pipelineTabs">
-                            <button type="button" class="crm-tab-btn active" data-target="#tabMyPipeline">My Leads</button>
-                            <button type="button" class="crm-tab-btn" data-target="#tabTeamPipeline">Team Leads</button>
-                        </div>
-                    </div>
-                    <div class="crm-panel-body" style="padding:0;">
-                        <div class="crm-tab-pane active" id="tabMyPipeline">
-                            <table class="crm-pipeline-table">
-                                <thead>
-                                    <tr>
-                                        <th>Stage</th>
-                                        <th style="text-align:right;">Leads Count</th>
-                                        <th style="text-align:right;">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="crm-stage-badge">
-                                                <span class="crm-stage-dot" style="background:#2563eb;"></span>
-                                                <span>New Inquiry</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:right;"><span class="crm-count-pill">14</span></td>
-                                        <td style="text-align:right;"><a href="#" class="crm-btn-sm"><span>View Leads</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="crm-stage-badge">
-                                                <span class="crm-stage-dot" style="background:#0284c7;"></span>
-                                                <span>Contacted &amp; Qualified</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:right;"><span class="crm-count-pill">11</span></td>
-                                        <td style="text-align:right;"><a href="#" class="crm-btn-sm"><span>View Leads</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="crm-stage-badge">
-                                                <span class="crm-stage-dot" style="background:#d97706;"></span>
-                                                <span>Meeting Scheduled</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:right;"><span class="crm-count-pill">8</span></td>
-                                        <td style="text-align:right;"><a href="#" class="crm-btn-sm"><span>View Leads</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="crm-stage-badge">
-                                                <span class="crm-stage-dot" style="background:#7c3aed;"></span>
-                                                <span>Proposal Under Review</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:right;"><span class="crm-count-pill">5</span></td>
-                                        <td style="text-align:right;"><a href="#" class="crm-btn-sm"><span>View Leads</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="crm-stage-badge">
-                                                <span class="crm-stage-dot" style="background:#059669;"></span>
-                                                <span>Deal Won / Closed</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:right;"><span class="crm-count-pill">4</span></td>
-                                        <td style="text-align:right;"><a href="#" class="crm-btn-sm"><span>View Leads</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+      if (openModalBtn) openModalBtn.addEventListener('click', openModal);
+      if (leadsAddBtn) leadsAddBtn.addEventListener('click', openModal);
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+      if (cancelModalBtn) cancelModalBtn.addEventListener('click', closeModal);
 
-                        <div class="crm-tab-pane" id="tabTeamPipeline" style="display:none;">
-                            <table class="crm-pipeline-table">
-                                <thead>
-                                    <tr>
-                                        <th>Stage</th>
-                                        <th style="text-align:right;">Leads Count</th>
-                                        <th style="text-align:right;">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="crm-stage-badge">
-                                                <span class="crm-stage-dot" style="background:#7c3aed;"></span>
-                                                <span>New Inquiry</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:right;"><span class="crm-count-pill">56</span></td>
-                                        <td style="text-align:right;"><a href="#" class="crm-btn-sm"><span>View Leads</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="crm-stage-badge">
-                                                <span class="crm-stage-dot" style="background:#2563eb;"></span>
-                                                <span>Contacted &amp; Qualified</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:right;"><span class="crm-count-pill">42</span></td>
-                                        <td style="text-align:right;"><a href="#" class="crm-btn-sm"><span>View Leads</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="crm-stage-badge">
-                                                <span class="crm-stage-dot" style="background:#d97706;"></span>
-                                                <span>Meeting Scheduled</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:right;"><span class="crm-count-pill">29</span></td>
-                                        <td style="text-align:right;"><a href="#" class="crm-btn-sm"><span>View Leads</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="crm-stage-badge">
-                                                <span class="crm-stage-dot" style="background:#059669;"></span>
-                                                <span>Deal Won / Closed</span>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:right;"><span class="crm-count-pill">31</span></td>
-                                        <td style="text-align:right;"><a href="#" class="crm-btn-sm"><span>View Leads</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+      if (modal) {
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeModal();
+        });
+      }
 
-                <div class="crm-panel-card">
-                    <div class="crm-panel-header">
-                        <h2>
-                            <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                            Projections
-                        </h2>
-                        <a href="#" class="header-action">Reports &rarr;</a>
-                    </div>
-                    <div class="crm-panel-body">
-                        <div style="margin-bottom: 24px;">
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                                <span style="font-size:13px; font-weight:600; color:var(--crm-text-main);">My Projections</span>
-                            </div>
-                            <div style="height: 180px; position:relative;">
-                                <canvas id="barChart2" style="height:180px; width:100%;"></canvas>
-                            </div>
-                        </div>
+      if (newLeadForm) {
+        newLeadForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const name = document.getElementById('inp-lead-name').value;
+          const email = document.getElementById('inp-lead-email').value;
+          const phone = document.getElementById('inp-lead-phone').value;
+          const practice = document.getElementById('inp-lead-practice').value;
+          const val = document.getElementById('inp-lead-val').value;
 
-                        <div style="padding-top:20px; border-top:1px solid var(--crm-border);">
-                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                                <span style="font-size:13px; font-weight:600; color:var(--crm-text-main);">Team Projections</span>
-                            </div>
-                            <div style="height: 180px; position:relative;">
-                                <canvas id="barChart4" style="height:180px; width:100%;"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          const tbody = document.getElementById('leads-tbody');
+          if (tbody) {
+            const tr = document.createElement('tr');
+            tr.setAttribute('data-status', 'new');
+            tr.innerHTML = '<td class="font-semibold text-gray-900">' + name + '</td>' +
+              '<td>' + email + ' &bull; ' + phone + '</td>' +
+              '<td><span class="crm-badge primary">' + practice + '</span></td>' +
+              '<td>Initial Discovery</td>' +
+              '<td class="font-bold">' + val + '</td>' +
+              '<td><span class="crm-badge warning">New Inquiry</span></td>' +
+              '<td><button class="crm-btn crm-btn-secondary crm-btn-sm btn-row-action">Open Dossier</button></td>';
+            tbody.insertBefore(tr, tbody.firstChild);
+          }
 
-            <div class="col-lg-4 col-md-12">
-                <div class="crm-panel-card">
-                    <div class="crm-panel-header">
-                        <h2>
-                            <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
-                            Follow-ups
-                        </h2>
-                        <a href="#" class="header-action">All &rarr;</a>
-                    </div>
-                    <div class="crm-panel-body">
-                        <div style="height:170px; display:flex; justify-content:center; align-items:center; margin-bottom:16px;">
-                            <canvas id="pieChart1" style="height:160px; max-height:160px;"></canvas>
-                        </div>
-                        <ul class="crm-activity-list">
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot red"></span>Missed</span>
-                                    <span class="crm-badge-val red">2</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot amber"></span>Last 7 Days</span>
-                                    <span class="crm-badge-val amber">4</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot sky"></span>Today</span>
-                                    <span class="crm-badge-val sky">7</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot blue"></span>Next 7 Days</span>
-                                    <span class="crm-badge-val blue">12</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot emerald"></span>Future</span>
-                                    <span class="crm-badge-val emerald">19</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+          const kpi = document.getElementById('kpi-accounts');
+          if (kpi) {
+            const curr = parseInt(kpi.textContent) || 128;
+            kpi.textContent = curr + 1;
+          }
 
-                <div class="crm-panel-card">
-                    <div class="crm-panel-header">
-                        <h2>
-                            <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                            Meetings
-                        </h2>
-                        <a href="#" class="header-action">All &rarr;</a>
-                    </div>
-                    <div class="crm-panel-body">
-                        <div style="height:170px; display:flex; justify-content:center; align-items:center; margin-bottom:16px;">
-                            <canvas id="pieChart2" style="height:160px; max-height:160px;"></canvas>
-                        </div>
-                        <ul class="crm-activity-list">
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot red"></span>Missed</span>
-                                    <span class="crm-badge-val red">1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot amber"></span>Last 7 Days</span>
-                                    <span class="crm-badge-val amber">3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot sky"></span>Today</span>
-                                    <span class="crm-badge-val sky">3</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot blue"></span>Next 7 Days</span>
-                                    <span class="crm-badge-val blue">5</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="crm-activity-item">
-                                    <span class="status-label"><span class="crm-status-dot emerald"></span>Future</span>
-                                    <span class="crm-badge-val emerald">8</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+          closeModal();
+          newLeadForm.reset();
+          showToast('Client ' + name + ' registered successfully');
+        });
+      }
 
-                <div class="crm-panel-card">
-                    <div class="crm-panel-header">
-                        <h2>
-                            <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                            Quick Actions
-                        </h2>
-                    </div>
-                    <div class="crm-panel-body" style="padding:14px;">
-                        <div style="display:flex; flex-direction:column; gap:8px;">
-                            <a href="#" class="crm-quick-btn">
-                                <svg class="crm-svg text-primary" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-                                <span>Assign Team Leads</span>
-                            </a>
-                            <a href="#" class="crm-quick-btn">
-                                <svg class="crm-svg text-primary" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="5" y1="16" x2="12" y2="12"/><line x1="19" y1="16" x2="12" y2="12"/></svg>
-                                <span>Hierarchy Chart</span>
-                            </a>
-                            <a href="#" class="crm-quick-btn">
-                                <svg class="crm-svg text-primary" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                                <span>Add Business Vertical</span>
-                            </a>
-                            <a href="#" class="crm-quick-btn">
-                                <svg class="crm-svg text-primary" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                                <span>Department Analytics</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </main>
+      const statusFilterButtons = document.querySelectorAll('#pipeline-status-tabs [data-status]');
+      statusFilterButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+          statusFilterButtons.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          const status = this.getAttribute('data-status');
+          const rows = document.querySelectorAll('#leads-tbody tr');
+          rows.forEach(row => {
+            if (status === 'all' || row.getAttribute('data-status') === status) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+      });
 
-  <footer class="crm-footer">
-    <div class="crm-footer-inner">
-      <span>&copy; 2026 Rolexto CRM Platform. All rights reserved.</span>
-      <span class="hidden-xs">Rolexto Real Estate &amp; Business Setup</span>
-    </div>
-  </footer>
-</div>
+      const leadsTableFilter = document.getElementById('leads-table-filter');
+      if (leadsTableFilter) {
+        leadsTableFilter.addEventListener('input', function () {
+          const q = this.value.toLowerCase();
+          const rows = document.querySelectorAll('#leads-tbody tr');
+          rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(q) ? '' : 'none';
+          });
+        });
+      }
 
-</div>
+      const globalSearch = document.getElementById('global-search-input');
+      if (globalSearch) {
+        globalSearch.addEventListener('keypress', function (e) {
+          if (e.key === 'Enter') {
+            const q = this.value.trim();
+            if (q) {
+              showToast('Filtering workspace records for: ' + q);
+              switchView('leads');
+              if (leadsTableFilter) {
+                leadsTableFilter.value = q;
+                leadsTableFilter.dispatchEvent(new Event('input'));
+              }
+            }
+          }
+        });
+      }
 
-<script>
-$(document).ready(function() {
-    $('#crmSidebarToggle').on('click', function(e) {
-        e.preventDefault();
-        $('#crmSidebar').toggleClass('crm-sidebar-collapsed');
-        $('.crm-app-shell').toggleClass('crm-app-shell-expanded');
+      const syncBtn = document.getElementById('btn-sync-data');
+      if (syncBtn) {
+        syncBtn.addEventListener('click', function () {
+          showToast('Syncing real-time feed with London & Dubai nodes...');
+        });
+      }
+
+      const notifBtn = document.getElementById('btn-notifications');
+      if (notifBtn) {
+        notifBtn.addEventListener('click', function () {
+          showToast('All 3 critical alerts resolved');
+          const dot = notifBtn.querySelector('.badge-dot');
+          if (dot) dot.style.display = 'none';
+        });
+      }
+
+      const taskCheckboxes = document.querySelectorAll('.crm-task-chk');
+      taskCheckboxes.forEach(chk => {
+        chk.addEventListener('change', function () {
+          const remaining = document.querySelectorAll('.crm-task-chk:not(:checked)').length;
+          const badge = document.getElementById('tasks-remaining-badge');
+          if (badge) badge.textContent = remaining + ' Reminders Pending';
+          if (this.checked) {
+            showToast('Reminder marked as finished');
+          }
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('btn-quick-view') || e.target.classList.contains('btn-row-action')) {
+          showToast('Loading full confidential client dossier...');
+        }
+      });
+
+      const trendCtx = document.getElementById('mainTrendChart');
+      if (trendCtx && typeof Chart !== 'undefined') {
+        new Chart(trendCtx, {
+          type: 'line',
+          data: {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
+            datasets: [
+              {
+                label: 'Gross Mandates ($M)',
+                data: [18.2, 24.5, 21.0, 32.8, 29.4, 38.6, 42.1, 48.5],
+                borderColor: '#10b981',
+                backgroundColor: 'rgba(16, 185, 129, 0.08)',
+                fill: true,
+                tension: 0.38,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                borderWidth: 2.5
+              },
+              {
+                label: 'Projected Target ($M)',
+                data: [15.0, 20.0, 25.0, 30.0, 35.0, 38.0, 42.0, 45.0],
+                borderColor: '#94a3b8',
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.2,
+                pointRadius: 0,
+                borderWidth: 1.5
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: true,
+                position: 'top',
+                labels: { boxWidth: 12, usePointStyle: true, font: { family: "'Plus Jakarta Sans', sans-serif" } }
+              }
+            },
+            scales: {
+              x: { grid: { display: false } },
+              y: { grid: { color: 'rgba(0,0,0,0.04)' } }
+            }
+          }
+        });
+      }
+
+      const portfolioCtx = document.getElementById('portfolioChart');
+      if (portfolioCtx && typeof Chart !== 'undefined') {
+        new Chart(portfolioCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Luxury Real Estate', 'Corporate Structuring', 'Golden Visa / Mobility'],
+            datasets: [{
+              data: [110.2, 78.4, 52.0],
+              backgroundColor: ['#0d9488', '#38bdf8', '#a855f7'],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '72%',
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      }
     });
-
-    $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
-        e.preventDefault();
-        $(this).parent('.crm-nav-item').toggleClass('open');
-    });
-
-    $('#crmThemeToggle').on('click', function(e) {
-        e.preventDefault();
-        var current = document.documentElement.getAttribute('data-theme') || 'light';
-        var next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('crm_theme', next);
-    });
-
-    $('#pipelineTabs .crm-tab-btn').on('click', function() {
-        $('#pipelineTabs .crm-tab-btn').removeClass('active');
-        $(this).addClass('active');
-        var target = $(this).data('target');
-        $('#tabMyPipeline, #tabTeamPipeline').hide();
-        $(target).show();
-    });
-
-    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    var gridCol = isDark ? 'rgba(255, 255, 255, 0.07)' : 'rgba(226, 232, 240, 0.8)';
-
-    var areaChartData2 = {
-        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-        datasets: [{
-            label: 'Leads',
-            fillColor: 'rgba(37, 99, 235, 0.15)',
-            strokeColor: '#2563eb',
-            pointColor: '#2563eb',
-            pointStrokeColor: '#ffffff',
-            pointHighlightFill: '#ffffff',
-            pointHighlightStroke: '#2563eb',
-            data: [12, 19, 15, 25, 22, 30, 28, 35, 42, 38, 45, 50]
-        }]
-    };
-
-    var areaChartData4 = {
-        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-        datasets: [{
-            label: 'Leads',
-            fillColor: 'rgba(124, 58, 237, 0.15)',
-            strokeColor: '#7c3aed',
-            pointColor: '#7c3aed',
-            pointStrokeColor: '#ffffff',
-            pointHighlightFill: '#ffffff',
-            pointHighlightStroke: '#7c3aed',
-            data: [45, 60, 55, 80, 95, 110, 105, 130, 145, 140, 160, 175]
-        }]
-    };
-
-    var barChartOptions = {
-        scaleBeginAtZero: true,
-        scaleShowGridLines: true,
-        scaleGridLineColor: gridCol,
-        scaleGridLineWidth: 1,
-        scaleShowHorizontalLines: true,
-        scaleShowVerticalLines: false,
-        barShowStroke: true,
-        barStrokeWidth: 1,
-        barValueSpacing: 18,
-        barDatasetSpacing: 1,
-        responsive: true,
-        maintainAspectRatio: false
-    };
-
-    if($('#barChart2').length) {
-        var bar2Canvas = $('#barChart2').get(0).getContext('2d');
-        var chart2 = new Chart(bar2Canvas);
-        chart2.Bar(areaChartData2, barChartOptions);
-    }
-
-    if($('#barChart4').length) {
-        var bar4Canvas = $('#barChart4').get(0).getContext('2d');
-        var chart4 = new Chart(bar4Canvas);
-        chart4.Bar(areaChartData4, barChartOptions);
-    }
-
-    var pieOptions = {
-        segmentShowStroke: true,
-        segmentStrokeColor: isDark ? '#0f172a' : '#ffffff',
-        segmentStrokeWidth: 2,
-        percentageInnerCutout: 62,
-        animationSteps: 60,
-        animationEasing: 'easeOutQuart',
-        animateRotate: true,
-        animateScale: false,
-        responsive: true,
-        maintainAspectRatio: false
-    };
-
-    var PieData1 = [
-        { value: 2, color: '#ef4444', label: 'Missed' },
-        { value: 4, color: '#f59e0b', label: 'Last Week' },
-        { value: 7, color: '#0284c7', label: 'Today' },
-        { value: 12, color: '#2563eb', label: 'Next Week' },
-        { value: 19, color: '#10b981', label: 'Future' }
-    ];
-
-    var PieData2 = [
-        { value: 1, color: '#ef4444', label: 'Missed' },
-        { value: 3, color: '#f59e0b', label: 'Last Week' },
-        { value: 3, color: '#0284c7', label: 'Today' },
-        { value: 5, color: '#2563eb', label: 'Next Week' },
-        { value: 8, color: '#10b981', label: 'Future' }
-    ];
-
-    if($('#pieChart1').length) {
-        var p1Canvas = $('#pieChart1').get(0).getContext('2d');
-        new Chart(p1Canvas).Doughnut(PieData1, pieOptions);
-    }
-
-    if($('#pieChart2').length) {
-        var p2Canvas = $('#pieChart2').get(0).getContext('2d');
-        new Chart(p2Canvas).Doughnut(PieData2, pieOptions);
-    }
-});
-</script>
+  </script>
 </body>
 </html>

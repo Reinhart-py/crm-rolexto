@@ -254,9 +254,19 @@
         <span>/</span>
         <span class="current"><?php echo !empty($info['title']) ? $info['title'] : 'Dashboard'; ?></span>
       </div>
+      <div class="crm-topbar-search hidden-xs hidden-sm">
+        <svg class="crm-svg-sm search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" placeholder="Search leads, team, meetings...">
+        <kbd>/</kbd>
+      </div>
     </div>
 
     <div class="crm-topbar-right">
+      <button type="button" class="crm-icon-btn hidden-xs" title="Notifications" aria-label="Notifications">
+        <svg class="crm-svg-sm" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        <span class="badge-dot"></span>
+      </button>
+
       <button type="button" class="crm-theme-toggle" id="crmThemeToggle" title="Switch Theme" aria-label="Switch Theme">
         <svg class="crm-svg sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         <svg class="crm-svg moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>

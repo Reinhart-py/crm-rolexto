@@ -30,7 +30,7 @@
     <?php } ?>
 
     <div class="crm-metric-strip">
-        <a href="<?php echo base_url(); ?>manager/leads" class="crm-metric-card">
+        <a href="<?php echo base_url(); ?>manager/leads" class="crm-metric-card tint-blue">
             <div class="crm-metric-header">
                 <span class="crm-metric-title">My Leads</span>
                 <div class="crm-metric-icon-wrap blue">
@@ -40,7 +40,7 @@
             <div class="crm-metric-number"><?php echo !empty($dashboard_count['count_leads']) ? $dashboard_count['count_leads'] : 0; ?></div>
         </a>
 
-        <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-metric-card">
+        <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-metric-card tint-purple">
             <div class="crm-metric-header">
                 <span class="crm-metric-title">Team Leads</span>
                 <div class="crm-metric-icon-wrap purple">
@@ -50,7 +50,7 @@
             <div class="crm-metric-number"><?php echo !empty($dashboard_Tcount['count_leads']) ? $dashboard_Tcount['count_leads'] : 0; ?></div>
         </a>
 
-        <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-metric-card">
+        <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-metric-card tint-amber">
             <div class="crm-metric-header">
                 <span class="crm-metric-title">Today's Follow-ups</span>
                 <div class="crm-metric-icon-wrap amber">
@@ -60,7 +60,7 @@
             <div class="crm-metric-number"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></div>
         </a>
 
-        <a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-metric-card">
+        <a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-metric-card tint-emerald">
             <div class="crm-metric-header">
                 <span class="crm-metric-title">Today's Meetings</span>
                 <div class="crm-metric-icon-wrap emerald">
@@ -70,7 +70,7 @@
             <div class="crm-metric-number"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></div>
         </a>
 
-        <a href="<?php echo base_url(); ?>manager/team/members" class="crm-metric-card">
+        <a href="<?php echo base_url(); ?>manager/team/members" class="crm-metric-card tint-slate">
             <div class="crm-metric-header">
                 <span class="crm-metric-title">Team Members</span>
                 <div class="crm-metric-icon-wrap slate">
@@ -80,7 +80,7 @@
             <div class="crm-metric-number"><?php echo !empty($dashboard_Tcount['count_user']) ? $dashboard_Tcount['count_user'] : 0; ?></div>
         </a>
 
-        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-metric-card">
+        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-metric-card tint-rose">
             <div class="crm-metric-header">
                 <span class="crm-metric-title">Verticals</span>
                 <div class="crm-metric-icon-wrap rose">
