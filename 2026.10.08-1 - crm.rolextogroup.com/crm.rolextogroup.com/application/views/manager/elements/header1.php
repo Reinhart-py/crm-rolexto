@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-<link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>assets/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/favicon.ico">
+<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" type="image/x-icon">
+<link rel="icon" href="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" type="image/jpeg">
 
     
 <title><?php echo $info['title']; ?></title>
