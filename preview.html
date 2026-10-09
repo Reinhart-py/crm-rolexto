@@ -1,836 +1,617 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Manager Dashboard - Preview</title>
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon.ico">
+<title>Rolexto CRM - Executive Dashboard</title>
+<script>
+(function() {
+    var saved = localStorage.getItem('crm_theme');
+    var pref = saved ? saved : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', pref);
+})();
+</script>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/dist/css/font-awesome.min.css">
 <link rel="stylesheet" href="assets/dist/css/ionicons.min.css">
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
-<link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="assets/dist/css/slimmenu.min.css">
-<style>
-.munk_menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    background: #222d32;
-}
-.munk_menu > li {
-    position: relative;
-}
-.munk_menu > li > a {
-    display: block;
-    padding: 14px 16px;
-    color: #b8c7ce;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-}
-.munk_menu > li > a:hover, .munk_menu > li.active > a {
-    background: #1e282c;
-    color: #ffffff;
-}
-.munk_menu > li > ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #2c3b41;
-    list-style: none;
-    margin: 0;
-    padding: 6px 0;
-    min-width: 200px;
-    z-index: 9999;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.munk_menu > li:hover > ul {
-    display: block;
-}
-.munk_menu > li > ul > li > a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    color: #8aa4af;
-    text-decoration: none;
-    font-size: 13px;
-}
-.munk_menu > li > ul > li > a:hover {
-    background: #1e282c;
-    color: #ffffff;
-}
-.crm-dashboard-container {
-    padding: 16px 0 32px 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    color: #1e293b;
-}
-.crm-dashboard-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-.crm-dashboard-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.crm-dashboard-title i {
-    color: #ea580c;
-    font-size: 20px;
-}
-.crm-live-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #ecfdf5;
-    color: #059669;
-    border: 1px solid #a7f3d0;
-    padding: 4px 10px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 600;
-}
-.crm-live-pulse {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #10b981;
-}
-.crm-birthday-banner {
-    background: linear-gradient(135deg, #fef3c7 0%, #fee2e2 100%);
-    border: 1px solid #fcd34d;
-    color: #92400e;
-    padding: 12px 18px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 600;
-    font-size: 14px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-}
-.crm-birthday-banner i {
-    font-size: 20px;
-    color: #ea580c;
-}
-.crm-kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 14px;
-    margin-bottom: 22px;
-}
-.crm-kpi-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 16px 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-    text-decoration: none;
-    color: inherit;
-}
-.crm-kpi-card:hover, .crm-kpi-card:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
-    border-color: #cbd5e1;
-    text-decoration: none;
-    color: inherit;
-}
-.crm-kpi-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-.crm-kpi-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #64748b;
-}
-.crm-kpi-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-}
-.crm-kpi-value {
-    font-size: 26px;
-    font-weight: 800;
-    color: #0f172a;
-    line-height: 1.1;
-    margin-bottom: 8px;
-}
-.crm-kpi-link {
-    font-size: 11px;
-    font-weight: 600;
-    color: #ea580c;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-.crm-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-    margin-bottom: 22px;
-    overflow: hidden;
-}
-.crm-card-header {
-    padding: 14px 18px;
-    border-bottom: 1px solid #f1f5f9;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-    background: #ffffff;
-}
-.crm-card-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.crm-card-title i {
-    color: #64748b;
-    font-size: 14px;
-}
-.crm-card-body {
-    padding: 18px;
-}
-.crm-tab-pills {
-    display: inline-flex;
-    background: #f1f5f9;
-    padding: 3px;
-    border-radius: 8px;
-    gap: 2px;
-}
-.crm-tab-btn {
-    border: none;
-    background: transparent;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 0.15s ease;
-}
-.crm-tab-btn.active {
-    background: #ffffff;
-    color: #0f172a;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-}
-.crm-stage-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 290px;
-    overflow-y: auto;
-}
-.crm-stage-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
-    border-radius: 8px;
-    margin-bottom: 6px;
-    background: #f8fafc;
-    border: 1px solid #f1f5f9;
-    text-decoration: none;
-    color: #334155;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.15s ease;
-}
-.crm-stage-item:hover {
-    background: #f1f5f9;
-    border-color: #e2e8f0;
-    color: #0f172a;
-    text-decoration: none;
-}
-.crm-stage-count {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    color: #0f172a;
-    padding: 2px 10px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 700;
-}
-.crm-chart-container {
-    position: relative;
-    height: 250px;
-    width: 100%;
-}
-.crm-donut-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-.crm-donut-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-}
-.crm-donut-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0 0 14px 0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.crm-donut-canvas-wrap {
-    position: relative;
-    height: 190px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.crm-donut-canvas-wrap canvas {
-    max-height: 190px;
-    max-width: 100%;
-}
-.crm-breakdown-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-.crm-breakdown-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6px 10px;
-    border-radius: 6px;
-    background: #f8fafc;
-    text-decoration: none;
-    color: #334155;
-    font-size: 12px;
-    font-weight: 600;
-    transition: background 0.15s ease;
-}
-.crm-breakdown-item:hover {
-    background: #f1f5f9;
-    text-decoration: none;
-    color: #0f172a;
-}
-.crm-breakdown-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.crm-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-.crm-badge-val {
-    padding: 2px 8px;
-    border-radius: 9999px;
-    font-size: 11px;
-    font-weight: 700;
-    color: #ffffff;
-}
-@media (max-width: 1199px) {
-    .crm-kpi-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .crm-donut-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-@media (max-width: 767px) {
-    .crm-kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .crm-donut-grid {
-        grid-template-columns: 1fr;
-    }
-    .crm-dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-@media (max-width: 480px) {
-    .crm-kpi-grid {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-<header class="main-header"> 
-<div class="container" style="padding-top:10px; padding-bottom:10px;">
-<div class="row align-items-center">
-<div class="col-xs-12 col-md-4 text-left">
-<span style="font-size:22px; font-weight:800; color:#ea580c; letter-spacing:1px;">ROLEXTO CRM</span>
-</div>
-<div class="col-xs-12 col-md-8 text-right">
-<p style="margin:0; font-size:12px; color:#64748b;">hr@rolextogroup.com | +971 58 563 7737 | <strong>Rolexto Admin</strong></p>
-</div>
-</div>
-</div>
-<nav class="navbar navbar-static-top" style="margin:0;"> 
-<div class="container">
-<ul class="munk_menu">
-<li class="active"> <a href="preview.html"> <i class="fa fa-tachometer"></i> <span>Dashboard</span> </a> </li>
-<li> <a href="#"><i class="fa fa-list"></i> <span>Leads</span> </a>
-<ul>
-<li><a href="#"><i class="fa fa-plus"></i>Add Lead</a></li>
-<li><a href="#"><i class="fa fa-list"></i>All Leads</a></li>
-<li><a href="#"><i class="fa fa-clock-o"></i>Follow-ups</a></li>
-<li><a href="#"><i class="fa fa-calendar"></i>Meetings</a></li>
-</ul>
-</li>
-<li> <a href="#"><i class="fa fa-users"></i> <span>Team</span> </a>
-<ul>
-<li><a href="#"><i class="fa fa-user"></i>Team Members</a></li>
-<li><a href="#"><i class="fa fa-sitemap"></i>Hierarchy Chart</a></li>
-<li><a href="#"><i class="fa fa-list"></i>Team Leads</a></li>
-<li><a href="#"><i class="fa fa-share-alt"></i>Assigned Leads</a></li>
-<li><a href="#"><i class="fa fa-clock-o"></i>Team Follow-ups</a></li>
-<li><a href="#"><i class="fa fa-calendar"></i>Team Meetings</a></li>
-<li><a href="#"><i class="fa fa-calendar-check-o"></i>Assigned Meetings</a></li>
-</ul>
-</li>
-<li> <a href="#"><i class="fa fa-cubes"></i> <span>Verticals</span> </a>
-<ul>
-<li><a href="#"><i class="fa fa-plus"></i>Add Vertical</a></li>
-<li><a href="#"><i class="fa fa-list"></i>My Verticals</a></li>
-<li><a href="#"><i class="fa fa-users"></i>Team Verticals</a></li>
-</ul>
-</li>
-<li> <a href="#"><i class="fa fa-line-chart"></i> <span>Reports</span> </a>
-<ul>
-<li><a href="#"><i class="fa fa-bar-chart"></i>Department Performance</a></li>
-<li><a href="#"><i class="fa fa-user"></i>Individual Performance</a></li>
-<li><a href="#"><i class="fa fa-users"></i>Users Report</a></li>
-<li><a href="#"><i class="fa fa-cubes"></i>Verticals Report</a></li>
-</ul>
-</li>
-<li> <a href="#"><i class="fa fa-user-plus"></i> <span>Users</span> </a>
-<ul>
-<li><a href="#"><i class="fa fa-plus"></i>Add User</a></li>
-<li><a href="#"><i class="fa fa-list"></i>View Users</a></li>
-</ul>
-</li>
-<li> <a href="#"><i class="fa fa-cogs"></i> <span>Settings</span> </a>
-<ul>        
-<li><a href="#"><i class="fa fa-shield"></i>Roles</a></li>
-<li><a href="#"><i class="fa fa-tags"></i>CRM Terms / Categories</a></li>
-</ul>
-</li>
-<li> <a href="#"> <i class="fa fa-user"></i><span>Profile</span></a>
-<ul>        
-<li><a href="#"><i class="fa fa-eye"></i>View Profile</a></li>
-<li><a href="#"><i class="fa fa-key"></i>Change Password</a></li>
-</ul>
-</li>
-<li> <a href="#"> <i class="fa fa-power-off"></i> <span>Logout</span></a> </li>
-</ul>
-</div>
-</nav>
-</header>
-<div class="content-wrapper container">
-<div class="crm-dashboard-container">
-<div class="crm-dashboard-header">
-<h1 class="crm-dashboard-title">
-<i class="fa fa-tachometer"></i> Dashboard Overview
-</h1>
-<div class="crm-live-badge">
-<span class="crm-live-pulse"></span>
-<span>Live Database Synced</span>
-</div>
-</div>
-<div class="crm-kpi-grid">
-<a href="#" class="crm-kpi-card">
-<div class="crm-kpi-header">
-<span class="crm-kpi-label">My Leads</span>
-<div class="crm-kpi-icon" style="background:#eff6ff; color:#3b82f6;"><i class="fa fa-database"></i></div>
-</div>
-<div class="crm-kpi-value">48</div>
-<span class="crm-kpi-link">View Leads <i class="fa fa-arrow-right"></i></span>
-</a>
-<a href="#" class="crm-kpi-card">
-<div class="crm-kpi-header">
-<span class="crm-kpi-label">Team Leads</span>
-<div class="crm-kpi-icon" style="background:#f0fdf4; color:#10b981;"><i class="fa fa-users"></i></div>
-</div>
-<div class="crm-kpi-value">132</div>
-<span class="crm-kpi-link">View Leads <i class="fa fa-arrow-right"></i></span>
-</a>
-<a href="#" class="crm-kpi-card">
-<div class="crm-kpi-header">
-<span class="crm-kpi-label">Today Follow-ups</span>
-<div class="crm-kpi-icon" style="background:#fef2f2; color:#ef4444;"><i class="fa fa-clock-o"></i></div>
-</div>
-<div class="crm-kpi-value">14</div>
-<span class="crm-kpi-link">View Today <i class="fa fa-arrow-right"></i></span>
-</a>
-<a href="#" class="crm-kpi-card">
-<div class="crm-kpi-header">
-<span class="crm-kpi-label">Today Meetings</span>
-<div class="crm-kpi-icon" style="background:#fffbeb; color:#f59e0b;"><i class="fa fa-calendar"></i></div>
-</div>
-<div class="crm-kpi-value">6</div>
-<span class="crm-kpi-link">View Today <i class="fa fa-arrow-right"></i></span>
-</a>
-<a href="#" class="crm-kpi-card">
-<div class="crm-kpi-header">
-<span class="crm-kpi-label">Team Members</span>
-<div class="crm-kpi-icon" style="background:#f5f3ff; color:#8b5cf6;"><i class="fa fa-user"></i></div>
-</div>
-<div class="crm-kpi-value">18</div>
-<span class="crm-kpi-link">View Team <i class="fa fa-arrow-right"></i></span>
-</a>
-<a href="#" class="crm-kpi-card">
-<div class="crm-kpi-header">
-<span class="crm-kpi-label">My Verticals</span>
-<div class="crm-kpi-icon" style="background:#f0fdfa; color:#0d9488;"><i class="fa fa-cubes"></i></div>
-</div>
-<div class="crm-kpi-value">5</div>
-<span class="crm-kpi-link">View Verticals <i class="fa fa-arrow-right"></i></span>
-</a>
-</div>
-<div class="row">
-<div class="col-md-4">
-<div class="crm-card">
-<div class="crm-card-header">
-<h3 class="crm-card-title"><i class="fa fa-filter"></i> Pipeline Stages</h3>
-<div class="crm-tab-pills" id="pipelineTabs">
-<button type="button" class="crm-tab-btn active" data-target="#tabMyPipeline">My Leads</button>
-<button type="button" class="crm-tab-btn" data-target="#tabTeamPipeline">Team Leads</button>
-</div>
-</div>
-<div class="crm-card-body">
-<div id="tabMyPipeline">
-<ul class="crm-stage-list">
-<li>
-<a href="#" class="crm-stage-item">
-<span>New Inquiries</span>
-<span class="crm-stage-count">16</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Contact Initiated</span>
-<span class="crm-stage-count">11</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Meeting Scheduled</span>
-<span class="crm-stage-count">8</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Proposal Sent</span>
-<span class="crm-stage-count">7</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Under Negotiation</span>
-<span class="crm-stage-count">4</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Deal Closed</span>
-<span class="crm-stage-count">2</span>
-</a>
-</li>
-</ul>
-</div>
-<div id="tabTeamPipeline" style="display:none;">
-<ul class="crm-stage-list">
-<li>
-<a href="#" class="crm-stage-item">
-<span>New Inquiries</span>
-<span class="crm-stage-count">42</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Contact Initiated</span>
-<span class="crm-stage-count">29</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Meeting Scheduled</span>
-<span class="crm-stage-count">21</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Proposal Sent</span>
-<span class="crm-stage-count">19</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Under Negotiation</span>
-<span class="crm-stage-count">12</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-stage-item">
-<span>Deal Closed</span>
-<span class="crm-stage-count">9</span>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="crm-card">
-<div class="crm-card-header">
-<h3 class="crm-card-title"><i class="fa fa-line-chart"></i> Monthly Trajectory & Projections</h3>
-<div class="crm-tab-pills" id="projectionTabs">
-<button type="button" class="crm-tab-btn active" data-target="#tabMyProjection">My Projection</button>
-<button type="button" class="crm-tab-btn" data-target="#tabTeamProjection">Team Projection</button>
-<button type="button" class="crm-tab-btn" data-target="#tabPrevPerformance">Previous Performance</button>
-</div>
-</div>
-<div class="crm-card-body">
-<div id="tabMyProjection">
-<div class="crm-chart-container">
-<canvas id="barChart2"></canvas>
-</div>
-</div>
-<div id="tabTeamProjection" style="display:none;">
-<div class="crm-chart-container">
-<canvas id="barChart4"></canvas>
-</div>
-</div>
-<div id="tabPrevPerformance" style="display:none;">
-<div class="crm-chart-container">
-<canvas id="barChart3"></canvas>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="crm-donut-grid">
-<div class="crm-donut-card">
-<h4 class="crm-donut-title"><i class="fa fa-clock-o" style="color:#ef4444;"></i> My Follow-ups</h4>
-<div class="crm-donut-canvas-wrap">
-<canvas id="pieChart1"></canvas>
-</div>
-<ul class="crm-breakdown-list">
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#ef4444;"></span>Missed</span>
-<span class="crm-badge-val" style="background:#ef4444;">4</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#f59e0b;"></span>Last 7 Days</span>
-<span class="crm-badge-val" style="background:#f59e0b;">9</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#0ea5e9;"></span>Today</span>
-<span class="crm-badge-val" style="background:#0ea5e9;">14</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#3b82f6;"></span>Next 7 Days</span>
-<span class="crm-badge-val" style="background:#3b82f6;">11</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#10b981;"></span>All Future</span>
-<span class="crm-badge-val" style="background:#10b981;">10</span>
-</a>
-</li>
-</ul>
-</div>
-<div class="crm-donut-card">
-<h4 class="crm-donut-title"><i class="fa fa-calendar" style="color:#0ea5e9;"></i> My Meetings</h4>
-<div class="crm-donut-canvas-wrap">
-<canvas id="pieChart2"></canvas>
-</div>
-<ul class="crm-breakdown-list">
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#ef4444;"></span>Missed</span>
-<span class="crm-badge-val" style="background:#ef4444;">1</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#f59e0b;"></span>Last 7 Days</span>
-<span class="crm-badge-val" style="background:#f59e0b;">3</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#0ea5e9;"></span>Today</span>
-<span class="crm-badge-val" style="background:#0ea5e9;">6</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#3b82f6;"></span>Next 7 Days</span>
-<span class="crm-badge-val" style="background:#3b82f6;">5</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#10b981;"></span>All Future</span>
-<span class="crm-badge-val" style="background:#10b981;">7</span>
-</a>
-</li>
-</ul>
-</div>
-<div class="crm-donut-card">
-<h4 class="crm-donut-title"><i class="fa fa-clock-o" style="color:#f59e0b;"></i> Team Follow-ups</h4>
-<div class="crm-donut-canvas-wrap">
-<canvas id="pieChart3"></canvas>
-</div>
-<ul class="crm-breakdown-list">
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#ef4444;"></span>Missed</span>
-<span class="crm-badge-val" style="background:#ef4444;">8</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#f59e0b;"></span>Last 7 Days</span>
-<span class="crm-badge-val" style="background:#f59e0b;">21</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#0ea5e9;"></span>Today</span>
-<span class="crm-badge-val" style="background:#0ea5e9;">35</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#3b82f6;"></span>Next 7 Days</span>
-<span class="crm-badge-val" style="background:#3b82f6;">28</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#10b981;"></span>All Future</span>
-<span class="crm-badge-val" style="background:#10b981;">40</span>
-</a>
-</li>
-</ul>
-</div>
-<div class="crm-donut-card">
-<h4 class="crm-donut-title"><i class="fa fa-calendar" style="color:#10b981;"></i> Team Meetings</h4>
-<div class="crm-donut-canvas-wrap">
-<canvas id="pieChart4"></canvas>
-</div>
-<ul class="crm-breakdown-list">
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#ef4444;"></span>Missed</span>
-<span class="crm-badge-val" style="background:#ef4444;">3</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#f59e0b;"></span>Last 7 Days</span>
-<span class="crm-badge-val" style="background:#f59e0b;">11</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#0ea5e9;"></span>Today</span>
-<span class="crm-badge-val" style="background:#0ea5e9;">16</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#3b82f6;"></span>Next 7 Days</span>
-<span class="crm-badge-val" style="background:#3b82f6;">14</span>
-</a>
-</li>
-<li>
-<a href="#" class="crm-breakdown-item">
-<span class="crm-breakdown-left"><span class="crm-dot" style="background:#10b981;"></span>All Future</span>
-<span class="crm-badge-val" style="background:#10b981;">18</span>
-</a>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
+<link rel="stylesheet" href="assets/dist/css/crm-theme.css">
 <script src="assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/plugins/chartjs/Chart.min.js"></script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+<aside class="crm-sidebar" id="crmSidebar">
+<a href="#dashboard" class="crm-sidebar-brand">
+<img src="assets/dist/img/favicon.jpg" alt="Rolexto" style="height:32px; width:32px; border-radius:6px; object-fit:cover;">
+<div class="brand-text">
+<span class="brand-title">Rolexto CRM</span>
+<span class="brand-badge">Enterprise</span>
+</div>
+</a>
+<div class="crm-sidebar-nav">
+<div class="crm-nav-group-title">Overview</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item">
+<a href="#dashboard" class="crm-nav-link active">
+<svg class="crm-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+<span>Dashboard</span>
+</a>
+</li>
+</ul>
+<div class="crm-nav-group-title">Commercial &amp; Pipeline</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item has-sub open">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+<span>My Leads</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</a>
+<ul class="crm-subnav-list">
+<li><a href="#leads" class="crm-subnav-link active">All My Leads</a></li>
+<li><a href="#add-lead" class="crm-subnav-link">+ Add New Lead</a></li>
+<li><a href="#followups" class="crm-subnav-link">Follow-ups</a></li>
+<li><a href="#meetings" class="crm-subnav-link">Meetings</a></li>
+<li><a href="#leads-history" class="crm-subnav-link">Leads History</a></li>
+<li><a href="#trash-leads" class="crm-subnav-link">Trash Leads</a></li>
+</ul>
+</li>
+<li class="crm-nav-item">
+<a href="#followups" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+<span>Follow-ups</span>
+</a>
+</li>
+<li class="crm-nav-item">
+<a href="#meetings" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+<span>Meetings</span>
+</a>
+</li>
+<li class="crm-nav-item">
+<a href="#performance" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+<span>My Performance</span>
+</a>
+</li>
+</ul>
+<div class="crm-nav-group-title">Team Operations</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item has-sub">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+<span>Team Leads</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</a>
+<ul class="crm-subnav-list">
+<li><a href="#team-leads" class="crm-subnav-link">All Team Leads</a></li>
+<li><a href="#assigned-leads" class="crm-subnav-link">Assigned Leads</a></li>
+<li><a href="#team-followups" class="crm-subnav-link">Team Follow-ups</a></li>
+<li><a href="#team-meetings" class="crm-subnav-link">Team Meetings</a></li>
+<li><a href="#assigned-meetings" class="crm-subnav-link">Assigned Meetings</a></li>
+</ul>
+</li>
+<li class="crm-nav-item has-sub">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+<span>Team Members</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</a>
+<ul class="crm-subnav-list">
+<li><a href="#team-members" class="crm-subnav-link">Member Directory</a></li>
+<li><a href="#hierarchy-chart" class="crm-subnav-link">Hierarchy Chart</a></li>
+</ul>
+</li>
+</ul>
+<div class="crm-nav-group-title">Verticals Portfolio</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item has-sub">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
+<span>Practice Portfolios</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</a>
+<ul class="crm-subnav-list">
+<li><a href="#my-verticals" class="crm-subnav-link">My Verticals</a></li>
+<li><a href="#team-verticals" class="crm-subnav-link">Team Verticals</a></li>
+<li><a href="#add-vertical" class="crm-subnav-link">+ Add Vertical</a></li>
+<li><a href="#verticals-report" class="crm-subnav-link">Verticals Report</a></li>
+</ul>
+</li>
+</ul>
+<div class="crm-nav-group-title">Reports &amp; Intelligence</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item has-sub">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+<span>Reports</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</a>
+<ul class="crm-subnav-list">
+<li><a href="#dept-performance" class="crm-subnav-link">Department Performance</a></li>
+<li><a href="#indiv-performance" class="crm-subnav-link">Individual Performance</a></li>
+<li><a href="#users-report" class="crm-subnav-link">Users Report</a></li>
+<li><a href="#verticals-report" class="crm-subnav-link">Verticals Report</a></li>
+</ul>
+</li>
+</ul>
+<div class="crm-nav-group-title">Settings &amp; Admin</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item has-sub">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+<span>Users &amp; Access</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</a>
+<ul class="crm-subnav-list">
+<li><a href="#view-users" class="crm-subnav-link">View Users</a></li>
+<li><a href="#add-user" class="crm-subnav-link">+ Add User</a></li>
+<li><a href="#roles-permissions" class="crm-subnav-link">Roles &amp; Permissions</a></li>
+</ul>
+</li>
+<li class="crm-nav-item">
+<a href="#terms" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+<span>CRM Categories</span>
+</a>
+</li>
+<li class="crm-nav-item has-sub">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+<span>Security &amp; Profile</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</a>
+<ul class="crm-subnav-list">
+<li><a href="#profile" class="crm-subnav-link">View Profile</a></li>
+<li><a href="#password" class="crm-subnav-link">Change Password</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="crm-sidebar-footer">
+<a href="#profile" class="crm-user-profile">
+<div class="crm-user-avatar">RA</div>
+<div class="crm-user-info">
+<span class="crm-user-name">Rolexto Admin</span>
+<span class="crm-user-role">Administrator</span>
+</div>
+</a>
+<a href="#logout" class="crm-logout-btn" title="Logout">
+<svg class="crm-svg" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+</a>
+</div>
+</aside>
+<div class="crm-app-shell">
+<header class="crm-topbar">
+<div class="crm-topbar-left">
+<button type="button" class="crm-sidebar-toggle-btn" id="crmSidebarToggle" title="Toggle Navigation">
+<svg class="crm-svg" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+<div class="crm-breadcrumbs">
+<a href="#dashboard">Workspace</a>
+<span>/</span>
+<span class="current">Dashboard</span>
+</div>
+</div>
+<div class="crm-topbar-right">
+<div class="crm-search-box hidden-xs">
+<svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:var(--crm-text-muted);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+<input type="text" placeholder="Search leads, team...">
+</div>
+<button type="button" class="crm-theme-toggle" id="crmThemeToggle" title="Switch Theme">
+<svg class="crm-svg sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="crm-svg moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+<a href="#add-lead" class="crm-btn-primary">
+<svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+<span>New Lead</span>
+</a>
+</div>
+</header>
+
+<div class="crm-main-content">
+<div class="crm-dashboard-container">
+
+<div class="crm-page-header">
+<div class="crm-page-title-wrap">
+<h1 class="crm-page-title">Executive Dashboard</h1>
+</div>
+<div class="crm-page-actions">
+<a href="#leads" class="crm-btn-secondary">
+<svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+<span>View Leads</span>
+</a>
+<a href="#add-lead" class="crm-btn-primary">
+<svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+<span>New Lead</span>
+</a>
+</div>
+</div>
+
+<div class="crm-ops-banner">
+<div class="crm-ops-left">
+<svg class="crm-svg star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+<span><strong>Today's Operations:</strong> Active pipeline running across London, Dubai and Zurich desks.</span>
+</div>
+<a href="#followups" class="crm-ops-btn">Review Follow-ups</a>
+</div>
+
+<div class="crm-metric-strip">
+<a href="#leads" class="crm-metric-card">
+<div class="crm-metric-header">
+<span class="crm-metric-title">My Leads</span>
+<div class="crm-metric-icon-wrap">
+<svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+</div>
+</div>
+<div class="crm-metric-number">42</div>
+</a>
+
+<a href="#team-leads" class="crm-metric-card">
+<div class="crm-metric-header">
+<span class="crm-metric-title">Team Leads</span>
+<div class="crm-metric-icon-wrap">
+<svg class="crm-svg" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+</div>
+</div>
+<div class="crm-metric-number">158</div>
+</a>
+
+<a href="#followups" class="crm-metric-card">
+<div class="crm-metric-header">
+<span class="crm-metric-title">Today's Follow-ups</span>
+<div class="crm-metric-icon-wrap">
+<svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+</div>
+</div>
+<div class="crm-metric-number">7</div>
+</a>
+
+<a href="#meetings" class="crm-metric-card">
+<div class="crm-metric-header">
+<span class="crm-metric-title">Today's Meetings</span>
+<div class="crm-metric-icon-wrap">
+<svg class="crm-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+</div>
+</div>
+<div class="crm-metric-number">3</div>
+</a>
+
+<a href="#team-members" class="crm-metric-card">
+<div class="crm-metric-header">
+<span class="crm-metric-title">Team Members</span>
+<div class="crm-metric-icon-wrap">
+<svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+</div>
+</div>
+<div class="crm-metric-number">12</div>
+</a>
+
+<a href="#verticals" class="crm-metric-card">
+<div class="crm-metric-header">
+<span class="crm-metric-title">Verticals</span>
+<div class="crm-metric-icon-wrap">
+<svg class="crm-svg" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
+</div>
+</div>
+<div class="crm-metric-number">6</div>
+</a>
+</div>
+
+<div class="row">
+<div class="col-lg-6 col-md-12">
+<div class="crm-panel-card">
+<div class="crm-panel-header">
+<h2>
+<svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-primary);"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+<span>Pipeline Stages</span>
+</h2>
+<div class="crm-tab-buttons" id="pipelineTabs">
+<button type="button" class="crm-tab-btn" data-target="#tabMyPipeline">My Leads</button>
+<button type="button" class="crm-tab-btn active" data-target="#tabTeamPipeline">Team Leads</button>
+</div>
+</div>
+<div class="crm-panel-body" style="padding:0;">
+<div class="crm-tab-pane" id="tabMyPipeline" style="display:none;">
+<table class="crm-pipeline-table">
+<thead>
+<tr>
+<th>Stage</th>
+<th style="text-align:right;">Count</th>
+<th style="text-align:right;">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr style="cursor:pointer;">
+<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">New Inquiry</span></td>
+<td style="text-align:right;"><span class="crm-count-badge">8</span></td>
+<td style="text-align:right;"><a href="#leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+</tr>
+<tr style="cursor:pointer;">
+<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Initial Contact</span></td>
+<td style="text-align:right;"><span class="crm-count-badge">16</span></td>
+<td style="text-align:right;"><a href="#leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+</tr>
+<tr style="cursor:pointer;">
+<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Qualified Mandate</span></td>
+<td style="text-align:right;"><span class="crm-count-badge">12</span></td>
+<td style="text-align:right;"><a href="#leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+</tr>
+<tr style="cursor:pointer;">
+<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Proposal Accepted / Won</span></td>
+<td style="text-align:right;"><span class="crm-count-badge">6</span></td>
+<td style="text-align:right;"><a href="#leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="crm-tab-pane" id="tabTeamPipeline">
+<table class="crm-pipeline-table">
+<thead>
+<tr>
+<th>Stage</th>
+<th style="text-align:right;">Count</th>
+<th style="text-align:right;">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr style="cursor:pointer;">
+<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">New Inquiry</span></td>
+<td style="text-align:right;"><span class="crm-count-badge">34</span></td>
+<td style="text-align:right;"><a href="#team-leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+</tr>
+<tr style="cursor:pointer;">
+<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Initial Contact</span></td>
+<td style="text-align:right;"><span class="crm-count-badge">62</span></td>
+<td style="text-align:right;"><a href="#team-leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+</tr>
+<tr style="cursor:pointer;">
+<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Qualified Mandate</span></td>
+<td style="text-align:right;"><span class="crm-count-badge">44</span></td>
+<td style="text-align:right;"><a href="#team-leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+</tr>
+<tr style="cursor:pointer;">
+<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Proposal Accepted / Won</span></td>
+<td style="text-align:right;"><span class="crm-count-badge">18</span></td>
+<td style="text-align:right;"><a href="#team-leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-lg-6 col-md-12">
+<div class="crm-panel-card">
+<div class="crm-panel-header">
+<h2>
+<svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-primary);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+<span>Monthly Trajectory</span>
+</h2>
+<div class="crm-tab-buttons" id="projectionsChartTabs">
+<button type="button" class="crm-tab-btn active" data-target="#wrapMyProjection">My Pipeline</button>
+<button type="button" class="crm-tab-btn" data-target="#wrapTeamProjection">Team Volume</button>
+</div>
+</div>
+<div class="crm-panel-body">
+<div id="wrapMyProjection">
+<div class="crm-chart-box">
+<canvas id="barChart2"></canvas>
+</div>
+</div>
+<div id="wrapTeamProjection" style="display:none;">
+<div class="crm-chart-box">
+<canvas id="barChart4"></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="crm-section-header">
+<h2 class="crm-section-title">
+<svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-primary);"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+<span>My Stats</span>
+</h2>
+</div>
+
+<div class="crm-stats-grid">
+<div class="crm-stat-card">
+<div class="crm-stat-card-header">
+<h3 class="crm-stat-card-title">
+<span class="crm-stat-indicator"></span>
+<span>My Follow-ups</span>
+</h3>
+<span class="crm-badge-val urgent">7 Today</span>
+</div>
+<ul class="crm-stat-list">
+<li><a href="#followups" class="crm-stat-item"><span>Missed</span><span class="crm-badge-val urgent">2</span></a></li>
+<li><a href="#followups" class="crm-stat-item"><span>Last 7 Days</span><span class="crm-badge-val">4</span></a></li>
+<li><a href="#followups" class="crm-stat-item"><span>Today</span><span class="crm-badge-val urgent">7</span></a></li>
+<li><a href="#followups" class="crm-stat-item"><span>Next 7 Days</span><span class="crm-badge-val">12</span></a></li>
+<li><a href="#followups" class="crm-stat-item"><span>All Future</span><span class="crm-badge-val">19</span></a></li>
+</ul>
+</div>
+
+<div class="crm-stat-card">
+<div class="crm-stat-card-header">
+<h3 class="crm-stat-card-title">
+<span class="crm-stat-indicator"></span>
+<span>My Meetings</span>
+</h3>
+<span class="crm-badge-val urgent">3 Today</span>
+</div>
+<ul class="crm-stat-list">
+<li><a href="#meetings" class="crm-stat-item"><span>Missed</span><span class="crm-badge-val urgent">1</span></a></li>
+<li><a href="#meetings" class="crm-stat-item"><span>Last 7 Days</span><span class="crm-badge-val">3</span></a></li>
+<li><a href="#meetings" class="crm-stat-item"><span>Today</span><span class="crm-badge-val urgent">3</span></a></li>
+<li><a href="#meetings" class="crm-stat-item"><span>Next 7 Days</span><span class="crm-badge-val">5</span></a></li>
+<li><a href="#meetings" class="crm-stat-item"><span>All Future</span><span class="crm-badge-val">8</span></a></li>
+</ul>
+</div>
+
+<div class="crm-stat-card">
+<div class="crm-stat-card-header">
+<h3 class="crm-stat-card-title">
+<span class="crm-stat-indicator"></span>
+<span>My Closures</span>
+</h3>
+<span class="crm-badge-val">Active</span>
+</div>
+<ul class="crm-stat-list">
+<li class="crm-stat-item"><span>Active In Pipeline</span><span class="crm-badge-val">42</span></li>
+<li class="crm-stat-item"><span>Assigned Verticals</span><span class="crm-badge-val">6</span></li>
+<li class="crm-stat-item"><span>Actionable Follow-ups</span><span class="crm-badge-val urgent">7</span></li>
+<li class="crm-stat-item"><span>Individual Performance</span><a href="#indiv-performance" class="crm-btn-sm">View</a></li>
+<li class="crm-stat-item"><span>All My Leads</span><a href="#leads" class="crm-btn-sm">Browse</a></li>
+</ul>
+</div>
+
+<div class="crm-stat-card">
+<div class="crm-stat-card-header">
+<h3 class="crm-stat-card-title">
+<span class="crm-stat-indicator"></span>
+<span>My Vertical FU</span>
+</h3>
+<span class="crm-badge-val">6 Total</span>
+</div>
+<ul class="crm-stat-list">
+<li class="crm-stat-item"><span>Active Practice Verticals</span><span class="crm-badge-val">6</span></li>
+<li class="crm-stat-item"><span>Follow-ups Scheduled</span><span class="crm-badge-val urgent">7 Due</span></li>
+<li class="crm-stat-item"><span>Consultations Today</span><span class="crm-badge-val">3</span></li>
+<li class="crm-stat-item"><span>Vertical Directory</span><a href="#my-verticals" class="crm-btn-sm">Manage</a></li>
+<li class="crm-stat-item"><span>Add New Vertical</span><a href="#add-vertical" class="crm-btn-sm">Create</a></li>
+</ul>
+</div>
+</div>
+
+<div class="crm-section-header">
+<h2 class="crm-section-title">
+<svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-primary);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+<span>Team Stats</span>
+</h2>
+</div>
+
+<div class="crm-stats-grid">
+<div class="crm-stat-card">
+<div class="crm-stat-card-header">
+<h3 class="crm-stat-card-title">
+<span class="crm-stat-indicator"></span>
+<span>Team Follow-ups</span>
+</h3>
+<span class="crm-badge-val urgent">14 Today</span>
+</div>
+<ul class="crm-stat-list">
+<li><a href="#team-followups" class="crm-stat-item"><span>Missed</span><span class="crm-badge-val urgent">5</span></a></li>
+<li><a href="#team-followups" class="crm-stat-item"><span>Last 7 Days</span><span class="crm-badge-val">11</span></a></li>
+<li><a href="#team-followups" class="crm-stat-item"><span>Today</span><span class="crm-badge-val urgent">14</span></a></li>
+<li><a href="#team-followups" class="crm-stat-item"><span>Next 7 Days</span><span class="crm-badge-val">28</span></a></li>
+<li><a href="#team-followups" class="crm-stat-item"><span>All Future</span><span class="crm-badge-val">45</span></a></li>
+</ul>
+</div>
+
+<div class="crm-stat-card">
+<div class="crm-stat-card-header">
+<h3 class="crm-stat-card-title">
+<span class="crm-stat-indicator"></span>
+<span>Team Meetings</span>
+</h3>
+<span class="crm-badge-val urgent">8 Today</span>
+</div>
+<ul class="crm-stat-list">
+<li><a href="#team-meetings" class="crm-stat-item"><span>Missed</span><span class="crm-badge-val urgent">2</span></a></li>
+<li><a href="#team-meetings" class="crm-stat-item"><span>Last 7 Days</span><span class="crm-badge-val">7</span></a></li>
+<li><a href="#team-meetings" class="crm-stat-item"><span>Today</span><span class="crm-badge-val urgent">8</span></a></li>
+<li><a href="#team-meetings" class="crm-stat-item"><span>Next 7 Days</span><span class="crm-badge-val">16</span></a></li>
+<li><a href="#team-meetings" class="crm-stat-item"><span>All Future</span><span class="crm-badge-val">22</span></a></li>
+</ul>
+</div>
+
+<div class="crm-stat-card">
+<div class="crm-stat-card-header">
+<h3 class="crm-stat-card-title">
+<span class="crm-stat-indicator"></span>
+<span>Team Closures</span>
+</h3>
+<span class="crm-badge-val">Aggregate</span>
+</div>
+<ul class="crm-stat-list">
+<li class="crm-stat-item"><span>Team Leads Active</span><span class="crm-badge-val">158</span></li>
+<li class="crm-stat-item"><span>Team Members Operating</span><span class="crm-badge-val">12</span></li>
+<li class="crm-stat-item"><span>Team Follow-ups Today</span><span class="crm-badge-val urgent">14</span></li>
+<li class="crm-stat-item"><span>Department Performance</span><a href="#dept-performance" class="crm-btn-sm">View</a></li>
+<li class="crm-stat-item"><span>Team Mandates</span><a href="#team-leads" class="crm-btn-sm">Browse</a></li>
+</ul>
+</div>
+
+<div class="crm-stat-card">
+<div class="crm-stat-card-header">
+<h3 class="crm-stat-card-title">
+<span class="crm-stat-indicator"></span>
+<span>Team Vertical FU</span>
+</h3>
+<span class="crm-badge-val">6 Total</span>
+</div>
+<ul class="crm-stat-list">
+<li class="crm-stat-item"><span>Total Verticals In Scope</span><span class="crm-badge-val">6</span></li>
+<li class="crm-stat-item"><span>Team Follow-ups Today</span><span class="crm-badge-val urgent">14 Due</span></li>
+<li class="crm-stat-item"><span>Team Meetings Scheduled</span><span class="crm-badge-val">8</span></li>
+<li class="crm-stat-item"><span>Manage Verticals</span><a href="#team-verticals" class="crm-btn-sm">Manage</a></li>
+<li class="crm-stat-item"><span>Team Directory</span><a href="#team-members" class="crm-btn-sm">View</a></li>
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+
+<footer class="crm-footer" style="padding: 16px 24px; border-top: 1px solid var(--crm-border); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--crm-text-muted); background: var(--crm-card-bg);">
+<span>&copy; 2026 Rolexto CRM Platform. All rights reserved.</span>
+<span>Rolexto Real Estate &amp; Business Setup</span>
+</footer>
+</div>
+</div>
+
 <script>
 $(function () {
-    var myMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var myData = [4, 7, 6, 9, 12, 10, 14, 18, 16, 21, 19, 25];
-    var teamMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var teamData = [12, 18, 16, 24, 30, 27, 36, 44, 40, 52, 48, 60];
-    var prevData = [8, 12, 10, 15, 20, 18, 22, 28, 25, 32, 30, 38];
+    $('#crmSidebarToggle').on('click', function(e) {
+        e.preventDefault();
+        $('#crmSidebar').toggleClass('crm-sidebar-collapsed');
+        $('.crm-app-shell').toggleClass('crm-app-shell-expanded');
+    });
+
+    $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
+        e.preventDefault();
+        $(this).parent('.crm-nav-item').toggleClass('open');
+    });
+
+    $('#crmThemeToggle').on('click', function(e) {
+        e.preventDefault();
+        var cur = document.documentElement.getAttribute('data-theme') || 'light';
+        var next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('crm_theme', next);
+    });
+
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var myData = [8, 12, 10, 18, 15, 22, 20, 26, 32, 28, 35, 42];
+    var teamData = [12, 18, 15, 25, 22, 30, 28, 35, 42, 38, 45, 52];
 
     var barOptions = {
         scaleBeginAtZero: true,
         scaleShowGridLines: true,
-        scaleGridLineColor: 'rgba(226, 232, 240, 0.8)',
+        scaleGridLineColor: 'rgba(226, 232, 240, 0.6)',
         scaleGridLineWidth: 1,
         scaleShowHorizontalLines: true,
         scaleShowVerticalLines: false,
-        barShowStroke: true,
-        barStrokeWidth: 1,
-        barValueSpacing: 16,
+        barShowStroke: false,
+        barValueSpacing: 14,
         barDatasetSpacing: 1,
         responsive: true,
         maintainAspectRatio: false
@@ -839,12 +620,12 @@ $(function () {
     var b2Canvas = document.getElementById('barChart2');
     if (b2Canvas) {
         new Chart(b2Canvas.getContext('2d')).Bar({
-            labels: myMonths,
+            labels: months,
             datasets: [{
-                label: 'My Projections',
-                fillColor: '#ea580c',
-                strokeColor: '#c2410c',
-                pointColor: '#ea580c',
+                label: 'My Pipeline',
+                fillColor: '#10b981',
+                strokeColor: '#059669',
+                pointColor: '#10b981',
                 data: myData
             }]
         }, barOptions);
@@ -856,30 +637,13 @@ $(function () {
         if (b4Rendered || !b4Canvas) return;
         b4Rendered = true;
         new Chart(b4Canvas.getContext('2d')).Bar({
-            labels: teamMonths,
+            labels: months,
             datasets: [{
-                label: 'Team Projections',
-                fillColor: '#0ea5e9',
-                strokeColor: '#0284c7',
-                pointColor: '#0ea5e9',
-                data: teamData
-            }]
-        }, barOptions);
-    }
-
-    var b3Canvas = document.getElementById('barChart3');
-    var b3Rendered = false;
-    function initBar3() {
-        if (b3Rendered || !b3Canvas) return;
-        b3Rendered = true;
-        new Chart(b3Canvas.getContext('2d')).Bar({
-            labels: teamMonths,
-            datasets: [{
-                label: 'Previous Performance',
+                label: 'Team Volume',
                 fillColor: '#10b981',
                 strokeColor: '#059669',
                 pointColor: '#10b981',
-                data: prevData
+                data: teamData
             }]
         }, barOptions);
     }
@@ -892,75 +656,16 @@ $(function () {
         $(target).show();
     });
 
-    $('#projectionTabs .crm-tab-btn').on('click', function () {
-        $('#projectionTabs .crm-tab-btn').removeClass('active');
+    $('#projectionsChartTabs .crm-tab-btn').on('click', function () {
+        $('#projectionsChartTabs .crm-tab-btn').removeClass('active');
         $(this).addClass('active');
         var target = $(this).data('target');
-        $('#tabMyProjection, #tabTeamProjection, #tabPrevPerformance').hide();
+        $('#wrapMyProjection, #wrapTeamProjection').hide();
         $(target).show();
-        if (target === '#tabTeamProjection') {
+        if (target === '#wrapTeamProjection') {
             setTimeout(initBar4, 20);
-        } else if (target === '#tabPrevPerformance') {
-            setTimeout(initBar3, 20);
         }
     });
-
-    var donutOptions = {
-        segmentShowStroke: true,
-        segmentStrokeColor: '#ffffff',
-        segmentStrokeWidth: 2,
-        percentageInnerCutout: 62,
-        animationSteps: 60,
-        animationEasing: 'easeOutQuart',
-        animateRotate: true,
-        animateScale: false,
-        responsive: true,
-        maintainAspectRatio: false
-    };
-
-    var p1Canvas = document.getElementById('pieChart1');
-    if (p1Canvas) {
-        new Chart(p1Canvas.getContext('2d')).Doughnut([
-            { value: 4, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
-            { value: 9, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
-            { value: 14, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
-            { value: 11, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
-            { value: 10, color: '#10b981', highlight: '#059669', label: 'All Future' }
-        ], donutOptions);
-    }
-
-    var p2Canvas = document.getElementById('pieChart2');
-    if (p2Canvas) {
-        new Chart(p2Canvas.getContext('2d')).Doughnut([
-            { value: 1, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
-            { value: 3, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
-            { value: 6, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
-            { value: 5, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
-            { value: 7, color: '#10b981', highlight: '#059669', label: 'All Future' }
-        ], donutOptions);
-    }
-
-    var p3Canvas = document.getElementById('pieChart3');
-    if (p3Canvas) {
-        new Chart(p3Canvas.getContext('2d')).Doughnut([
-            { value: 8, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
-            { value: 21, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
-            { value: 35, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
-            { value: 28, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
-            { value: 40, color: '#10b981', highlight: '#059669', label: 'All Future' }
-        ], donutOptions);
-    }
-
-    var p4Canvas = document.getElementById('pieChart4');
-    if (p4Canvas) {
-        new Chart(p4Canvas.getContext('2d')).Doughnut([
-            { value: 3, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
-            { value: 11, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
-            { value: 16, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
-            { value: 14, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
-            { value: 18, color: '#10b981', highlight: '#059669', label: 'All Future' }
-        ], donutOptions);
-    }
 });
 </script>
 </body>
