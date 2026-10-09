@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon.ico">
-<title>Rolexto CRM - Executive Dashboard</title>
+<link rel="icon" type="image/jpeg" href="assets/dist/img/favicon.jpg">
+<link rel="shortcut icon" href="assets/favicon.ico">
+<title>Rolexto CRM - Enterprise Workspace</title>
 <script>
 (function() {
     var saved = localStorage.getItem('crm_theme');
@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="assets/dist/css/font-awesome.min.css">
 <link rel="stylesheet" href="assets/dist/css/ionicons.min.css">
 <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
 <link rel="stylesheet" href="assets/dist/css/crm-theme.css">
 <script src="assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -26,85 +27,56 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 <aside class="crm-sidebar" id="crmSidebar">
-<a href="#dashboard" class="crm-sidebar-brand">
+<a href="#dashboard" class="crm-sidebar-brand" data-view="dashboard">
 <img src="assets/dist/img/favicon.jpg" alt="Rolexto" style="height:32px; width:32px; border-radius:6px; object-fit:cover;">
 <div class="brand-text">
 <span class="brand-title">Rolexto CRM</span>
-<span class="brand-badge">Enterprise</span>
+<span class="brand-badge">Rolex Red</span>
 </div>
 </a>
 <div class="crm-sidebar-nav">
 <div class="crm-nav-group-title">Overview</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item">
-<a href="#dashboard" class="crm-nav-link active">
+<a href="#dashboard" class="crm-nav-link active" data-view="dashboard">
 <svg class="crm-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
 <span>Dashboard</span>
 </a>
 </li>
 </ul>
-<div class="crm-nav-group-title">Commercial &amp; Pipeline</div>
+<div class="crm-nav-group-title">Commercial &amp; Leads</div>
 <ul class="crm-nav-list">
-<li class="crm-nav-item has-sub open">
+<li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
 <span>My Leads</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
-<li><a href="#leads" class="crm-subnav-link active">All My Leads</a></li>
-<li><a href="#add-lead" class="crm-subnav-link">+ Add New Lead</a></li>
-<li><a href="#followups" class="crm-subnav-link">Follow-ups</a></li>
-<li><a href="#meetings" class="crm-subnav-link">Meetings</a></li>
-<li><a href="#leads-history" class="crm-subnav-link">Leads History</a></li>
-<li><a href="#trash-leads" class="crm-subnav-link">Trash Leads</a></li>
+<li><a href="#leads" class="crm-subnav-link" data-view="leads">All My Leads</a></li>
+<li><a href="#add-lead" class="crm-subnav-link" data-view="add-lead">+ Add New Lead</a></li>
+<li><a href="#followups" class="crm-subnav-link" data-view="followups">Follow-ups</a></li>
+<li><a href="#meetings" class="crm-subnav-link" data-view="meetings">Meetings</a></li>
+<li><a href="#performance" class="crm-subnav-link" data-view="performance">Performance Report</a></li>
 </ul>
 </li>
 <li class="crm-nav-item">
-<a href="#followups" class="crm-nav-link">
+<a href="#followups" class="crm-nav-link" data-view="followups">
 <svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
 <span>Follow-ups</span>
 </a>
 </li>
 <li class="crm-nav-item">
-<a href="#meetings" class="crm-nav-link">
+<a href="#meetings" class="crm-nav-link" data-view="meetings">
 <svg class="crm-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
 <span>Meetings</span>
 </a>
 </li>
 <li class="crm-nav-item">
-<a href="#performance" class="crm-nav-link">
+<a href="#performance" class="crm-nav-link" data-view="performance">
 <svg class="crm-svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
 <span>My Performance</span>
 </a>
-</li>
-</ul>
-<div class="crm-nav-group-title">Team Operations</div>
-<ul class="crm-nav-list">
-<li class="crm-nav-item has-sub">
-<a href="javascript:void(0)" class="crm-nav-link">
-<svg class="crm-svg" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-<span>Team Leads</span>
-<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-</a>
-<ul class="crm-subnav-list">
-<li><a href="#team-leads" class="crm-subnav-link">All Team Leads</a></li>
-<li><a href="#assigned-leads" class="crm-subnav-link">Assigned Leads</a></li>
-<li><a href="#team-followups" class="crm-subnav-link">Team Follow-ups</a></li>
-<li><a href="#team-meetings" class="crm-subnav-link">Team Meetings</a></li>
-<li><a href="#assigned-meetings" class="crm-subnav-link">Assigned Meetings</a></li>
-</ul>
-</li>
-<li class="crm-nav-item has-sub">
-<a href="javascript:void(0)" class="crm-nav-link">
-<svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-<span>Team Members</span>
-<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-</a>
-<ul class="crm-subnav-list">
-<li><a href="#team-members" class="crm-subnav-link">Member Directory</a></li>
-<li><a href="#hierarchy-chart" class="crm-subnav-link">Hierarchy Chart</a></li>
-</ul>
 </li>
 </ul>
 <div class="crm-nav-group-title">Verticals Portfolio</div>
@@ -116,75 +88,103 @@
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
-<li><a href="#my-verticals" class="crm-subnav-link">My Verticals</a></li>
-<li><a href="#team-verticals" class="crm-subnav-link">Team Verticals</a></li>
-<li><a href="#add-vertical" class="crm-subnav-link">+ Add Vertical</a></li>
-<li><a href="#verticals-report" class="crm-subnav-link">Verticals Report</a></li>
+<li><a href="#verticals" class="crm-subnav-link" data-view="verticals">My Verticals</a></li>
+<li><a href="#add-vertical" class="crm-subnav-link" data-view="add-vertical">+ Add Vertical</a></li>
+<li><a href="#team-verticals" class="crm-subnav-link" data-view="team-verticals">Team Verticals</a></li>
+<li><a href="#verticals-report" class="crm-subnav-link" data-view="verticals-report">Verticals Report</a></li>
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Reports &amp; Intelligence</div>
+<div class="crm-nav-group-title">Team Operations</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
-<svg class="crm-svg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-<span>Reports</span>
+<svg class="crm-svg" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+<span>Team Leads</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
-<li><a href="#dept-performance" class="crm-subnav-link">Department Performance</a></li>
-<li><a href="#indiv-performance" class="crm-subnav-link">Individual Performance</a></li>
-<li><a href="#users-report" class="crm-subnav-link">Users Report</a></li>
-<li><a href="#verticals-report" class="crm-subnav-link">Verticals Report</a></li>
+<li><a href="#team-leads" class="crm-subnav-link" data-view="team-leads">All Team Leads</a></li>
+<li><a href="#assigned-leads" class="crm-subnav-link" data-view="assigned-leads">Assigned Leads</a></li>
+<li><a href="#team-followups" class="crm-subnav-link" data-view="team-followups">Team Follow-ups</a></li>
+<li><a href="#team-meetings" class="crm-subnav-link" data-view="team-meetings">Team Meetings</a></li>
+<li><a href="#assigned-meetings" class="crm-subnav-link" data-view="assigned-meetings">Assigned Meetings</a></li>
+</ul>
+</li>
+<li class="crm-nav-item has-sub">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+<span>Team Members</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</a>
+<ul class="crm-subnav-list">
+<li><a href="#team-members" class="crm-subnav-link" data-view="team-members">Member Directory</a></li>
+<li><a href="#hierarchy-chart" class="crm-subnav-link" data-view="hierarchy-chart">Hierarchy Chart</a></li>
+<li><a href="#dept-performance" class="crm-subnav-link" data-view="dept-performance">Department Performance</a></li>
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Settings &amp; Admin</div>
+<div class="crm-nav-group-title">Users &amp; Access</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-<span>Users &amp; Access</span>
+<span>User Management</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
-<li><a href="#view-users" class="crm-subnav-link">View Users</a></li>
-<li><a href="#add-user" class="crm-subnav-link">+ Add User</a></li>
-<li><a href="#roles-permissions" class="crm-subnav-link">Roles &amp; Permissions</a></li>
+<li><a href="#view-users" class="crm-subnav-link" data-view="view-users">View Users</a></li>
+<li><a href="#add-user" class="crm-subnav-link" data-view="add-user">+ Add User</a></li>
+<li><a href="#users-report" class="crm-subnav-link" data-view="users-report">Users Report</a></li>
 </ul>
 </li>
-<li class="crm-nav-item">
-<a href="#terms" class="crm-nav-link">
-<svg class="crm-svg" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<span>CRM Categories</span>
+</ul>
+<div class="crm-nav-group-title">Configuration &amp; System</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item has-sub">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+<span>Configure &amp; System</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
+<ul class="crm-subnav-list">
+<li><a href="#roles-permissions" class="crm-subnav-link" data-view="roles-permissions">Roles &amp; Permissions</a></li>
+<li><a href="#add-role" class="crm-subnav-link" data-view="add-role">+ Add Role</a></li>
+<li><a href="#terms" class="crm-subnav-link" data-view="terms">CRM Categories</a></li>
+<li><a href="#add-term" class="crm-subnav-link" data-view="add-term">+ Add Category</a></li>
+</ul>
 </li>
+</ul>
+<div class="crm-nav-group-title">Security &amp; Profile</div>
+<ul class="crm-nav-list">
 <li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-<span>Security &amp; Profile</span>
+<span>Account Settings</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
-<li><a href="#profile" class="crm-subnav-link">View Profile</a></li>
-<li><a href="#password" class="crm-subnav-link">Change Password</a></li>
+<li><a href="#profile" class="crm-subnav-link" data-view="profile">View Profile</a></li>
+<li><a href="#password" class="crm-subnav-link" data-view="password">Change Password</a></li>
+<li><a href="#edit-logo" class="crm-subnav-link" data-view="edit-logo">Brand &amp; Logo</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="crm-sidebar-footer">
-<a href="#profile" class="crm-user-profile">
+<a href="#profile" class="crm-user-profile" data-view="profile">
 <div class="crm-user-avatar">RA</div>
 <div class="crm-user-info">
 <span class="crm-user-name">Rolexto Admin</span>
 <span class="crm-user-role">Administrator</span>
 </div>
 </a>
-<a href="#logout" class="crm-logout-btn" title="Logout">
+<a href="#dashboard" class="crm-logout-btn" title="Logout" onclick="alert('Logged out.'); location.reload();">
 <svg class="crm-svg" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
 </a>
 </div>
 </aside>
+<div class="crm-mobile-overlay" id="crmMobileOverlay"></div>
 <div class="crm-app-shell">
 <header class="crm-topbar">
 <div class="crm-topbar-left">
@@ -192,386 +192,1063 @@
 <svg class="crm-svg" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
 </button>
 <div class="crm-breadcrumbs">
-<a href="#dashboard">Workspace</a>
+<a href="#dashboard" data-view="dashboard">Workspace</a>
 <span>/</span>
-<span class="current">Dashboard</span>
+<span class="current" id="topbar-current-breadcrumb">Dashboard</span>
 </div>
 </div>
 <div class="crm-topbar-right">
 <div class="crm-search-box hidden-xs">
 <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:var(--crm-text-muted);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-<input type="text" placeholder="Search leads, team...">
+<input type="text" id="topbar-quick-search" placeholder="Search leads, team...">
 </div>
 <button type="button" class="crm-theme-toggle" id="crmThemeToggle" title="Switch Theme">
 <svg class="crm-svg sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 <svg class="crm-svg moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
 </button>
-<a href="#add-lead" class="crm-btn-primary">
+<a href="#add-lead" class="crm-btn-primary" data-view="add-lead">
 <svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
 <span>New Lead</span>
 </a>
 </div>
 </header>
+<div class="content-wrapper">
 
-<div class="crm-main-content">
-<div class="crm-dashboard-container">
-
-<div class="crm-page-header">
-<div class="crm-page-title-wrap">
-<h1 class="crm-page-title">Executive Dashboard</h1>
+<div class="crm-view-pane active" id="view-dashboard">
+<section class="content-header">
+<h1><i class="fa fa-dashboard"></i> Executive Dashboard</h1>
+</section>
+<section class="content">
+<div class="row count-widget">
+<div class="col-xs-6 col-sm-3">
+<div class="small-box bg-aqua">
+<div class="inner">
+<h3>84</h3>
+<p>My Leads</p>
 </div>
-<div class="crm-page-actions">
-<a href="#leads" class="crm-btn-secondary">
-<svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-<span>View Leads</span>
-</a>
-<a href="#add-lead" class="crm-btn-primary">
-<svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-<span>New Lead</span>
-</a>
+<div class="icon"><i class="ion ion-bag"></i></div>
+<a href="#leads" class="small-box-footer" data-view="leads">More info <i class="fa fa-arrow-circle-right"></i></a>
 </div>
 </div>
-
-<div class="crm-ops-banner">
-<div class="crm-ops-left">
-<svg class="crm-svg star-icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-<span><strong>Today's Operations:</strong> Active pipeline running across London, Dubai and Zurich desks.</span>
+<div class="col-xs-6 col-sm-3">
+<div class="small-box bg-yellow">
+<div class="inner">
+<h3>0</h3>
+<p>Operations</p>
 </div>
-<a href="#followups" class="crm-ops-btn">Review Follow-ups</a>
-</div>
-
-<div class="crm-metric-strip">
-<a href="#leads" class="crm-metric-card">
-<div class="crm-metric-header">
-<span class="crm-metric-title">My Leads</span>
-<div class="crm-metric-icon-wrap">
-<svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+<div class="icon"><i class="ion ion-bag"></i></div>
+<a href="#dashboard" class="small-box-footer" data-view="dashboard">More info <i class="fa fa-arrow-circle-right"></i></a>
 </div>
 </div>
-<div class="crm-metric-number">42</div>
-</a>
-
-<a href="#team-leads" class="crm-metric-card">
-<div class="crm-metric-header">
-<span class="crm-metric-title">Team Leads</span>
-<div class="crm-metric-icon-wrap">
-<svg class="crm-svg" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+<div class="col-xs-6 col-sm-3">
+<div class="small-box bg-green">
+<div class="inner">
+<h3>12</h3>
+<p>My Verticals</p>
+</div>
+<div class="icon"><i class="ion ion-bag"></i></div>
+<a href="#verticals" class="small-box-footer" data-view="verticals">More info <i class="fa fa-arrow-circle-right"></i></a>
 </div>
 </div>
-<div class="crm-metric-number">158</div>
-</a>
-
-<a href="#followups" class="crm-metric-card">
-<div class="crm-metric-header">
-<span class="crm-metric-title">Today's Follow-ups</span>
-<div class="crm-metric-icon-wrap">
-<svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+<div class="col-xs-6 col-sm-3">
+<div class="small-box bg-red">
+<div class="inner">
+<h3>18</h3>
+<p>Team Member</p>
+</div>
+<div class="icon"><i class="ion ion-bag"></i></div>
+<a href="#team-members" class="small-box-footer" data-view="team-members">More info <i class="fa fa-arrow-circle-right"></i></a>
 </div>
 </div>
-<div class="crm-metric-number">7</div>
-</a>
-
-<a href="#meetings" class="crm-metric-card">
-<div class="crm-metric-header">
-<span class="crm-metric-title">Today's Meetings</span>
-<div class="crm-metric-icon-wrap">
-<svg class="crm-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+</div>
+<div class="row count-widget">
+<div class="col-xs-6 col-sm-3">
+<div class="small-box bg-aqua">
+<div class="inner">
+<h3>248</h3>
+<p>Team Leads</p>
+</div>
+<div class="icon"><i class="ion ion-bag"></i></div>
+<a href="#team-leads" class="small-box-footer" data-view="team-leads">More info <i class="fa fa-arrow-circle-right"></i></a>
 </div>
 </div>
-<div class="crm-metric-number">3</div>
-</a>
-
-<a href="#team-members" class="crm-metric-card">
-<div class="crm-metric-header">
-<span class="crm-metric-title">Team Members</span>
-<div class="crm-metric-icon-wrap">
-<svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+<div class="col-xs-6 col-sm-3">
+<div class="small-box bg-yellow">
+<div class="inner">
+<h3>0</h3>
+<p>Desk Pipeline</p>
+</div>
+<div class="icon"><i class="ion ion-bag"></i></div>
+<a href="#dashboard" class="small-box-footer" data-view="dashboard">More info <i class="fa fa-arrow-circle-right"></i></a>
 </div>
 </div>
-<div class="crm-metric-number">12</div>
-</a>
-
-<a href="#verticals" class="crm-metric-card">
-<div class="crm-metric-header">
-<span class="crm-metric-title">Verticals</span>
-<div class="crm-metric-icon-wrap">
-<svg class="crm-svg" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
+<div class="col-xs-6 col-sm-3">
+<div class="small-box bg-green">
+<div class="inner">
+<h3>16</h3>
+<p>Team Verticals</p>
+</div>
+<div class="icon"><i class="ion ion-bag"></i></div>
+<a href="#team-verticals" class="small-box-footer" data-view="team-verticals">More info <i class="fa fa-arrow-circle-right"></i></a>
 </div>
 </div>
-<div class="crm-metric-number">6</div>
-</a>
+<div class="col-xs-6 col-sm-3">
+<div class="small-box bg-red">
+<div class="inner">
+<h3>2</h3>
+<p>Team Birthday</p>
 </div>
-
+<div class="icon"><i class="ion ion-bag"></i></div>
+<a href="#team-members" class="small-box-footer" data-view="team-members">More info <i class="fa fa-arrow-circle-right"></i></a>
+</div>
+</div>
+</div>
 <div class="row">
-<div class="col-lg-6 col-md-12">
-<div class="crm-panel-card">
-<div class="crm-panel-header">
-<h2>
-<svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-primary);"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-<span>Pipeline Stages</span>
-</h2>
-<div class="crm-tab-buttons" id="pipelineTabs">
-<button type="button" class="crm-tab-btn" data-target="#tabMyPipeline">My Leads</button>
-<button type="button" class="crm-tab-btn active" data-target="#tabTeamPipeline">Team Leads</button>
+<div class="col-sm-4">
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">My Lead Stats</h3>
+</div>
+<div class="box-body">
+<ul class="nav nav-stacked">
+<li><a href="#leads" data-view="leads">New Leads <span class="pull-right badge bg-blue">28</span></a></li>
+<li><a href="#leads" data-view="leads">In Follow-up <span class="pull-right badge bg-blue">24</span></a></li>
+<li><a href="#leads" data-view="leads">Meeting Scheduled <span class="pull-right badge bg-blue">14</span></a></li>
+<li><a href="#leads" data-view="leads">Site Visit <span class="pull-right badge bg-blue">10</span></a></li>
+<li><a href="#leads" data-view="leads">Negotiating <span class="pull-right badge bg-blue">8</span></a></li>
+</ul>
 </div>
 </div>
-<div class="crm-panel-body" style="padding:0;">
-<div class="crm-tab-pane" id="tabMyPipeline" style="display:none;">
-<table class="crm-pipeline-table">
+</div>
+<div class="col-sm-8">
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">Previous Performance</h3>
+</div>
+<div class="box-body">
+<div class="chart">
+<canvas id="barChart3" style="height:210px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row" style="display:flex;">
+<div class="col-sm-4">
+<div class="box box-info" style="height:calc(100% - 20px);">
+<div class="box-header with-border">
+<h3 class="box-title">Team Lead Stats</h3>
+</div>
+<div class="box-body">
+<ul class="nav nav-stacked">
+<li><a href="#team-leads" data-view="team-leads">New Leads <span class="pull-right badge bg-blue">86</span></a></li>
+<li><a href="#team-leads" data-view="team-leads">In Follow-up <span class="pull-right badge bg-blue">72</span></a></li>
+<li><a href="#team-leads" data-view="team-leads">Meeting Fixed <span class="pull-right badge bg-blue">44</span></a></li>
+<li><a href="#team-leads" data-view="team-leads">Closed Won <span class="pull-right badge bg-blue">26</span></a></li>
+<li><a href="#team-leads" data-view="team-leads">Closed Lost <span class="pull-right badge bg-blue">20</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-sm-8">
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">Team Projection</h3>
+</div>
+<div class="box-body">
+<canvas id="barChart4" style="height:140px;"></canvas>
+</div>
+</div>
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">My Projection</h3>
+</div>
+<div class="box-body">
+<canvas id="barChart2" style="height:140px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">My Followups</h3>
+</div>
+<div class="box-body">
+<canvas id="pieChart1" style="height:200px;"></canvas>
+</div>
+<div class="box-footer no-padding">
+<ul class="nav nav-stacked">
+<li><a href="#followups" data-view="followups">All Missed <span class="pull-right badge bg-red">4</span></a></li>
+<li><a href="#followups" data-view="followups">Last 7 Days <span class="pull-right badge bg-orange">8</span></a></li>
+<li><a href="#followups" data-view="followups">Today <span class="pull-right badge bg-skyblue">6</span></a></li>
+<li><a href="#followups" data-view="followups">Next 7 Days <span class="pull-right badge bg-blue">12</span></a></li>
+<li><a href="#followups" data-view="followups">All Future <span class="pull-right badge bg-green">18</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">My Meetings</h3>
+</div>
+<div class="box-body">
+<canvas id="pieChart2" style="height:200px;"></canvas>
+</div>
+<div class="box-footer no-padding">
+<ul class="nav nav-stacked">
+<li><a href="#meetings" data-view="meetings">All Missed <span class="pull-right badge bg-red">2</span></a></li>
+<li><a href="#meetings" data-view="meetings">Last 7 Days <span class="pull-right badge bg-orange">4</span></a></li>
+<li><a href="#meetings" data-view="meetings">Today <span class="pull-right badge bg-skyblue">3</span></a></li>
+<li><a href="#meetings" data-view="meetings">Next 7 Days <span class="pull-right badge bg-blue">6</span></a></li>
+<li><a href="#meetings" data-view="meetings">All Future <span class="pull-right badge bg-green">9</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">Team Followups</h3>
+</div>
+<div class="box-body">
+<canvas id="pieChart3" style="height:200px;"></canvas>
+</div>
+<div class="box-footer no-padding">
+<ul class="nav nav-stacked">
+<li><a href="#team-followups" data-view="team-followups">All Missed <span class="pull-right badge bg-red">12</span></a></li>
+<li><a href="#team-followups" data-view="team-followups">Last 7 Days <span class="pull-right badge bg-orange">22</span></a></li>
+<li><a href="#team-followups" data-view="team-followups">Today <span class="pull-right badge bg-skyblue">18</span></a></li>
+<li><a href="#team-followups" data-view="team-followups">Next 7 Days <span class="pull-right badge bg-blue">34</span></a></li>
+<li><a href="#team-followups" data-view="team-followups">All Future <span class="pull-right badge bg-green">48</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">Team Meetings</h3>
+</div>
+<div class="box-body">
+<canvas id="pieChart4" style="height:200px;"></canvas>
+</div>
+<div class="box-footer no-padding">
+<ul class="nav nav-stacked">
+<li><a href="#team-meetings" data-view="team-meetings">All Missed <span class="pull-right badge bg-red">6</span></a></li>
+<li><a href="#team-meetings" data-view="team-meetings">Last 7 Days <span class="pull-right badge bg-orange">14</span></a></li>
+<li><a href="#team-meetings" data-view="team-meetings">Today <span class="pull-right badge bg-skyblue">8</span></a></li>
+<li><a href="#team-meetings" data-view="team-meetings">Next 7 Days <span class="pull-right badge bg-blue">18</span></a></li>
+<li><a href="#team-meetings" data-view="team-meetings">All Future <span class="pull-right badge bg-green">24</span></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-leads">
+<section class="content-header">
+<h1><i class="fa fa-list"></i> All My Leads</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center;">
+<h3 class="box-title">Leads Directory</h3>
+<a href="#add-lead" class="crm-btn-primary" data-view="add-lead"><i class="fa fa-plus"></i> + Add New Lead</a>
+</div>
+<div class="box-body">
+<div class="row" style="margin-bottom:15px;">
+<div class="col-sm-3">
+<input type="text" class="form-control" placeholder="Search by name, phone, email...">
+</div>
+<div class="col-sm-3">
+<select class="form-control">
+<option value="">All Statuses</option>
+<option value="1">New</option>
+<option value="2">Follow Up</option>
+<option value="3">Meeting</option>
+<option value="4">Negotiating</option>
+<option value="5">Closed Won</option>
+</select>
+</div>
+<div class="col-sm-3">
+<input type="date" class="form-control">
+</div>
+<div class="col-sm-3">
+<button class="btn btn-primary btn-block"><i class="fa fa-filter"></i> Apply Filter</button>
+</div>
+</div>
+<div class="table-responsive">
+<table class="table table-bordered table-hover">
 <thead>
 <tr>
-<th>Stage</th>
-<th style="text-align:right;">Count</th>
-<th style="text-align:right;">Action</th>
+<th>Lead No</th>
+<th>Client Name</th>
+<th>Mobile</th>
+<th>Email</th>
+<th>Source</th>
+<th>Vertical</th>
+<th>Budget</th>
+<th>Follow-up</th>
+<th>Status</th>
+<th>Actions</th>
 </tr>
 </thead>
 <tbody>
-<tr style="cursor:pointer;">
-<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">New Inquiry</span></td>
-<td style="text-align:right;"><span class="crm-count-badge">8</span></td>
-<td style="text-align:right;"><a href="#leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+<tr>
+<td><strong>#RLX-10492</strong></td>
+<td>Sheikh Mansoor Al-Ketbi</td>
+<td>+971 50 821 9920</td>
+<td>mansoor@al-ketbi.ae</td>
+<td>Direct / HNW</td>
+<td>Prime Commercial</td>
+<td>AED 18,500,000</td>
+<td>12-Oct-2026</td>
+<td><span class="badge bg-green">Hot Lead</span></td>
+<td>
+<a href="#add-lead" class="btn btn-xs btn-default" data-view="add-lead"><i class="fa fa-eye"></i> View</a>
+<a href="#followups" class="btn btn-xs btn-primary" data-view="followups"><i class="fa fa-calendar"></i> Follow-up</a>
+</td>
 </tr>
-<tr style="cursor:pointer;">
-<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Initial Contact</span></td>
-<td style="text-align:right;"><span class="crm-count-badge">16</span></td>
-<td style="text-align:right;"><a href="#leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+<tr>
+<td><strong>#RLX-10488</strong></td>
+<td>David Alexander Finch</td>
+<td>+44 7911 204918</td>
+<td>david.finch@finchcap.uk</td>
+<td>Portal / Referral</td>
+<td>Luxury Residential</td>
+<td>AED 8,200,000</td>
+<td>10-Oct-2026</td>
+<td><span class="badge bg-blue">Meeting Set</span></td>
+<td>
+<a href="#add-lead" class="btn btn-xs btn-default" data-view="add-lead"><i class="fa fa-eye"></i> View</a>
+<a href="#meetings" class="btn btn-xs btn-primary" data-view="meetings"><i class="fa fa-calendar"></i> Meeting</a>
+</td>
 </tr>
-<tr style="cursor:pointer;">
-<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Qualified Mandate</span></td>
-<td style="text-align:right;"><span class="crm-count-badge">12</span></td>
-<td style="text-align:right;"><a href="#leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-</tr>
-<tr style="cursor:pointer;">
-<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Proposal Accepted / Won</span></td>
-<td style="text-align:right;"><span class="crm-count-badge">6</span></td>
-<td style="text-align:right;"><a href="#leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+<tr>
+<td><strong>#RLX-10476</strong></td>
+<td>Dr. Ananya Singhania</td>
+<td>+91 98201 44820</td>
+<td>ananya.singhania@apexmed.in</td>
+<td>Google Ads</td>
+<td>Business Setup</td>
+<td>AED 2,400,000</td>
+<td>14-Oct-2026</td>
+<td><span class="badge bg-orange">In Follow-up</span></td>
+<td>
+<a href="#add-lead" class="btn btn-xs btn-default" data-view="add-lead"><i class="fa fa-eye"></i> View</a>
+<a href="#followups" class="btn btn-xs btn-primary" data-view="followups"><i class="fa fa-clock-o"></i> Log</a>
+</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="crm-tab-pane" id="tabTeamPipeline">
-<table class="crm-pipeline-table">
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-add-lead">
+<section class="content-header">
+<h1><i class="fa fa-user-plus"></i> Add New Lead (Original Complete Form)</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border">
+<h3 class="box-title">Complete Lead Intake Form</h3>
+</div>
+<form onsubmit="event.preventDefault(); alert('Lead saved successfully!'); switchView('leads');">
+<div class="box-body">
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Client Full Name <span class="text-danger">*</span></label>
+<input type="text" class="form-control" placeholder="Full Name" required>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Mobile Number <span class="text-danger">*</span></label>
+<input type="text" class="form-control" placeholder="+971 50 000 0000" required>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Official Email <span class="text-danger">*</span></label>
+<input type="email" class="form-control" placeholder="client@company.com" required>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Alternate Contact</label>
+<input type="text" class="form-control" placeholder="Secondary Phone / WhatsApp">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Country / Nationality</label>
+<select class="form-control">
+<option value="AE" selected>United Arab Emirates</option>
+<option value="UK">United Kingdom</option>
+<option value="CH">Switzerland</option>
+<option value="US">United States</option>
+<option value="IN">India</option>
+<option value="SA">Saudi Arabia</option>
+</select>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>City / State</label>
+<input type="text" class="form-control" value="Dubai">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Lead Source <span class="text-danger">*</span></label>
+<select class="form-control" required>
+<option value="Direct">Direct / Walk-in</option>
+<option value="Website" selected>Website Inquiry</option>
+<option value="Referral">Executive Referral</option>
+<option value="Google">Google Search / Ads</option>
+<option value="Portal">Property Finder / Bayut</option>
+<option value="Event">HNW Exhibition</option>
+</select>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Practice Vertical <span class="text-danger">*</span></label>
+<select class="form-control" required>
+<option value="1" selected>Prime Commercial Real Estate</option>
+<option value="2">Luxury Residential Villas</option>
+<option value="3">Business Setup & Licensing</option>
+<option value="4">Off-Plan Developments</option>
+</select>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Property / Configuration Type</label>
+<select class="form-control">
+<option value="Commercial Office" selected>Grade-A Commercial Office</option>
+<option value="Luxury Villa">Waterfront Luxury Villa</option>
+<option value="Penthouse">Sky Penthouse</option>
+<option value="Retail">Prime Retail Flagship</option>
+<option value="Warehouse">Industrial Logistics Hub</option>
+</select>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Minimum Budget (AED)</label>
+<input type="number" class="form-control" value="5000000">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Maximum Budget (AED)</label>
+<input type="number" class="form-control" value="15000000">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Initial Status</label>
+<select class="form-control">
+<option value="1" selected>New Lead</option>
+<option value="2">Contacted</option>
+<option value="3">Follow-up Scheduled</option>
+<option value="4">Meeting Booked</option>
+</select>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label>Next Follow-up Date</label>
+<input type="date" class="form-control">
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group">
+<label>Assigned Consultant</label>
+<select class="form-control">
+<option value="1">Rolexto Admin (Self)</option>
+<option value="2">Alexander Vance (Commercial Desk)</option>
+<option value="3">Elena Rostova (Private Office)</option>
+</select>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label>Client Brief &amp; Investment Requirements</label>
+<textarea class="form-control" rows="4" placeholder="Detail client specific criteria, freehold preference, ROI expectations, and viewing windows..."></textarea>
+</div>
+</div>
+<div class="box-footer">
+<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Save Lead</button>
+<button type="button" class="btn btn-default" onclick="switchView('leads')">Cancel</button>
+</div>
+</form>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-followups">
+<section class="content-header">
+<h1><i class="fa fa-clock-o"></i> Follow-ups Queue</h1>
+</section>
+<section class="content">
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">Client Follow-up Schedule</h3>
+</div>
+<div class="box-body">
+<table class="table table-bordered table-hover">
 <thead>
 <tr>
-<th>Stage</th>
-<th style="text-align:right;">Count</th>
-<th style="text-align:right;">Action</th>
+<th>Scheduled Time</th>
+<th>Lead Contact</th>
+<th>Company</th>
+<th>Priority</th>
+<th>Action Note</th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody>
-<tr style="cursor:pointer;">
-<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">New Inquiry</span></td>
-<td style="text-align:right;"><span class="crm-count-badge">34</span></td>
-<td style="text-align:right;"><a href="#team-leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+<tr>
+<td><strong>Today, 11:30 AM</strong></td>
+<td>Sheikh Mansoor Al-Ketbi</td>
+<td>Al-Ketbi Holding</td>
+<td><span class="badge bg-red">Urgent</span></td>
+<td>Review acquisition draft for Downtown Commercial Tower</td>
+<td><button class="btn btn-xs btn-primary" onclick="alert('Marked complete!');">Complete</button></td>
 </tr>
-<tr style="cursor:pointer;">
-<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Initial Contact</span></td>
-<td style="text-align:right;"><span class="crm-count-badge">62</span></td>
-<td style="text-align:right;"><a href="#team-leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-</tr>
-<tr style="cursor:pointer;">
-<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Qualified Mandate</span></td>
-<td style="text-align:right;"><span class="crm-count-badge">44</span></td>
-<td style="text-align:right;"><a href="#team-leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
-</tr>
-<tr style="cursor:pointer;">
-<td><span style="font-weight:600; color:var(--crm-text-main); font-size:13px;">Proposal Accepted / Won</span></td>
-<td style="text-align:right;"><span class="crm-count-badge">18</span></td>
-<td style="text-align:right;"><a href="#team-leads" class="crm-btn-sm"><span>View</span> <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></a></td>
+<tr>
+<td><strong>Today, 03:00 PM</strong></td>
+<td>David Finch</td>
+<td>Finch Capital Partners</td>
+<td><span class="badge bg-orange">High</span></td>
+<td>Present Palm Jumeirah Signature Villa blueprints</td>
+<td><button class="btn btn-xs btn-primary" onclick="alert('Marked complete!');">Complete</button></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-</div>
-</div>
-
-<div class="col-lg-6 col-md-12">
-<div class="crm-panel-card">
-<div class="crm-panel-header">
-<h2>
-<svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-primary);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-<span>Monthly Trajectory</span>
-</h2>
-<div class="crm-tab-buttons" id="projectionsChartTabs">
-<button type="button" class="crm-tab-btn active" data-target="#wrapMyProjection">My Pipeline</button>
-<button type="button" class="crm-tab-btn" data-target="#wrapTeamProjection">Team Volume</button>
-</div>
-</div>
-<div class="crm-panel-body">
-<div id="wrapMyProjection">
-<div class="crm-chart-box">
-<canvas id="barChart2"></canvas>
-</div>
-</div>
-<div id="wrapTeamProjection" style="display:none;">
-<div class="crm-chart-box">
-<canvas id="barChart4"></canvas>
-</div>
-</div>
-</div>
-</div>
-</div>
+</section>
 </div>
 
-<div class="crm-section-header">
-<h2 class="crm-section-title">
-<svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-primary);"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-<span>My Stats</span>
-</h2>
+<div class="crm-view-pane" id="view-meetings">
+<section class="content-header">
+<h1><i class="fa fa-calendar"></i> Meetings Calendar</h1>
+</section>
+<section class="content">
+<div class="box box-info">
+<div class="box-header with-border">
+<h3 class="box-title">Scheduled Consultations</h3>
+</div>
+<div class="box-body">
+<table class="table table-bordered table-hover">
+<thead>
+<tr>
+<th>Date &amp; Time</th>
+<th>Client Name</th>
+<th>Venue / Format</th>
+<th>Agenda</th>
+<th>Attendees</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>12-Oct-2026, 02:00 PM</strong></td>
+<td>Lord Harrison Croft</td>
+<td>Rolexto Boardroom, DIFC</td>
+<td>Off-plan tower bulk purchase agreement</td>
+<td>RA, Alexander Vance</td>
+<td><button class="btn btn-xs btn-default">View Details</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
 </div>
 
-<div class="crm-stats-grid">
-<div class="crm-stat-card">
-<div class="crm-stat-card-header">
-<h3 class="crm-stat-card-title">
-<span class="crm-stat-indicator"></span>
-<span>My Follow-ups</span>
-</h3>
-<span class="crm-badge-val urgent">7 Today</span>
+<div class="crm-view-pane" id="view-performance">
+<section class="content-header">
+<h1><i class="fa fa-line-chart"></i> Individual Performance</h1>
+</section>
+<section class="content">
+<div class="row">
+<div class="col-sm-3">
+<div class="small-box bg-aqua">
+<div class="inner"><h3>AED 42.8M</h3><p>YTD Volume</p></div>
+<div class="icon"><i class="fa fa-dollar"></i></div>
 </div>
-<ul class="crm-stat-list">
-<li><a href="#followups" class="crm-stat-item"><span>Missed</span><span class="crm-badge-val urgent">2</span></a></li>
-<li><a href="#followups" class="crm-stat-item"><span>Last 7 Days</span><span class="crm-badge-val">4</span></a></li>
-<li><a href="#followups" class="crm-stat-item"><span>Today</span><span class="crm-badge-val urgent">7</span></a></li>
-<li><a href="#followups" class="crm-stat-item"><span>Next 7 Days</span><span class="crm-badge-val">12</span></a></li>
-<li><a href="#followups" class="crm-stat-item"><span>All Future</span><span class="crm-badge-val">19</span></a></li>
-</ul>
 </div>
-
-<div class="crm-stat-card">
-<div class="crm-stat-card-header">
-<h3 class="crm-stat-card-title">
-<span class="crm-stat-indicator"></span>
-<span>My Meetings</span>
-</h3>
-<span class="crm-badge-val urgent">3 Today</span>
+<div class="col-sm-3">
+<div class="small-box bg-green">
+<div class="inner"><h3>28.4%</h3><p>Conversion Rate</p></div>
+<div class="icon"><i class="fa fa-percent"></i></div>
 </div>
-<ul class="crm-stat-list">
-<li><a href="#meetings" class="crm-stat-item"><span>Missed</span><span class="crm-badge-val urgent">1</span></a></li>
-<li><a href="#meetings" class="crm-stat-item"><span>Last 7 Days</span><span class="crm-badge-val">3</span></a></li>
-<li><a href="#meetings" class="crm-stat-item"><span>Today</span><span class="crm-badge-val urgent">3</span></a></li>
-<li><a href="#meetings" class="crm-stat-item"><span>Next 7 Days</span><span class="crm-badge-val">5</span></a></li>
-<li><a href="#meetings" class="crm-stat-item"><span>All Future</span><span class="crm-badge-val">8</span></a></li>
-</ul>
 </div>
-
-<div class="crm-stat-card">
-<div class="crm-stat-card-header">
-<h3 class="crm-stat-card-title">
-<span class="crm-stat-indicator"></span>
-<span>My Closures</span>
-</h3>
-<span class="crm-badge-val">Active</span>
+<div class="col-sm-3">
+<div class="small-box bg-yellow">
+<div class="inner"><h3>14.2 Days</h3><p>Avg Time to Close</p></div>
+<div class="icon"><i class="fa fa-tachometer"></i></div>
 </div>
-<ul class="crm-stat-list">
-<li class="crm-stat-item"><span>Active In Pipeline</span><span class="crm-badge-val">42</span></li>
-<li class="crm-stat-item"><span>Assigned Verticals</span><span class="crm-badge-val">6</span></li>
-<li class="crm-stat-item"><span>Actionable Follow-ups</span><span class="crm-badge-val urgent">7</span></li>
-<li class="crm-stat-item"><span>Individual Performance</span><a href="#indiv-performance" class="crm-btn-sm">View</a></li>
-<li class="crm-stat-item"><span>All My Leads</span><a href="#leads" class="crm-btn-sm">Browse</a></li>
-</ul>
+</div>
+<div class="col-sm-3">
+<div class="small-box bg-red">
+<div class="inner"><h3>118%</h3><p>Target Met</p></div>
+<div class="icon"><i class="fa fa-trophy"></i></div>
+</div>
+</div>
+</div>
+</section>
 </div>
 
-<div class="crm-stat-card">
-<div class="crm-stat-card-header">
-<h3 class="crm-stat-card-title">
-<span class="crm-stat-indicator"></span>
-<span>My Vertical FU</span>
-</h3>
-<span class="crm-badge-val">6 Total</span>
+<div class="crm-view-pane" id="view-team-leads">
+<section class="content-header">
+<h1><i class="fa fa-users"></i> All Team Leads</h1>
+</section>
+<section class="content">
+<div class="box box-info">
+<div class="box-header with-border"><h3 class="box-title">Department Pipeline</h3></div>
+<div class="box-body">
+<table class="table table-bordered table-hover">
+<thead><tr><th>Lead Ref</th><th>Client</th><th>Consultant</th><th>Vertical</th><th>Budget</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>#TL-9021</td><td>Emirates Global Logix</td><td>Alexander Vance</td><td>Commercial</td><td>AED 32.0M</td><td><span class="badge bg-green">Negotiation</span></td></tr>
+</tbody>
+</table>
 </div>
-<ul class="crm-stat-list">
-<li class="crm-stat-item"><span>Active Practice Verticals</span><span class="crm-badge-val">6</span></li>
-<li class="crm-stat-item"><span>Follow-ups Scheduled</span><span class="crm-badge-val urgent">7 Due</span></li>
-<li class="crm-stat-item"><span>Consultations Today</span><span class="crm-badge-val">3</span></li>
-<li class="crm-stat-item"><span>Vertical Directory</span><a href="#my-verticals" class="crm-btn-sm">Manage</a></li>
-<li class="crm-stat-item"><span>Add New Vertical</span><a href="#add-vertical" class="crm-btn-sm">Create</a></li>
-</ul>
 </div>
-</div>
-
-<div class="crm-section-header">
-<h2 class="crm-section-title">
-<svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-primary);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-<span>Team Stats</span>
-</h2>
+</section>
 </div>
 
-<div class="crm-stats-grid">
-<div class="crm-stat-card">
-<div class="crm-stat-card-header">
-<h3 class="crm-stat-card-title">
-<span class="crm-stat-indicator"></span>
-<span>Team Follow-ups</span>
-</h3>
-<span class="crm-badge-val urgent">14 Today</span>
+<div class="crm-view-pane" id="view-assigned-leads">
+<section class="content-header">
+<h1><i class="fa fa-exchange"></i> Assigned Leads</h1>
+</section>
+<section class="content">
+<div class="box box-info">
+<div class="box-header with-border"><h3 class="box-title">Assignments Log</h3></div>
+<div class="box-body">
+<table class="table table-bordered"><thead><tr><th>Lead</th><th>Client</th><th>Assigned To</th><th>Date</th></tr></thead><tbody><tr><td>#AL-4401</td><td>Apex Energy FZE</td><td>Alexander Vance</td><td>08-Oct-2026</td></tr></tbody></table>
 </div>
-<ul class="crm-stat-list">
-<li><a href="#team-followups" class="crm-stat-item"><span>Missed</span><span class="crm-badge-val urgent">5</span></a></li>
-<li><a href="#team-followups" class="crm-stat-item"><span>Last 7 Days</span><span class="crm-badge-val">11</span></a></li>
-<li><a href="#team-followups" class="crm-stat-item"><span>Today</span><span class="crm-badge-val urgent">14</span></a></li>
-<li><a href="#team-followups" class="crm-stat-item"><span>Next 7 Days</span><span class="crm-badge-val">28</span></a></li>
-<li><a href="#team-followups" class="crm-stat-item"><span>All Future</span><span class="crm-badge-val">45</span></a></li>
-</ul>
+</div>
+</section>
 </div>
 
-<div class="crm-stat-card">
-<div class="crm-stat-card-header">
-<h3 class="crm-stat-card-title">
-<span class="crm-stat-indicator"></span>
-<span>Team Meetings</span>
-</h3>
-<span class="crm-badge-val urgent">8 Today</span>
+<div class="crm-view-pane" id="view-team-followups">
+<section class="content-header">
+<h1><i class="fa fa-calendar-check-o"></i> Team Follow-ups</h1>
+</section>
+<section class="content">
+<div class="box box-info"><div class="box-header with-border"><h3 class="box-title">Team Queue</h3></div>
+<div class="box-body">
+<table class="table table-bordered"><thead><tr><th>Agent</th><th>Client</th><th>Time</th><th>Action</th></tr></thead><tbody><tr><td>Alexander Vance</td><td>Nordic Tech FZ</td><td>Today 04:00 PM</td><td>Send proposal</td></tr></tbody></table>
 </div>
-<ul class="crm-stat-list">
-<li><a href="#team-meetings" class="crm-stat-item"><span>Missed</span><span class="crm-badge-val urgent">2</span></a></li>
-<li><a href="#team-meetings" class="crm-stat-item"><span>Last 7 Days</span><span class="crm-badge-val">7</span></a></li>
-<li><a href="#team-meetings" class="crm-stat-item"><span>Today</span><span class="crm-badge-val urgent">8</span></a></li>
-<li><a href="#team-meetings" class="crm-stat-item"><span>Next 7 Days</span><span class="crm-badge-val">16</span></a></li>
-<li><a href="#team-meetings" class="crm-stat-item"><span>All Future</span><span class="crm-badge-val">22</span></a></li>
-</ul>
+</div>
+</section>
 </div>
 
-<div class="crm-stat-card">
-<div class="crm-stat-card-header">
-<h3 class="crm-stat-card-title">
-<span class="crm-stat-indicator"></span>
-<span>Team Closures</span>
-</h3>
-<span class="crm-badge-val">Aggregate</span>
+<div class="crm-view-pane" id="view-team-meetings">
+<section class="content-header">
+<h1><i class="fa fa-handshake-o"></i> Team Meetings</h1>
+</section>
+<section class="content">
+<div class="box box-info"><div class="box-header with-border"><h3 class="box-title">Consultation Roster</h3></div>
+<div class="box-body">
+<table class="table table-bordered"><thead><tr><th>Consultant</th><th>Client</th><th>Date &amp; Time</th><th>Topic</th></tr></thead><tbody><tr><td>Elena Rostova</td><td>Baroness Sophie H.</td><td>11-Oct-2026 11:00 AM</td><td>Private viewing</td></tr></tbody></table>
 </div>
-<ul class="crm-stat-list">
-<li class="crm-stat-item"><span>Team Leads Active</span><span class="crm-badge-val">158</span></li>
-<li class="crm-stat-item"><span>Team Members Operating</span><span class="crm-badge-val">12</span></li>
-<li class="crm-stat-item"><span>Team Follow-ups Today</span><span class="crm-badge-val urgent">14</span></li>
-<li class="crm-stat-item"><span>Department Performance</span><a href="#dept-performance" class="crm-btn-sm">View</a></li>
-<li class="crm-stat-item"><span>Team Mandates</span><a href="#team-leads" class="crm-btn-sm">Browse</a></li>
-</ul>
+</div>
+</section>
 </div>
 
-<div class="crm-stat-card">
-<div class="crm-stat-card-header">
-<h3 class="crm-stat-card-title">
-<span class="crm-stat-indicator"></span>
-<span>Team Vertical FU</span>
-</h3>
-<span class="crm-badge-val">6 Total</span>
+<div class="crm-view-pane" id="view-assigned-meetings">
+<section class="content-header">
+<h1><i class="fa fa-calendar-plus-o"></i> Assigned Meetings</h1>
+</section>
+<section class="content">
+<div class="box box-info"><div class="box-header with-border"><h3 class="box-title">Delegated Meetings</h3></div>
+<div class="box-body">
+<table class="table table-bordered"><thead><tr><th>Meeting Ref</th><th>Client</th><th>Delegate</th><th>Date</th></tr></thead><tbody><tr><td>#AM-108</td><td>Vanguard Swiss Group</td><td>Alexander Vance</td><td>15-Oct-2026</td></tr></tbody></table>
 </div>
-<ul class="crm-stat-list">
-<li class="crm-stat-item"><span>Total Verticals In Scope</span><span class="crm-badge-val">6</span></li>
-<li class="crm-stat-item"><span>Team Follow-ups Today</span><span class="crm-badge-val urgent">14 Due</span></li>
-<li class="crm-stat-item"><span>Team Meetings Scheduled</span><span class="crm-badge-val">8</span></li>
-<li class="crm-stat-item"><span>Manage Verticals</span><a href="#team-verticals" class="crm-btn-sm">Manage</a></li>
-<li class="crm-stat-item"><span>Team Directory</span><a href="#team-members" class="crm-btn-sm">View</a></li>
-</ul>
 </div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-team-members">
+<section class="content-header">
+<h1><i class="fa fa-id-badge"></i> Team Member Directory</h1>
+</section>
+<section class="content">
+<div class="box box-info">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center;">
+<h3 class="box-title">Members Roster</h3>
+<a href="#add-user" class="crm-btn-primary" data-view="add-user"><i class="fa fa-plus"></i> + Add Team Member</a>
+</div>
+<div class="box-body">
+<table class="table table-bordered table-hover">
+<thead><tr><th>Staff ID</th><th>Name</th><th>Official Email</th><th>Phone</th><th>Vertical</th><th>Role</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>#STF-01</td><td>Rolexto Admin</td><td>admin@rolextogroup.com</td><td>+971 58 563 7737</td><td>Executive Desk</td><td>System Administrator</td><td><span class="badge bg-green">Active</span></td></tr>
+<tr><td>#STF-02</td><td>Alexander Vance</td><td>a.vance@rolextogroup.com</td><td>+971 55 901 8271</td><td>Prime Commercial</td><td>Senior Manager</td><td><span class="badge bg-green">Active</span></td></tr>
+<tr><td>#STF-03</td><td>Elena Rostova</td><td>e.rostova@rolextogroup.com</td><td>+971 52 441 0928</td><td>Private Office</td><td>Managing Consultant</td><td><span class="badge bg-green">Active</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-hierarchy-chart">
+<section class="content-header">
+<h1><i class="fa fa-sitemap"></i> Organization Hierarchy Chart</h1>
+</section>
+<section class="content">
+<div class="box box-info">
+<div class="box-header with-border"><h3 class="box-title">Enterprise Reporting Structure</h3></div>
+<div class="box-body" style="padding:30px; text-align:center;">
+<div style="display:inline-block; padding:16px 24px; border:2px solid var(--crm-red); border-radius:10px; background:var(--crm-card-bg); margin-bottom:20px;">
+<strong style="font-size:16px;">Managing Director &amp; Executive Board</strong>
+<div style="font-size:12px; color:var(--crm-text-muted);">Rolexto Group HQ</div>
+</div>
+<div style="width:2px; height:24px; background:var(--crm-border); margin:0 auto;"></div>
+<div style="display:flex; justify-content:center; gap:40px; margin-top:20px;">
+<div style="padding:14px 20px; border:1px solid var(--crm-border); border-radius:8px; background:var(--crm-card-bg);">
+<strong>Prime Commercial Division</strong>
+<div style="font-size:11px; color:var(--crm-text-muted);">Alexander Vance (Head)</div>
+</div>
+<div style="padding:14px 20px; border:1px solid var(--crm-border); border-radius:8px; background:var(--crm-card-bg);">
+<strong>Private Office &amp; Luxury</strong>
+<div style="font-size:11px; color:var(--crm-text-muted);">Elena Rostova (Head)</div>
+</div>
+<div style="padding:14px 20px; border:1px solid var(--crm-border); border-radius:8px; background:var(--crm-card-bg);">
+<strong>Corporate Business Setup</strong>
+<div style="font-size:11px; color:var(--crm-text-muted);">Zaid Mansoor (Head)</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-verticals">
+<section class="content-header">
+<h1><i class="fa fa-briefcase"></i> Practice Portfolios (My Verticals)</h1>
+</section>
+<section class="content">
+<div class="box box-info">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center;">
+<h3 class="box-title">Portfolio Modules</h3>
+<a href="#add-vertical" class="crm-btn-primary" data-view="add-vertical"><i class="fa fa-plus"></i> + Add Vertical</a>
+</div>
+<div class="box-body">
+<table class="table table-bordered table-hover">
+<thead><tr><th>ID</th><th>Vertical Name</th><th>Managing Lead</th><th>Listings</th><th>Value</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>#V-01</td><td>Prime Commercial Real Estate</td><td>Alexander Vance</td><td>48 Properties</td><td>AED 140,000,000</td><td><span class="badge bg-green">Active</span></td></tr>
+<tr><td>#V-02</td><td>Ultra-Luxury Residential</td><td>Elena Rostova</td><td>32 Mansions</td><td>AED 280,000,000</td><td><span class="badge bg-green">Active</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-team-verticals">
+<section class="content-header">
+<h1><i class="fa fa-folder-open"></i> Team Practice Portfolios</h1>
+</section>
+<section class="content">
+<div class="box box-info"><div class="box-header with-border"><h3 class="box-title">Portfolios</h3></div>
+<div class="box-body"><table class="table table-bordered"><thead><tr><th>Portfolio</th><th>Desk</th><th>Revenue</th></tr></thead><tbody><tr><td>DIFC Corporate Space</td><td>Commercial</td><td>AED 54.2M</td></tr></tbody></table></div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-add-vertical">
+<section class="content-header">
+<h1><i class="fa fa-plus-square"></i> Add Practice Vertical</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border"><h3 class="box-title">Vertical Form</h3></div>
+<form onsubmit="event.preventDefault(); alert('Vertical created!'); switchView('verticals');">
+<div class="box-body">
+<div class="row">
+<div class="col-sm-6"><div class="form-group"><label>Vertical Title <span class="text-danger">*</span></label><input type="text" class="form-control" required></div></div>
+<div class="col-sm-6"><div class="form-group"><label>Category Group</label><select class="form-control"><option>Real Estate</option><option>Corporate Services</option></select></div></div>
+</div>
+<div class="form-group"><label>Description</label><textarea class="form-control" rows="3"></textarea></div>
+</div>
+<div class="box-footer">
+<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Save Vertical</button>
+<button type="button" class="btn btn-default" onclick="switchView('verticals')">Cancel</button>
+</div>
+</form>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-verticals-report">
+<section class="content-header">
+<h1><i class="fa fa-bar-chart"></i> Verticals Analytics Report</h1>
+</section>
+<section class="content">
+<div class="box box-info"><div class="box-header with-border"><h3 class="box-title">Performance</h3></div>
+<div class="box-body"><p>Total YTD Portfolios: <strong>AED 420M</strong></p></div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-dept-performance">
+<section class="content-header">
+<h1><i class="fa fa-dashboard"></i> Department Performance</h1>
+</section>
+<section class="content">
+<div class="box box-info"><div class="box-header with-border"><h3 class="box-title">Overview</h3></div>
+<div class="box-body"><p>Total Company Volume: <strong>AED 438.5M</strong></p></div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-users-report">
+<section class="content-header">
+<h1><i class="fa fa-users"></i> Users Performance Report</h1>
+</section>
+<section class="content">
+<div class="box box-info"><div class="box-header with-border"><h3 class="box-title">Leaderboard</h3></div>
+<div class="box-body"><table class="table table-bordered"><thead><tr><th>User</th><th>Deals</th><th>Revenue</th></tr></thead><tbody><tr><td>Elena Rostova</td><td>14</td><td>AED 114M</td></tr></tbody></table></div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-view-users">
+<section class="content-header">
+<h1><i class="fa fa-users"></i> System Users Management</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center;">
+<h3 class="box-title">Active User Accounts</h3>
+<a href="#add-user" class="crm-btn-primary" data-view="add-user"><i class="fa fa-plus"></i> + Add User</a>
+</div>
+<div class="box-body">
+<table class="table table-bordered table-hover">
+<thead><tr><th>User ID</th><th>Email</th><th>Name</th><th>Role</th><th>Branch</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>#USR-001</td><td>admin@rolextogroup.com</td><td>Rolexto Admin</td><td>Super Admin</td><td>Dubai HQ</td><td><span class="badge bg-green">Active</span></td></tr>
+<tr><td>#USR-002</td><td>a.vance@rolextogroup.com</td><td>Alexander Vance</td><td>Senior Manager</td><td>DIFC</td><td><span class="badge bg-green">Active</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-add-user">
+<section class="content-header">
+<h1><i class="fa fa-user-plus"></i> User Registration (Original Complete Form)</h1>
+</section>
+<section class="content">
+<form onsubmit="event.preventDefault(); alert('User registered!'); switchView('view-users');">
+<div class="box box-default">
+<div class="box-header with-border"><h3 class="box-title">System &amp; Access Details</h3></div>
+<div class="box-body">
+<div class="row">
+<div class="col-sm-4"><div class="form-group"><label>Official Email <span class="text-danger">*</span></label><input type="email" class="form-control" required></div></div>
+<div class="col-sm-4"><div class="form-group"><label>Password <span class="text-danger">*</span></label><input type="text" class="form-control" value="Rolexto@2026!" required></div></div>
+<div class="col-sm-4"><div class="form-group"><label>Role / User Type <span class="text-danger">*</span></label><select class="form-control"><option>Administrator</option><option selected>Manager / Consultant</option></select></div></div>
+</div>
+</div>
+</div>
+<div class="box box-default">
+<div class="box-header with-border"><h3 class="box-title">Personal Information</h3></div>
+<div class="box-body">
+<div class="row">
+<div class="col-sm-4"><div class="form-group"><label>Full Name <span class="text-danger">*</span></label><input type="text" class="form-control" required></div></div>
+<div class="col-sm-4"><div class="form-group"><label>Personal Email</label><input type="email" class="form-control"></div></div>
+<div class="col-sm-4"><div class="form-group"><label>Mobile Number <span class="text-danger">*</span></label><input type="text" class="form-control" required></div></div>
+</div>
+</div>
+<div class="box-footer">
+<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Register User</button>
+<button type="button" class="btn btn-default" onclick="switchView('view-users')">Cancel</button>
+</div>
+</div>
+</form>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-roles-permissions">
+<section class="content-header">
+<h1><i class="fa fa-shield"></i> Roles &amp; Permissions Matrix</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center;">
+<h3 class="box-title">System Role Definitions</h3>
+<a href="#add-role" class="crm-btn-primary" data-view="add-role"><i class="fa fa-plus"></i> + Add Role</a>
+</div>
+<div class="box-body">
+<table class="table table-bordered">
+<thead><tr><th>Role Name</th><th>Leads Access</th><th>Team Access</th><th>Verticals Access</th><th>System Settings</th></tr></thead>
+<tbody>
+<tr><td><strong>Administrator</strong></td><td>Full</td><td>Full</td><td>Full</td><td>Yes</td></tr>
+<tr><td><strong>Desk Manager</strong></td><td>View, Add, Edit</td><td>Assigned Team</td><td>Assigned</td><td>No</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-add-role">
+<section class="content-header">
+<h1><i class="fa fa-key"></i> Add Security Role</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border"><h3 class="box-title">Role Configuration</h3></div>
+<form onsubmit="event.preventDefault(); alert('Role saved!'); switchView('roles-permissions');">
+<div class="box-body">
+<div class="form-group"><label>Role Name <span class="text-danger">*</span></label><input type="text" class="form-control" required></div>
+<div class="form-group"><label>Permissions</label>
+<div class="checkbox"><label><input type="checkbox" checked> View Leads</label></div>
+<div class="checkbox"><label><input type="checkbox" checked> Add Leads</label></div>
+<div class="checkbox"><label><input type="checkbox" checked> Export Data</label></div>
+</div>
+</div>
+<div class="box-footer">
+<button type="submit" class="btn btn-primary">Save Role</button>
+<button type="button" class="btn btn-default" onclick="switchView('roles-permissions')">Cancel</button>
+</div>
+</form>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-terms">
+<section class="content-header">
+<h1><i class="fa fa-tags"></i> CRM Categories &amp; Terms</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center;">
+<h3 class="box-title">Categories</h3>
+<a href="#add-term" class="crm-btn-primary" data-view="add-term"><i class="fa fa-plus"></i> + Add Category</a>
+</div>
+<div class="box-body">
+<table class="table table-bordered">
+<thead><tr><th>ID</th><th>Category Title</th><th>Parent Category</th><th>Slug</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>#CAT-01</td><td>Commercial Real Estate</td><td>Root</td><td>commercial-re</td><td><span class="badge bg-green">Active</span></td></tr>
+<tr><td>#CAT-02</td><td>Residential Villas</td><td>Root</td><td>residential-villas</td><td><span class="badge bg-green">Active</span></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-add-term">
+<section class="content-header">
+<h1><i class="fa fa-plus-circle"></i> Add CRM Category</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border"><h3 class="box-title">Category Details</h3></div>
+<form onsubmit="event.preventDefault(); alert('Category saved!'); switchView('terms');">
+<div class="box-body">
+<div class="form-group"><label>Category Name <span class="text-danger">*</span></label><input type="text" class="form-control" required></div>
+<div class="form-group"><label>Parent Category</label><select class="form-control"><option>Root</option><option>Commercial Real Estate</option></select></div>
+</div>
+<div class="box-footer">
+<button type="submit" class="btn btn-primary">Save Category</button>
+<button type="button" class="btn btn-default" onclick="switchView('terms')">Cancel</button>
+</div>
+</form>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-edit-logo">
+<section class="content-header">
+<h1><i class="fa fa-image"></i> Brand Logo &amp; Favicon Settings</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border"><h3 class="box-title">Branding Assets</h3></div>
+<div class="box-body">
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group"><label>Application Logo</label><br><img src="assets/dist/img/favicon.jpg" style="height:60px; border-radius:8px;"><br><br><input type="file" class="form-control"></div>
+</div>
+<div class="col-sm-6">
+<div class="form-group"><label>Browser Favicon</label><br><img src="assets/dist/img/favicon.jpg" style="height:32px; width:32px; border-radius:4px;"><br><br><input type="file" class="form-control"></div>
+</div>
+</div>
+</div>
+<div class="box-footer"><button class="btn btn-primary" onclick="alert('Assets updated!');">Save Branding</button></div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-profile">
+<section class="content-header">
+<h1><i class="fa fa-user"></i> Administrator Profile</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border"><h3 class="box-title">Profile Credentials</h3></div>
+<div class="box-body">
+<p><strong>Name:</strong> Rolexto Admin</p>
+<p><strong>Email:</strong> admin@rolextogroup.com</p>
+<p><strong>Role:</strong> Super Administrator</p>
+<p><strong>Location:</strong> Dubai DIFC</p>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-password">
+<section class="content-header">
+<h1><i class="fa fa-lock"></i> Security &amp; Change Password</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border"><h3 class="box-title">Update Password</h3></div>
+<form onsubmit="event.preventDefault(); alert('Password updated successfully!');">
+<div class="box-body">
+<div class="form-group"><label>Current Password</label><input type="password" class="form-control" required></div>
+<div class="form-group"><label>New Password</label><input type="password" class="form-control" required></div>
+<div class="form-group"><label>Confirm New Password</label><input type="password" class="form-control" required></div>
+</div>
+<div class="box-footer"><button type="submit" class="btn btn-primary">Save New Password</button></div>
+</form>
+</div>
+</section>
 </div>
 
 </div>
-</div>
-
-<footer class="crm-footer" style="padding: 16px 24px; border-top: 1px solid var(--crm-border); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--crm-text-muted); background: var(--crm-card-bg);">
+<footer class="crm-footer">
 <span>&copy; 2026 Rolexto CRM Platform. All rights reserved.</span>
 <span>Rolexto Real Estate &amp; Business Setup</span>
 </footer>
@@ -579,11 +1256,87 @@
 </div>
 
 <script>
-$(function () {
+var viewTitles = {
+    'dashboard': 'Dashboard',
+    'leads': 'All My Leads',
+    'add-lead': 'Add New Lead',
+    'followups': 'Follow-ups',
+    'meetings': 'Meetings',
+    'performance': 'My Performance',
+    'team-leads': 'All Team Leads',
+    'assigned-leads': 'Assigned Leads',
+    'team-followups': 'Team Follow-ups',
+    'team-meetings': 'Team Meetings',
+    'assigned-meetings': 'Assigned Meetings',
+    'team-members': 'Team Member Directory',
+    'hierarchy-chart': 'Hierarchy Chart',
+    'verticals': 'Practice Portfolios',
+    'team-verticals': 'Team Verticals',
+    'add-vertical': 'Add Practice Vertical',
+    'verticals-report': 'Verticals Report',
+    'dept-performance': 'Department Performance',
+    'users-report': 'Users Report',
+    'view-users': 'System Users',
+    'add-user': 'Add System User',
+    'roles-permissions': 'Roles & Permissions',
+    'add-role': 'Add Role',
+    'terms': 'CRM Categories',
+    'add-term': 'Add Category',
+    'edit-logo': 'Brand & Logo',
+    'profile': 'Administrator Profile',
+    'password': 'Change Password'
+};
+
+function switchView(viewName) {
+    if (!viewName) return;
+    if (!$('#view-' + viewName).length) {
+        viewName = 'dashboard';
+    }
+    $('.crm-view-pane').removeClass('active');
+    $('#view-' + viewName).addClass('active');
+
+    $('.crm-nav-link, .crm-subnav-link').removeClass('active');
+    $('[data-view="' + viewName + '"]').addClass('active');
+
+    var parentSub = $('[data-view="' + viewName + '"]').closest('.crm-nav-item.has-sub');
+    if (parentSub.length) {
+        parentSub.addClass('open');
+    }
+
+    var title = viewTitles[viewName] || 'Dashboard';
+    $('#topbar-current-breadcrumb').text(title);
+
+    if ($(window).width() < 992) {
+        $('#crmSidebar').removeClass('crm-sidebar-open');
+        $('#crmMobileOverlay').removeClass('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+$(function() {
+    $(document).on('click', '[data-view]', function(e) {
+        var view = $(this).data('view');
+        if (view) {
+            e.preventDefault();
+            switchView(view);
+            window.location.hash = view;
+        }
+    });
+
     $('#crmSidebarToggle').on('click', function(e) {
         e.preventDefault();
-        $('#crmSidebar').toggleClass('crm-sidebar-collapsed');
-        $('.crm-app-shell').toggleClass('crm-app-shell-expanded');
+        if ($(window).width() < 992) {
+            $('#crmSidebar').toggleClass('crm-sidebar-open');
+            $('#crmMobileOverlay').toggleClass('active');
+        } else {
+            $('#crmSidebar').toggleClass('crm-sidebar-collapsed');
+            $('.crm-app-shell').toggleClass('crm-app-shell-expanded');
+        }
+    });
+
+    $('#crmMobileOverlay').on('click', function() {
+        $('#crmSidebar').removeClass('crm-sidebar-open');
+        $('#crmMobileOverlay').removeClass('active');
     });
 
     $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
@@ -600,9 +1353,6 @@ $(function () {
     });
 
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var myData = [8, 12, 10, 18, 15, 22, 20, 26, 32, 28, 35, 42];
-    var teamData = [12, 18, 15, 25, 22, 30, 28, 35, 42, 38, 45, 52];
-
     var barOptions = {
         scaleBeginAtZero: true,
         scaleShowGridLines: true,
@@ -611,59 +1361,128 @@ $(function () {
         scaleShowHorizontalLines: true,
         scaleShowVerticalLines: false,
         barShowStroke: false,
-        barValueSpacing: 14,
+        barValueSpacing: 12,
         barDatasetSpacing: 1,
         responsive: true,
         maintainAspectRatio: false
     };
 
-    var b2Canvas = document.getElementById('barChart2');
-    if (b2Canvas) {
-        new Chart(b2Canvas.getContext('2d')).Bar({
+    var b3 = document.getElementById('barChart3');
+    if (b3) {
+        new Chart(b3.getContext('2d')).Bar({
             labels: months,
             datasets: [{
-                label: 'My Pipeline',
-                fillColor: '#10b981',
-                strokeColor: '#059669',
-                pointColor: '#10b981',
-                data: myData
+                label: 'Previous Performance',
+                fillColor: '#991b1b',
+                strokeColor: '#7f1d1d',
+                pointColor: '#991b1b',
+                data: [14, 18, 16, 22, 20, 26, 24, 30, 36, 32, 40, 48]
             }]
         }, barOptions);
     }
 
-    var b4Canvas = document.getElementById('barChart4');
-    var b4Rendered = false;
-    function initBar4() {
-        if (b4Rendered || !b4Canvas) return;
-        b4Rendered = true;
-        new Chart(b4Canvas.getContext('2d')).Bar({
+    var b4 = document.getElementById('barChart4');
+    if (b4) {
+        new Chart(b4.getContext('2d')).Bar({
             labels: months,
             datasets: [{
-                label: 'Team Volume',
-                fillColor: '#10b981',
-                strokeColor: '#059669',
-                pointColor: '#10b981',
-                data: teamData
+                label: 'Team Projection',
+                fillColor: '#991b1b',
+                strokeColor: '#7f1d1d',
+                pointColor: '#991b1b',
+                data: [20, 28, 25, 35, 32, 42, 40, 50, 58, 52, 65, 75]
             }]
         }, barOptions);
     }
 
-    $('#pipelineTabs .crm-tab-btn').on('click', function () {
-        $('#pipelineTabs .crm-tab-btn').removeClass('active');
-        $(this).addClass('active');
-        var target = $(this).data('target');
-        $('#tabMyPipeline, #tabTeamPipeline').hide();
-        $(target).show();
+    var b2 = document.getElementById('barChart2');
+    if (b2) {
+        new Chart(b2.getContext('2d')).Bar({
+            labels: months,
+            datasets: [{
+                label: 'My Projection',
+                fillColor: '#991b1b',
+                strokeColor: '#7f1d1d',
+                pointColor: '#991b1b',
+                data: [10, 14, 12, 18, 16, 22, 20, 26, 30, 28, 35, 42]
+            }]
+        }, barOptions);
+    }
+
+    var pieOptions = {
+        segmentShowStroke: true,
+        segmentStrokeColor: '#fff',
+        segmentStrokeWidth: 2,
+        percentageInnerCutout: 50,
+        animationSteps: 60,
+        responsive: true,
+        maintainAspectRatio: false
+    };
+
+    var p1 = document.getElementById('pieChart1');
+    if (p1) {
+        new Chart(p1.getContext('2d')).Doughnut([
+            { value: 4, color: '#dc2626', label: 'All Missed' },
+            { value: 8, color: '#d97706', label: 'Last 7 Days' },
+            { value: 6, color: '#475569', label: 'Today' },
+            { value: 12, color: '#991b1b', label: 'Next 7 Days' },
+            { value: 18, color: '#059669', label: 'All Future' }
+        ], pieOptions);
+    }
+
+    var p2 = document.getElementById('pieChart2');
+    if (p2) {
+        new Chart(p2.getContext('2d')).Doughnut([
+            { value: 2, color: '#dc2626', label: 'All Missed' },
+            { value: 4, color: '#d97706', label: 'Last 7 Days' },
+            { value: 3, color: '#475569', label: 'Today' },
+            { value: 6, color: '#991b1b', label: 'Next 7 Days' },
+            { value: 9, color: '#059669', label: 'All Future' }
+        ], pieOptions);
+    }
+
+    var p3 = document.getElementById('pieChart3');
+    if (p3) {
+        new Chart(p3.getContext('2d')).Doughnut([
+            { value: 12, color: '#dc2626', label: 'All Missed' },
+            { value: 22, color: '#d97706', label: 'Last 7 Days' },
+            { value: 18, color: '#475569', label: 'Today' },
+            { value: 34, color: '#991b1b', label: 'Next 7 Days' },
+            { value: 48, color: '#059669', label: 'All Future' }
+        ], pieOptions);
+    }
+
+    var p4 = document.getElementById('pieChart4');
+    if (p4) {
+        new Chart(p4.getContext('2d')).Doughnut([
+            { value: 6, color: '#dc2626', label: 'All Missed' },
+            { value: 14, color: '#d97706', label: 'Last 7 Days' },
+            { value: 8, color: '#475569', label: 'Today' },
+            { value: 18, color: '#991b1b', label: 'Next 7 Days' },
+            { value: 24, color: '#059669', label: 'All Future' }
+        ], pieOptions);
+    }
+
+    var initialHash = window.location.hash.replace('#', '') || 'dashboard';
+    if (viewTitles[initialHash]) {
+        switchView(initialHash);
+    } else {
+        switchView('dashboard');
+    }
+
+    window.addEventListener('popstate', function() {
+        var hash = window.location.hash.replace('#', '') || 'dashboard';
+        if (viewTitles[hash]) {
+            switchView(hash);
+        }
     });
 
-    $('#projectionsChartTabs .crm-tab-btn').on('click', function () {
-        $('#projectionsChartTabs .crm-tab-btn').removeClass('active');
-        $(this).addClass('active');
-        var target = $(this).data('target');
-        $('#wrapMyProjection, #wrapTeamProjection').hide();
-        $(target).show();
-        if (target === '#wrapTeamProjection') {
-            setTimeout(initBar4, 20);
+    $('#topbar-quick-search').on('keypress', function(e) {
+        if (e.which === 13) {
+            var q = $(this).val().trim();
+            if (q) {
+                switchView('leads');
+            }
         }
     });
 });

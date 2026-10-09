@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>assets/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/favicon.ico">
+<link rel="icon" type="image/jpeg" href="<?php echo base_url(); ?>assets/dist/img/favicon.jpg">
+<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
 <title><?php echo !empty($info['title']) ? $info['title'] : "Rolexto CRM - Enterprise Workspace"; ?></title>
 <script>
 (function() {
@@ -22,6 +22,8 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datepicker/datepicker3.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/select2/select2.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/developer.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/crm-theme.css">
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
@@ -34,7 +36,7 @@
 <img src="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" alt="Rolexto" style="height:32px; width:32px; border-radius:6px; object-fit:cover;">
 <div class="brand-text">
 <span class="brand-title">Rolexto CRM</span>
-<span class="brand-badge">Enterprise</span>
+<span class="brand-badge">Rolex Red</span>
 </div>
 </a>
 <div class="crm-sidebar-nav">
@@ -51,7 +53,7 @@ $r2 = $this->uri->segment(3);
 </a>
 </li>
 </ul>
-<div class="crm-nav-group-title">Commercial &amp; Pipeline</div>
+<div class="crm-nav-group-title">Commercial &amp; Leads</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='leads'){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -64,8 +66,7 @@ $r2 = $this->uri->segment(3);
 <li><a href="<?php echo base_url(); ?>manager/leads/add" class="crm-subnav-link <?php if($r1=='leads' && $r2=='add'){ echo 'active'; } ?>">+ Add New Lead</a></li>
 <li><a href="<?php echo base_url(); ?>manager/leads/followups" class="crm-subnav-link <?php if($r1=='leads' && $r2=='followups'){ echo 'active'; } ?>">Follow-ups</a></li>
 <li><a href="<?php echo base_url(); ?>manager/leads/meetings" class="crm-subnav-link <?php if($r1=='leads' && $r2=='meetings'){ echo 'active'; } ?>">Meetings</a></li>
-<li><a href="<?php echo base_url(); ?>manager/leads/history" class="crm-subnav-link <?php if($r1=='leads' && $r2=='history'){ echo 'active'; } ?>">Leads History</a></li>
-<li><a href="<?php echo base_url(); ?>manager/leads/trash" class="crm-subnav-link <?php if($r1=='leads' && $r2=='trash'){ echo 'active'; } ?>">Trash Leads</a></li>
+<li><a href="<?php echo base_url(); ?>manager/performance-report/individual" class="crm-subnav-link <?php if($r1=='performance-report' && $r2=='individual'){ echo 'active'; } ?>">Performance Report</a></li>
 </ul>
 </li>
 <li class="crm-nav-item">
@@ -85,6 +86,22 @@ $r2 = $this->uri->segment(3);
 <svg class="crm-svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
 <span>My Performance</span>
 </a>
+</li>
+</ul>
+<div class="crm-nav-group-title">Verticals Portfolio</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item has-sub <?php if($r1=='verticals' || ($r1=='team' && $r2=='verticals')){ echo 'open'; } ?>">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
+<span>Practice Portfolios</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+</a>
+<ul class="crm-subnav-list">
+<li><a href="<?php echo base_url(); ?>manager/verticals" class="crm-subnav-link <?php if($r1=='verticals' && $r2==''){ echo 'active'; } ?>">My Verticals</a></li>
+<li><a href="<?php echo base_url(); ?>manager/verticals/add" class="crm-subnav-link <?php if($r1=='verticals' && $r2=='add'){ echo 'active'; } ?>">+ Add Vertical</a></li>
+<li><a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-subnav-link <?php if($r1=='team' && $r2=='verticals'){ echo 'active'; } ?>">Team Verticals</a></li>
+<li><a href="<?php echo base_url(); ?>manager/verticals/report" class="crm-subnav-link <?php if($r1=='verticals' && $r2=='report'){ echo 'active'; } ?>">Verticals Report</a></li>
+</ul>
 </li>
 </ul>
 <div class="crm-nav-group-title">Team Operations</div>
@@ -112,70 +129,53 @@ $r2 = $this->uri->segment(3);
 <ul class="crm-subnav-list">
 <li><a href="<?php echo base_url(); ?>manager/team/members" class="crm-subnav-link <?php if($r1=='team' && $r2=='members'){ echo 'active'; } ?>">Member Directory</a></li>
 <li><a href="<?php echo base_url(); ?>manager/team/chart" class="crm-subnav-link <?php if($r1=='team' && $r2=='chart'){ echo 'active'; } ?>">Hierarchy Chart</a></li>
-</ul>
-</li>
-</ul>
-<div class="crm-nav-group-title">Verticals Portfolio</div>
-<ul class="crm-nav-list">
-<li class="crm-nav-item has-sub <?php if($r1=='verticals' || ($r1=='team' && $r2=='verticals')){ echo 'open'; } ?>">
-<a href="javascript:void(0)" class="crm-nav-link">
-<svg class="crm-svg" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
-<span>Practice Portfolios</span>
-<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-</a>
-<ul class="crm-subnav-list">
-<li><a href="<?php echo base_url(); ?>manager/verticals" class="crm-subnav-link <?php if($r1=='verticals' && $r2==''){ echo 'active'; } ?>">My Verticals</a></li>
-<li><a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-subnav-link <?php if($r1=='team' && $r2=='verticals'){ echo 'active'; } ?>">Team Verticals</a></li>
-<li><a href="<?php echo base_url(); ?>manager/verticals/add" class="crm-subnav-link <?php if($r1=='verticals' && $r2=='add'){ echo 'active'; } ?>">+ Add Vertical</a></li>
-<li><a href="<?php echo base_url(); ?>manager/verticals/report" class="crm-subnav-link <?php if($r1=='verticals' && $r2=='report'){ echo 'active'; } ?>">Verticals Report</a></li>
-</ul>
-</li>
-</ul>
-<div class="crm-nav-group-title">Reports &amp; Intelligence</div>
-<ul class="crm-nav-list">
-<li class="crm-nav-item has-sub <?php if(in_array($r1, array('performance-report')) || ($r1=='users' && $r2=='report') || ($r1=='verticals' && $r2=='report')){ echo 'open'; } ?>">
-<a href="javascript:void(0)" class="crm-nav-link">
-<svg class="crm-svg" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-<span>Reports</span>
-<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-</a>
-<ul class="crm-subnav-list">
 <li><a href="<?php echo base_url(); ?>manager/performance-report" class="crm-subnav-link <?php if($r1=='performance-report' && $r2==''){ echo 'active'; } ?>">Department Performance</a></li>
-<li><a href="<?php echo base_url(); ?>manager/performance-report/individual" class="crm-subnav-link <?php if($r1=='performance-report' && $r2=='individual'){ echo 'active'; } ?>">Individual Performance</a></li>
-<li><a href="<?php echo base_url(); ?>manager/users/report" class="crm-subnav-link <?php if($r1=='users' && $r2=='report'){ echo 'active'; } ?>">Users Report</a></li>
-<li><a href="<?php echo base_url(); ?>manager/verticals/report" class="crm-subnav-link <?php if($r1=='verticals' && $r2=='report'){ echo 'active'; } ?>">Verticals Report</a></li>
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Settings &amp; Admin</div>
+<div class="crm-nav-group-title">Users &amp; Access</div>
 <ul class="crm-nav-list">
-<li class="crm-nav-item has-sub <?php if(($r1=='users' && $r2!='report') || $r1=='roles'){ echo 'open'; } ?>">
+<li class="crm-nav-item has-sub <?php if(($r1=='users' && $r2!='report')){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-<span>Users &amp; Access</span>
+<span>User Management</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
 <li><a href="<?php echo base_url(); ?>manager/users" class="crm-subnav-link <?php if($r1=='users' && $r2==''){ echo 'active'; } ?>">View Users</a></li>
 <li><a href="<?php echo base_url(); ?>manager/users/add" class="crm-subnav-link <?php if($r1=='users' && $r2=='add'){ echo 'active'; } ?>">+ Add User</a></li>
-<li><a href="<?php echo base_url(); ?>manager/roles" class="crm-subnav-link <?php if($r1=='roles'){ echo 'active'; } ?>">Roles &amp; Permissions</a></li>
+<li><a href="<?php echo base_url(); ?>manager/users/report" class="crm-subnav-link <?php if($r1=='users' && $r2=='report'){ echo 'active'; } ?>">Users Report</a></li>
 </ul>
 </li>
-<li class="crm-nav-item">
-<a href="<?php echo base_url(); ?>manager/terms" class="crm-nav-link <?php if($r1=='terms'){ echo 'active'; } ?>">
-<svg class="crm-svg" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<span>CRM Categories</span>
+</ul>
+<div class="crm-nav-group-title">Configuration &amp; System</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item has-sub <?php if($r1=='roles' || $r1=='terms'){ echo 'open'; } ?>">
+<a href="javascript:void(0)" class="crm-nav-link">
+<svg class="crm-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+<span>Configure &amp; System</span>
+<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
+<ul class="crm-subnav-list">
+<li><a href="<?php echo base_url(); ?>manager/roles" class="crm-subnav-link <?php if($r1=='roles' && $r2==''){ echo 'active'; } ?>">Roles &amp; Permissions</a></li>
+<li><a href="<?php echo base_url(); ?>manager/roles/add" class="crm-subnav-link <?php if($r1=='roles' && $r2=='add'){ echo 'active'; } ?>">+ Add Role</a></li>
+<li><a href="<?php echo base_url(); ?>manager/terms" class="crm-subnav-link <?php if($r1=='terms' && $r2==''){ echo 'active'; } ?>">CRM Categories</a></li>
+<li><a href="<?php echo base_url(); ?>manager/terms/add" class="crm-subnav-link <?php if($r1=='terms' && $r2=='add'){ echo 'active'; } ?>">+ Add Category</a></li>
+</ul>
 </li>
-<li class="crm-nav-item has-sub <?php if($r1=='profile' || $r1=='password'){ echo 'open'; } ?>">
+</ul>
+<div class="crm-nav-group-title">Security &amp; Profile</div>
+<ul class="crm-nav-list">
+<li class="crm-nav-item has-sub <?php if($r1=='profile' || $r1=='password' || ($r1=='setting' && $r2=='editlogo')){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-<span>Security &amp; Profile</span>
+<span>Account Settings</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
 <li><a href="<?php echo base_url(); ?>manager/profile" class="crm-subnav-link <?php if($r1=='profile'){ echo 'active'; } ?>">View Profile</a></li>
 <li><a href="<?php echo base_url(); ?>manager/password" class="crm-subnav-link <?php if($r1=='password'){ echo 'active'; } ?>">Change Password</a></li>
+<li><a href="<?php echo base_url(); ?>manager/setting/editlogo" class="crm-subnav-link <?php if($r1=='setting' && $r2=='editlogo'){ echo 'active'; } ?>">Brand &amp; Logo</a></li>
 </ul>
 </li>
 </ul>
@@ -184,7 +184,7 @@ $r2 = $this->uri->segment(3);
 <a href="<?php echo base_url(); ?>manager/profile" class="crm-user-profile">
 <div class="crm-user-avatar">RA</div>
 <div class="crm-user-info">
-<span class="crm-user-name">Rolexto Admin</span>
+<span class="crm-user-name"><?php echo !empty($this->session->userdata['manager_name']) ? $this->session->userdata['manager_name'] : 'Rolexto Admin'; ?></span>
 <span class="crm-user-role">Administrator</span>
 </div>
 </a>
@@ -193,6 +193,7 @@ $r2 = $this->uri->segment(3);
 </a>
 </div>
 </aside>
+<div class="crm-mobile-overlay" id="crmMobileOverlay"></div>
 <div class="crm-app-shell">
 <header class="crm-topbar">
 <div class="crm-topbar-left">
@@ -202,7 +203,7 @@ $r2 = $this->uri->segment(3);
 <div class="crm-breadcrumbs">
 <a href="<?php echo base_url(); ?>manager/dashboard">Workspace</a>
 <span>/</span>
-<span class="current">Dashboard</span>
+<span class="current"><?php echo !empty($info['page_heading']) ? $info['page_heading'] : (!empty($info['title']) ? $info['title'] : 'Dashboard'); ?></span>
 </div>
 </div>
 <div class="crm-topbar-right">
@@ -224,8 +225,17 @@ $r2 = $this->uri->segment(3);
 $(function() {
     $('#crmSidebarToggle').on('click', function(e) {
         e.preventDefault();
-        $('#crmSidebar').toggleClass('crm-sidebar-collapsed');
-        $('.crm-app-shell').toggleClass('crm-app-shell-expanded');
+        if ($(window).width() < 992) {
+            $('#crmSidebar').toggleClass('crm-sidebar-open');
+            $('#crmMobileOverlay').toggleClass('active');
+        } else {
+            $('#crmSidebar').toggleClass('crm-sidebar-collapsed');
+            $('.crm-app-shell').toggleClass('crm-app-shell-expanded');
+        }
+    });
+    $('#crmMobileOverlay').on('click', function() {
+        $('#crmSidebar').removeClass('crm-sidebar-open');
+        $('#crmMobileOverlay').removeClass('active');
     });
     $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
         e.preventDefault();
