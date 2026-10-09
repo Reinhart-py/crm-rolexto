@@ -43,7 +43,6 @@
 $r1 = $this->uri->segment(2);
 $r2 = $this->uri->segment(3);
 ?>
-<div class="crm-nav-group-title">Main</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item">
 <a href="<?php echo base_url(); ?>manager/dashboard" class="crm-nav-link <?php if($r1=='dashboard' || empty($r1)){ echo 'active'; } ?>">
@@ -52,7 +51,6 @@ $r2 = $this->uri->segment(3);
 </a>
 </li>
 </ul>
-<div class="crm-nav-group-title">Leads</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='leads'){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -69,7 +67,6 @@ $r2 = $this->uri->segment(3);
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Verticals</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='verticals' || ($r1=='team' && $r2=='verticals')){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -84,7 +81,6 @@ $r2 = $this->uri->segment(3);
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Team</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='team'){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -105,7 +101,6 @@ $r2 = $this->uri->segment(3);
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Users</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='users'){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -119,7 +114,6 @@ $r2 = $this->uri->segment(3);
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Settings</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='roles' || $r1=='terms'){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -133,7 +127,6 @@ $r2 = $this->uri->segment(3);
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Profile</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='profile' || $r1=='password' || ($r1=='setting' && $r2=='editlogo')){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -179,6 +172,10 @@ $r2 = $this->uri->segment(3);
 <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:var(--crm-text-muted);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
 <input type="text" placeholder="Search leads, team...">
 </div>
+<button type="button" class="crm-palette-toggle-btn" id="crmPaletteToggle" title="Switch Theme (Green / Red)">
+<span class="crm-palette-indicator" id="crmPaletteIndicator"></span>
+<span class="crm-palette-text" id="crmPaletteText">Green</span>
+</button>
 <button type="button" class="crm-theme-toggle" id="crmThemeToggle" title="Switch Theme">
 <svg class="crm-svg sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 <svg class="crm-svg moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -191,6 +188,20 @@ $r2 = $this->uri->segment(3);
 </header>
 <script>
 $(function() {
+    var curPalette = localStorage.getItem('crm_palette') || 'green';
+    document.documentElement.setAttribute('data-crm-palette', curPalette);
+    if ($('#crmPaletteText').length) {
+        $('#crmPaletteText').text(curPalette === 'red' ? 'Red' : 'Green');
+    }
+    $('#crmPaletteToggle').on('click', function(e) {
+        e.preventDefault();
+        var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
+        var next = cur === 'red' ? 'green' : 'red';
+        document.documentElement.setAttribute('data-crm-palette', next);
+        localStorage.setItem('crm_palette', next);
+        $('#crmPaletteText').text(next === 'red' ? 'Red' : 'Green');
+    });
+
     $('#crmSidebarToggle').on('click', function(e) {
         e.preventDefault();
         if ($(window).width() < 992) {

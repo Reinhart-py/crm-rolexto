@@ -224,7 +224,6 @@
 </div>
 </a>
 <div class="crm-sidebar-nav">
-<div class="crm-nav-group-title">Main</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item">
 <a href="#dashboard" class="crm-nav-link active" data-view="dashboard">
@@ -233,7 +232,6 @@
 </a>
 </li>
 </ul>
-<div class="crm-nav-group-title">Leads</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -251,7 +249,6 @@
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Verticals</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -266,7 +263,6 @@
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Team</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -287,7 +283,6 @@
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Users</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -301,7 +296,6 @@
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Settings</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -315,7 +309,6 @@
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Profile</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub">
 <a href="javascript:void(0)" class="crm-nav-link">
@@ -361,6 +354,10 @@
 <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:var(--crm-text-muted);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
 <input type="text" id="topbar-quick-search" placeholder="Search leads, team...">
 </div>
+<button type="button" class="crm-palette-toggle-btn" id="crmPaletteToggle" title="Admin Theme Palette: Switch Green / Red">
+<span class="crm-palette-indicator" id="crmPaletteIndicator"></span>
+<span class="crm-palette-text" id="crmPaletteText">Green Mode</span>
+</button>
 <button type="button" class="crm-theme-toggle" id="crmThemeToggle" title="Switch Theme">
 <svg class="crm-svg sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 <svg class="crm-svg moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -446,78 +443,70 @@
 
 <div class="row">
 <div class="col-sm-3">
-<div class="box box-info">
+<div class="box box-info crm-compact-card">
 <div class="box-header with-border">
 <h3 class="box-title">My Followups</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChart1" style="height:220px;"></canvas>
+<canvas id="pieChart1" style="height:110px; max-height:110px;"></canvas>
 </div>
 <div class="box-footer no-padding">
-<ul class="nav nav-stacked">
-<li><a href="#followups" data-view="followups">All Missed <span class="pull-right badge bg-red">4</span></a></li>
-<li><a href="#followups" data-view="followups">Last 7 Days <span class="pull-right badge bg-orange">8</span></a></li>
-<li><a href="#followups" data-view="followups">Today <span class="pull-right badge bg-skyblue">6</span></a></li>
-<li><a href="#followups" data-view="followups">Next 7 Days <span class="pull-right badge bg-blue">12</span></a></li>
-<li><a href="#followups" data-view="followups">All Future <span class="pull-right badge bg-green">18</span></a></li>
-</ul>
+<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">4</span></a></li>
+<li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">8</span></a></li>
+<li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">6</span></a></li>
+<li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">12</span></a></li>
+<li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">18</span></a></li></ul>
 </div>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info">
+<div class="box box-info crm-compact-card">
 <div class="box-header with-border">
 <h3 class="box-title">My Meetings</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChart2" style="height:220px;"></canvas>
+<canvas id="pieChart2" style="height:110px; max-height:110px;"></canvas>
 </div>
 <div class="box-footer no-padding">
-<ul class="nav nav-stacked">
-<li><a href="#meetings" data-view="meetings">All Missed <span class="pull-right badge bg-red">2</span></a></li>
-<li><a href="#meetings" data-view="meetings">Last 7 Days <span class="pull-right badge bg-orange">4</span></a></li>
-<li><a href="#meetings" data-view="meetings">Today <span class="pull-right badge bg-skyblue">3</span></a></li>
-<li><a href="#meetings" data-view="meetings">Next 7 Days <span class="pull-right badge bg-blue">6</span></a></li>
-<li><a href="#meetings" data-view="meetings">All Future <span class="pull-right badge bg-green">9</span></a></li>
-</ul>
+<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">2</span></a></li>
+<li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">4</span></a></li>
+<li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">3</span></a></li>
+<li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">6</span></a></li>
+<li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">9</span></a></li></ul>
 </div>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info">
+<div class="box box-info crm-compact-card">
 <div class="box-header with-border">
 <h3 class="box-title">My Closures</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChartClosures" style="height:220px;"></canvas>
+<canvas id="pieChartClosures" style="height:110px; max-height:110px;"></canvas>
 </div>
 <div class="box-footer no-padding">
-<ul class="nav nav-stacked">
-<li><a href="#leads" data-view="leads">This Month <span class="pull-right badge bg-green">5</span></a></li>
-<li><a href="#leads" data-view="leads">Last Month <span class="pull-right badge bg-blue">8</span></a></li>
-<li><a href="#leads" data-view="leads">This Year <span class="pull-right badge bg-skyblue">34</span></a></li>
-<li><a href="#leads" data-view="leads">All Time Closed <span class="pull-right badge bg-orange">62</span></a></li>
-<li><a href="#leads" data-view="leads">Total Revenue <span class="pull-right badge bg-red">AED 1.8M</span></a></li>
-</ul>
+<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>This Month</span><span class="badge bg-green">5</span></a></li>
+<li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>Last Month</span><span class="badge bg-blue">8</span></a></li>
+<li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>This Year</span><span class="badge bg-skyblue">34</span></a></li>
+<li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>All Time Closed</span><span class="badge bg-orange">62</span></a></li>
+<li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>Total Revenue</span><span class="badge bg-red">AED 1.8M</span></a></li></ul>
 </div>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info">
+<div class="box box-info crm-compact-card">
 <div class="box-header with-border">
 <h3 class="box-title">My Vertical FU</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChartVertFU" style="height:220px;"></canvas>
+<canvas id="pieChartVertFU" style="height:110px; max-height:110px;"></canvas>
 </div>
 <div class="box-footer no-padding">
-<ul class="nav nav-stacked">
-<li><a href="#verticals" data-view="verticals">All Missed <span class="pull-right badge bg-red">1</span></a></li>
-<li><a href="#verticals" data-view="verticals">Last 7 Days <span class="pull-right badge bg-orange">3</span></a></li>
-<li><a href="#verticals" data-view="verticals">Today <span class="pull-right badge bg-skyblue">2</span></a></li>
-<li><a href="#verticals" data-view="verticals">Next 7 Days <span class="pull-right badge bg-blue">4</span></a></li>
-<li><a href="#verticals" data-view="verticals">All Future <span class="pull-right badge bg-green">7</span></a></li>
-</ul>
+<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">1</span></a></li>
+<li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">3</span></a></li>
+<li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">2</span></a></li>
+<li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">4</span></a></li>
+<li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">7</span></a></li></ul>
 </div>
 </div>
 </div>
@@ -525,78 +514,70 @@
 
 <div class="row">
 <div class="col-sm-3">
-<div class="box box-info">
+<div class="box box-info crm-compact-card">
 <div class="box-header with-border">
 <h3 class="box-title">Team Followups</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChart3" style="height:220px;"></canvas>
+<canvas id="pieChart3" style="height:110px; max-height:110px;"></canvas>
 </div>
 <div class="box-footer no-padding">
-<ul class="nav nav-stacked">
-<li><a href="#team-followups" data-view="team-followups">All Missed <span class="pull-right badge bg-red">12</span></a></li>
-<li><a href="#team-followups" data-view="team-followups">Last 7 Days <span class="pull-right badge bg-orange">22</span></a></li>
-<li><a href="#team-followups" data-view="team-followups">Today <span class="pull-right badge bg-skyblue">18</span></a></li>
-<li><a href="#team-followups" data-view="team-followups">Next 7 Days <span class="pull-right badge bg-blue">34</span></a></li>
-<li><a href="#team-followups" data-view="team-followups">All Future <span class="pull-right badge bg-green">48</span></a></li>
-</ul>
+<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">12</span></a></li>
+<li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">22</span></a></li>
+<li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">18</span></a></li>
+<li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">34</span></a></li>
+<li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">48</span></a></li></ul>
 </div>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info">
+<div class="box box-info crm-compact-card">
 <div class="box-header with-border">
 <h3 class="box-title">Team Meetings</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChart4" style="height:220px;"></canvas>
+<canvas id="pieChart4" style="height:110px; max-height:110px;"></canvas>
 </div>
 <div class="box-footer no-padding">
-<ul class="nav nav-stacked">
-<li><a href="#team-meetings" data-view="team-meetings">All Missed <span class="pull-right badge bg-red">6</span></a></li>
-<li><a href="#team-meetings" data-view="team-meetings">Last 7 Days <span class="pull-right badge bg-orange">14</span></a></li>
-<li><a href="#team-meetings" data-view="team-meetings">Today <span class="pull-right badge bg-skyblue">8</span></a></li>
-<li><a href="#team-meetings" data-view="team-meetings">Next 7 Days <span class="pull-right badge bg-blue">18</span></a></li>
-<li><a href="#team-meetings" data-view="team-meetings">All Future <span class="pull-right badge bg-green">24</span></a></li>
-</ul>
+<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">6</span></a></li>
+<li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">14</span></a></li>
+<li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">8</span></a></li>
+<li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">18</span></a></li>
+<li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">24</span></a></li></ul>
 </div>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info">
+<div class="box box-info crm-compact-card">
 <div class="box-header with-border">
 <h3 class="box-title">Team Closures</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChartTeamClosures" style="height:220px;"></canvas>
+<canvas id="pieChartTeamClosures" style="height:110px; max-height:110px;"></canvas>
 </div>
 <div class="box-footer no-padding">
-<ul class="nav nav-stacked">
-<li><a href="#team-leads" data-view="team-leads">This Month <span class="pull-right badge bg-green">14</span></a></li>
-<li><a href="#team-leads" data-view="team-leads">Last Month <span class="pull-right badge bg-blue">21</span></a></li>
-<li><a href="#team-leads" data-view="team-leads">This Year <span class="pull-right badge bg-skyblue">118</span></a></li>
-<li><a href="#team-leads" data-view="team-leads">All Time Closed <span class="pull-right badge bg-orange">240</span></a></li>
-<li><a href="#team-leads" data-view="team-leads">Total Revenue <span class="pull-right badge bg-red">AED 6.4M</span></a></li>
-</ul>
+<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>This Month</span><span class="badge bg-green">14</span></a></li>
+<li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>Last Month</span><span class="badge bg-blue">21</span></a></li>
+<li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>This Year</span><span class="badge bg-skyblue">118</span></a></li>
+<li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>All Time Closed</span><span class="badge bg-orange">240</span></a></li>
+<li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>Total Revenue</span><span class="badge bg-red">AED 6.4M</span></a></li></ul>
 </div>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info">
+<div class="box box-info crm-compact-card">
 <div class="box-header with-border">
 <h3 class="box-title">Team Vertical FU</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChartTeamVertFU" style="height:220px;"></canvas>
+<canvas id="pieChartTeamVertFU" style="height:110px; max-height:110px;"></canvas>
 </div>
 <div class="box-footer no-padding">
-<ul class="nav nav-stacked">
-<li><a href="#team-verticals" data-view="team-verticals">All Missed <span class="pull-right badge bg-red">5</span></a></li>
-<li><a href="#team-verticals" data-view="team-verticals">Last 7 Days <span class="pull-right badge bg-orange">9</span></a></li>
-<li><a href="#team-verticals" data-view="team-verticals">Today <span class="pull-right badge bg-skyblue">6</span></a></li>
-<li><a href="#team-verticals" data-view="team-verticals">Next 7 Days <span class="pull-right badge bg-blue">11</span></a></li>
-<li><a href="#team-verticals" data-view="team-verticals">All Future <span class="pull-right badge bg-green">19</span></a></li>
-</ul>
+<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">5</span></a></li>
+<li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">9</span></a></li>
+<li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">6</span></a></li>
+<li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">11</span></a></li>
+<li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">19</span></a></li></ul>
 </div>
 </div>
 </div>
@@ -920,7 +901,7 @@
 <div class="col-sm-6">
 <div class="form-group">
 <label>Website Source Link</label>
-<input type="text" name="lead_source" class="form-control" placeholder="https://...">
+<input type="text" name="lead_source" class="form-control" placeholder="https:
 </div>
 </div>
 </div>
@@ -1975,7 +1956,7 @@ function loadTeamLevel(levelId, label) {
         var m = members[idx];
         var actionHtml = '';
         if (m.subId && orgHierarchy[m.subId] && orgHierarchy[m.subId].length > 0) {
-            actionHtml = '<button class="btn btn-xs btn-success" onclick="loadTeamLevel('' + m.subId + '', '' + m.name + '')"><i class="fa fa-sitemap"></i> View Team (' + orgHierarchy[m.subId].length + ')</button>';
+            actionHtml = '<button class="btn btn-xs btn-success" onclick="loadTeamLevel(\'' + m.subId + '\', \'' + m.name + '\')"><i class="fa fa-sitemap"></i> View Team (' + orgHierarchy[m.subId].length + ')</button>';
         } else {
             actionHtml = '<span class="text-muted" style="font-size:12px;">Direct Contributor</span>';
         }
@@ -2006,7 +1987,7 @@ function renderTeamBreadcrumbs() {
         if (i === hierarchyCrumbs.length - 1) {
             bc.append('<span style="font-weight:700; color:var(--crm-text);">' + crumb.label + '</span>');
         } else {
-            bc.append('<a onclick="loadTeamLevel('' + crumb.id + '')">' + crumb.label + '</a>');
+            bc.append('<a onclick="loadTeamLevel(\'' + crumb.id + '\')">' + crumb.label + '</a>');
         }
     }
 }
@@ -2265,6 +2246,34 @@ function switchView(viewName) {
 }
 
 $(function() {
+    var curPalette = localStorage.getItem('crm_palette') || 'green';
+    document.documentElement.setAttribute('data-crm-palette', curPalette);
+    if ($('#crmPaletteText').length) {
+        $('#crmPaletteText').text(curPalette === 'red' ? 'Red Mode' : 'Green Mode');
+    }
+    $('#crmPaletteToggle').on('click', function(e) {
+        e.preventDefault();
+        var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
+        var next = cur === 'red' ? 'green' : 'red';
+        document.documentElement.setAttribute('data-crm-palette', next);
+        localStorage.setItem('crm_palette', next);
+        $('#crmPaletteText').text(next === 'red' ? 'Red Mode' : 'Green Mode');
+        if (typeof renderDashboardCharts === 'function') {
+            renderDashboardCharts();
+        }
+    });
+
+    $('#crmThemeToggle').on('click', function(e) {
+        e.preventDefault();
+        var cur = document.documentElement.getAttribute('data-theme') || 'light';
+        var next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('crm_theme', next);
+        if (typeof renderDashboardCharts === 'function') {
+            renderDashboardCharts();
+        }
+    });
+
     checkAuthStatus();
     loadTeamLevel('root');
 
@@ -2296,14 +2305,6 @@ $(function() {
     $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
         e.preventDefault();
         $(this).parent('.crm-nav-item').toggleClass('open');
-    });
-
-    $('#crmThemeToggle').on('click', function(e) {
-        e.preventDefault();
-        var cur = document.documentElement.getAttribute('data-theme') || 'light';
-        var next = cur === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('crm_theme', next);
     });
 
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
