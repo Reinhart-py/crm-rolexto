@@ -234,7 +234,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-3 col-sm-6 col-xs-12">
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
@@ -278,7 +278,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-3 col-sm-6 col-xs-12">
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
@@ -321,6 +321,94 @@
                 </ul>
             </div>
         </div>
+
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>My Closures</span>
+                    </h3>
+                    <span class="crm-badge-val">Active</span>
+                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads" class="crm-stat-item">
+                            <span>Active Leads</span>
+                            <span class="crm-badge-val"><?php echo !empty($dashboard_count['count_leads']) ? $dashboard_count['count_leads'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Verticals</span>
+                            <span class="crm-badge-val"><?php echo !empty($dashboard_count['count_vetricals']) ? $dashboard_count['count_vetricals'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-stat-item">
+                            <span>Follow-ups Today</span>
+                            <span class="crm-badge-val urgent"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-stat-item">
+                            <span>Meetings Today</span>
+                            <span class="crm-badge-val urgent"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads" class="crm-stat-item">
+                            <span>All My Leads</span>
+                            <span class="crm-badge-val">View</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
+                        <span>My Vertical FU</span>
+                    </h3>
+                    <span class="crm-badge-val"><?php echo !empty($dashboard_count['count_vetricals']) ? $dashboard_count['count_vetricals'] : 0; ?> Total</span>
+                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Total Verticals</span>
+                            <span class="crm-badge-val"><?php echo !empty($dashboard_count['count_vetricals']) ? $dashboard_count['count_vetricals'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=1" class="crm-stat-item">
+                            <span>Missed</span>
+                            <span class="crm-badge-val urgent"><?php echo !empty($dashboard_f['total_missed']) ? $dashboard_f['total_missed'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-stat-item">
+                            <span>Today</span>
+                            <span class="crm-badge-val urgent"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=4" class="crm-stat-item">
+                            <span>Next 7 Days</span>
+                            <span class="crm-badge-val"><?php echo !empty($dashboard_f['total_nextweek']) ? $dashboard_f['total_nextweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Manage Verticals</span>
+                            <span class="crm-badge-val">Manage</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="crm-section-header">
@@ -331,7 +419,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-3 col-sm-6 col-xs-12">
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
@@ -375,7 +463,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-3 col-sm-6 col-xs-12">
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
@@ -413,6 +501,94 @@
                         <a href="<?php echo base_url(); ?>manager/team/meetings?type=5" class="crm-stat-item">
                             <span>All Future</span>
                             <span class="crm-badge-val"><?php echo !empty($dashboard_Tm['total_future']) ? $dashboard_Tm['total_future'] : 0; ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        <span>Team Closures</span>
+                    </h3>
+                    <span class="crm-badge-val">Team</span>
+                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-stat-item">
+                            <span>Team Leads</span>
+                            <span class="crm-badge-val"><?php echo !empty($dashboard_Tcount['count_leads']) ? $dashboard_Tcount['count_leads'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team" class="crm-stat-item">
+                            <span>Team Members</span>
+                            <span class="crm-badge-val"><?php echo !empty($dashboard_Tcount['count_user']) ? $dashboard_Tcount['count_user'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=3" class="crm-stat-item">
+                            <span>Follow-ups Today</span>
+                            <span class="crm-badge-val urgent"><?php echo !empty($dashboard_Tf['total_today']) ? $dashboard_Tf['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/meetings?type=3" class="crm-stat-item">
+                            <span>Meetings Today</span>
+                            <span class="crm-badge-val urgent"><?php echo !empty($dashboard_Tm['total_today']) ? $dashboard_Tm['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-stat-item">
+                            <span>All Team Leads</span>
+                            <span class="crm-badge-val">View</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
+                        <span>Team Vertical FU</span>
+                    </h3>
+                    <span class="crm-badge-val"><?php echo !empty($dashboard_Tcount['count_vetricals']) ? $dashboard_Tcount['count_vetricals'] : 0; ?> Total</span>
+                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Total Verticals</span>
+                            <span class="crm-badge-val"><?php echo !empty($dashboard_Tcount['count_vetricals']) ? $dashboard_Tcount['count_vetricals'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=1" class="crm-stat-item">
+                            <span>Missed</span>
+                            <span class="crm-badge-val urgent"><?php echo !empty($dashboard_Tf['total_missed']) ? $dashboard_Tf['total_missed'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=3" class="crm-stat-item">
+                            <span>Today</span>
+                            <span class="crm-badge-val urgent"><?php echo !empty($dashboard_Tf['total_today']) ? $dashboard_Tf['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=4" class="crm-stat-item">
+                            <span>Next 7 Days</span>
+                            <span class="crm-badge-val"><?php echo !empty($dashboard_Tf['total_nextweek']) ? $dashboard_Tf['total_nextweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Manage Verticals</span>
+                            <span class="crm-badge-val">Manage</span>
                         </a>
                     </li>
                 </ul>
