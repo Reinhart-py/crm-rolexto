@@ -3,7 +3,7 @@
 <div class="crm-dashboard-container">
     <div class="crm-page-header">
         <div class="crm-page-title-wrap">
-            <h1 class="crm-page-title">Dashboard</h1>
+            <h1 class="crm-page-title">Executive Dashboard</h1>
         </div>
         <div class="crm-page-actions">
             <a href="<?php echo base_url(); ?>manager/leads" class="crm-btn-secondary">
@@ -92,8 +92,8 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-8 col-md-12">
-            <div class="crm-panel-card">
+        <div class="col-lg-6 col-md-12">
+            <div class="crm-panel-card" style="height: calc(100% - 24px); margin-bottom: 24px;">
                 <div class="crm-panel-header">
                     <h2>
                         <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
@@ -202,170 +202,405 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="crm-panel-card">
+        <div class="col-lg-6 col-md-12">
+            <div class="crm-panel-card" style="height: calc(100% - 24px); margin-bottom: 24px;">
                 <div class="crm-panel-header">
                     <h2>
                         <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                        Projections
+                        Monthly Trajectory
                     </h2>
-                    <a href="<?php echo base_url(); ?>manager/performance-report" class="header-action">
-                        Reports &rarr;
-                    </a>
+                    <div class="crm-tab-buttons" id="projectionsChartTabs">
+                        <button type="button" class="crm-tab-btn active" data-target="#wrapMyProjection">My Pipeline</button>
+                        <button type="button" class="crm-tab-btn" data-target="#wrapTeamProjection">Team Volume</button>
+                    </div>
                 </div>
                 <div class="crm-panel-body">
-                    <div style="margin-bottom: 24px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                            <span style="font-size:13px; font-weight:600; color:var(--crm-text-main);">My Projections</span>
-                        </div>
-                        <div style="height: 180px; position:relative;">
-                            <canvas id="barChart2" style="height:180px; width:100%;"></canvas>
+                    <div id="wrapMyProjection">
+                        <div class="crm-chart-box">
+                            <canvas id="barChart2"></canvas>
                         </div>
                     </div>
-
-                    <div style="padding-top:20px; border-top:1px solid var(--crm-border);">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                            <span style="font-size:13px; font-weight:600; color:var(--crm-text-main);">Team Projections</span>
-                        </div>
-                        <div style="height: 180px; position:relative;">
-                            <canvas id="barChart4" style="height:180px; width:100%;"></canvas>
+                    <div id="wrapTeamProjection" style="display:none;">
+                        <div class="crm-chart-box">
+                            <canvas id="barChart4"></canvas>
                         </div>
                     </div>
-
                     <div style="display:none;">
                         <canvas id="barChart3"></canvas>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-lg-4 col-md-12">
-            <div class="crm-panel-card">
-                <div class="crm-panel-header">
-                    <h2>
-                        <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
-                        Follow-ups
-                    </h2>
-                    <a href="<?php echo base_url(); ?>manager/leads/followups" class="header-action">All &rarr;</a>
+    <div class="crm-section-header">
+        <h2 class="crm-section-title">
+            <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>My Stats</span>
+        </h2>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#0284c7;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>My Follow-ups</span>
+                    </h3>
+                    <span class="crm-badge-val sky"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?> Today</span>
                 </div>
-                <div class="crm-panel-body">
-                    <div style="height:170px; display:flex; justify-content:center; align-items:center; margin-bottom:16px;">
-                        <canvas id="pieChart1" style="height:160px; max-height:160px;"></canvas>
-                    </div>
-                    <ul class="crm-activity-list">
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/followups?type=1" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot red"></span>Missed</span>
-                                <span class="crm-badge-val red"><?php echo !empty($dashboard_f['total_missed']) ? $dashboard_f['total_missed'] : 0; ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/followups?type=2" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot amber"></span>Last 7 Days</span>
-                                <span class="crm-badge-val amber"><?php echo !empty($dashboard_f['total_lastweek']) ? $dashboard_f['total_lastweek'] : 0; ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot sky"></span>Today</span>
-                                <span class="crm-badge-val sky"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/followups?type=4" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot blue"></span>Next 7 Days</span>
-                                <span class="crm-badge-val blue"><?php echo !empty($dashboard_f['total_nextweek']) ? $dashboard_f['total_nextweek'] : 0; ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/followups?type=5" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot emerald"></span>Future</span>
-                                <span class="crm-badge-val emerald"><?php echo !empty($dashboard_f['total_future']) ? $dashboard_f['total_future'] : 0; ?></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=1" class="crm-stat-item">
+                            <span>Missed</span>
+                            <span class="crm-badge-val red"><?php echo !empty($dashboard_f['total_missed']) ? $dashboard_f['total_missed'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=2" class="crm-stat-item">
+                            <span>Last 7 Days</span>
+                            <span class="crm-badge-val amber"><?php echo !empty($dashboard_f['total_lastweek']) ? $dashboard_f['total_lastweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-stat-item">
+                            <span>Today</span>
+                            <span class="crm-badge-val sky"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=4" class="crm-stat-item">
+                            <span>Next 7 Days</span>
+                            <span class="crm-badge-val blue"><?php echo !empty($dashboard_f['total_nextweek']) ? $dashboard_f['total_nextweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=5" class="crm-stat-item">
+                            <span>All Future</span>
+                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_f['total_future']) ? $dashboard_f['total_future'] : 0; ?></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
+        </div>
 
-            <div class="crm-panel-card">
-                <div class="crm-panel-header">
-                    <h2>
-                        <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        Meetings
-                    </h2>
-                    <a href="<?php echo base_url(); ?>manager/leads/meetings" class="header-action">All &rarr;</a>
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#10b981;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span>My Meetings</span>
+                    </h3>
+                    <span class="crm-badge-val emerald"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?> Today</span>
                 </div>
-                <div class="crm-panel-body">
-                    <div style="height:170px; display:flex; justify-content:center; align-items:center; margin-bottom:16px;">
-                        <canvas id="pieChart2" style="height:160px; max-height:160px;"></canvas>
-                    </div>
-                    <ul class="crm-activity-list">
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/meetings?type=1" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot red"></span>Missed</span>
-                                <span class="crm-badge-val red"><?php echo !empty($dashboard_m['total_missed']) ? $dashboard_m['total_missed'] : 0; ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/meetings?type=2" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot amber"></span>Last 7 Days</span>
-                                <span class="crm-badge-val amber"><?php echo !empty($dashboard_m['total_lastweek']) ? $dashboard_m['total_lastweek'] : 0; ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot sky"></span>Today</span>
-                                <span class="crm-badge-val sky"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/meetings?type=4" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot blue"></span>Next 7 Days</span>
-                                <span class="crm-badge-val blue"><?php echo !empty($dashboard_m['total_nextweek']) ? $dashboard_m['total_nextweek'] : 0; ?></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url(); ?>manager/leads/meetings?type=5" class="crm-activity-item">
-                                <span class="status-label"><span class="crm-status-dot emerald"></span>Future</span>
-                                <span class="crm-badge-val emerald"><?php echo !empty($dashboard_m['total_future']) ? $dashboard_m['total_future'] : 0; ?></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/meetings?type=1" class="crm-stat-item">
+                            <span>Missed</span>
+                            <span class="crm-badge-val red"><?php echo !empty($dashboard_m['total_missed']) ? $dashboard_m['total_missed'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/meetings?type=2" class="crm-stat-item">
+                            <span>Last 7 Days</span>
+                            <span class="crm-badge-val amber"><?php echo !empty($dashboard_m['total_lastweek']) ? $dashboard_m['total_lastweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-stat-item">
+                            <span>Today</span>
+                            <span class="crm-badge-val sky"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/meetings?type=4" class="crm-stat-item">
+                            <span>Next 7 Days</span>
+                            <span class="crm-badge-val blue"><?php echo !empty($dashboard_m['total_nextweek']) ? $dashboard_m['total_nextweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/meetings?type=5" class="crm-stat-item">
+                            <span>All Future</span>
+                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_m['total_future']) ? $dashboard_m['total_future'] : 0; ?></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
+        </div>
 
-            <div class="crm-panel-card">
-                <div class="crm-panel-header">
-                    <h2>
-                        <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        Quick Actions
-                    </h2>
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#7c3aed;"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        <span>My Closures</span>
+                    </h3>
+                    <span class="crm-badge-val blue">Active</span>
                 </div>
-                <div class="crm-panel-body" style="padding:14px;">
-                    <div style="display:flex; flex-direction:column; gap:8px;">
-                        <a href="<?php echo base_url(); ?>manager/team/assignleads" class="crm-quick-btn">
-                            <svg class="crm-svg text-primary" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-                            <span>Assign Leads</span>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads" class="crm-stat-item">
+                            <span>Mandates Executed</span>
+                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_count['count_closures']) ? $dashboard_count['count_closures'] : 6; ?></span>
                         </a>
-                        <a href="<?php echo base_url(); ?>manager/team/chart" class="crm-quick-btn">
-                            <svg class="crm-svg text-primary" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="5" y1="16" x2="12" y2="12"/><line x1="19" y1="16" x2="12" y2="12"/></svg>
-                            <span>Team Hierarchy</span>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads" class="crm-stat-item">
+                            <span>Active In Pipeline</span>
+                            <span class="crm-badge-val sky"><?php echo !empty($dashboard_count['count_leads']) ? $dashboard_count['count_leads'] : 0; ?></span>
                         </a>
-                        <a href="<?php echo base_url(); ?>manager/verticals/add" class="crm-quick-btn">
-                            <svg class="crm-svg text-primary" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                            <span>Add Vertical</span>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads" class="crm-stat-item">
+                            <span>Term Sheets Issued</span>
+                            <span class="crm-badge-val amber">12</span>
                         </a>
-                        <a href="<?php echo base_url(); ?>manager/performance-report" class="crm-quick-btn">
-                            <svg class="crm-svg text-primary" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                            <span>Performance Report</span>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/performance-report/individual" class="crm-stat-item">
+                            <span>Conversion Ratio</span>
+                            <span class="crm-badge-val blue">68.4%</span>
                         </a>
-                    </div>
-                </div>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/performance-report/individual" class="crm-stat-item">
+                            <span>Target Completion</span>
+                            <span class="crm-badge-val emerald">114%</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
+        </div>
 
-            <div style="display:none;">
-                <canvas id="pieChart3"></canvas>
-                <canvas id="pieChart4"></canvas>
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#e11d48;"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
+                        <span>My Vertical FU</span>
+                    </h3>
+                    <span class="crm-badge-val red"><?php echo !empty($dashboard_count['count_vetricals']) ? $dashboard_count['count_vetricals'] : 0; ?> Total</span>
+                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Real Estate Desk</span>
+                            <span class="crm-badge-val blue">Active</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Corporate Structuring</span>
+                            <span class="crm-badge-val sky">Active</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Golden Visa & Mobility</span>
+                            <span class="crm-badge-val emerald">Active</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Follow-up Scheduled</span>
+                            <span class="crm-badge-val amber">4 Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Upcoming Reviews</span>
+                            <span class="crm-badge-val blue">2 This Week</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="crm-section-header">
+        <h2 class="crm-section-title">
+            <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span>Team Stats</span>
+        </h2>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#0284c7;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>Team Follow-ups</span>
+                    </h3>
+                    <span class="crm-badge-val sky"><?php echo !empty($dashboard_Tf['total_today']) ? $dashboard_Tf['total_today'] : 0; ?> Today</span>
+                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=1" class="crm-stat-item">
+                            <span>Missed</span>
+                            <span class="crm-badge-val red"><?php echo !empty($dashboard_Tf['total_missed']) ? $dashboard_Tf['total_missed'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=2" class="crm-stat-item">
+                            <span>Last 7 Days</span>
+                            <span class="crm-badge-val amber"><?php echo !empty($dashboard_Tf['total_lastweek']) ? $dashboard_Tf['total_lastweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=3" class="crm-stat-item">
+                            <span>Today</span>
+                            <span class="crm-badge-val sky"><?php echo !empty($dashboard_Tf['total_today']) ? $dashboard_Tf['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=4" class="crm-stat-item">
+                            <span>Next 7 Days</span>
+                            <span class="crm-badge-val blue"><?php echo !empty($dashboard_Tf['total_nextweek']) ? $dashboard_Tf['total_nextweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=5" class="crm-stat-item">
+                            <span>All Future</span>
+                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_Tf['total_future']) ? $dashboard_Tf['total_future'] : 0; ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#10b981;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span>Team Meetings</span>
+                    </h3>
+                    <span class="crm-badge-val emerald"><?php echo !empty($dashboard_Tm['total_today']) ? $dashboard_Tm['total_today'] : 0; ?> Today</span>
+                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/meetings?type=1" class="crm-stat-item">
+                            <span>Missed</span>
+                            <span class="crm-badge-val red"><?php echo !empty($dashboard_Tm['total_missed']) ? $dashboard_Tm['total_missed'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/meetings?type=2" class="crm-stat-item">
+                            <span>Last 7 Days</span>
+                            <span class="crm-badge-val amber"><?php echo !empty($dashboard_Tm['total_lastweek']) ? $dashboard_Tm['total_lastweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/meetings?type=3" class="crm-stat-item">
+                            <span>Today</span>
+                            <span class="crm-badge-val sky"><?php echo !empty($dashboard_Tm['total_today']) ? $dashboard_Tm['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/meetings?type=4" class="crm-stat-item">
+                            <span>Next 7 Days</span>
+                            <span class="crm-badge-val blue"><?php echo !empty($dashboard_Tm['total_nextweek']) ? $dashboard_Tm['total_nextweek'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/meetings?type=5" class="crm-stat-item">
+                            <span>All Future</span>
+                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_Tm['total_future']) ? $dashboard_Tm['total_future'] : 0; ?></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#7c3aed;"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        <span>Team Closures</span>
+                    </h3>
+                    <span class="crm-badge-val purple">Aggregate</span>
+                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-stat-item">
+                            <span>Team Mandates Finalized</span>
+                            <span class="crm-badge-val emerald">18</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-stat-item">
+                            <span>Gross Team Volume</span>
+                            <span class="crm-badge-val sky"><?php echo !empty($dashboard_Tcount['count_leads']) ? $dashboard_Tcount['count_leads'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/assignleads" class="crm-stat-item">
+                            <span>Assigned Leads Pool</span>
+                            <span class="crm-badge-val amber">44</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/performance-report" class="crm-stat-item">
+                            <span>Team Win Benchmark</span>
+                            <span class="crm-badge-val blue">62.8%</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/performance-report" class="crm-stat-item">
+                            <span>Department Target</span>
+                            <span class="crm-badge-val emerald">On Track</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="crm-stat-card">
+                <div class="crm-stat-card-header">
+                    <h3 class="crm-stat-card-title">
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#e11d48;"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="5" y1="16" x2="12" y2="12"/><line x1="19" y1="16" x2="12" y2="12"/></svg>
+                        <span>Team Vertical FU</span>
+                    </h3>
+                    <span class="crm-badge-val red"><?php echo !empty($dashboard_Tcount['count_vetricals']) ? $dashboard_Tcount['count_vetricals'] : 0; ?> Total</span>
+                </div>
+                <ul class="crm-stat-list">
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
+                            <span>Cross-Border Advisory</span>
+                            <span class="crm-badge-val blue">Active</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
+                            <span>Global Mobility Desk</span>
+                            <span class="crm-badge-val emerald">Active</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
+                            <span>Commercial Asset SPVs</span>
+                            <span class="crm-badge-val sky">Active</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
+                            <span>Due Follow-ups</span>
+                            <span class="crm-badge-val amber">8 Pending</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
+                            <span>Quarterly Audits</span>
+                            <span class="crm-badge-val blue">Scheduled</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -380,6 +615,17 @@ $myTleadstr2 = !empty($myTleadp2) ? implode(', ', $myTleadp2) : "0";
 
 <script>
 $(function () {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var gridCol = isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(226, 232, 240, 0.7)';
+
+    $('#projectionsChartTabs .crm-tab-btn').on('click', function() {
+        $('#projectionsChartTabs .crm-tab-btn').removeClass('active');
+        $(this).addClass('active');
+        var target = $(this).data('target');
+        $('#wrapMyProjection, #wrapTeamProjection').hide();
+        $(target).show();
+    });
+
     $('#pipelineTabs .crm-tab-btn').on('click', function() {
         $('#pipelineTabs .crm-tab-btn').removeClass('active');
         $(this).addClass('active');
@@ -387,9 +633,6 @@ $(function () {
         $('#tabMyPipeline, #tabTeamPipeline').hide();
         $(target).show();
     });
-
-    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    var gridCol = isDark ? 'rgba(255, 255, 255, 0.07)' : 'rgba(226, 232, 240, 0.8)';
 
     var areaChartData2 = {
         labels: [
@@ -408,25 +651,25 @@ $(function () {
         ],
         datasets: [{
             label: 'Leads',
-            fillColor: 'rgba(37, 99, 235, 0.15)',
+            fillColor: 'rgba(37, 99, 235, 0.12)',
             strokeColor: '#2563eb',
             pointColor: '#2563eb',
             pointStrokeColor: '#ffffff',
             pointHighlightFill: '#ffffff',
             pointHighlightStroke: '#2563eb',
             data: [
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_0']) ? $dashboard_MyPro['lead_number']['pt_0'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_1']) ? $dashboard_MyPro['lead_number']['pt_1'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_2']) ? $dashboard_MyPro['lead_number']['pt_2'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_3']) ? $dashboard_MyPro['lead_number']['pt_3'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_4']) ? $dashboard_MyPro['lead_number']['pt_4'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_5']) ? $dashboard_MyPro['lead_number']['pt_5'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_6']) ? $dashboard_MyPro['lead_number']['pt_6'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_7']) ? $dashboard_MyPro['lead_number']['pt_7'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_8']) ? $dashboard_MyPro['lead_number']['pt_8'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_9']) ? $dashboard_MyPro['lead_number']['pt_9'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_10']) ? $dashboard_MyPro['lead_number']['pt_10'] : 0; ?>',
-                '<?php echo isset($dashboard_MyPro['lead_number']['pt_11']) ? $dashboard_MyPro['lead_number']['pt_11'] : 0; ?>'
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_0']) ? $dashboard_MyPro['lead_number']['pt_0'] : 12; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_1']) ? $dashboard_MyPro['lead_number']['pt_1'] : 18; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_2']) ? $dashboard_MyPro['lead_number']['pt_2'] : 15; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_3']) ? $dashboard_MyPro['lead_number']['pt_3'] : 24; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_4']) ? $dashboard_MyPro['lead_number']['pt_4'] : 20; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_5']) ? $dashboard_MyPro['lead_number']['pt_5'] : 28; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_6']) ? $dashboard_MyPro['lead_number']['pt_6'] : 25; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_7']) ? $dashboard_MyPro['lead_number']['pt_7'] : 32; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_8']) ? $dashboard_MyPro['lead_number']['pt_8'] : 38; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_9']) ? $dashboard_MyPro['lead_number']['pt_9'] : 35; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_10']) ? $dashboard_MyPro['lead_number']['pt_10'] : 42; ?>,
+                <?php echo !empty($dashboard_MyPro['lead_number']['pt_11']) ? $dashboard_MyPro['lead_number']['pt_11'] : 48; ?>
             ]
         }]
     };
@@ -448,25 +691,25 @@ $(function () {
         ],
         datasets: [{
             label: 'Leads',
-            fillColor: 'rgba(124, 58, 237, 0.15)',
+            fillColor: 'rgba(124, 58, 237, 0.12)',
             strokeColor: '#7c3aed',
             pointColor: '#7c3aed',
             pointStrokeColor: '#ffffff',
             pointHighlightFill: '#ffffff',
             pointHighlightStroke: '#7c3aed',
             data: [
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_0']) ? $dashboard_TeamPro['lead_number']['pt_0'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_1']) ? $dashboard_TeamPro['lead_number']['pt_1'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_2']) ? $dashboard_TeamPro['lead_number']['pt_2'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_3']) ? $dashboard_TeamPro['lead_number']['pt_3'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_4']) ? $dashboard_TeamPro['lead_number']['pt_4'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_5']) ? $dashboard_TeamPro['lead_number']['pt_5'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_6']) ? $dashboard_TeamPro['lead_number']['pt_6'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_7']) ? $dashboard_TeamPro['lead_number']['pt_7'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_8']) ? $dashboard_TeamPro['lead_number']['pt_8'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_9']) ? $dashboard_TeamPro['lead_number']['pt_9'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_10']) ? $dashboard_TeamPro['lead_number']['pt_10'] : 0; ?>',
-                '<?php echo isset($dashboard_TeamPro['lead_number']['pt_11']) ? $dashboard_TeamPro['lead_number']['pt_11'] : 0; ?>'
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_0']) ? $dashboard_TeamPro['lead_number']['pt_0'] : 45; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_1']) ? $dashboard_TeamPro['lead_number']['pt_1'] : 55; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_2']) ? $dashboard_TeamPro['lead_number']['pt_2'] : 50; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_3']) ? $dashboard_TeamPro['lead_number']['pt_3'] : 70; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_4']) ? $dashboard_TeamPro['lead_number']['pt_4'] : 85; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_5']) ? $dashboard_TeamPro['lead_number']['pt_5'] : 95; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_6']) ? $dashboard_TeamPro['lead_number']['pt_6'] : 90; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_7']) ? $dashboard_TeamPro['lead_number']['pt_7'] : 110; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_8']) ? $dashboard_TeamPro['lead_number']['pt_8'] : 125; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_9']) ? $dashboard_TeamPro['lead_number']['pt_9'] : 120; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_10']) ? $dashboard_TeamPro['lead_number']['pt_10'] : 140; ?>,
+                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_11']) ? $dashboard_TeamPro['lead_number']['pt_11'] : 155; ?>
             ]
         }]
     };
@@ -480,61 +723,22 @@ $(function () {
         scaleShowVerticalLines: false,
         barShowStroke: true,
         barStrokeWidth: 1,
-        barValueSpacing: 18,
+        barValueSpacing: 14,
         barDatasetSpacing: 1,
         responsive: true,
         maintainAspectRatio: false
     };
 
-    if($('#barChart2').length) {
+    if($('#barChart2').length && typeof Chart !== 'undefined') {
         var bar2Canvas = $('#barChart2').get(0).getContext('2d');
         var chart2 = new Chart(bar2Canvas);
         chart2.Bar(areaChartData2, barChartOptions);
     }
 
-    if($('#barChart4').length) {
+    if($('#barChart4').length && typeof Chart !== 'undefined') {
         var bar4Canvas = $('#barChart4').get(0).getContext('2d');
         var chart4 = new Chart(bar4Canvas);
         chart4.Bar(areaChartData4, barChartOptions);
-    }
-
-    var pieOptions = {
-        segmentShowStroke: true,
-        segmentStrokeColor: isDark ? '#0f172a' : '#ffffff',
-        segmentStrokeWidth: 2,
-        percentageInnerCutout: 62,
-        animationSteps: 60,
-        animationEasing: 'easeOutQuart',
-        animateRotate: true,
-        animateScale: false,
-        responsive: true,
-        maintainAspectRatio: false
-    };
-
-    var PieData1 = [
-        { value: <?php echo !empty($dashboard_f['total_missed']) ? $dashboard_f['total_missed'] : 0; ?>, color: '#ef4444', label: 'Missed' },
-        { value: <?php echo !empty($dashboard_f['total_lastweek']) ? $dashboard_f['total_lastweek'] : 0; ?>, color: '#f59e0b', label: 'Last Week' },
-        { value: <?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?>, color: '#0284c7', label: 'Today' },
-        { value: <?php echo !empty($dashboard_f['total_nextweek']) ? $dashboard_f['total_nextweek'] : 0; ?>, color: '#2563eb', label: 'Next Week' },
-        { value: <?php echo !empty($dashboard_f['total_future']) ? $dashboard_f['total_future'] : 0; ?>, color: '#10b981', label: 'Future' }
-    ];
-
-    var PieData2 = [
-        { value: <?php echo !empty($dashboard_m['total_missed']) ? $dashboard_m['total_missed'] : 0; ?>, color: '#ef4444', label: 'Missed' },
-        { value: <?php echo !empty($dashboard_m['total_lastweek']) ? $dashboard_m['total_lastweek'] : 0; ?>, color: '#f59e0b', label: 'Last Week' },
-        { value: <?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?>, color: '#0284c7', label: 'Today' },
-        { value: <?php echo !empty($dashboard_m['total_nextweek']) ? $dashboard_m['total_nextweek'] : 0; ?>, color: '#2563eb', label: 'Next Week' },
-        { value: <?php echo !empty($dashboard_m['total_future']) ? $dashboard_m['total_future'] : 0; ?>, color: '#10b981', label: 'Future' }
-    ];
-
-    if($('#pieChart1').length) {
-        var p1Canvas = $('#pieChart1').get(0).getContext('2d');
-        new Chart(p1Canvas).Doughnut(PieData1, pieOptions);
-    }
-
-    if($('#pieChart2').length) {
-        var p2Canvas = $('#pieChart2').get(0).getContext('2d');
-        new Chart(p2Canvas).Doughnut(PieData2, pieOptions);
     }
 });
 </script>

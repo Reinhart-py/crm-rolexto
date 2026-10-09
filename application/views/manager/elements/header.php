@@ -67,13 +67,16 @@
 <div class="wrapper">
 
 <aside class="crm-sidebar" id="crmSidebar">
-  <a href="<?php echo base_url(); ?>manager/dashboard" class="crm-sidebar-brand">
-    <img src="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" alt="Rolexto" style="height:32px; width:32px; border-radius:6px;">
-    <div class="brand-text">
-      <span class="brand-title">Rolexto CRM</span>
-      <span class="brand-badge">Enterprise</span>
-    </div>
-  </a>
+  <div style="display:flex; align-items:center; justify-content:space-between; width:100%; border-bottom:1px solid var(--crm-sidebar-border); background-color:#060911;">
+    <a href="<?php echo base_url(); ?>manager/dashboard" class="crm-sidebar-brand" style="border-bottom:none; flex:1;">
+      <img src="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" alt="Rolexto" style="height:32px; width:32px; border-radius:6px;">
+      <div class="brand-text">
+        <span class="brand-title">Rolexto CRM</span>
+        <span class="brand-badge">Enterprise</span>
+      </div>
+    </a>
+    <button type="button" class="crm-sidebar-close-btn hidden-md hidden-lg" id="crmSidebarClose" aria-label="Close Sidebar">&times;</button>
+  </div>
 
   <div class="crm-sidebar-nav">
     <?php  
@@ -242,6 +245,7 @@
     </a>
   </div>
 </aside>
+<div class="crm-sidebar-backdrop" id="crmSidebarBackdrop"></div>
 
 <div class="crm-app-shell">
   <header class="crm-topbar">
