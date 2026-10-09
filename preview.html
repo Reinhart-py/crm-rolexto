@@ -1,5 +1,69 @@
-<?php require_once(APPPATH."views/manager/elements/header.php"); ?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Manager Dashboard - Preview</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="assets/dist/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/dist/css/ionicons.min.css">
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="assets/dist/css/slimmenu.min.css">
 <style>
+.munk_menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    background: #222d32;
+}
+.munk_menu > li {
+    position: relative;
+}
+.munk_menu > li > a {
+    display: block;
+    padding: 14px 16px;
+    color: #b8c7ce;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+.munk_menu > li > a:hover, .munk_menu > li.active > a {
+    background: #1e282c;
+    color: #ffffff;
+}
+.munk_menu > li > ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #2c3b41;
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+    min-width: 200px;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.munk_menu > li:hover > ul {
+    display: block;
+}
+.munk_menu > li > ul > li > a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    color: #8aa4af;
+    text-decoration: none;
+    font-size: 13px;
+}
+.munk_menu > li > ul > li > a:hover {
+    background: #1e282c;
+    color: #ffffff;
+}
 .crm-dashboard-container {
     padding: 16px 0 32px 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -329,6 +393,81 @@
     }
 }
 </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+<header class="main-header"> 
+<div class="container" style="padding-top:10px; padding-bottom:10px;">
+<div class="row align-items-center">
+<div class="col-xs-12 col-md-4 text-left">
+<span style="font-size:22px; font-weight:800; color:#ea580c; letter-spacing:1px;">ROLEXTO CRM</span>
+</div>
+<div class="col-xs-12 col-md-8 text-right">
+<p style="margin:0; font-size:12px; color:#64748b;">hr@rolextogroup.com | +971 58 563 7737 | <strong>Rolexto Admin</strong></p>
+</div>
+</div>
+</div>
+<nav class="navbar navbar-static-top" style="margin:0;"> 
+<div class="container">
+<ul class="munk_menu">
+<li class="active"> <a href="preview.html"> <i class="fa fa-tachometer"></i> <span>Dashboard</span> </a> </li>
+<li> <a href="#"><i class="fa fa-list"></i> <span>Leads</span> </a>
+<ul>
+<li><a href="#"><i class="fa fa-plus"></i>Add Lead</a></li>
+<li><a href="#"><i class="fa fa-list"></i>All Leads</a></li>
+<li><a href="#"><i class="fa fa-clock-o"></i>Follow-ups</a></li>
+<li><a href="#"><i class="fa fa-calendar"></i>Meetings</a></li>
+</ul>
+</li>
+<li> <a href="#"><i class="fa fa-users"></i> <span>Team</span> </a>
+<ul>
+<li><a href="#"><i class="fa fa-user"></i>Team Members</a></li>
+<li><a href="#"><i class="fa fa-sitemap"></i>Hierarchy Chart</a></li>
+<li><a href="#"><i class="fa fa-list"></i>Team Leads</a></li>
+<li><a href="#"><i class="fa fa-share-alt"></i>Assigned Leads</a></li>
+<li><a href="#"><i class="fa fa-clock-o"></i>Team Follow-ups</a></li>
+<li><a href="#"><i class="fa fa-calendar"></i>Team Meetings</a></li>
+<li><a href="#"><i class="fa fa-calendar-check-o"></i>Assigned Meetings</a></li>
+</ul>
+</li>
+<li> <a href="#"><i class="fa fa-cubes"></i> <span>Verticals</span> </a>
+<ul>
+<li><a href="#"><i class="fa fa-plus"></i>Add Vertical</a></li>
+<li><a href="#"><i class="fa fa-list"></i>My Verticals</a></li>
+<li><a href="#"><i class="fa fa-users"></i>Team Verticals</a></li>
+</ul>
+</li>
+<li> <a href="#"><i class="fa fa-line-chart"></i> <span>Reports</span> </a>
+<ul>
+<li><a href="#"><i class="fa fa-bar-chart"></i>Department Performance</a></li>
+<li><a href="#"><i class="fa fa-user"></i>Individual Performance</a></li>
+<li><a href="#"><i class="fa fa-users"></i>Users Report</a></li>
+<li><a href="#"><i class="fa fa-cubes"></i>Verticals Report</a></li>
+</ul>
+</li>
+<li> <a href="#"><i class="fa fa-user-plus"></i> <span>Users</span> </a>
+<ul>
+<li><a href="#"><i class="fa fa-plus"></i>Add User</a></li>
+<li><a href="#"><i class="fa fa-list"></i>View Users</a></li>
+</ul>
+</li>
+<li> <a href="#"><i class="fa fa-cogs"></i> <span>Settings</span> </a>
+<ul>        
+<li><a href="#"><i class="fa fa-shield"></i>Roles</a></li>
+<li><a href="#"><i class="fa fa-tags"></i>CRM Terms / Categories</a></li>
+</ul>
+</li>
+<li> <a href="#"> <i class="fa fa-user"></i><span>Profile</span></a>
+<ul>        
+<li><a href="#"><i class="fa fa-eye"></i>View Profile</a></li>
+<li><a href="#"><i class="fa fa-key"></i>Change Password</a></li>
+</ul>
+</li>
+<li> <a href="#"> <i class="fa fa-power-off"></i> <span>Logout</span></a> </li>
+</ul>
+</div>
+</nav>
+</header>
 <div class="content-wrapper container">
 <div class="crm-dashboard-container">
 <div class="crm-dashboard-header">
@@ -340,59 +479,53 @@
 <span>Live Database Synced</span>
 </div>
 </div>
-<?php if(!empty($dashboard_Tcount['count_today_birth']) && $dashboard_Tcount['count_today_birth'] > 0){ ?>
-<div class="crm-birthday-banner">
-<i class="fa fa-birthday-cake"></i>
-<span>Team Celebration: Today is <?php echo $dashboard_Tcount['count_today_birth']; ?> team member birthday!</span>
-</div>
-<?php } ?>
 <div class="crm-kpi-grid">
-<a href="<?php echo base_url(); ?>manager/leads" class="crm-kpi-card">
+<a href="#" class="crm-kpi-card">
 <div class="crm-kpi-header">
 <span class="crm-kpi-label">My Leads</span>
 <div class="crm-kpi-icon" style="background:#eff6ff; color:#3b82f6;"><i class="fa fa-database"></i></div>
 </div>
-<div class="crm-kpi-value"><?php echo !empty($dashboard_count['count_leads']) ? $dashboard_count['count_leads'] : 0; ?></div>
+<div class="crm-kpi-value">48</div>
 <span class="crm-kpi-link">View Leads <i class="fa fa-arrow-right"></i></span>
 </a>
-<a href="<?php echo base_url(); ?>manager/team/leads" class="crm-kpi-card">
+<a href="#" class="crm-kpi-card">
 <div class="crm-kpi-header">
 <span class="crm-kpi-label">Team Leads</span>
 <div class="crm-kpi-icon" style="background:#f0fdf4; color:#10b981;"><i class="fa fa-users"></i></div>
 </div>
-<div class="crm-kpi-value"><?php echo !empty($dashboard_Tcount['count_leads']) ? $dashboard_Tcount['count_leads'] : 0; ?></div>
+<div class="crm-kpi-value">132</div>
 <span class="crm-kpi-link">View Leads <i class="fa fa-arrow-right"></i></span>
 </a>
-<a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-kpi-card">
+<a href="#" class="crm-kpi-card">
 <div class="crm-kpi-header">
 <span class="crm-kpi-label">Today Follow-ups</span>
 <div class="crm-kpi-icon" style="background:#fef2f2; color:#ef4444;"><i class="fa fa-clock-o"></i></div>
 </div>
-<div class="crm-kpi-value"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></div>
+<div class="crm-kpi-value">14</div>
 <span class="crm-kpi-link">View Today <i class="fa fa-arrow-right"></i></span>
 </a>
-<a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-kpi-card">
+<a href="#" class="crm-kpi-card">
 <div class="crm-kpi-header">
 <span class="crm-kpi-label">Today Meetings</span>
 <div class="crm-kpi-icon" style="background:#fffbeb; color:#f59e0b;"><i class="fa fa-calendar"></i></div>
 </div>
-<div class="crm-kpi-value"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></div>
+<div class="crm-kpi-value">6</div>
 <span class="crm-kpi-link">View Today <i class="fa fa-arrow-right"></i></span>
 </a>
-<a href="<?php echo base_url(); ?>manager/team/members" class="crm-kpi-card">
+<a href="#" class="crm-kpi-card">
 <div class="crm-kpi-header">
 <span class="crm-kpi-label">Team Members</span>
 <div class="crm-kpi-icon" style="background:#f5f3ff; color:#8b5cf6;"><i class="fa fa-user"></i></div>
 </div>
-<div class="crm-kpi-value"><?php echo !empty($dashboard_Tcount['count_user']) ? $dashboard_Tcount['count_user'] : 0; ?></div>
+<div class="crm-kpi-value">18</div>
 <span class="crm-kpi-link">View Team <i class="fa fa-arrow-right"></i></span>
 </a>
-<a href="<?php echo base_url(); ?>manager/verticals" class="crm-kpi-card">
+<a href="#" class="crm-kpi-card">
 <div class="crm-kpi-header">
 <span class="crm-kpi-label">My Verticals</span>
 <div class="crm-kpi-icon" style="background:#f0fdfa; color:#0d9488;"><i class="fa fa-cubes"></i></div>
 </div>
-<div class="crm-kpi-value"><?php echo !empty($dashboard_count['count_vetricals']) ? $dashboard_count['count_vetricals'] : 0; ?></div>
+<div class="crm-kpi-value">5</div>
 <span class="crm-kpi-link">View Verticals <i class="fa fa-arrow-right"></i></span>
 </a>
 </div>
@@ -409,44 +542,82 @@
 <div class="crm-card-body">
 <div id="tabMyPipeline">
 <ul class="crm-stage-list">
-<?php
-$myleadp1 = array();
-$myleadp2 = array();
-if(!empty($dashboard_lead) && is_array($dashboard_lead)){
-foreach($dashboard_lead as $li){
-$myleadp1[] = "'".addslashes($li['status'])."'";
-$myleadp2[] = !empty($li['lead_count']) ? $li['lead_count'] : 0;
-?>
 <li>
-<a href="<?php echo base_url(); ?>manager/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id']; ?>" class="crm-stage-item">
-<span><?php echo htmlspecialchars($li['status']); ?></span>
-<span class="crm-stage-count"><?php echo !empty($li['lead_count']) ? $li['lead_count'] : 0; ?></span>
+<a href="#" class="crm-stage-item">
+<span>New Inquiries</span>
+<span class="crm-stage-count">16</span>
 </a>
 </li>
-<?php } } else { ?>
-<li class="text-center" style="padding:20px; color:#94a3b8;">No lead stages recorded</li>
-<?php } ?>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Contact Initiated</span>
+<span class="crm-stage-count">11</span>
+</a>
+</li>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Meeting Scheduled</span>
+<span class="crm-stage-count">8</span>
+</a>
+</li>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Proposal Sent</span>
+<span class="crm-stage-count">7</span>
+</a>
+</li>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Under Negotiation</span>
+<span class="crm-stage-count">4</span>
+</a>
+</li>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Deal Closed</span>
+<span class="crm-stage-count">2</span>
+</a>
+</li>
 </ul>
 </div>
 <div id="tabTeamPipeline" style="display:none;">
 <ul class="crm-stage-list">
-<?php
-$myTleadp1 = array();
-$myTleadp2 = array();
-if(!empty($dashboard_lead_team) && is_array($dashboard_lead_team)){
-foreach($dashboard_lead_team as $li){
-$myTleadp1[] = "'".addslashes($li['status'])."'";
-$myTleadp2[] = !empty($li['lead_count']) ? $li['lead_count'] : 0;
-?>
 <li>
-<a href="<?php echo base_url(); ?>manager/team/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id']; ?>" class="crm-stage-item">
-<span><?php echo htmlspecialchars($li['status']); ?></span>
-<span class="crm-stage-count"><?php echo !empty($li['lead_count']) ? $li['lead_count'] : 0; ?></span>
+<a href="#" class="crm-stage-item">
+<span>New Inquiries</span>
+<span class="crm-stage-count">42</span>
 </a>
 </li>
-<?php } } else { ?>
-<li class="text-center" style="padding:20px; color:#94a3b8;">No team lead stages recorded</li>
-<?php } ?>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Contact Initiated</span>
+<span class="crm-stage-count">29</span>
+</a>
+</li>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Meeting Scheduled</span>
+<span class="crm-stage-count">21</span>
+</a>
+</li>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Proposal Sent</span>
+<span class="crm-stage-count">19</span>
+</a>
+</li>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Under Negotiation</span>
+<span class="crm-stage-count">12</span>
+</a>
+</li>
+<li>
+<a href="#" class="crm-stage-item">
+<span>Deal Closed</span>
+<span class="crm-stage-count">9</span>
+</a>
+</li>
 </ul>
 </div>
 </div>
@@ -490,33 +661,33 @@ $myTleadp2[] = !empty($li['lead_count']) ? $li['lead_count'] : 0;
 </div>
 <ul class="crm-breakdown-list">
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/followups?type=1" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#ef4444;"></span>Missed</span>
-<span class="crm-badge-val" style="background:#ef4444;"><?php echo !empty($dashboard_f['total_missed']) ? $dashboard_f['total_missed'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#ef4444;">4</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/followups?type=2" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#f59e0b;"></span>Last 7 Days</span>
-<span class="crm-badge-val" style="background:#f59e0b;"><?php echo !empty($dashboard_f['total_lastweek']) ? $dashboard_f['total_lastweek'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#f59e0b;">9</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#0ea5e9;"></span>Today</span>
-<span class="crm-badge-val" style="background:#0ea5e9;"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#0ea5e9;">14</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/followups?type=4" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#3b82f6;"></span>Next 7 Days</span>
-<span class="crm-badge-val" style="background:#3b82f6;"><?php echo !empty($dashboard_f['total_nextweek']) ? $dashboard_f['total_nextweek'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#3b82f6;">11</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/followups?type=5" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#10b981;"></span>All Future</span>
-<span class="crm-badge-val" style="background:#10b981;"><?php echo !empty($dashboard_f['total_future']) ? $dashboard_f['total_future'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#10b981;">10</span>
 </a>
 </li>
 </ul>
@@ -528,33 +699,33 @@ $myTleadp2[] = !empty($li['lead_count']) ? $li['lead_count'] : 0;
 </div>
 <ul class="crm-breakdown-list">
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/meetings?type=1" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#ef4444;"></span>Missed</span>
-<span class="crm-badge-val" style="background:#ef4444;"><?php echo !empty($dashboard_m['total_missed']) ? $dashboard_m['total_missed'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#ef4444;">1</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/meetings?type=2" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#f59e0b;"></span>Last 7 Days</span>
-<span class="crm-badge-val" style="background:#f59e0b;"><?php echo !empty($dashboard_m['total_lastweek']) ? $dashboard_m['total_lastweek'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#f59e0b;">3</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#0ea5e9;"></span>Today</span>
-<span class="crm-badge-val" style="background:#0ea5e9;"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#0ea5e9;">6</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/meetings?type=4" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#3b82f6;"></span>Next 7 Days</span>
-<span class="crm-badge-val" style="background:#3b82f6;"><?php echo !empty($dashboard_m['total_nextweek']) ? $dashboard_m['total_nextweek'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#3b82f6;">5</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/leads/meetings?type=5" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#10b981;"></span>All Future</span>
-<span class="crm-badge-val" style="background:#10b981;"><?php echo !empty($dashboard_m['total_future']) ? $dashboard_m['total_future'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#10b981;">7</span>
 </a>
 </li>
 </ul>
@@ -566,33 +737,33 @@ $myTleadp2[] = !empty($li['lead_count']) ? $li['lead_count'] : 0;
 </div>
 <ul class="crm-breakdown-list">
 <li>
-<a href="<?php echo base_url(); ?>manager/team/followups?type=1" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#ef4444;"></span>Missed</span>
-<span class="crm-badge-val" style="background:#ef4444;"><?php echo !empty($dashboard_Tf['total_missed']) ? $dashboard_Tf['total_missed'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#ef4444;">8</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/team/followups?type=2" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#f59e0b;"></span>Last 7 Days</span>
-<span class="crm-badge-val" style="background:#f59e0b;"><?php echo !empty($dashboard_Tf['total_lastweek']) ? $dashboard_Tf['total_lastweek'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#f59e0b;">21</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/team/followups?type=3" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#0ea5e9;"></span>Today</span>
-<span class="crm-badge-val" style="background:#0ea5e9;"><?php echo !empty($dashboard_Tf['total_today']) ? $dashboard_Tf['total_today'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#0ea5e9;">35</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/team/followups?type=4" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#3b82f6;"></span>Next 7 Days</span>
-<span class="crm-badge-val" style="background:#3b82f6;"><?php echo !empty($dashboard_Tf['total_nextweek']) ? $dashboard_Tf['total_nextweek'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#3b82f6;">28</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/team/followups?type=5" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#10b981;"></span>All Future</span>
-<span class="crm-badge-val" style="background:#10b981;"><?php echo !empty($dashboard_Tf['total_future']) ? $dashboard_Tf['total_future'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#10b981;">40</span>
 </a>
 </li>
 </ul>
@@ -604,33 +775,33 @@ $myTleadp2[] = !empty($li['lead_count']) ? $li['lead_count'] : 0;
 </div>
 <ul class="crm-breakdown-list">
 <li>
-<a href="<?php echo base_url(); ?>manager/team/meetings?type=1" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#ef4444;"></span>Missed</span>
-<span class="crm-badge-val" style="background:#ef4444;"><?php echo !empty($dashboard_Tm['total_missed']) ? $dashboard_Tm['total_missed'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#ef4444;">3</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/team/meetings?type=2" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#f59e0b;"></span>Last 7 Days</span>
-<span class="crm-badge-val" style="background:#f59e0b;"><?php echo !empty($dashboard_Tm['total_lastweek']) ? $dashboard_Tm['total_lastweek'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#f59e0b;">11</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/team/meetings?type=3" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#0ea5e9;"></span>Today</span>
-<span class="crm-badge-val" style="background:#0ea5e9;"><?php echo !empty($dashboard_Tm['total_today']) ? $dashboard_Tm['total_today'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#0ea5e9;">16</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/team/meetings?type=4" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#3b82f6;"></span>Next 7 Days</span>
-<span class="crm-badge-val" style="background:#3b82f6;"><?php echo !empty($dashboard_Tm['total_nextweek']) ? $dashboard_Tm['total_nextweek'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#3b82f6;">14</span>
 </a>
 </li>
 <li>
-<a href="<?php echo base_url(); ?>manager/team/meetings?type=5" class="crm-breakdown-item">
+<a href="#" class="crm-breakdown-item">
 <span class="crm-breakdown-left"><span class="crm-dot" style="background:#10b981;"></span>All Future</span>
-<span class="crm-badge-val" style="background:#10b981;"><?php echo !empty($dashboard_Tm['total_future']) ? $dashboard_Tm['total_future'] : 0; ?></span>
+<span class="crm-badge-val" style="background:#10b981;">18</span>
 </a>
 </li>
 </ul>
@@ -638,67 +809,17 @@ $myTleadp2[] = !empty($li['lead_count']) ? $li['lead_count'] : 0;
 </div>
 </div>
 </div>
+</div>
+<script src="assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/plugins/chartjs/Chart.min.js"></script>
 <script>
 $(function () {
-    var myMonths = [
-        '<?php echo !empty($dashboard_MyPro['month_name'][0]) ? $dashboard_MyPro['month_name'][0] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][1]) ? $dashboard_MyPro['month_name'][1] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][2]) ? $dashboard_MyPro['month_name'][2] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][3]) ? $dashboard_MyPro['month_name'][3] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][4]) ? $dashboard_MyPro['month_name'][4] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][5]) ? $dashboard_MyPro['month_name'][5] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][6]) ? $dashboard_MyPro['month_name'][6] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][7]) ? $dashboard_MyPro['month_name'][7] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][8]) ? $dashboard_MyPro['month_name'][8] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][9]) ? $dashboard_MyPro['month_name'][9] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][10]) ? $dashboard_MyPro['month_name'][10] : ""; ?>',
-        '<?php echo !empty($dashboard_MyPro['month_name'][11]) ? $dashboard_MyPro['month_name'][11] : ""; ?>'
-    ];
-    var myData = [
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_0']) ? $dashboard_MyPro['lead_number']['pt_0'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_1']) ? $dashboard_MyPro['lead_number']['pt_1'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_2']) ? $dashboard_MyPro['lead_number']['pt_2'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_3']) ? $dashboard_MyPro['lead_number']['pt_3'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_4']) ? $dashboard_MyPro['lead_number']['pt_4'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_5']) ? $dashboard_MyPro['lead_number']['pt_5'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_6']) ? $dashboard_MyPro['lead_number']['pt_6'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_7']) ? $dashboard_MyPro['lead_number']['pt_7'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_8']) ? $dashboard_MyPro['lead_number']['pt_8'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_9']) ? $dashboard_MyPro['lead_number']['pt_9'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_10']) ? $dashboard_MyPro['lead_number']['pt_10'] : 0; ?>,
-        <?php echo !empty($dashboard_MyPro['lead_number']['pt_11']) ? $dashboard_MyPro['lead_number']['pt_11'] : 0; ?>
-    ];
-
-    var teamMonths = [
-        '<?php echo !empty($dashboard_TeamPro['month_name'][0]) ? $dashboard_TeamPro['month_name'][0] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][1]) ? $dashboard_TeamPro['month_name'][1] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][2]) ? $dashboard_TeamPro['month_name'][2] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][3]) ? $dashboard_TeamPro['month_name'][3] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][4]) ? $dashboard_TeamPro['month_name'][4] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][5]) ? $dashboard_TeamPro['month_name'][5] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][6]) ? $dashboard_TeamPro['month_name'][6] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][7]) ? $dashboard_TeamPro['month_name'][7] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][8]) ? $dashboard_TeamPro['month_name'][8] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][9]) ? $dashboard_TeamPro['month_name'][9] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][10]) ? $dashboard_TeamPro['month_name'][10] : ""; ?>',
-        '<?php echo !empty($dashboard_TeamPro['month_name'][11]) ? $dashboard_TeamPro['month_name'][11] : ""; ?>'
-    ];
-    var teamData = [
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_0']) ? $dashboard_TeamPro['lead_number']['pt_0'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_1']) ? $dashboard_TeamPro['lead_number']['pt_1'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_2']) ? $dashboard_TeamPro['lead_number']['pt_2'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_3']) ? $dashboard_TeamPro['lead_number']['pt_3'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_4']) ? $dashboard_TeamPro['lead_number']['pt_4'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_5']) ? $dashboard_TeamPro['lead_number']['pt_5'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_6']) ? $dashboard_TeamPro['lead_number']['pt_6'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_7']) ? $dashboard_TeamPro['lead_number']['pt_7'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_8']) ? $dashboard_TeamPro['lead_number']['pt_8'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_9']) ? $dashboard_TeamPro['lead_number']['pt_9'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_10']) ? $dashboard_TeamPro['lead_number']['pt_10'] : 0; ?>,
-        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_11']) ? $dashboard_TeamPro['lead_number']['pt_11'] : 0; ?>
-    ];
-
-    var prevData = [0,0,0,0,0,0,0,0,0,0,0,0];
+    var myMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var myData = [4, 7, 6, 9, 12, 10, 14, 18, 16, 21, 19, 25];
+    var teamMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var teamData = [12, 18, 16, 24, 30, 27, 36, 44, 40, 52, 48, 60];
+    var prevData = [8, 12, 10, 15, 20, 18, 22, 28, 25, 32, 30, 38];
 
     var barOptions = {
         scaleBeginAtZero: true,
@@ -717,8 +838,7 @@ $(function () {
 
     var b2Canvas = document.getElementById('barChart2');
     if (b2Canvas) {
-        var b2Ctx = b2Canvas.getContext('2d');
-        new Chart(b2Ctx).Bar({
+        new Chart(b2Canvas.getContext('2d')).Bar({
             labels: myMonths,
             datasets: [{
                 label: 'My Projections',
@@ -735,8 +855,7 @@ $(function () {
     function initBar4() {
         if (b4Rendered || !b4Canvas) return;
         b4Rendered = true;
-        var b4Ctx = b4Canvas.getContext('2d');
-        new Chart(b4Ctx).Bar({
+        new Chart(b4Canvas.getContext('2d')).Bar({
             labels: teamMonths,
             datasets: [{
                 label: 'Team Projections',
@@ -753,8 +872,7 @@ $(function () {
     function initBar3() {
         if (b3Rendered || !b3Canvas) return;
         b3Rendered = true;
-        var b3Ctx = b3Canvas.getContext('2d');
-        new Chart(b3Ctx).Bar({
+        new Chart(b3Canvas.getContext('2d')).Bar({
             labels: teamMonths,
             datasets: [{
                 label: 'Previous Performance',
@@ -803,46 +921,47 @@ $(function () {
     var p1Canvas = document.getElementById('pieChart1');
     if (p1Canvas) {
         new Chart(p1Canvas.getContext('2d')).Doughnut([
-            { value: <?php echo !empty($dashboard_f['total_missed']) ? $dashboard_f['total_missed'] : 0; ?>, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
-            { value: <?php echo !empty($dashboard_f['total_lastweek']) ? $dashboard_f['total_lastweek'] : 0; ?>, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
-            { value: <?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?>, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
-            { value: <?php echo !empty($dashboard_f['total_nextweek']) ? $dashboard_f['total_nextweek'] : 0; ?>, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
-            { value: <?php echo !empty($dashboard_f['total_future']) ? $dashboard_f['total_future'] : 0; ?>, color: '#10b981', highlight: '#059669', label: 'All Future' }
+            { value: 4, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
+            { value: 9, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
+            { value: 14, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
+            { value: 11, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
+            { value: 10, color: '#10b981', highlight: '#059669', label: 'All Future' }
         ], donutOptions);
     }
 
     var p2Canvas = document.getElementById('pieChart2');
     if (p2Canvas) {
         new Chart(p2Canvas.getContext('2d')).Doughnut([
-            { value: <?php echo !empty($dashboard_m['total_missed']) ? $dashboard_m['total_missed'] : 0; ?>, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
-            { value: <?php echo !empty($dashboard_m['total_lastweek']) ? $dashboard_m['total_lastweek'] : 0; ?>, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
-            { value: <?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?>, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
-            { value: <?php echo !empty($dashboard_m['total_nextweek']) ? $dashboard_m['total_nextweek'] : 0; ?>, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
-            { value: <?php echo !empty($dashboard_m['total_future']) ? $dashboard_m['total_future'] : 0; ?>, color: '#10b981', highlight: '#059669', label: 'All Future' }
+            { value: 1, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
+            { value: 3, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
+            { value: 6, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
+            { value: 5, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
+            { value: 7, color: '#10b981', highlight: '#059669', label: 'All Future' }
         ], donutOptions);
     }
 
     var p3Canvas = document.getElementById('pieChart3');
     if (p3Canvas) {
         new Chart(p3Canvas.getContext('2d')).Doughnut([
-            { value: <?php echo !empty($dashboard_Tf['total_missed']) ? $dashboard_Tf['total_missed'] : 0; ?>, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
-            { value: <?php echo !empty($dashboard_Tf['total_lastweek']) ? $dashboard_Tf['total_lastweek'] : 0; ?>, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
-            { value: <?php echo !empty($dashboard_Tf['total_today']) ? $dashboard_Tf['total_today'] : 0; ?>, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
-            { value: <?php echo !empty($dashboard_Tf['total_nextweek']) ? $dashboard_Tf['total_nextweek'] : 0; ?>, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
-            { value: <?php echo !empty($dashboard_Tf['total_future']) ? $dashboard_Tf['total_future'] : 0; ?>, color: '#10b981', highlight: '#059669', label: 'All Future' }
+            { value: 8, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
+            { value: 21, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
+            { value: 35, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
+            { value: 28, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
+            { value: 40, color: '#10b981', highlight: '#059669', label: 'All Future' }
         ], donutOptions);
     }
 
     var p4Canvas = document.getElementById('pieChart4');
     if (p4Canvas) {
         new Chart(p4Canvas.getContext('2d')).Doughnut([
-            { value: <?php echo !empty($dashboard_Tm['total_missed']) ? $dashboard_Tm['total_missed'] : 0; ?>, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
-            { value: <?php echo !empty($dashboard_Tm['total_lastweek']) ? $dashboard_Tm['total_lastweek'] : 0; ?>, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
-            { value: <?php echo !empty($dashboard_Tm['total_today']) ? $dashboard_Tm['total_today'] : 0; ?>, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
-            { value: <?php echo !empty($dashboard_Tm['total_nextweek']) ? $dashboard_Tm['total_nextweek'] : 0; ?>, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
-            { value: <?php echo !empty($dashboard_Tm['total_future']) ? $dashboard_Tm['total_future'] : 0; ?>, color: '#10b981', highlight: '#059669', label: 'All Future' }
+            { value: 3, color: '#ef4444', highlight: '#dc2626', label: 'Missed' },
+            { value: 11, color: '#f59e0b', highlight: '#d97706', label: 'Last 7 Days' },
+            { value: 16, color: '#0ea5e9', highlight: '#0284c7', label: 'Today' },
+            { value: 14, color: '#3b82f6', highlight: '#2563eb', label: 'Next 7 Days' },
+            { value: 18, color: '#10b981', highlight: '#059669', label: 'All Future' }
         ], donutOptions);
     }
 });
 </script>
-<?php require_once(APPPATH."views/manager/elements/footer.php"); ?>
+</body>
+</html>
