@@ -16,3 +16,4 @@ application/logs/*
 
 error_log
 *.log
+original_crm/

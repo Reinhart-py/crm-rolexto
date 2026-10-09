@@ -17,62 +17,64 @@
     --crm-sidebar-active: rgba(255, 255, 255, 0.12);
     --crm-topbar-bg: rgba(255, 255, 255, 0.82);
     --crm-topbar-border: rgba(226, 232, 240, 0.8);
-    --crm-primary: #dc2626;
-    --crm-primary-hover: #b91c1c;
-    --crm-primary-glass: rgba(220, 38, 38, 0.1);
-    --crm-accent: #2563eb;
-    --crm-accent-glass: rgba(37, 99, 235, 0.1);
-    --crm-text-main: #0f172a;
-    --crm-text-body: #334155;
-    --crm-text-muted: #64748b;
-    --crm-radius: 12px;
-    --crm-radius-sm: 8px;
-    --crm-radius-lg: 16px;
-    --crm-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+    --crm-primary: #ea580c;
+    --crm-primary-hover: #c2410c;
+    --crm-primary-glass: rgba(234, 88, 12, 0.1);
+    --crm-accent: #ea580c;
+    --crm-accent-glass: rgba(234, 88, 12, 0.1);
+    --crm-text-main: #09090b;
+    --crm-text-body: #27272a;
+    --crm-text-muted: #71717a;
+    --crm-radius: 10px;
+    --crm-radius-sm: 6px;
+    --crm-radius-lg: 14px;
+    --crm-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
     --crm-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
-    --crm-shadow-glass: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
-    --crm-shadow-glass-hover: 0 6px 18px rgba(15, 23, 42, 0.09), 0 2px 4px rgba(15, 23, 42, 0.04);
+    --crm-shadow-glass: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --crm-shadow-glass-hover: 0 6px 18px rgba(0, 0, 0, 0.08);
     --crm-glass-blur: blur(14px);
-    --crm-pill-bg: #f1f5f9;
-    --crm-table-hover: rgba(248, 250, 252, 0.85);
-    --crm-chart-grid: rgba(226, 232, 240, 0.7);
+    --crm-pill-bg: #f4f4f5;
+    --crm-table-hover: #f4f4f5;
+    --crm-chart-grid: #e4e4e7;
 }
 
 [data-theme="dark"] {
     --crm-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --crm-sidebar-width: 250px;
     --crm-topbar-height: 58px;
-    --crm-bg: #090d16;
-    --crm-card-bg: rgba(15, 23, 42, 0.72);
-    --crm-card-solid: #0f172a;
-    --crm-card-hover: rgba(26, 38, 66, 0.85);
-    --crm-border: rgba(255, 255, 255, 0.08);
-    --crm-border-glass: rgba(255, 255, 255, 0.14);
-    --crm-border-subtle: rgba(255, 255, 255, 0.05);
-    --crm-sidebar-bg: #060911;
-    --crm-sidebar-border: rgba(255, 255, 255, 0.07);
-    --crm-sidebar-hover: rgba(255, 255, 255, 0.07);
-    --crm-sidebar-active: rgba(255, 255, 255, 0.14);
-    --crm-topbar-bg: rgba(9, 13, 22, 0.82);
-    --crm-topbar-border: rgba(255, 255, 255, 0.08);
-    --crm-primary: #ef4444;
-    --crm-primary-hover: #dc2626;
-    --crm-primary-glass: rgba(239, 68, 68, 0.16);
-    --crm-accent: #3b82f6;
-    --crm-accent-glass: rgba(59, 130, 246, 0.16);
-    --crm-text-main: #f8fafc;
-    --crm-text-body: #cbd5e1;
-    --crm-text-muted: #94a3b8;
-    --crm-radius: 12px;
-    --crm-radius-sm: 8px;
-    --crm-radius-lg: 16px;
-    --crm-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-    --crm-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.35);
-    --crm-shadow-glass: 0 8px 30px rgba(0, 0, 0, 0.45);
-    --crm-shadow-glass-hover: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59, 130, 246, 0.3);
+    --crm-bg: #000000;
+    --crm-card-bg: #09090b;
+    --crm-card-solid: #09090b;
+    --crm-card-hover: #121215;
+    --crm-border: #27272a;
+    --crm-border-glass: #3f3f46;
+    --crm-border-subtle: #18181b;
+    --crm-sidebar-bg: #000000;
+    --crm-sidebar-border: #27272a;
+    --crm-sidebar-hover: rgba(255, 255, 255, 0.06);
+    --crm-sidebar-active: rgba(255, 255, 255, 0.12);
+    --crm-topbar-bg: rgba(0, 0, 0, 0.9);
+    --crm-topbar-border: #27272a;
+    --crm-primary: #ea580c;
+    --crm-primary-hover: #f97316;
+    --crm-primary-glass: rgba(234, 88, 12, 0.18);
+    --crm-accent: #ea580c;
+    --crm-accent-glass: rgba(234, 88, 12, 0.18);
+    --crm-text-main: #fafafa;
+    --crm-text-body: #e4e4e7;
+    --crm-text-muted: #a1a1aa;
+    --crm-radius: 10px;
+    --crm-radius-sm: 6px;
+    --crm-radius-lg: 14px;
+    --crm-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.6);
+    --crm-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.5);
+    --crm-shadow-glass: 0 4px 16px rgba(0, 0, 0, 0.6);
+    --crm-shadow-glass-hover: 0 8px 24px rgba(0, 0, 0, 0.8);
     --crm-glass-blur: blur(14px);
-    --crm-pill-bg: rgba(255, 255, 255, 0.08);
-    --crm-table-hover: rgba(255, 255, 255, 0.035);
+    --crm-pill-bg: #18181b;
+    --crm-table-hover: #18181b;
+    --crm-chart-grid: #27272a;
+}
     --crm-chart-grid: rgba(255, 255, 255, 0.06);
 }
 
@@ -740,31 +742,31 @@ body.hold-transition, body.skin-blue {
 .crm-metric-icon-wrap {
     width: 36px;
     height: 36px;
-    border-radius: 9px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.2s ease;
+    transition: all 0.2s ease;
+    background: #f4f4f5;
+    color: #18181b;
+}
+
+[data-theme="dark"] .crm-metric-icon-wrap {
+    background: #18181b;
+    color: #fafafa;
 }
 
 .crm-metric-card:hover .crm-metric-icon-wrap {
-    transform: scale(1.08);
+    background: rgba(234, 88, 12, 0.12);
+    color: #ea580c;
+    transform: scale(1.05);
 }
 
-.crm-metric-icon-wrap.blue { background: rgba(37, 99, 235, 0.12); color: #2563eb; }
-.crm-metric-icon-wrap.purple { background: rgba(124, 58, 237, 0.12); color: #7c3aed; }
-.crm-metric-icon-wrap.amber { background: rgba(217, 119, 6, 0.12); color: #d97706; }
-.crm-metric-icon-wrap.emerald { background: rgba(5, 150, 105, 0.12); color: #059669; }
-.crm-metric-icon-wrap.slate { background: rgba(100, 116, 139, 0.12); color: #475569; }
-.crm-metric-icon-wrap.rose { background: rgba(225, 29, 72, 0.12); color: #e11d48; }
-
-[data-theme="dark"] .crm-metric-icon-wrap.blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
-[data-theme="dark"] .crm-metric-icon-wrap.purple { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
-[data-theme="dark"] .crm-metric-icon-wrap.amber { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-[data-theme="dark"] .crm-metric-icon-wrap.emerald { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-[data-theme="dark"] .crm-metric-icon-wrap.slate { background: rgba(148, 163, 184, 0.18); color: #cbd5e1; }
-[data-theme="dark"] .crm-metric-icon-wrap.rose { background: rgba(244, 63, 94, 0.2); color: #fb7185; }
+.crm-metric-icon-wrap.accent {
+    background: rgba(234, 88, 12, 0.1);
+    color: #ea580c;
+}
 
 .crm-metric-number {
     font-size: 26px;
@@ -971,13 +973,43 @@ body.hold-transition, body.skin-blue {
     border-radius: 4px;
     font-variant-numeric: tabular-nums;
     display: inline-block;
+    background-color: #f4f4f5;
+    color: #27272a;
+    border: 1px solid #e4e4e7;
 }
 
-.crm-badge-val.red { background-color: rgba(239, 68, 68, 0.15); color: #ef4444; }
-.crm-badge-val.amber { background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; }
-.crm-badge-val.sky { background-color: rgba(2, 132, 199, 0.15); color: #0284c7; }
-.crm-badge-val.blue { background-color: rgba(37, 99, 235, 0.15); color: #2563eb; }
-.crm-badge-val.emerald { background-color: rgba(16, 185, 129, 0.15); color: #10b981; }
+[data-theme="dark"] .crm-badge-val {
+    background-color: #18181b;
+    color: #e4e4e7;
+    border: 1px solid #27272a;
+}
+
+.crm-badge-val.red,
+.crm-badge-val.urgent {
+    background-color: rgba(234, 88, 12, 0.1);
+    color: #ea580c;
+    border: 1px solid rgba(234, 88, 12, 0.25);
+}
+
+.crm-badge-val.amber,
+.crm-badge-val.sky,
+.crm-badge-val.blue,
+.crm-badge-val.emerald,
+.crm-badge-val.purple {
+    background-color: #f4f4f5;
+    color: #27272a;
+    border: 1px solid #e4e4e7;
+}
+
+[data-theme="dark"] .crm-badge-val.amber,
+[data-theme="dark"] .crm-badge-val.sky,
+[data-theme="dark"] .crm-badge-val.blue,
+[data-theme="dark"] .crm-badge-val.emerald,
+[data-theme="dark"] .crm-badge-val.purple {
+    background-color: #18181b;
+    color: #e4e4e7;
+    border: 1px solid #27272a;
+}
 
 .crm-quick-btn {
     display: flex;
