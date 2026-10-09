@@ -34,7 +34,7 @@
             <div class="crm-metric-header">
                 <span class="crm-metric-title">My Leads</span>
                 <div class="crm-metric-icon-wrap blue">
-                    <svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                    <svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
             </div>
             <div class="crm-metric-number"><?php echo !empty($dashboard_count['count_leads']) ? $dashboard_count['count_leads'] : 0; ?></div>
@@ -64,7 +64,7 @@
             <div class="crm-metric-header">
                 <span class="crm-metric-title">Today's Meetings</span>
                 <div class="crm-metric-icon-wrap emerald">
-                    <svg class="crm-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <svg class="crm-svg" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 </div>
             </div>
             <div class="crm-metric-number"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></div>
@@ -74,7 +74,7 @@
             <div class="crm-metric-header">
                 <span class="crm-metric-title">Team Members</span>
                 <div class="crm-metric-icon-wrap slate">
-                    <svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                    <svg class="crm-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
             </div>
             <div class="crm-metric-number"><?php echo !empty($dashboard_Tcount['count_user']) ? $dashboard_Tcount['count_user'] : 0; ?></div>
@@ -123,18 +123,15 @@
                                         $myleadp1[] = "'".$li['status']."'";
                                         $myleadp2[] = $li['lead_count'];
                                 ?>
-                                <tr>
+                                <tr onclick="window.location='<?php echo base_url(); ?>manager/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id']; ?>'" style="cursor:pointer;">
                                     <td>
-                                        <div class="crm-stage-badge">
-                                            <span class="crm-stage-dot" style="background:#2563eb;"></span>
-                                            <span><?php echo htmlspecialchars($li['status']); ?></span>
-                                        </div>
+                                        <span style="font-weight:600; color:var(--crm-text-main); font-size:13px;"><?php echo htmlspecialchars($li['status']); ?></span>
                                     </td>
                                     <td style="text-align:right;">
-                                        <span class="crm-count-pill"><?php echo $li['lead_count']; ?></span>
+                                        <span class="crm-count-badge"><?php echo $li['lead_count']; ?></span>
                                     </td>
                                     <td style="text-align:right;">
-                                        <a href="<?php echo base_url(); ?>manager/leads?status%5B%5D=<?php echo $li['status_id']; ?>" class="crm-btn-sm">
+                                        <a href="<?php echo base_url(); ?>manager/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id']; ?>" class="crm-btn-sm" onclick="event.stopPropagation();">
                                             <span>View</span>
                                             <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
                                         </a>
@@ -145,7 +142,7 @@
                                 } else { ?>
                                 <tr>
                                     <td colspan="3" style="text-align:center; padding:28px; color:var(--crm-text-muted);">
-                                        No active leads found.
+                                        No active leads found in pipeline.
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -171,18 +168,15 @@
                                         $myTleadp1[] = "'".$li['status']."'";
                                         $myTleadp2[] = $li['lead_count'];
                                 ?>
-                                <tr>
+                                <tr onclick="window.location='<?php echo base_url(); ?>manager/team/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id']; ?>'" style="cursor:pointer;">
                                     <td>
-                                        <div class="crm-stage-badge">
-                                            <span class="crm-stage-dot" style="background:#7c3aed;"></span>
-                                            <span><?php echo htmlspecialchars($li['status']); ?></span>
-                                        </div>
+                                        <span style="font-weight:600; color:var(--crm-text-main); font-size:13px;"><?php echo htmlspecialchars($li['status']); ?></span>
                                     </td>
                                     <td style="text-align:right;">
-                                        <span class="crm-count-pill"><?php echo $li['lead_count']; ?></span>
+                                        <span class="crm-count-badge"><?php echo $li['lead_count']; ?></span>
                                     </td>
                                     <td style="text-align:right;">
-                                        <a href="<?php echo base_url(); ?>manager/team/leads?status%5B%5D=<?php echo $li['status_id']; ?>" class="crm-btn-sm">
+                                        <a href="<?php echo base_url(); ?>manager/team/leads?d1=&d2=&status%5B%5D=<?php echo $li['status_id']; ?>" class="crm-btn-sm" onclick="event.stopPropagation();">
                                             <span>View</span>
                                             <svg class="crm-svg-sm" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
                                         </a>
@@ -208,7 +202,7 @@
             <div class="crm-panel-card" style="height: calc(100% - 24px); margin-bottom: 24px;">
                 <div class="crm-panel-header">
                     <h2>
-                        <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
                         Monthly Trajectory
                     </h2>
                     <div class="crm-tab-buttons" id="projectionsChartTabs">
@@ -219,16 +213,13 @@
                 <div class="crm-panel-body">
                     <div id="wrapMyProjection">
                         <div class="crm-chart-box">
-                            <canvas id="barChart2"></canvas>
+                            <canvas id="barChart2" height="240"></canvas>
                         </div>
                     </div>
                     <div id="wrapTeamProjection" style="display:none;">
                         <div class="crm-chart-box">
-                            <canvas id="barChart4"></canvas>
+                            <canvas id="barChart4" height="240"></canvas>
                         </div>
-                    </div>
-                    <div style="display:none;">
-                        <canvas id="barChart3"></canvas>
                     </div>
                 </div>
             </div>
@@ -291,7 +282,7 @@
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
-                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#10b981;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#10b981;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         <span>My Meetings</span>
                     </h3>
                     <span class="crm-badge-val emerald"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?> Today</span>
@@ -335,7 +326,7 @@
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
-                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#7c3aed;"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#7c3aed;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                         <span>My Closures</span>
                     </h3>
                     <span class="crm-badge-val blue">Active</span>
@@ -343,32 +334,32 @@
                 <ul class="crm-stat-list">
                     <li>
                         <a href="<?php echo base_url(); ?>manager/leads" class="crm-stat-item">
-                            <span>Mandates Executed</span>
-                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_count['count_closures']) ? $dashboard_count['count_closures'] : 6; ?></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>manager/leads" class="crm-stat-item">
                             <span>Active In Pipeline</span>
                             <span class="crm-badge-val sky"><?php echo !empty($dashboard_count['count_leads']) ? $dashboard_count['count_leads'] : 0; ?></span>
                         </a>
                     </li>
                     <li>
+                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
+                            <span>Assigned Verticals</span>
+                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_count['count_vetricals']) ? $dashboard_count['count_vetricals'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-stat-item">
+                            <span>Actionable Follow-ups</span>
+                            <span class="crm-badge-val amber"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/performance-report/individual" class="crm-stat-item">
+                            <span>Individual Performance</span>
+                            <span class="crm-badge-val blue">View</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo base_url(); ?>manager/leads" class="crm-stat-item">
-                            <span>Term Sheets Issued</span>
-                            <span class="crm-badge-val amber">12</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>manager/performance-report/individual" class="crm-stat-item">
-                            <span>Conversion Ratio</span>
-                            <span class="crm-badge-val blue">68.4%</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>manager/performance-report/individual" class="crm-stat-item">
-                            <span>Target Completion</span>
-                            <span class="crm-badge-val emerald">114%</span>
+                            <span>All My Leads</span>
+                            <span class="crm-badge-val sky">Browse</span>
                         </a>
                     </li>
                 </ul>
@@ -379,7 +370,7 @@
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
-                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#e11d48;"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#e11d48;"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                         <span>My Vertical FU</span>
                     </h3>
                     <span class="crm-badge-val red"><?php echo !empty($dashboard_count['count_vetricals']) ? $dashboard_count['count_vetricals'] : 0; ?> Total</span>
@@ -387,32 +378,32 @@
                 <ul class="crm-stat-list">
                     <li>
                         <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
-                            <span>Real Estate Desk</span>
-                            <span class="crm-badge-val blue">Active</span>
+                            <span>Active Practice Verticals</span>
+                            <span class="crm-badge-val blue"><?php echo !empty($dashboard_count['count_vetricals']) ? $dashboard_count['count_vetricals'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/followups?type=3" class="crm-stat-item">
+                            <span>Follow-ups Scheduled</span>
+                            <span class="crm-badge-val amber"><?php echo !empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0; ?> Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/leads/meetings?type=3" class="crm-stat-item">
+                            <span>Consultations Today</span>
+                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_m['total_today']) ? $dashboard_m['total_today'] : 0; ?></span>
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
-                            <span>Corporate Structuring</span>
-                            <span class="crm-badge-val sky">Active</span>
+                            <span>Vertical Directory</span>
+                            <span class="crm-badge-val sky">Manage</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
-                            <span>Golden Visa & Mobility</span>
-                            <span class="crm-badge-val emerald">Active</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
-                            <span>Follow-up Scheduled</span>
-                            <span class="crm-badge-val amber">4 Due</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>manager/verticals" class="crm-stat-item">
-                            <span>Upcoming Reviews</span>
-                            <span class="crm-badge-val blue">2 This Week</span>
+                        <a href="<?php echo base_url(); ?>manager/verticals/add" class="crm-stat-item">
+                            <span>Add New Vertical</span>
+                            <span class="crm-badge-val blue">Create</span>
                         </a>
                     </li>
                 </ul>
@@ -422,7 +413,7 @@
 
     <div class="crm-section-header">
         <h2 class="crm-section-title">
-            <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <svg class="crm-svg" viewBox="0 0 24 24" style="color:var(--crm-accent);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             <span>Team Stats</span>
         </h2>
     </div>
@@ -476,7 +467,7 @@
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
-                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#10b981;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#10b981;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         <span>Team Meetings</span>
                     </h3>
                     <span class="crm-badge-val emerald"><?php echo !empty($dashboard_Tm['total_today']) ? $dashboard_Tm['total_today'] : 0; ?> Today</span>
@@ -520,7 +511,7 @@
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
-                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#7c3aed;"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#7c3aed;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                         <span>Team Closures</span>
                     </h3>
                     <span class="crm-badge-val purple">Aggregate</span>
@@ -528,32 +519,32 @@
                 <ul class="crm-stat-list">
                     <li>
                         <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-stat-item">
-                            <span>Team Mandates Finalized</span>
-                            <span class="crm-badge-val emerald">18</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>manager/team/leads" class="crm-stat-item">
                             <span>Gross Team Volume</span>
                             <span class="crm-badge-val sky"><?php echo !empty($dashboard_Tcount['count_leads']) ? $dashboard_Tcount['count_leads'] : 0; ?></span>
                         </a>
                     </li>
                     <li>
+                        <a href="<?php echo base_url(); ?>manager/team/members" class="crm-stat-item">
+                            <span>Advisory Team Members</span>
+                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_Tcount['count_user']) ? $dashboard_Tcount['count_user'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo base_url(); ?>manager/team/assignleads" class="crm-stat-item">
                             <span>Assigned Leads Pool</span>
-                            <span class="crm-badge-val amber">44</span>
+                            <span class="crm-badge-val amber">Assign</span>
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo base_url(); ?>manager/performance-report" class="crm-stat-item">
-                            <span>Team Win Benchmark</span>
-                            <span class="crm-badge-val blue">62.8%</span>
+                            <span>Department Performance</span>
+                            <span class="crm-badge-val blue">View</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>manager/performance-report" class="crm-stat-item">
-                            <span>Department Target</span>
-                            <span class="crm-badge-val emerald">On Track</span>
+                        <a href="<?php echo base_url(); ?>manager/team/chart" class="crm-stat-item">
+                            <span>Organization Chart</span>
+                            <span class="crm-badge-val purple">Hierarchy</span>
                         </a>
                     </li>
                 </ul>
@@ -564,7 +555,7 @@
             <div class="crm-stat-card">
                 <div class="crm-stat-card-header">
                     <h3 class="crm-stat-card-title">
-                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#e11d48;"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="5" y1="16" x2="12" y2="12"/><line x1="19" y1="16" x2="12" y2="12"/></svg>
+                        <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:#e11d48;"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                         <span>Team Vertical FU</span>
                     </h3>
                     <span class="crm-badge-val red"><?php echo !empty($dashboard_Tcount['count_vetricals']) ? $dashboard_Tcount['count_vetricals'] : 0; ?> Total</span>
@@ -572,32 +563,32 @@
                 <ul class="crm-stat-list">
                     <li>
                         <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
-                            <span>Cross-Border Advisory</span>
-                            <span class="crm-badge-val blue">Active</span>
+                            <span>Total Team Verticals</span>
+                            <span class="crm-badge-val blue"><?php echo !empty($dashboard_Tcount['count_vetricals']) ? $dashboard_Tcount['count_vetricals'] : 0; ?></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/followups?type=3" class="crm-stat-item">
+                            <span>Team Follow-ups Today</span>
+                            <span class="crm-badge-val amber"><?php echo !empty($dashboard_Tf['total_today']) ? $dashboard_Tf['total_today'] : 0; ?> Due</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>manager/team/meetings?type=3" class="crm-stat-item">
+                            <span>Team Meetings Today</span>
+                            <span class="crm-badge-val emerald"><?php echo !empty($dashboard_Tm['total_today']) ? $dashboard_Tm['total_today'] : 0; ?></span>
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
-                            <span>Global Mobility Desk</span>
-                            <span class="crm-badge-val emerald">Active</span>
+                            <span>Vertical Assignments</span>
+                            <span class="crm-badge-val sky">Manage</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
-                            <span>Commercial Asset SPVs</span>
-                            <span class="crm-badge-val sky">Active</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
-                            <span>Due Follow-ups</span>
-                            <span class="crm-badge-val amber">8 Pending</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-stat-item">
-                            <span>Quarterly Audits</span>
-                            <span class="crm-badge-val blue">Scheduled</span>
+                        <a href="<?php echo base_url(); ?>manager/team/chart" class="crm-stat-item">
+                            <span>Team Structure</span>
+                            <span class="crm-badge-val purple">Chart</span>
                         </a>
                     </li>
                 </ul>
@@ -606,17 +597,157 @@
     </div>
 </div>
 
-<?php
-$myleadstr1 = !empty($myleadp1) ? implode(', ', $myleadp1) : "''";
-$myleadstr2 = !empty($myleadp2) ? implode(', ', $myleadp2) : "0";
-$myTleadstr1 = !empty($myTleadp1) ? implode(', ', $myTleadp1) : "''";
-$myTleadstr2 = !empty($myTleadp2) ? implode(', ', $myTleadp2) : "0";
-?>
-
 <script>
-$(function () {
-    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    var gridCol = isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(226, 232, 240, 0.7)';
+window.addEventListener('DOMContentLoaded', function() {
+    var myMonths = [
+        '<?php echo !empty($dashboard_MyPro['month_name'][0]) ? $dashboard_MyPro['month_name'][0] : "Jan"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][1]) ? $dashboard_MyPro['month_name'][1] : "Feb"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][2]) ? $dashboard_MyPro['month_name'][2] : "Mar"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][3]) ? $dashboard_MyPro['month_name'][3] : "Apr"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][4]) ? $dashboard_MyPro['month_name'][4] : "May"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][5]) ? $dashboard_MyPro['month_name'][5] : "Jun"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][6]) ? $dashboard_MyPro['month_name'][6] : "Jul"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][7]) ? $dashboard_MyPro['month_name'][7] : "Aug"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][8]) ? $dashboard_MyPro['month_name'][8] : "Sep"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][9]) ? $dashboard_MyPro['month_name'][9] : "Oct"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][10]) ? $dashboard_MyPro['month_name'][10] : "Nov"; ?>',
+        '<?php echo !empty($dashboard_MyPro['month_name'][11]) ? $dashboard_MyPro['month_name'][11] : "Dec"; ?>'
+    ];
+
+    var myData = [
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_0']) ? $dashboard_MyPro['lead_number']['pt_0'] : 12; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_1']) ? $dashboard_MyPro['lead_number']['pt_1'] : 18; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_2']) ? $dashboard_MyPro['lead_number']['pt_2'] : 15; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_3']) ? $dashboard_MyPro['lead_number']['pt_3'] : 24; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_4']) ? $dashboard_MyPro['lead_number']['pt_4'] : 20; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_5']) ? $dashboard_MyPro['lead_number']['pt_5'] : 28; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_6']) ? $dashboard_MyPro['lead_number']['pt_6'] : 25; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_7']) ? $dashboard_MyPro['lead_number']['pt_7'] : 32; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_8']) ? $dashboard_MyPro['lead_number']['pt_8'] : 38; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_9']) ? $dashboard_MyPro['lead_number']['pt_9'] : 35; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_10']) ? $dashboard_MyPro['lead_number']['pt_10'] : 42; ?>,
+        <?php echo !empty($dashboard_MyPro['lead_number']['pt_11']) ? $dashboard_MyPro['lead_number']['pt_11'] : 48; ?>
+    ];
+
+    var teamMonths = [
+        '<?php echo !empty($dashboard_TeamPro['month_name'][0]) ? $dashboard_TeamPro['month_name'][0] : "Jan"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][1]) ? $dashboard_TeamPro['month_name'][1] : "Feb"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][2]) ? $dashboard_TeamPro['month_name'][2] : "Mar"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][3]) ? $dashboard_TeamPro['month_name'][3] : "Apr"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][4]) ? $dashboard_TeamPro['month_name'][4] : "May"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][5]) ? $dashboard_TeamPro['month_name'][5] : "Jun"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][6]) ? $dashboard_TeamPro['month_name'][6] : "Jul"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][7]) ? $dashboard_TeamPro['month_name'][7] : "Aug"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][8]) ? $dashboard_TeamPro['month_name'][8] : "Sep"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][9]) ? $dashboard_TeamPro['month_name'][9] : "Oct"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][10]) ? $dashboard_TeamPro['month_name'][10] : "Nov"; ?>',
+        '<?php echo !empty($dashboard_TeamPro['month_name'][11]) ? $dashboard_TeamPro['month_name'][11] : "Dec"; ?>'
+    ];
+
+    var teamData = [
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_0']) ? $dashboard_TeamPro['lead_number']['pt_0'] : 45; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_1']) ? $dashboard_TeamPro['lead_number']['pt_1'] : 55; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_2']) ? $dashboard_TeamPro['lead_number']['pt_2'] : 50; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_3']) ? $dashboard_TeamPro['lead_number']['pt_3'] : 70; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_4']) ? $dashboard_TeamPro['lead_number']['pt_4'] : 85; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_5']) ? $dashboard_TeamPro['lead_number']['pt_5'] : 95; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_6']) ? $dashboard_TeamPro['lead_number']['pt_6'] : 90; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_7']) ? $dashboard_TeamPro['lead_number']['pt_7'] : 110; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_8']) ? $dashboard_TeamPro['lead_number']['pt_8'] : 125; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_9']) ? $dashboard_TeamPro['lead_number']['pt_9'] : 120; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_10']) ? $dashboard_TeamPro['lead_number']['pt_10'] : 140; ?>,
+        <?php echo !empty($dashboard_TeamPro['lead_number']['pt_11']) ? $dashboard_TeamPro['lead_number']['pt_11'] : 155; ?>
+    ];
+
+    function drawCleanBarChart(canvasId, labels, data, barHex) {
+        var canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        var dpr = window.devicePixelRatio || 1;
+        var rect = canvas.getBoundingClientRect();
+        var width = rect.width || canvas.parentElement.clientWidth || 400;
+        var height = 240;
+
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(226, 232, 240, 0.9)';
+        var textColor = isDark ? '#94a3b8' : '#64748b';
+
+        var paddingLeft = 36;
+        var paddingRight = 16;
+        var paddingTop = 18;
+        var paddingBottom = 30;
+
+        var plotWidth = width - paddingLeft - paddingRight;
+        var plotHeight = height - paddingTop - paddingBottom;
+
+        ctx.clearRect(0, 0, width, height);
+
+        var maxVal = Math.max.apply(null, data);
+        if (maxVal <= 0) maxVal = 10;
+        var niceMax = Math.ceil(maxVal / 10) * 10;
+        if (niceMax === maxVal) niceMax += 10;
+
+        var steps = 4;
+        ctx.strokeStyle = gridColor;
+        ctx.lineWidth = 1;
+        ctx.fillStyle = textColor;
+        ctx.font = '11px sans-serif';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+
+        for (var i = 0; i <= steps; i++) {
+            var val = Math.round((niceMax / steps) * i);
+            var y = paddingTop + plotHeight - (val / niceMax) * plotHeight;
+            ctx.beginPath();
+            ctx.moveTo(paddingLeft, y);
+            ctx.lineTo(width - paddingRight, y);
+            ctx.stroke();
+            ctx.fillText(val, paddingLeft - 8, y);
+        }
+
+        var count = labels.length;
+        var totalSlot = plotWidth / count;
+        var barWidth = Math.max(8, Math.min(22, totalSlot * 0.55));
+
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+
+        for (var j = 0; j < count; j++) {
+            var xSlotCenter = paddingLeft + j * totalSlot + totalSlot / 2;
+            var barHeight = (data[j] / niceMax) * plotHeight;
+            var barX = xSlotCenter - barWidth / 2;
+            var barY = paddingTop + plotHeight - barHeight;
+
+            ctx.fillStyle = barHex;
+            var radius = 3;
+            ctx.beginPath();
+            ctx.moveTo(barX, barY + radius);
+            ctx.arcTo(barX, barY, barX + radius, barY, radius);
+            ctx.arcTo(barX + barWidth, barY, barX + barWidth, barY + radius, radius);
+            ctx.lineTo(barX + barWidth, paddingTop + plotHeight);
+            ctx.lineTo(barX, paddingTop + plotHeight);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = textColor;
+            var labelText = labels[j].substr(0, 3);
+            ctx.fillText(labelText, xSlotCenter, paddingTop + plotHeight + 8);
+        }
+    }
+
+    function renderCharts() {
+        drawCleanBarChart('barChart2', myMonths, myData, '#2563eb');
+        drawCleanBarChart('barChart4', teamMonths, teamData, '#7c3aed');
+    }
+
+    renderCharts();
+    window.addEventListener('resize', renderCharts);
 
     $('#projectionsChartTabs .crm-tab-btn').on('click', function() {
         $('#projectionsChartTabs .crm-tab-btn').removeClass('active');
@@ -624,6 +755,7 @@ $(function () {
         var target = $(this).data('target');
         $('#wrapMyProjection, #wrapTeamProjection').hide();
         $(target).show();
+        setTimeout(renderCharts, 10);
     });
 
     $('#pipelineTabs .crm-tab-btn').on('click', function() {
@@ -633,113 +765,6 @@ $(function () {
         $('#tabMyPipeline, #tabTeamPipeline').hide();
         $(target).show();
     });
-
-    var areaChartData2 = {
-        labels: [
-            '<?php echo !empty($dashboard_MyPro['month_name'][0]) ? $dashboard_MyPro['month_name'][0] : "Jan"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][1]) ? $dashboard_MyPro['month_name'][1] : "Feb"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][2]) ? $dashboard_MyPro['month_name'][2] : "Mar"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][3]) ? $dashboard_MyPro['month_name'][3] : "Apr"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][4]) ? $dashboard_MyPro['month_name'][4] : "May"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][5]) ? $dashboard_MyPro['month_name'][5] : "Jun"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][6]) ? $dashboard_MyPro['month_name'][6] : "Jul"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][7]) ? $dashboard_MyPro['month_name'][7] : "Aug"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][8]) ? $dashboard_MyPro['month_name'][8] : "Sep"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][9]) ? $dashboard_MyPro['month_name'][9] : "Oct"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][10]) ? $dashboard_MyPro['month_name'][10] : "Nov"; ?>',
-            '<?php echo !empty($dashboard_MyPro['month_name'][11]) ? $dashboard_MyPro['month_name'][11] : "Dec"; ?>'
-        ],
-        datasets: [{
-            label: 'Leads',
-            fillColor: 'rgba(37, 99, 235, 0.12)',
-            strokeColor: '#2563eb',
-            pointColor: '#2563eb',
-            pointStrokeColor: '#ffffff',
-            pointHighlightFill: '#ffffff',
-            pointHighlightStroke: '#2563eb',
-            data: [
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_0']) ? $dashboard_MyPro['lead_number']['pt_0'] : 12; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_1']) ? $dashboard_MyPro['lead_number']['pt_1'] : 18; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_2']) ? $dashboard_MyPro['lead_number']['pt_2'] : 15; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_3']) ? $dashboard_MyPro['lead_number']['pt_3'] : 24; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_4']) ? $dashboard_MyPro['lead_number']['pt_4'] : 20; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_5']) ? $dashboard_MyPro['lead_number']['pt_5'] : 28; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_6']) ? $dashboard_MyPro['lead_number']['pt_6'] : 25; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_7']) ? $dashboard_MyPro['lead_number']['pt_7'] : 32; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_8']) ? $dashboard_MyPro['lead_number']['pt_8'] : 38; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_9']) ? $dashboard_MyPro['lead_number']['pt_9'] : 35; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_10']) ? $dashboard_MyPro['lead_number']['pt_10'] : 42; ?>,
-                <?php echo !empty($dashboard_MyPro['lead_number']['pt_11']) ? $dashboard_MyPro['lead_number']['pt_11'] : 48; ?>
-            ]
-        }]
-    };
-
-    var areaChartData4 = {
-        labels: [
-            '<?php echo !empty($dashboard_TeamPro['month_name'][0]) ? $dashboard_TeamPro['month_name'][0] : "Jan"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][1]) ? $dashboard_TeamPro['month_name'][1] : "Feb"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][2]) ? $dashboard_TeamPro['month_name'][2] : "Mar"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][3]) ? $dashboard_TeamPro['month_name'][3] : "Apr"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][4]) ? $dashboard_TeamPro['month_name'][4] : "May"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][5]) ? $dashboard_TeamPro['month_name'][5] : "Jun"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][6]) ? $dashboard_TeamPro['month_name'][6] : "Jul"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][7]) ? $dashboard_TeamPro['month_name'][7] : "Aug"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][8]) ? $dashboard_TeamPro['month_name'][8] : "Sep"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][9]) ? $dashboard_TeamPro['month_name'][9] : "Oct"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][10]) ? $dashboard_TeamPro['month_name'][10] : "Nov"; ?>',
-            '<?php echo !empty($dashboard_TeamPro['month_name'][11]) ? $dashboard_TeamPro['month_name'][11] : "Dec"; ?>'
-        ],
-        datasets: [{
-            label: 'Leads',
-            fillColor: 'rgba(124, 58, 237, 0.12)',
-            strokeColor: '#7c3aed',
-            pointColor: '#7c3aed',
-            pointStrokeColor: '#ffffff',
-            pointHighlightFill: '#ffffff',
-            pointHighlightStroke: '#7c3aed',
-            data: [
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_0']) ? $dashboard_TeamPro['lead_number']['pt_0'] : 45; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_1']) ? $dashboard_TeamPro['lead_number']['pt_1'] : 55; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_2']) ? $dashboard_TeamPro['lead_number']['pt_2'] : 50; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_3']) ? $dashboard_TeamPro['lead_number']['pt_3'] : 70; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_4']) ? $dashboard_TeamPro['lead_number']['pt_4'] : 85; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_5']) ? $dashboard_TeamPro['lead_number']['pt_5'] : 95; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_6']) ? $dashboard_TeamPro['lead_number']['pt_6'] : 90; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_7']) ? $dashboard_TeamPro['lead_number']['pt_7'] : 110; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_8']) ? $dashboard_TeamPro['lead_number']['pt_8'] : 125; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_9']) ? $dashboard_TeamPro['lead_number']['pt_9'] : 120; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_10']) ? $dashboard_TeamPro['lead_number']['pt_10'] : 140; ?>,
-                <?php echo !empty($dashboard_TeamPro['lead_number']['pt_11']) ? $dashboard_TeamPro['lead_number']['pt_11'] : 155; ?>
-            ]
-        }]
-    };
-
-    var barChartOptions = {
-        scaleBeginAtZero: true,
-        scaleShowGridLines: true,
-        scaleGridLineColor: gridCol,
-        scaleGridLineWidth: 1,
-        scaleShowHorizontalLines: true,
-        scaleShowVerticalLines: false,
-        barShowStroke: true,
-        barStrokeWidth: 1,
-        barValueSpacing: 14,
-        barDatasetSpacing: 1,
-        responsive: true,
-        maintainAspectRatio: false
-    };
-
-    if($('#barChart2').length && typeof Chart !== 'undefined') {
-        var bar2Canvas = $('#barChart2').get(0).getContext('2d');
-        var chart2 = new Chart(bar2Canvas);
-        chart2.Bar(areaChartData2, barChartOptions);
-    }
-
-    if($('#barChart4').length && typeof Chart !== 'undefined') {
-        var bar4Canvas = $('#barChart4').get(0).getContext('2d');
-        var chart4 = new Chart(bar4Canvas);
-        chart4.Bar(areaChartData4, barChartOptions);
-    }
 });
 </script>
 
