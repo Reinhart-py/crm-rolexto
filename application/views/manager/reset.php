@@ -7,8 +7,8 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         
-<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" type="image/x-icon">
-<link rel="icon" href="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" type="image/jpeg">
+<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">
+<link rel="icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">        
     
     
   <!-- Bootstrap 3.3.6 -->

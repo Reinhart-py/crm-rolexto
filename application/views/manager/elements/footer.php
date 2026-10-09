@@ -1,16 +1,11 @@
-  </main>
-  <footer class="crm-footer">
-    <div class="crm-footer-inner">
-      <span>&copy; <?php echo date('Y'); ?> Rolexto CRM Platform. All rights reserved.</span>
-      <span class="hidden-xs">Rolexto Real Estate &amp; Business Setup</span>
-    </div>
-  </footer>
+ <footer class="main-footer">
+</footer>
 </div>
-</div>
-
+<!-- ./wrapper -->
+<!-- jQuery 2.2.3 -->
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
-
+<!-- Bootstrap WYSIHTML5 -->
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/jquery.validate.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/fastclick/fastclick.js"></script>
@@ -28,11 +23,11 @@
 <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/iCheck/icheck.min.js"></script>
-
+<!-- ChartJS -->
 <script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/multiselect/multiselect-js.js"></script>
 
-
+<!--<script src="<?php //echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>-->
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
@@ -42,13 +37,13 @@
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/jquery.geocomplete.js"></script> 
-
+<!-- Uplodify-->
 <script src="<?php echo base_url(); ?>assets/plugins/uploadify/js/jquery.dm-uploader.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/uploadify/demo-ui.js"></script>
-
+<!--Opup-->
  <script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
     <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css" />
-
+<!-- Page script -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY0iXbSmvQSxjus3PEJoKnJZreLXQuP1Y&amp;libraries=places"></script> 
 
 <script>
@@ -63,12 +58,19 @@
          this.value = this.value.replace(/[^A-Za-z ]/g, "");   
 
     });
+    //Initialize Select2 Elements
     $(".select2").select2();
+    //Datemask dd/mm/yyyy
     $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    //Datemask2 mm/dd/yyyy
     $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+    //Money Euro
     $("[data-mask]").inputmask();
+    //Date range picker
     $('#reservation').daterangepicker();
+    //Date range picker with time picker
     $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+    //Date range as a button
     $('#daterange-btn').daterangepicker(
         {
           ranges: {
@@ -86,6 +88,7 @@
           $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
         }
     );
+    //Date picker
 
    
     $('.multiselect-ui').multiselect({
@@ -114,26 +117,33 @@ $('.datepicker2').datepicker({
      $(this).datepicker('hide');
 });
 
+    //iCheck for checkbox and radio inputs
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
       checkboxClass: 'icheckbox_minimal-blue',
       radioClass: 'iradio_minimal-blue'
     });
+    //Red color scheme for iCheck
     $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
       checkboxClass: 'icheckbox_minimal-red',
       radioClass: 'iradio_minimal-red'
     });
+    //Flat red color scheme for iCheck
     $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
       checkboxClass: 'icheckbox_flat-green',
       radioClass: 'iradio_flat-green'
     });
+    //Colorpicker
     $(".my-colorpicker1").colorpicker();
+    //color picker with addon
     $(".my-colorpicker2").colorpicker();
+    //Timepicker
     $(".timepicker").timepicker({
       showInputs: false
     });
   });
  $(function(){
 	 var addreess_fg= $("#geocomplete").val();
+	 //alert(addreess_fg);
         $("#geocomplete").geocomplete({
           	map: ".map_canvas",
 			location: addreess_fg,		
@@ -156,7 +166,7 @@ $('.datepicker2').datepicker({
 		  url:'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latLng.lat()+','+latLng.lng()+'&key=AIzaSyAY0iXbSmvQSxjus3PEJoKnJZreLXQuP1Y',
          success: function(data){
             $("input[name=address]").val(data.results[0].formatted_address);
-             
+             /*or you could iterate the components for only the city and state*/
          }
 }); 
 		  
@@ -192,26 +202,36 @@ $('.datepicker2').datepicker({
   
  
   $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    //CKEDITOR.replace('editor1');
+    //bootstrap WYSIHTML5 - text editor
     $(".textarea").wysihtml5();
   });
 </script>
 <script>
   $(function () {
+    //Enable iCheck plugin for checkboxes
+    //iCheck for checkbox and radio inputs
     $('.mailbox-messages input[type="checkbox"]').iCheck({
       checkboxClass: 'icheckbox_flat-blue',
       radioClass: 'iradio_flat-blue'
     });
+    //Enable check and uncheck all functionality
     $(".checkbox-toggle").click(function () {
       var clicks = $(this).data('clicks');
       if (clicks) {
+        //Uncheck all checkboxes
         $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
         $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
       } else {
+        //Check all checkboxes
         $(".mailbox-messages input[type='checkbox']").iCheck("check");
         $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
       }
       $(this).data("clicks", !clicks);
     });
+    //Handle starring for glyphicon and font awesome
    
   });
 
@@ -236,8 +256,10 @@ $(".logout").click(function(){
                 alert('Something is wrong');
              },
              success: function(data) {
+                 // $("#"+id).remove();
                 swal("Logged Out!", "", "success");
                 location.reload();
+                  //swal("Logged Out!", "", "success");
              }
           });
         } 
@@ -268,54 +290,6 @@ $('header').removeClass('fixed-header');
 }
 });
 </script>
-<script>
-$(document).ready(function() {
-  $('#crmSidebarToggle').on('click', function(e) {
-    e.preventDefault();
-    if ($(window).width() < 992) {
-      $('#crmSidebar').toggleClass('crm-sidebar-open');
-      $('#crmSidebarBackdrop').toggleClass('active');
-    } else {
-      $('#crmSidebar').toggleClass('crm-sidebar-collapsed');
-      $('.crm-app-shell').toggleClass('crm-app-shell-expanded');
-    }
-  });
 
-  $('#crmSidebarClose, #crmSidebarBackdrop').on('click', function(e) {
-    e.preventDefault();
-    $('#crmSidebar').removeClass('crm-sidebar-open');
-    $('#crmSidebarBackdrop').removeClass('active');
-  });
-
-  $('.crm-sidebar-nav a').on('click', function() {
-    if ($(window).width() < 992 && !$(this).parent().hasClass('has-sub')) {
-      $('#crmSidebar').removeClass('crm-sidebar-open');
-      $('#crmSidebarBackdrop').removeClass('active');
-    }
-  });
-
-  $('.crm-nav-item.has-sub .nav-arrow').on('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $(this).closest('.crm-nav-item').toggleClass('open');
-  });
-
-  $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
-    var href = $(this).attr('href');
-    if (!href || href === '#' || href === 'javascript:void(0);') {
-      e.preventDefault();
-      $(this).parent('.crm-nav-item').toggleClass('open');
-    }
-  });
-
-  $('#crmThemeToggle').on('click', function(e) {
-    e.preventDefault();
-    var current = document.documentElement.getAttribute('data-theme') || 'light';
-    var next = current === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('crm_theme', next);
-  });
-});
-</script>
 </body>
 </html>

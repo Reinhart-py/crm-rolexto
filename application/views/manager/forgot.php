@@ -8,7 +8,6 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         
 <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" type="image/x-icon">
-<link rel="icon" href="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" type="image/jpeg">
     
     
   <!-- Bootstrap 3.3.6 -->
