@@ -36,7 +36,6 @@
 <img src="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" alt="Rolexto" style="height:32px; width:32px; border-radius:6px; object-fit:cover;">
 <div class="brand-text">
 <span class="brand-title">Rolexto CRM</span>
-<span class="brand-badge">Rolex Red</span>
 </div>
 </a>
 <div class="crm-sidebar-nav">
@@ -44,7 +43,7 @@
 $r1 = $this->uri->segment(2);
 $r2 = $this->uri->segment(3);
 ?>
-<div class="crm-nav-group-title">Overview</div>
+<div class="crm-nav-group-title">Main</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item">
 <a href="<?php echo base_url(); ?>manager/dashboard" class="crm-nav-link <?php if($r1=='dashboard' || empty($r1)){ echo 'active'; } ?>">
@@ -53,129 +52,98 @@ $r2 = $this->uri->segment(3);
 </a>
 </li>
 </ul>
-<div class="crm-nav-group-title">Commercial &amp; Leads</div>
+<div class="crm-nav-group-title">Leads</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='leads'){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-<span>My Leads</span>
+<span>Leads</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
-<li><a href="<?php echo base_url(); ?>manager/leads" class="crm-subnav-link <?php if($r1=='leads' && $r2==''){ echo 'active'; } ?>">All My Leads</a></li>
-<li><a href="<?php echo base_url(); ?>manager/leads/add" class="crm-subnav-link <?php if($r1=='leads' && $r2=='add'){ echo 'active'; } ?>">+ Add New Lead</a></li>
+<li><a href="<?php echo base_url(); ?>manager/leads" class="crm-subnav-link <?php if($r1=='leads' && $r2==''){ echo 'active'; } ?>">All Leads</a></li>
+<li><a href="<?php echo base_url(); ?>manager/leads/add" class="crm-subnav-link <?php if($r1=='leads' && $r2=='add'){ echo 'active'; } ?>">Add Lead</a></li>
 <li><a href="<?php echo base_url(); ?>manager/leads/followups" class="crm-subnav-link <?php if($r1=='leads' && $r2=='followups'){ echo 'active'; } ?>">Follow-ups</a></li>
 <li><a href="<?php echo base_url(); ?>manager/leads/meetings" class="crm-subnav-link <?php if($r1=='leads' && $r2=='meetings'){ echo 'active'; } ?>">Meetings</a></li>
 <li><a href="<?php echo base_url(); ?>manager/performance-report/individual" class="crm-subnav-link <?php if($r1=='performance-report' && $r2=='individual'){ echo 'active'; } ?>">Performance Report</a></li>
 </ul>
 </li>
-<li class="crm-nav-item">
-<a href="<?php echo base_url(); ?>manager/leads/followups" class="crm-nav-link <?php if($r1=='leads' && $r2=='followups'){ echo 'active'; } ?>">
-<svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-<span>Follow-ups</span>
-</a>
-</li>
-<li class="crm-nav-item">
-<a href="<?php echo base_url(); ?>manager/leads/meetings" class="crm-nav-link <?php if($r1=='leads' && $r2=='meetings'){ echo 'active'; } ?>">
-<svg class="crm-svg" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-<span>Meetings</span>
-</a>
-</li>
-<li class="crm-nav-item">
-<a href="<?php echo base_url(); ?>manager/performance-report/individual" class="crm-nav-link <?php if($r1=='performance-report' && $r2=='individual'){ echo 'active'; } ?>">
-<svg class="crm-svg" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-<span>My Performance</span>
-</a>
-</li>
 </ul>
-<div class="crm-nav-group-title">Verticals Portfolio</div>
+<div class="crm-nav-group-title">Verticals</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='verticals' || ($r1=='team' && $r2=='verticals')){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/></svg>
-<span>Practice Portfolios</span>
+<span>Verticals</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
 <li><a href="<?php echo base_url(); ?>manager/verticals" class="crm-subnav-link <?php if($r1=='verticals' && $r2==''){ echo 'active'; } ?>">My Verticals</a></li>
-<li><a href="<?php echo base_url(); ?>manager/verticals/add" class="crm-subnav-link <?php if($r1=='verticals' && $r2=='add'){ echo 'active'; } ?>">+ Add Vertical</a></li>
+<li><a href="<?php echo base_url(); ?>manager/verticals/add" class="crm-subnav-link <?php if($r1=='verticals' && $r2=='add'){ echo 'active'; } ?>">Add Vertical</a></li>
 <li><a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-subnav-link <?php if($r1=='team' && $r2=='verticals'){ echo 'active'; } ?>">Team Verticals</a></li>
-<li><a href="<?php echo base_url(); ?>manager/verticals/report" class="crm-subnav-link <?php if($r1=='verticals' && $r2=='report'){ echo 'active'; } ?>">Verticals Report</a></li>
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Team Operations</div>
+<div class="crm-nav-group-title">Team</div>
 <ul class="crm-nav-list">
-<li class="crm-nav-item has-sub <?php if($r1=='team' && in_array($r2, array('leads','assignleads','followups','meetings','assignmeetings'))){ echo 'open'; } ?>">
-<a href="javascript:void(0)" class="crm-nav-link">
-<svg class="crm-svg" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-<span>Team Leads</span>
-<svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-</a>
-<ul class="crm-subnav-list">
-<li><a href="<?php echo base_url(); ?>manager/team/leads" class="crm-subnav-link <?php if($r1=='team' && $r2=='leads'){ echo 'active'; } ?>">All Team Leads</a></li>
-<li><a href="<?php echo base_url(); ?>manager/team/assignleads" class="crm-subnav-link <?php if($r1=='team' && $r2=='assignleads'){ echo 'active'; } ?>">Assigned Leads</a></li>
-<li><a href="<?php echo base_url(); ?>manager/team/followups" class="crm-subnav-link <?php if($r1=='team' && $r2=='followups'){ echo 'active'; } ?>">Team Follow-ups</a></li>
-<li><a href="<?php echo base_url(); ?>manager/team/meetings" class="crm-subnav-link <?php if($r1=='team' && $r2=='meetings'){ echo 'active'; } ?>">Team Meetings</a></li>
-<li><a href="<?php echo base_url(); ?>manager/team/assignmeetings" class="crm-subnav-link <?php if($r1=='team' && $r2=='assignmeetings'){ echo 'active'; } ?>">Assigned Meetings</a></li>
-</ul>
-</li>
-<li class="crm-nav-item has-sub <?php if($r1=='team' && in_array($r2, array('members','chart'))){ echo 'open'; } ?>">
+<li class="crm-nav-item has-sub <?php if($r1=='team'){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-<span>Team Members</span>
+<span>Team</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
-<li><a href="<?php echo base_url(); ?>manager/team/members" class="crm-subnav-link <?php if($r1=='team' && $r2=='members'){ echo 'active'; } ?>">Member Directory</a></li>
-<li><a href="<?php echo base_url(); ?>manager/team/chart" class="crm-subnav-link <?php if($r1=='team' && $r2=='chart'){ echo 'active'; } ?>">Hierarchy Chart</a></li>
-<li><a href="<?php echo base_url(); ?>manager/performance-report" class="crm-subnav-link <?php if($r1=='performance-report' && $r2==''){ echo 'active'; } ?>">Department Performance</a></li>
+<li><a href="<?php echo base_url(); ?>manager/team/members" class="crm-subnav-link <?php if($r1=='team' && $r2=='members'){ echo 'active'; } ?>">Members</a></li>
+<li><a href="<?php echo base_url(); ?>manager/team/chart" class="crm-subnav-link <?php if($r1=='team' && $r2=='chart'){ echo 'active'; } ?>">Chart</a></li>
+<li><a href="<?php echo base_url(); ?>manager/team/leads" class="crm-subnav-link <?php if($r1=='team' && $r2=='leads'){ echo 'active'; } ?>">Leads</a></li>
+<li><a href="<?php echo base_url(); ?>manager/team/verticals" class="crm-subnav-link <?php if($r1=='team' && $r2=='verticals'){ echo 'active'; } ?>">Verticals</a></li>
+<li><a href="<?php echo base_url(); ?>manager/team/followups" class="crm-subnav-link <?php if($r1=='team' && $r2=='followups'){ echo 'active'; } ?>">Follow-ups</a></li>
+<li><a href="<?php echo base_url(); ?>manager/team/meetings" class="crm-subnav-link <?php if($r1=='team' && $r2=='meetings'){ echo 'active'; } ?>">Meetings</a></li>
+<li><a href="<?php echo base_url(); ?>manager/team/assignmeetings" class="crm-subnav-link <?php if($r1=='team' && $r2=='assignmeetings'){ echo 'active'; } ?>">Assigned Meetings</a></li>
+<li><a href="<?php echo base_url(); ?>manager/team/assignleads" class="crm-subnav-link <?php if($r1=='team' && $r2=='assignleads'){ echo 'active'; } ?>">Assigned Leads</a></li>
+<li><a href="<?php echo base_url(); ?>manager/performance-report" class="crm-subnav-link <?php if($r1=='performance-report' && $r2==''){ echo 'active'; } ?>">Performance Report</a></li>
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Users &amp; Access</div>
+<div class="crm-nav-group-title">Users</div>
 <ul class="crm-nav-list">
-<li class="crm-nav-item has-sub <?php if(($r1=='users' && $r2!='report')){ echo 'open'; } ?>">
+<li class="crm-nav-item has-sub <?php if($r1=='users'){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-<span>User Management</span>
+<span>Users</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
 <li><a href="<?php echo base_url(); ?>manager/users" class="crm-subnav-link <?php if($r1=='users' && $r2==''){ echo 'active'; } ?>">View Users</a></li>
-<li><a href="<?php echo base_url(); ?>manager/users/add" class="crm-subnav-link <?php if($r1=='users' && $r2=='add'){ echo 'active'; } ?>">+ Add User</a></li>
-<li><a href="<?php echo base_url(); ?>manager/users/report" class="crm-subnav-link <?php if($r1=='users' && $r2=='report'){ echo 'active'; } ?>">Users Report</a></li>
+<li><a href="<?php echo base_url(); ?>manager/users/add" class="crm-subnav-link <?php if($r1=='users' && $r2=='add'){ echo 'active'; } ?>">Add User</a></li>
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Configuration &amp; System</div>
+<div class="crm-nav-group-title">Settings</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='roles' || $r1=='terms'){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-<span>Configure &amp; System</span>
+<span>Settings</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
-<li><a href="<?php echo base_url(); ?>manager/roles" class="crm-subnav-link <?php if($r1=='roles' && $r2==''){ echo 'active'; } ?>">Roles &amp; Permissions</a></li>
-<li><a href="<?php echo base_url(); ?>manager/roles/add" class="crm-subnav-link <?php if($r1=='roles' && $r2=='add'){ echo 'active'; } ?>">+ Add Role</a></li>
-<li><a href="<?php echo base_url(); ?>manager/terms" class="crm-subnav-link <?php if($r1=='terms' && $r2==''){ echo 'active'; } ?>">CRM Categories</a></li>
-<li><a href="<?php echo base_url(); ?>manager/terms/add" class="crm-subnav-link <?php if($r1=='terms' && $r2=='add'){ echo 'active'; } ?>">+ Add Category</a></li>
+<li><a href="<?php echo base_url(); ?>manager/roles" class="crm-subnav-link <?php if($r1=='roles' && $r2==''){ echo 'active'; } ?>">Roles</a></li>
+<li><a href="<?php echo base_url(); ?>manager/terms" class="crm-subnav-link <?php if($r1=='terms' && $r2==''){ echo 'active'; } ?>">Category</a></li>
 </ul>
 </li>
 </ul>
-<div class="crm-nav-group-title">Security &amp; Profile</div>
+<div class="crm-nav-group-title">Profile</div>
 <ul class="crm-nav-list">
 <li class="crm-nav-item has-sub <?php if($r1=='profile' || $r1=='password' || ($r1=='setting' && $r2=='editlogo')){ echo 'open'; } ?>">
 <a href="javascript:void(0)" class="crm-nav-link">
 <svg class="crm-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-<span>Account Settings</span>
+<span>Profile</span>
 <svg class="crm-svg-sm nav-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
 </a>
 <ul class="crm-subnav-list">
 <li><a href="<?php echo base_url(); ?>manager/profile" class="crm-subnav-link <?php if($r1=='profile'){ echo 'active'; } ?>">View Profile</a></li>
 <li><a href="<?php echo base_url(); ?>manager/password" class="crm-subnav-link <?php if($r1=='password'){ echo 'active'; } ?>">Change Password</a></li>
-<li><a href="<?php echo base_url(); ?>manager/setting/editlogo" class="crm-subnav-link <?php if($r1=='setting' && $r2=='editlogo'){ echo 'active'; } ?>">Brand &amp; Logo</a></li>
 </ul>
 </li>
 </ul>

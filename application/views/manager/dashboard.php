@@ -278,9 +278,8 @@
             </div>
             
             
-             <div class="row">
+              <div class="row">
 			<div class="col-sm-3">
-                <!-- Widget: user widget style 1 -->
                 <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">My Followups</h3>            
@@ -298,19 +297,14 @@
                             <li><a href="<?php echo base_url(); ?>manager/leads/followups?type=5">All Future<span class="pull-right badge bg-green"><?php echo $dashboard_f['total_future']; ?></span></a></li>                          
                         </ul>
                     </div>
-
-                   
                 </div>
-
             </div>
             
             <div class="col-sm-3">
-                <!-- Widget: user widget style 1 -->
                 <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">My Meetings</h3>            
             </div>
-
                      <div class="box-body">
                     <canvas id="pieChart2" style="height:250px"></canvas>
                     </div>
@@ -322,23 +316,60 @@
                             <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=3">Today<span class="pull-right badge bg-skyblue"><?php echo $dashboard_m['total_today']; ?></span></a></li>
                             <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=4">Next 7 Days<span class="pull-right badge bg-blue"><?php echo $dashboard_m['total_nextweek']; ?></span></a></li>
                             <li><a href="<?php echo base_url(); ?>manager/leads/meetings?type=5">All Future<span class="pull-right badge bg-green"><?php echo $dashboard_m['total_future']; ?></span></a></li>
-
                         </ul>
                     </div>
                 </div>
-
             </div>
 
-            
+            <div class="col-sm-3">
+                <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">My Closures</h3>            
+            </div>
+                     <div class="box-body">
+                    <canvas id="pieChartClosures" style="height:250px"></canvas>
+                    </div>
 
+                    <div class="box-footer no-padding">
+                        <ul class="nav nav-stacked">
+                        <li><a href="<?php echo base_url(); ?>manager/leads?status=39">This Month<span class="pull-right badge bg-green"><?php echo isset($dashboard_c['total_this_month']) ? $dashboard_c['total_this_month'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads?status=39">Last Month<span class="pull-right badge bg-blue"><?php echo isset($dashboard_c['total_last_month']) ? $dashboard_c['total_last_month'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads?status=39">This Year<span class="pull-right badge bg-skyblue"><?php echo isset($dashboard_c['total_year']) ? $dashboard_c['total_year'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads?status=39">All Time Closed<span class="pull-right badge bg-orange"><?php echo isset($dashboard_c['total_all']) ? $dashboard_c['total_all'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/leads?status=39">Total Revenue<span class="pull-right badge bg-red"><?php echo isset($dashboard_c['total_revenue']) ? number_format($dashboard_c['total_revenue']) : 0; ?></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
             <div class="col-sm-3">
-                <!-- Widget: user widget style 1 -->
+                <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">My Vertical FU</h3>            
+            </div>
+                     <div class="box-body">
+                    <canvas id="pieChartVertFU" style="height:250px"></canvas>
+                    </div>
+
+                    <div class="box-footer no-padding">
+                        <ul class="nav nav-stacked">
+                        <li><a href="<?php echo base_url(); ?>manager/verticals?type=1">All Missed<span class="pull-right badge bg-red"><?php echo isset($dashboard_vfu['total_missed']) ? $dashboard_vfu['total_missed'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/verticals?type=2">Last 7 Days<span class="pull-right badge bg-orange"><?php echo isset($dashboard_vfu['total_lastweek']) ? $dashboard_vfu['total_lastweek'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/verticals?type=3">Today<span class="pull-right badge bg-skyblue"><?php echo isset($dashboard_vfu['total_today']) ? $dashboard_vfu['total_today'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/verticals?type=4">Next 7 Days<span class="pull-right badge bg-blue"><?php echo isset($dashboard_vfu['total_nextweek']) ? $dashboard_vfu['total_nextweek'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/verticals?type=5">All Future<span class="pull-right badge bg-green"><?php echo isset($dashboard_vfu['total_future']) ? $dashboard_vfu['total_future'] : 0; ?></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<div class="row">
+            <div class="col-sm-3">
                 <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Team Followups</h3>            
             </div>
-
                      <div class="box-body">
                     <canvas id="pieChart3" style="height:250px"></canvas>
                     </div>
@@ -353,17 +384,13 @@
                         </ul>
                     </div>
                 </div>
-
-
             </div>
             
 			<div class="col-sm-3">
-                <!-- Widget: user widget style 1 -->
                 <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Team Meetings</h3>            
             </div>
-
                      <div class="box-body">
                     <canvas id="pieChart4" style="height:250px"></canvas>
                     </div>
@@ -378,11 +405,49 @@
                         </ul>
                     </div>
                 </div>
-
-
-               
             </div>
 
+			<div class="col-sm-3">
+                <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Team Closures</h3>            
+            </div>
+                     <div class="box-body">
+                    <canvas id="pieChartTeamClosures" style="height:250px"></canvas>
+                    </div>
+
+                    <div class="box-footer no-padding">
+                        <ul class="nav nav-stacked">
+                        <li><a href="<?php echo base_url(); ?>manager/team/leads?status=39">This Month<span class="pull-right badge bg-green"><?php echo isset($dashboard_Tc['total_this_month']) ? $dashboard_Tc['total_this_month'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/leads?status=39">Last Month<span class="pull-right badge bg-blue"><?php echo isset($dashboard_Tc['total_last_month']) ? $dashboard_Tc['total_last_month'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/leads?status=39">This Year<span class="pull-right badge bg-skyblue"><?php echo isset($dashboard_Tc['total_year']) ? $dashboard_Tc['total_year'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/leads?status=39">All Time Closed<span class="pull-right badge bg-orange"><?php echo isset($dashboard_Tc['total_all']) ? $dashboard_Tc['total_all'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/leads?status=39">Total Revenue<span class="pull-right badge bg-red"><?php echo isset($dashboard_Tc['total_revenue']) ? number_format($dashboard_Tc['total_revenue']) : 0; ?></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+			<div class="col-sm-3">
+                <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Team Vertical FU</h3>            
+            </div>
+                     <div class="box-body">
+                    <canvas id="pieChartTeamVertFU" style="height:250px"></canvas>
+                    </div>
+
+                    <div class="box-footer no-padding">
+                        <ul class="nav nav-stacked">
+                        <li><a href="<?php echo base_url(); ?>manager/team/verticals?type=1">All Missed<span class="pull-right badge bg-red"><?php echo isset($dashboard_Tvfu['total_missed']) ? $dashboard_Tvfu['total_missed'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/verticals?type=2">Last 7 Days<span class="pull-right badge bg-orange"><?php echo isset($dashboard_Tvfu['total_lastweek']) ? $dashboard_Tvfu['total_lastweek'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/verticals?type=3">Today<span class="pull-right badge bg-skyblue"><?php echo isset($dashboard_Tvfu['total_today']) ? $dashboard_Tvfu['total_today'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/verticals?type=4">Next 7 Days<span class="pull-right badge bg-blue"><?php echo isset($dashboard_Tvfu['total_nextweek']) ? $dashboard_Tvfu['total_nextweek'] : 0; ?></span></a></li>
+                            <li><a href="<?php echo base_url(); ?>manager/team/verticals?type=5">All Future<span class="pull-right badge bg-green"><?php echo isset($dashboard_Tvfu['total_future']) ? $dashboard_Tvfu['total_future'] : 0; ?></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 </div>
       
     </section>
@@ -822,11 +887,56 @@ if(!empty($myTleadp2)){  $myTleadstr2= implode(', ',$myTleadp2); }
       legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
     }
     //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
+    var pieChartCanvasClosures = $('#pieChartClosures').length ? $('#pieChartClosures').get(0).getContext('2d') : null
+    var pieChartClosures       = pieChartCanvasClosures ? new Chart(pieChartCanvasClosures) : null
+
+    var pieChartCanvasVertFU   = $('#pieChartVertFU').length ? $('#pieChartVertFU').get(0).getContext('2d') : null
+    var pieChartVertFU         = pieChartCanvasVertFU ? new Chart(pieChartCanvasVertFU) : null
+
+    var pieChartCanvasTeamClosures = $('#pieChartTeamClosures').length ? $('#pieChartTeamClosures').get(0).getContext('2d') : null
+    var pieChartTeamClosures   = pieChartCanvasTeamClosures ? new Chart(pieChartCanvasTeamClosures) : null
+
+    var pieChartCanvasTeamVertFU = $('#pieChartTeamVertFU').length ? $('#pieChartTeamVertFU').get(0).getContext('2d') : null
+    var pieChartTeamVertFU     = pieChartCanvasTeamVertFU ? new Chart(pieChartCanvasTeamVertFU) : null
+
+    var PieDataClosures = [
+      { value: <?php echo isset($dashboard_c['total_this_month']) ? $dashboard_c['total_this_month'] : 0; ?>, color: '#00a65a', highlight: '#00a65a', label: 'This Month' },
+      { value: <?php echo isset($dashboard_c['total_last_month']) ? $dashboard_c['total_last_month'] : 0; ?>, color: '#0164e8', highlight: '#0164e8', label: 'Last Month' },
+      { value: <?php echo isset($dashboard_c['total_year']) ? $dashboard_c['total_year'] : 0; ?>, color: '#87ceeb', highlight: '#87ceeb', label: 'This Year' },
+      { value: <?php echo isset($dashboard_c['total_all']) ? $dashboard_c['total_all'] : 0; ?>, color: '#ff851b', highlight: '#ff851b', label: 'All Time' }
+    ]
+
+    var PieDataVertFU = [
+      { value: <?php echo isset($dashboard_vfu['total_missed']) ? $dashboard_vfu['total_missed'] : 0; ?>, color: '#dd4b39', highlight: '#dd4b39', label: 'All Missed' },
+      { value: <?php echo isset($dashboard_vfu['total_lastweek']) ? $dashboard_vfu['total_lastweek'] : 0; ?>, color: '#ff851b', highlight: '#ff851b', label: 'Last Week' },
+      { value: <?php echo isset($dashboard_vfu['total_today']) ? $dashboard_vfu['total_today'] : 0; ?>, color: '#87ceeb', highlight: '#87ceeb', label: 'Today' },
+      { value: <?php echo isset($dashboard_vfu['total_nextweek']) ? $dashboard_vfu['total_nextweek'] : 0; ?>, color: '#0164e8', highlight: '#0164e8', label: 'Next Week' },
+      { value: <?php echo isset($dashboard_vfu['total_future']) ? $dashboard_vfu['total_future'] : 0; ?>, color: '#00a65a', highlight: '#00a65a', label: 'All Future' }
+    ]
+
+    var PieDataTeamClosures = [
+      { value: <?php echo isset($dashboard_Tc['total_this_month']) ? $dashboard_Tc['total_this_month'] : 0; ?>, color: '#00a65a', highlight: '#00a65a', label: 'This Month' },
+      { value: <?php echo isset($dashboard_Tc['total_last_month']) ? $dashboard_Tc['total_last_month'] : 0; ?>, color: '#0164e8', highlight: '#0164e8', label: 'Last Month' },
+      { value: <?php echo isset($dashboard_Tc['total_year']) ? $dashboard_Tc['total_year'] : 0; ?>, color: '#87ceeb', highlight: '#87ceeb', label: 'This Year' },
+      { value: <?php echo isset($dashboard_Tc['total_all']) ? $dashboard_Tc['total_all'] : 0; ?>, color: '#ff851b', highlight: '#ff851b', label: 'All Time' }
+    ]
+
+    var PieDataTeamVertFU = [
+      { value: <?php echo isset($dashboard_Tvfu['total_missed']) ? $dashboard_Tvfu['total_missed'] : 0; ?>, color: '#dd4b39', highlight: '#dd4b39', label: 'All Missed' },
+      { value: <?php echo isset($dashboard_Tvfu['total_lastweek']) ? $dashboard_Tvfu['total_lastweek'] : 0; ?>, color: '#ff851b', highlight: '#ff851b', label: 'Last Week' },
+      { value: <?php echo isset($dashboard_Tvfu['total_today']) ? $dashboard_Tvfu['total_today'] : 0; ?>, color: '#87ceeb', highlight: '#87ceeb', label: 'Today' },
+      { value: <?php echo isset($dashboard_Tvfu['total_nextweek']) ? $dashboard_Tvfu['total_nextweek'] : 0; ?>, color: '#0164e8', highlight: '#0164e8', label: 'Next Week' },
+      { value: <?php echo isset($dashboard_Tvfu['total_future']) ? $dashboard_Tvfu['total_future'] : 0; ?>, color: '#00a65a', highlight: '#00a65a', label: 'All Future' }
+    ]
+
     pieChart.Doughnut(PieData, pieOptions)
     pieChart2.Doughnut(PieData2, pieOptions)
+    if(pieChartClosures) pieChartClosures.Doughnut(PieDataClosures, pieOptions)
+    if(pieChartVertFU) pieChartVertFU.Doughnut(PieDataVertFU, pieOptions)
     pieChart3.Doughnut(PieData3, pieOptions)
     pieChart4.Doughnut(PieData4, pieOptions)
+    if(pieChartTeamClosures) pieChartTeamClosures.Doughnut(PieDataTeamClosures, pieOptions)
+    if(pieChartTeamVertFU) pieChartTeamVertFU.Doughnut(PieDataTeamVertFU, pieOptions)
 
 
   })

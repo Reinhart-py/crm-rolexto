@@ -3,17 +3,17 @@
 :root {
     --crm-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --crm-font-mono: 'JetBrains Mono', monospace;
-    --crm-red: #991b1b;
-    --crm-red-hover: #7f1d1d;
-    --crm-red-light: rgba(153, 27, 27, 0.08);
-    --crm-red-glow: rgba(153, 27, 27, 0.25);
-    --crm-gold: #d97706;
+    --crm-red: #10b981;
+    --crm-red-hover: #059669;
+    --crm-red-light: rgba(16, 185, 129, 0.12);
+    --crm-red-glow: rgba(16, 185, 129, 0.25);
+    --crm-gold: #10b981;
     --crm-bg: #f8fafc;
     --crm-card-bg: #ffffff;
     --crm-card-hover: #ffffff;
     --crm-sidebar-bg: #0b0f19;
     --crm-sidebar-hover: rgba(255, 255, 255, 0.06);
-    --crm-sidebar-active: rgba(153, 27, 27, 0.2);
+    --crm-sidebar-active: rgba(16, 185, 129, 0.2);
     --crm-sidebar-border: rgba(255, 255, 255, 0.08);
     --crm-text: #0f172a;
     --crm-text-muted: #64748b;
@@ -35,7 +35,7 @@
     --crm-card-hover: #131d33;
     --crm-sidebar-bg: #060911;
     --crm-sidebar-hover: rgba(255, 255, 255, 0.05);
-    --crm-sidebar-active: rgba(153, 27, 27, 0.25);
+    --crm-sidebar-active: rgba(16, 185, 129, 0.25);
     --crm-sidebar-border: rgba(255, 255, 255, 0.07);
     --crm-text: #f1f5f9;
     --crm-text-muted: #94a3b8;
