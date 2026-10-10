@@ -33,7 +33,7 @@
 <div class="wrapper">
 <aside class="crm-sidebar" id="crmSidebar">
 <a href="<?php echo base_url(); ?>manager/dashboard" class="crm-sidebar-brand">
-<img src="<?php echo base_url(); ?>assets/green-dark.jpg" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:46px; width:46px; border-radius:10px; object-fit:cover;">
+<img src="<?php echo base_url(); ?>assets/green-dark.png" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:48px; width:48px; border-radius:10px; object-fit:contain;">
 <div class="brand-text">
 <span class="brand-title">Rolexto CRM</span>
 </div>
@@ -195,7 +195,7 @@ $(function() {
     }
     function updateBrandLogos(pal) {
         var base = '<?php echo base_url(); ?>';
-        var logo = pal === 'red' ? base + 'assets/red-dark.jpg' : base + 'assets/green-dark.jpg';
+        var logo = pal === 'red' ? base + 'assets/red-dark.png' : base + 'assets/green-dark.png';
         $('.crm-brand-logo-img').attr('src', logo);
     }
     updateBrandLogos(curPalette);

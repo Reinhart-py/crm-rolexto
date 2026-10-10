@@ -192,7 +192,7 @@
 <div class="auth-overlay" id="authOverlay" style="display:none;">
     <div class="auth-card">
         <div class="auth-header">
-            <img src="assets/green-dark.jpg" alt="Logo" class="crm-brand-logo-img">
+            <img src="assets/green-dark.png" alt="Logo" class="crm-brand-logo-img">
             <h3>Manager Login</h3>
             <p>Rolexto CRM Portal</p>
         </div>
@@ -220,7 +220,7 @@
 <div class="wrapper">
 <aside class="crm-sidebar" id="crmSidebar">
 <a href="#dashboard" class="crm-sidebar-brand" data-view="dashboard">
-<img src="assets/green-dark.jpg" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:46px; width:46px; border-radius:10px; object-fit:cover;">
+<img src="assets/green-dark.png" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:48px; width:48px; border-radius:10px; object-fit:contain;">
 <div class="brand-text">
 <span class="brand-title">Rolexto CRM</span>
 </div>
@@ -3741,7 +3741,7 @@ $(function() {
         $('#crmPaletteText').text(curPalette === 'red' ? 'Red Mode' : 'Green Mode');
     }
     function updateBrandLogos(pal) {
-        var logo = pal === 'red' ? 'assets/red-dark.jpg' : 'assets/green-dark.jpg';
+        var logo = pal === 'red' ? 'assets/red-dark.png' : 'assets/green-dark.png';
         $('.crm-brand-logo-img').attr('src', logo);
     }
     updateBrandLogos(curPalette);

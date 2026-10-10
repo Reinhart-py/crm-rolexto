@@ -64,7 +64,7 @@ Managing enterprise sales and organizational hierarchies requires a system that:
   - **Rolex Emerald Green (`#10b981`)**: Polished emerald green accents with deep obsidian dark or crisp slate surfaces.
   - **Rolex Crimson Red (`#dc2626`)**: Bold ruby crimson accents with deep obsidian dark or crisp slate surfaces.
   - *Zero color mixing*: Switch dynamically via the topbar toggle with automatic `localStorage` persistence.
-- **Dynamic Theme Branding**: Auto-swaps high-resolution brand logos (`green-dark.jpg` in Green mode, `red-dark.jpg` in Red mode) in real time.
+- **Dynamic Theme Branding**: Auto-swaps high-resolution brand logos (`green-dark.png` in Green mode, `red-dark.png` in Red mode) in real time.
 - **Reactive Chart Engine**: Charts instantly recolor to emerald green or crimson red upon toggling the theme palette.
 - **Harmonized Activity Cards**: Monochromatic tonal progress tracks and clean executive badges eliminate rainbow template clutter.
 - **Independent Display Modes**: Toggle between Dark Mode and Light Mode independently without affecting system palette rules.
@@ -311,9 +311,9 @@ Rolexto CRM incorporates an intentional luxury design system governed by CSS var
 Toggle between Rolex Emerald Green and Rolex Crimson Red using the `#crmPaletteToggle` pill in the topbar. The active palette updates all primary buttons, active navigation markers, glowing card borders, and chart fills with zero hybrid color mixing.
 
 #### Dynamic Logo Switching
-- **Rolex Emerald Green**: Automatically displays `assets/green-dark.jpg`.
-- **Rolex Crimson Red**: Automatically displays `assets/red-dark.jpg`.
-The 46px high-resolution logo updates live across the sidebar and authentication panels without page reload.
+- **Rolex Emerald Green**: Automatically displays `assets/green-dark.png`.
+- **Rolex Crimson Red**: Automatically displays `assets/red-dark.png`.
+The 48px high-resolution logo updates live across the sidebar and authentication panels without page reload.
 
 #### Reactive Chart Recoloring
 Graphs (`barChart3` Previous Performance and `barChart4` Team Projection) are managed by `window.renderDashboardCharts()`. When switching between Green and Red modes, the canvases cleanly reconstruct with the exact palette fill (`#10b981` or `#dc2626`), eliminating chart caching and ghosting.
@@ -381,8 +381,8 @@ crm-rolexto/
 │           ├── elements/    # Header, navigation, and footer templates
 │           └── ...
 ├── assets/
-│   ├── green-dark.jpg       # Official Rolex Emerald Green high-res brand logo
-│   ├── red-dark.jpg         # Official Rolex Crimson Red high-res brand logo
+│   ├── green-dark.png       # Official Rolex Emerald Green high-res transparent brand logo
+│   ├── red-dark.png         # Official Rolex Crimson Red high-res transparent brand logo
 │   ├── bootstrap/           # Base responsive grid framework
 │   ├── dist/
 │   │   ├── css/
