@@ -70,17 +70,13 @@
     margin: 0;
 }
 .auth-hint {
-    background: rgba(16, 185, 129, 0.08);
-    border: 1px solid rgba(16, 185, 129, 0.3);
+    background: var(--crm-accent-light);
+    border: 1px solid var(--crm-accent);
     border-radius: 8px;
     padding: 10px 14px;
     margin-bottom: 20px;
     font-size: 12px;
-    color: #065f46;
-}
-[data-theme="dark"] .auth-hint {
-    background: rgba(16, 185, 129, 0.15);
-    color: #34d399;
+    color: var(--crm-text);
 }
 .auth-card .form-group {
     margin-bottom: 16px;
@@ -99,7 +95,7 @@
 .auth-btn-primary {
     width: 100%;
     height: 42px;
-    background: #10b981;
+    background: var(--crm-accent);
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -109,14 +105,14 @@
     transition: background 0.2s;
 }
 .auth-btn-primary:hover {
-    background: #059669;
+    background: var(--crm-accent-hover);
 }
 .auth-btn-secondary {
     width: 100%;
     height: 38px;
     background: transparent;
-    color: #10b981;
-    border: 1px solid #10b981;
+    color: var(--crm-accent);
+    border: 1px solid var(--crm-accent);
     border-radius: 8px;
     font-size: 13px;
     font-weight: 600;
@@ -124,7 +120,7 @@
     cursor: pointer;
 }
 .auth-btn-secondary:hover {
-    background: rgba(16, 185, 129, 0.08);
+    background: var(--crm-accent-light);
 }
 .drilldown-breadcrumb {
     display: flex;
@@ -138,7 +134,7 @@
     border: 1px solid var(--crm-border, #e2e8f0);
 }
 .drilldown-breadcrumb a {
-    color: #10b981;
+    color: var(--crm-accent);
     cursor: pointer;
     text-decoration: none;
     font-weight: 600;
@@ -179,8 +175,8 @@
     font-weight: 700;
     padding-bottom: 8px;
     margin: 20px 0 14px 0;
-    border-bottom: 2px solid rgba(16, 185, 129, 0.3);
-    color: #10b981;
+    border-bottom: 2px solid var(--crm-accent-glow);
+    color: var(--crm-accent);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -308,6 +304,7 @@
 <ul class="crm-subnav-list">
 <li><a href="#roles-permissions" class="crm-subnav-link" data-view="roles-permissions">Roles</a></li>
 <li><a href="#terms" class="crm-subnav-link" data-view="terms">Category</a></li>
+<li><a href="#theme-settings" class="crm-subnav-link" data-view="theme-settings">Theme</a></li>
 </ul>
 </li>
 </ul>
@@ -356,9 +353,9 @@
 <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:var(--crm-text-muted);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
 <input type="text" id="topbar-quick-search" placeholder="Search leads, team...">
 </div>
-<button type="button" class="crm-palette-toggle-btn" id="crmPaletteToggle" title="Global System Palette (All Users): Green / Red / Blue">
+<button type="button" class="crm-palette-toggle-btn" id="crmPaletteToggle" title="Theme: Green, Red, Blue, Black">
 <span class="crm-palette-indicator" id="crmPaletteIndicator"></span>
-<span class="crm-palette-text" id="crmPaletteText">Green Mode</span>
+<span class="crm-palette-text" id="crmPaletteText">Green</span>
 </button>
 <button type="button" class="crm-theme-toggle" id="crmThemeToggle" title="Switch Theme">
 <svg class="crm-svg sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -1854,6 +1851,52 @@
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-theme-settings">
+<section class="content-header">
+<h1><i class="fa fa-paint-brush"></i> Theme Settings</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border">
+<h3 class="box-title">Color Theme</h3>
+</div>
+<div class="box-body">
+<p style="color:var(--crm-text-muted); font-size:13px; margin-bottom:20px;">Choose a color theme for the CRM interface:</p>
+<div class="row">
+<div class="col-sm-3 col-xs-6">
+<div class="theme-option-card" id="themeCardGreen" onclick="applyGlobalPalette('green')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:16px; text-align:center; background:var(--crm-card-bg); transition:all 0.2s ease;">
+<div style="width:48px; height:48px; border-radius:50%; background:#10b981; margin:0 auto 12px auto; box-shadow:0 0 12px rgba(16,185,129,0.35);"></div>
+<h4 style="margin:0 0 6px 0; font-size:15px; font-weight:700;">Green</h4>
+<button type="button" class="btn btn-xs btn-default" style="margin-top:6px;">Select Green</button>
+</div>
+</div>
+<div class="col-sm-3 col-xs-6">
+<div class="theme-option-card" id="themeCardRed" onclick="applyGlobalPalette('red')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:16px; text-align:center; background:var(--crm-card-bg); transition:all 0.2s ease;">
+<div style="width:48px; height:48px; border-radius:50%; background:#dc2626; margin:0 auto 12px auto; box-shadow:0 0 12px rgba(220,38,38,0.35);"></div>
+<h4 style="margin:0 0 6px 0; font-size:15px; font-weight:700;">Red</h4>
+<button type="button" class="btn btn-xs btn-default" style="margin-top:6px;">Select Red</button>
+</div>
+</div>
+<div class="col-sm-3 col-xs-6">
+<div class="theme-option-card" id="themeCardBlue" onclick="applyGlobalPalette('blue')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:16px; text-align:center; background:var(--crm-card-bg); transition:all 0.2s ease;">
+<div style="width:48px; height:48px; border-radius:50%; background:#2563eb; margin:0 auto 12px auto; box-shadow:0 0 12px rgba(37,99,235,0.35);"></div>
+<h4 style="margin:0 0 6px 0; font-size:15px; font-weight:700;">Blue</h4>
+<button type="button" class="btn btn-xs btn-default" style="margin-top:6px;">Select Blue</button>
+</div>
+</div>
+<div class="col-sm-3 col-xs-6">
+<div class="theme-option-card" id="themeCardBlack" onclick="applyGlobalPalette('black')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:16px; text-align:center; background:var(--crm-card-bg); transition:all 0.2s ease;">
+<div style="width:48px; height:48px; border-radius:50%; background:#09090b; border:2px solid #ffffff; margin:0 auto 12px auto; box-shadow:0 0 12px rgba(0,0,0,0.5);"></div>
+<h4 style="margin:0 0 6px 0; font-size:15px; font-weight:700;">Black</h4>
+<button type="button" class="btn btn-xs btn-default" style="margin-top:6px;">Select Black</button>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -3733,6 +3776,7 @@ var viewTitles = {
     'add-user': 'Add User',
     'roles-permissions': 'Roles & Permissions',
     'terms': 'Category Management',
+    'theme-settings': 'Theme',
     'profile': 'Profile',
     'password': 'Change Password'
 };
@@ -3772,10 +3816,11 @@ $(function() {
     var curPalette = localStorage.getItem('crm_palette') || 'green';
     document.documentElement.setAttribute('data-crm-palette', curPalette);
     if ($('#crmPaletteText').length) {
-        $('#crmPaletteText').text(curPalette === 'red' ? 'Red Mode' : 'Green Mode');
+        var palName = curPalette === 'red' ? 'Red' : (curPalette === 'blue' ? 'Blue' : (curPalette === 'black' ? 'Black' : 'Green'));
+        $('#crmPaletteText').text(palName);
     }
     function updateBrandLogos(pal) {
-        var logo = pal === 'red' ? 'assets/red-dark.png' : (pal === 'blue' ? 'assets/blue-dark.png' : 'assets/green-dark.png');
+        var logo = pal === 'red' ? 'assets/red-dark.png' : (pal === 'blue' ? 'assets/blue-dark.png' : (pal === 'black' ? 'assets/black-dark.png' : 'assets/green-dark.png'));
         var img = $('.crm-brand-logo-img');
         img.attr('src', logo).css('filter', 'none');
     }
@@ -3783,13 +3828,19 @@ $(function() {
     function applyGlobalPalette(pal) {
         document.documentElement.setAttribute('data-crm-palette', pal);
         localStorage.setItem('crm_global_palette', pal);
-        var label = pal === 'red' ? 'Red Mode' : (pal === 'blue' ? 'Blue Mode' : 'Green Mode');
+        var label = pal === 'red' ? 'Red' : (pal === 'blue' ? 'Blue' : (pal === 'black' ? 'Black' : 'Green'));
         $('#crmPaletteText').text(label);
+        $('.theme-option-card').css('border-color', 'var(--crm-border)');
+        if (pal === 'green') $('#themeCardGreen').css('border-color', 'var(--crm-accent)');
+        if (pal === 'red') $('#themeCardRed').css('border-color', 'var(--crm-accent)');
+        if (pal === 'blue') $('#themeCardBlue').css('border-color', 'var(--crm-accent)');
+        if (pal === 'black') $('#themeCardBlack').css('border-color', 'var(--crm-accent)');
         updateBrandLogos(pal);
         if (typeof renderDashboardCharts === 'function') {
             renderDashboardCharts();
         }
     }
+    window.applyGlobalPalette = applyGlobalPalette;
 
     var initialGlobalPalette = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
     applyGlobalPalette(initialGlobalPalette);
@@ -3803,7 +3854,7 @@ $(function() {
     $('#crmPaletteToggle').on('click', function(e) {
         e.preventDefault();
         var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
-        var next = cur === 'green' ? 'red' : (cur === 'red' ? 'blue' : 'green');
+        var next = cur === 'green' ? 'red' : (cur === 'red' ? 'blue' : (cur === 'blue' ? 'black' : 'green'));
         applyGlobalPalette(next);
     });
 
@@ -3878,8 +3929,9 @@ $(function() {
         var isRed = curPalette === 'red';
         var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         var isBlue = curPalette === 'blue';
-        var barFill = isRed ? '#dc2626' : (isBlue ? '#2563eb' : '#10b981');
-        var barStroke = isRed ? '#b91c1c' : (isBlue ? '#1d4ed8' : '#059669');
+        var isBlack = curPalette === 'black';
+        var barFill = isRed ? '#dc2626' : (isBlue ? '#2563eb' : (isBlack ? (isDark ? '#e4e4e7' : '#27272a') : '#10b981'));
+        var barStroke = isRed ? '#b91c1c' : (isBlue ? '#1d4ed8' : (isBlack ? (isDark ? '#ffffff' : '#09090b') : '#059669'));
         
         var gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(226, 232, 240, 0.6)';
         var scaleTextColor = isDark ? '#94a3b8' : '#64748b';

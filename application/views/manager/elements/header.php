@@ -124,6 +124,7 @@ $r2 = $this->uri->segment(3);
 <ul class="crm-subnav-list">
 <li><a href="<?php echo base_url(); ?>manager/roles" class="crm-subnav-link <?php if($r1=='roles' && $r2==''){ echo 'active'; } ?>">Roles</a></li>
 <li><a href="<?php echo base_url(); ?>manager/terms" class="crm-subnav-link <?php if($r1=='terms' && $r2==''){ echo 'active'; } ?>">Category</a></li>
+<li><a href="<?php echo base_url(); ?>manager/setting/theme" class="crm-subnav-link <?php if($r1=='setting' && $r2=='theme'){ echo 'active'; } ?>">Theme</a></li>
 </ul>
 </li>
 </ul>
@@ -190,7 +191,7 @@ $r2 = $this->uri->segment(3);
 $(function() {
     function updateBrandLogos(pal) {
         var base = '<?php echo base_url(); ?>';
-        var logo = pal === 'red' ? base + 'assets/red-dark.png' : (pal === 'blue' ? base + 'assets/blue-dark.png' : base + 'assets/green-dark.png');
+        var logo = pal === 'red' ? base + 'assets/red-dark.png' : (pal === 'blue' ? base + 'assets/blue-dark.png' : (pal === 'black' ? base + 'assets/black-dark.png' : base + 'assets/green-dark.png'));
         var img = $('.crm-brand-logo-img');
         img.attr('src', logo).css('filter', 'none');
     }
@@ -199,7 +200,7 @@ $(function() {
         document.documentElement.setAttribute('data-crm-palette', pal);
         localStorage.setItem('crm_global_palette', pal);
         if ($('#crmPaletteText').length) {
-            var label = pal === 'red' ? 'Red' : (pal === 'blue' ? 'Blue' : 'Green');
+            var label = pal === 'red' ? 'Red' : (pal === 'blue' ? 'Blue' : (pal === 'black' ? 'Black' : 'Green'));
             $('#crmPaletteText').text(label);
         }
         updateBrandLogos(pal);
@@ -220,7 +221,7 @@ $(function() {
     $('#crmPaletteToggle').on('click', function(e) {
         e.preventDefault();
         var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
-        var next = cur === 'green' ? 'red' : (cur === 'red' ? 'blue' : 'green');
+        var next = cur === 'green' ? 'red' : (cur === 'red' ? 'blue' : (cur === 'blue' ? 'black' : 'green'));
         applyGlobalPalette(next);
     });
 
