@@ -19,6 +19,9 @@
     if (fav) { fav.href = favLogo; fav.type = 'image/png'; }
     var favShort = document.getElementById('crmFaviconShortcut');
     if (favShort) { favShort.href = favLogo; favShort.type = 'image/png'; }
+    if (localStorage.getItem('crm_logged_in') === '1') {
+        document.documentElement.classList.add('crm-is-authenticated');
+    }
 })();
 </script>
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -190,17 +193,18 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
-<div class="auth-overlay" id="authOverlay" style="display:none;">
+<div class="auth-overlay" id="authOverlay">
     <div class="auth-card">
         <div class="auth-header">
             <img src="assets/green-dark.png" alt="Logo" class="crm-brand-logo-img">
-            <h3>Manager Login</h3>
-            <p>Rolexto CRM Portal</p>
+            <h3>Enterprise Portal Login</h3>
+            <p>Rolexto CRM Workspace</p>
         </div>
         <div class="auth-hint">
-            <strong>Admin Login Credentials:</strong><br>
-            Username: <code>jules</code><br>
-            Password: <code>jules123</code>
+            <strong>Authorized Access Credentials:</strong><br>
+            Administrator: <code>jules</code> / <code>jules123</code><br>
+            Sales Manager: <code>masoud</code> / <code>masoud123</code><br>
+            System Admin: <code>admin</code> / <code>admin123</code>
         </div>
         <form id="authForm" onsubmit="handleAuthSubmit(event)">
             <div class="form-group">
@@ -213,7 +217,11 @@
             </div>
             <div id="authError" style="color:#ef4444; font-size:12px; margin-bottom:10px; display:none;">Invalid username or password</div>
             <button type="submit" class="auth-btn-primary">Sign In</button>
-            <button type="button" class="auth-btn-secondary" onclick="quickAdminLogin()">Quick Sign In (Jules Admin)</button>
+            <div style="display:flex; gap:6px; margin-top:10px;">
+                <button type="button" class="auth-btn-secondary" style="margin-top:0; flex:1;" onclick="quickAdminLogin('jules')">Jules (Admin)</button>
+                <button type="button" class="auth-btn-secondary" style="margin-top:0; flex:1;" onclick="quickAdminLogin('masoud')">Masoud (Mgr)</button>
+                <button type="button" class="auth-btn-secondary" style="margin-top:0; flex:1;" onclick="quickAdminLogin('admin')">Admin</button>
+            </div>
         </form>
     </div>
 </div>
@@ -360,14 +368,6 @@
 <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:var(--crm-text-muted);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
 <input type="text" id="topbar-quick-search" placeholder="Search leads, team...">
 </div>
-<button type="button" class="crm-palette-toggle-btn" id="crmPaletteToggle" title="Theme: Green, Red, Blue, Black">
-<span class="crm-palette-indicator" id="crmPaletteIndicator"></span>
-<span class="crm-palette-text" id="crmPaletteText">Green</span>
-</button>
-<button type="button" class="crm-theme-toggle" id="crmThemeToggle" title="Switch Theme">
-<svg class="crm-svg sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-<svg class="crm-svg moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-</button>
 <a href="#add-lead" class="crm-btn-primary" data-view="add-lead">
 <svg class="crm-svg-sm" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
 <span>New Lead</span>
@@ -1946,28 +1946,58 @@
 <div class="theme-option-card" id="themeCardGreen" onclick="applyGlobalPalette('green')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:16px; text-align:center; background:var(--crm-card-bg); transition:all 0.2s ease;">
 <div style="width:48px; height:48px; border-radius:50%; background:#10b981; margin:0 auto 12px auto; box-shadow:0 0 12px rgba(16,185,129,0.35);"></div>
 <h4 style="margin:0 0 6px 0; font-size:15px; font-weight:700;">Green</h4>
-<button type="button" class="btn btn-xs btn-default" style="margin-top:6px;">Select Green</button>
+<button type="button" class="btn btn-xs btn-default" id="themeBtnGreen" style="margin-top:6px;">Select Green</button>
 </div>
 </div>
 <div class="col-sm-3 col-xs-6">
 <div class="theme-option-card" id="themeCardRed" onclick="applyGlobalPalette('red')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:16px; text-align:center; background:var(--crm-card-bg); transition:all 0.2s ease;">
 <div style="width:48px; height:48px; border-radius:50%; background:#dc2626; margin:0 auto 12px auto; box-shadow:0 0 12px rgba(220,38,38,0.35);"></div>
 <h4 style="margin:0 0 6px 0; font-size:15px; font-weight:700;">Red</h4>
-<button type="button" class="btn btn-xs btn-default" style="margin-top:6px;">Select Red</button>
+<button type="button" class="btn btn-xs btn-default" id="themeBtnRed" style="margin-top:6px;">Select Red</button>
 </div>
 </div>
 <div class="col-sm-3 col-xs-6">
 <div class="theme-option-card" id="themeCardBlue" onclick="applyGlobalPalette('blue')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:16px; text-align:center; background:var(--crm-card-bg); transition:all 0.2s ease;">
 <div style="width:48px; height:48px; border-radius:50%; background:#2563eb; margin:0 auto 12px auto; box-shadow:0 0 12px rgba(37,99,235,0.35);"></div>
 <h4 style="margin:0 0 6px 0; font-size:15px; font-weight:700;">Blue</h4>
-<button type="button" class="btn btn-xs btn-default" style="margin-top:6px;">Select Blue</button>
+<button type="button" class="btn btn-xs btn-default" id="themeBtnBlue" style="margin-top:6px;">Select Blue</button>
 </div>
 </div>
 <div class="col-sm-3 col-xs-6">
 <div class="theme-option-card" id="themeCardBlack" onclick="applyGlobalPalette('black')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:16px; text-align:center; background:var(--crm-card-bg); transition:all 0.2s ease;">
 <div style="width:48px; height:48px; border-radius:50%; background:#09090b; border:2px solid #ffffff; margin:0 auto 12px auto; box-shadow:0 0 12px rgba(0,0,0,0.5);"></div>
 <h4 style="margin:0 0 6px 0; font-size:15px; font-weight:700;">Black</h4>
-<button type="button" class="btn btn-xs btn-default" style="margin-top:6px;">Select Black</button>
+<button type="button" class="btn btn-xs btn-default" id="themeBtnBlack" style="margin-top:6px;">Select Black</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="box box-primary" style="margin-top:20px;">
+<div class="box-header with-border">
+<h3 class="box-title">Display Mode</h3>
+</div>
+<div class="box-body">
+<p style="color:var(--crm-text-muted); font-size:13px; margin-bottom:20px;">Choose between dark and light workspace interface:</p>
+<div class="row">
+<div class="col-sm-6 col-xs-12">
+<div class="mode-option-card" id="modeCardDark" onclick="applyThemeMode('dark')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:20px; display:flex; align-items:center; gap:16px; background:#0b0f19; color:#f8fafc; transition:all 0.2s ease;">
+<div style="width:44px; height:44px; border-radius:10px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:20px; color:#38bdf8;"><i class="fa fa-moon-o"></i></div>
+<div style="flex:1;">
+<h4 style="margin:0 0 4px 0; font-size:16px; font-weight:700; color:#f8fafc;">Dark Mode</h4>
+<p style="margin:0; font-size:12px; color:#94a3b8;">High-contrast dark canvas engineered for low-light environments</p>
+</div>
+<button type="button" class="btn btn-xs btn-primary" id="modeBtnDark">Active</button>
+</div>
+</div>
+<div class="col-sm-6 col-xs-12">
+<div class="mode-option-card" id="modeCardLight" onclick="applyThemeMode('light')" style="cursor:pointer; border:2px solid var(--crm-border); border-radius:10px; padding:20px; display:flex; align-items:center; gap:16px; background:#ffffff; color:#0f172a; transition:all 0.2s ease;">
+<div style="width:44px; height:44px; border-radius:10px; background:#f1f5f9; display:flex; align-items:center; justify-content:center; font-size:20px; color:#f59e0b;"><i class="fa fa-sun-o"></i></div>
+<div style="flex:1;">
+<h4 style="margin:0 0 4px 0; font-size:16px; font-weight:700; color:#0f172a;">Light Mode</h4>
+<p style="margin:0; font-size:12px; color:#64748b;">Clean, high-clarity daylight theme with vibrant contrast</p>
+</div>
+<button type="button" class="btn btn-xs btn-default" id="modeBtnLight">Select</button>
 </div>
 </div>
 </div>
@@ -5354,43 +5384,52 @@ function handleBackOfficeSubmit(e) {
 }
 
 function handleAuthSubmit(e) {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     var u = $('#authUsername').val().trim().toLowerCase();
     var p = $('#authPassword').val();
     if ((u === 'jules' && p === 'jules123') || (u === 'admin' && p === 'admin123') || (u === 'masoud' && p === 'masoud123')) {
         localStorage.setItem('crm_logged_in', '1');
-        localStorage.setItem('crm_user', u === 'jules' ? 'Jules Admin' : (u === 'masoud' ? 'Masoud Tariq' : 'Administrator'));
+        var uName = u === 'jules' ? 'Jules Admin' : (u === 'masoud' ? 'Masoud Tariq' : 'Administrator');
+        localStorage.setItem('crm_user', uName);
+        document.documentElement.classList.add('crm-is-authenticated');
         $('#authOverlay').fadeOut(200);
-        $('#currentSessionUserName').text(localStorage.getItem('crm_user'));
+        $('#currentSessionUserName').text(uName);
         $('#authError').hide();
     } else {
         $('#authError').show();
     }
 }
 
-function quickAdminLogin() {
-    $('#authUsername').val('jules');
-    $('#authPassword').val('jules123');
-    $('#authForm').submit();
+function quickAdminLogin(userType) {
+    if (userType === 'masoud') {
+        $('#authUsername').val('masoud');
+        $('#authPassword').val('masoud123');
+    } else if (userType === 'admin') {
+        $('#authUsername').val('admin');
+        $('#authPassword').val('admin123');
+    } else {
+        $('#authUsername').val('jules');
+        $('#authPassword').val('jules123');
+    }
+    handleAuthSubmit({ preventDefault: function(){} });
 }
 
 function handleLogout() {
-    localStorage.setItem('crm_logged_in', 'false');
+    localStorage.removeItem('crm_logged_in');
+    document.documentElement.classList.remove('crm-is-authenticated');
     $('#authOverlay').fadeIn(200);
 }
 
 function checkAuthStatus() {
     var loggedIn = localStorage.getItem('crm_logged_in');
-    if (loggedIn === 'false') {
-        $('#authOverlay').show();
-    } else {
-        if (!loggedIn) {
-            localStorage.setItem('crm_logged_in', 'true');
-            localStorage.setItem('crm_user', 'Jules Admin');
-        }
+    if (loggedIn === '1') {
+        document.documentElement.classList.add('crm-is-authenticated');
         $('#authOverlay').hide();
         var uName = localStorage.getItem('crm_user') || 'Jules Admin';
         $('#currentSessionUserName').text(uName);
+    } else {
+        document.documentElement.classList.remove('crm-is-authenticated');
+        $('#authOverlay').show();
     }
 }
 
@@ -5487,11 +5526,27 @@ $(function() {
         localStorage.setItem('crm_global_palette', pal);
         var label = pal === 'red' ? 'Red' : (pal === 'blue' ? 'Blue' : (pal === 'black' ? 'Black' : 'Green'));
         $('#crmPaletteText').text(label);
-        $('.theme-option-card').css('border-color', 'var(--crm-border)');
-        if (pal === 'green') $('#themeCardGreen').css('border-color', 'var(--crm-accent)');
-        if (pal === 'red') $('#themeCardRed').css('border-color', 'var(--crm-accent)');
-        if (pal === 'blue') $('#themeCardBlue').css('border-color', 'var(--crm-accent)');
-        if (pal === 'black') $('#themeCardBlack').css('border-color', 'var(--crm-accent)');
+        $('.theme-option-card').removeClass('active').css('border-color', 'var(--crm-border)');
+        $('#themeBtnGreen').text('Select Green').removeClass('btn-primary').addClass('btn-default');
+        $('#themeBtnRed').text('Select Red').removeClass('btn-primary').addClass('btn-default');
+        $('#themeBtnBlue').text('Select Blue').removeClass('btn-primary').addClass('btn-default');
+        $('#themeBtnBlack').text('Select Black').removeClass('btn-primary').addClass('btn-default');
+        if (pal === 'green') {
+            $('#themeCardGreen').addClass('active').css('border-color', 'var(--crm-accent)');
+            $('#themeBtnGreen').text('Active').removeClass('btn-default').addClass('btn-primary');
+        }
+        if (pal === 'red') {
+            $('#themeCardRed').addClass('active').css('border-color', 'var(--crm-accent)');
+            $('#themeBtnRed').text('Active').removeClass('btn-default').addClass('btn-primary');
+        }
+        if (pal === 'blue') {
+            $('#themeCardBlue').addClass('active').css('border-color', 'var(--crm-accent)');
+            $('#themeBtnBlue').text('Active').removeClass('btn-default').addClass('btn-primary');
+        }
+        if (pal === 'black') {
+            $('#themeCardBlack').addClass('active').css('border-color', 'var(--crm-accent)');
+            $('#themeBtnBlack').text('Active').removeClass('btn-default').addClass('btn-primary');
+        }
         updateBrandLogos(pal);
         if (typeof renderDashboardCharts === 'function') {
             renderDashboardCharts();
@@ -5499,33 +5554,38 @@ $(function() {
     }
     window.applyGlobalPalette = applyGlobalPalette;
 
+    function applyThemeMode(mode) {
+        document.documentElement.setAttribute('data-theme', mode);
+        localStorage.setItem('crm_user_theme_mode', mode);
+        localStorage.setItem('crm_theme', mode);
+        $('.mode-option-card').removeClass('active').css('border-color', 'var(--crm-border)');
+        if (mode === 'dark') {
+            $('#modeCardDark').addClass('active').css('border-color', 'var(--crm-accent)');
+            $('#modeBtnDark').text('Active').removeClass('btn-default').addClass('btn-primary');
+            $('#modeBtnLight').text('Select').removeClass('btn-primary').addClass('btn-default');
+        } else {
+            $('#modeCardLight').addClass('active').css('border-color', 'var(--crm-accent)');
+            $('#modeBtnLight').text('Active').removeClass('btn-default').addClass('btn-primary');
+            $('#modeBtnDark').text('Select').removeClass('btn-primary').addClass('btn-default');
+        }
+        if (typeof renderDashboardCharts === 'function') {
+            renderDashboardCharts();
+        }
+    }
+    window.applyThemeMode = applyThemeMode;
+
     var initialGlobalPalette = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
     applyGlobalPalette(initialGlobalPalette);
+
+    var userThemeMode = localStorage.getItem('crm_user_theme_mode') || localStorage.getItem('crm_theme') || 'dark';
+    applyThemeMode(userThemeMode);
 
     window.addEventListener('storage', function(e) {
         if (e.key === 'crm_global_palette' && e.newValue) {
             applyGlobalPalette(e.newValue);
         }
-    });
-
-    $('#crmPaletteToggle').on('click', function(e) {
-        e.preventDefault();
-        var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
-        var next = cur === 'green' ? 'red' : (cur === 'red' ? 'blue' : (cur === 'blue' ? 'black' : 'green'));
-        applyGlobalPalette(next);
-    });
-
-    var userThemeMode = localStorage.getItem('crm_user_theme_mode') || localStorage.getItem('crm_theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', userThemeMode);
-
-    $('#crmThemeToggle').on('click', function(e) {
-        e.preventDefault();
-        var cur = document.documentElement.getAttribute('data-theme') || 'dark';
-        var next = cur === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('crm_user_theme_mode', next);
-        if (typeof renderDashboardCharts === 'function') {
-            renderDashboardCharts();
+        if ((e.key === 'crm_user_theme_mode' || e.key === 'crm_theme') && e.newValue) {
+            applyThemeMode(e.newValue);
         }
     });
 

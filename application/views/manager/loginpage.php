@@ -64,14 +64,17 @@
   </div>
  
      <?php echo get_message($this->session->flashdata('error_message'),'error_message'); ?> <?php echo get_message($this->session->flashdata('message'),'message'); ?>
-    <form action="<?php echo base_url(); ?>manager/login" method="post">
+     <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:6px; padding:10px 12px; margin-bottom:15px; font-size:12px; text-align:left;">
+       <strong>System Credentials:</strong><br>
+       Administrator: <code>jules</code> / <code>jules123</code><br>
+       Sales Manager: <code>masoud</code> / <code>masoud123</code>
+     </div>
+    <form action="<?php echo base_url(); ?>manager/login" method="post" id="managerLoginForm">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="email" placeholder="Enter Email">
-        <!-- <span class="glyphicon glyphicon-envelope form-control-feedback"></span> -->
+        <input type="text" class="form-control" name="email" id="loginEmail" placeholder="Enter Username or Email" value="jules">
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="password" placeholder="Enter Password">
-        <!-- <span class="glyphicon glyphicon-lock form-control-feedback"></span> -->
+        <input type="password" class="form-control" name="password" id="loginPassword" placeholder="Enter Password" value="jules123">
       </div>
  
  <div class="row">
@@ -86,8 +89,14 @@
    </div> 
  </div>
  </div>
- 
-
+ <div class="row" style="margin-top:12px;">
+ <div class="col-xs-6">
+   <button type="button" class="btn btn-default btn-block btn-xs" onclick="document.getElementById('loginEmail').value='jules';document.getElementById('loginPassword').value='jules123';document.getElementById('managerLoginForm').submit();">Jules (Admin)</button>
+ </div>
+ <div class="col-xs-6">
+   <button type="button" class="btn btn-default btn-block btn-xs" onclick="document.getElementById('loginEmail').value='masoud';document.getElementById('loginPassword').value='masoud123';document.getElementById('managerLoginForm').submit();">Masoud (Mgr)</button>
+ </div>
+ </div>
 
          
       </form> 
