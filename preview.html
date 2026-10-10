@@ -3821,6 +3821,23 @@ $(function() {
         }
     });
 
+    function loadTeamLevel(level) {
+        var tbody = $('#teamMembersTableBody');
+        if (!tbody.length) return;
+        tbody.empty();
+        if (level === 'masoud') {
+            $('#teamBreadcrumb').html('<a onclick="loadTeamLevel(\'root\')"><i class="fa fa-home"></i> Organization Root</a> <span>/</span> <span>Masoud Tariq Team</span>');
+            var row = '<tr><td>1</td><td><a href="javascript:void(0)" onclick="openUserPreview(\'masoud\')">Masoud Tariq</a></td><td>Senior Sales Director</td><td>Executive Sales</td><td>+971 55 992 4810</td><td>masoud@rolextogroup.com</td><td>Dubai Downtown</td><td>Jules Admin</td><td><button class="btn btn-xs btn-info" onclick="openUserPreview(\'masoud\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'masoud\')"><i class="fa fa-pencil"></i></button></td></tr>';
+            tbody.append(row);
+        } else {
+            $('#teamBreadcrumb').html('<a onclick="loadTeamLevel(\'root\')"><i class="fa fa-home"></i> Organization Root</a>');
+            var r1 = '<tr><td>1</td><td><a href="javascript:void(0)" onclick="openUserPreview(\'jules\')">Jules Admin</a></td><td>Executive Management</td><td>Board Administration</td><td>+971 50 123 4567</td><td>jules@rolextogroup.com</td><td>Dubai HQ</td><td>Board</td><td><button class="btn btn-xs btn-info" onclick="openUserPreview(\'jules\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'jules\')"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-default" onclick="loadTeamLevel(\'masoud\')"><i class="fa fa-sitemap"></i> Drilldown</button></td></tr>';
+            var r2 = '<tr><td>2</td><td><a href="javascript:void(0)" onclick="openUserPreview(\'masoud\')">Masoud Tariq</a></td><td>Senior Sales Director</td><td>Executive Sales</td><td>+971 55 992 4810</td><td>masoud@rolextogroup.com</td><td>Dubai Downtown</td><td>Jules Admin</td><td><button class="btn btn-xs btn-info" onclick="openUserPreview(\'masoud\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'masoud\')"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-default" onclick="loadTeamLevel(\'masoud\')"><i class="fa fa-sitemap"></i> Drilldown</button></td></tr>';
+            tbody.append(r1).append(r2);
+        }
+    }
+    window.loadTeamLevel = loadTeamLevel;
+
     checkAuthStatus();
     loadTeamLevel('root');
 
@@ -3849,9 +3866,11 @@ $(function() {
         $('#crmMobileOverlay').removeClass('active');
     });
 
-    $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
+    $(document).on('click', '.crm-nav-item.has-sub > .crm-nav-link, .crm-nav-item.has-sub > a', function(e) {
         e.preventDefault();
-        $(this).parent('.crm-nav-item').toggleClass('open');
+        e.stopPropagation();
+        var $item = $(this).closest('.crm-nav-item');
+        $item.toggleClass('open');
     });
 
     function renderDashboardCharts() {

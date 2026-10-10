@@ -311,14 +311,21 @@ body.hold-transition.skin-blue.sidebar-mini {
     flex-shrink: 0;
 }
 
+.crm-nav-link .crm-svg,
+.crm-nav-link .crm-svg-sm,
+.crm-nav-link span,
+.crm-nav-link .nav-arrow {
+    pointer-events: none;
+}
+
 .nav-arrow {
     margin-left: auto;
     transition: transform 0.2s ease;
     opacity: 0.6;
 }
 
-.crm-nav-item.open .nav-arrow {
-    transform: rotate(90deg);
+.crm-nav-item.open > .crm-nav-link .nav-arrow {
+    transform: rotate(90deg) !important;
 }
 
 .crm-subnav-list {
@@ -330,8 +337,8 @@ body.hold-transition.skin-blue.sidebar-mini {
     margin-left: 18px;
 }
 
-.crm-nav-item.open .crm-subnav-list {
-    display: block;
+.crm-nav-item.open > .crm-subnav-list {
+    display: block !important;
 }
 
 .crm-subnav-link {

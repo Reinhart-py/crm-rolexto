@@ -238,9 +238,11 @@ $(function() {
         $('#crmSidebar').removeClass('crm-sidebar-open');
         $('#crmMobileOverlay').removeClass('active');
     });
-    $('.crm-nav-item.has-sub > .crm-nav-link').on('click', function(e) {
+    $(document).on('click', '.crm-nav-item.has-sub > .crm-nav-link, .crm-nav-item.has-sub > a', function(e) {
         e.preventDefault();
-        $(this).parent('.crm-nav-item').toggleClass('open');
+        e.stopPropagation();
+        var $item = $(this).closest('.crm-nav-item');
+        $item.toggleClass('open');
     });
     var userThemeMode = localStorage.getItem('crm_user_theme_mode') || localStorage.getItem('crm_theme') || 'dark';
     document.documentElement.setAttribute('data-theme', userThemeMode);
