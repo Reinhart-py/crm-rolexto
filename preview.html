@@ -1607,7 +1607,7 @@
 <td>AED 120,000</td>
 <td><span class="badge bg-green">Active</span></td>
 <td>14-Oct-2026</td>
-<td><button class="btn btn-xs btn-default"><i class="fa fa-eye"></i> View</button></td>
+<td><button class="btn btn-xs btn-default" onclick="openVerticalModal(1)"><i class="fa fa-eye"></i> View</button></td>
 </tr>
 <tr>
 <td>Business Setup &amp; Licensing</td>
@@ -1616,7 +1616,7 @@
 <td>AED 45,000</td>
 <td><span class="badge bg-blue">In Process</span></td>
 <td>18-Oct-2026</td>
-<td><button class="btn btn-xs btn-default"><i class="fa fa-eye"></i> View</button></td>
+<td><button class="btn btn-xs btn-default" onclick="openVerticalModal(2)"><i class="fa fa-eye"></i> View</button></td>
 </tr>
 </tbody>
 </table>
@@ -1657,6 +1657,7 @@
 <th>Amount to Pay</th>
 <th>Status</th>
 <th>Follow-up Date</th>
+<th>Action</th>
 </tr>
 </thead>
 <tbody>
@@ -1667,6 +1668,7 @@
 <td>AED 350,000</td>
 <td><span class="badge bg-green">Active</span></td>
 <td>16-Oct-2026</td>
+<td><button class="btn btn-xs btn-default" onclick="openVerticalModal(3)"><i class="fa fa-eye"></i> View</button></td>
 </tr>
 </tbody>
 </table>
@@ -3348,6 +3350,21 @@ JA
 <div class="modal-body" id="leadPreviewModalBody">
 </div>
 <div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="verticalPreviewModal" tabindex="-1">
+<div class="modal-dialog modal-lg-custom">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title"><i class="fa fa-briefcase"></i> Complete Vertical Record Preview</h4>
+</div>
+<div class="modal-body" id="verticalPreviewModalBody">
+</div>
+<div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>
 </div>
@@ -3584,6 +3601,102 @@ function openLeadModal(leadId) {
         '</div>';
     $('#leadPreviewModalBody').html(html);
     $('#leadPreviewModal').modal('show');
+}
+
+var verticalDataStore = {
+    1: {
+        id: 'VERT-1001',
+        title: 'Prime Commercial Offices',
+        company: 'Prime Commercial Towers Ltd',
+        poc: 'Sheikh Mansoor Al-Ketbi',
+        contact1: '+971 50 821 9920',
+        contact2: '+971 4 399 2211',
+        email: 'mansoor@primecommercial.ae',
+        whatsapp: '+971 50 821 9920',
+        designation: 'Managing Director',
+        category: 'Real Estate',
+        sub_category: 'Leasing & Commercial Offices',
+        amount: 'AED 120,000',
+        status: 'Active',
+        followup_date: '14-Oct-2026',
+        last_followup: '07-Oct-2026',
+        lead_source: 'Direct Corporate Referral',
+        country: 'United Arab Emirates',
+        city: 'Dubai',
+        address: 'Sheikh Zayed Road, Trade Centre Area, Floor 32',
+        remarks: 'Client expanding commercial office footprint with 3 additional floors required by Q1 2027.'
+    },
+    2: {
+        id: 'VERT-1002',
+        title: 'Business Setup & Licensing',
+        company: 'Al-Futtaim Commercial Services',
+        poc: 'Sarah Jenkins',
+        contact1: '+971 55 491 8820',
+        contact2: '+971 4 220 1199',
+        email: 'sarah.jenkins@alfuttaim-cs.ae',
+        whatsapp: '+971 55 491 8820',
+        designation: 'Corporate Operations Head',
+        category: 'Corporate',
+        sub_category: 'PRO Services & Freezone Licensing',
+        amount: 'AED 45,000',
+        status: 'In Process',
+        followup_date: '18-Oct-2026',
+        last_followup: '10-Oct-2026',
+        lead_source: 'Inbound Portal Inquiry',
+        country: 'United Arab Emirates',
+        city: 'Dubai',
+        address: 'DIFC Gate Precinct 4, Level 5',
+        remarks: 'Processing 15 new corporate visas and trade license renewal under DED Dubai.'
+    },
+    3: {
+        id: 'VERT-1003',
+        title: 'Luxury Residential Tower',
+        company: 'Sobha Realty Group',
+        poc: 'Khalid Mansoor',
+        contact1: '+971 52 771 0033',
+        contact2: '+971 4 445 6677',
+        email: 'khalid@sobharealty.ae',
+        whatsapp: '+971 52 771 0033',
+        designation: 'VP Real Estate Development',
+        category: 'Real Estate',
+        sub_category: 'High-End Luxury Development',
+        amount: 'AED 350,000',
+        status: 'Active',
+        followup_date: '16-Oct-2026',
+        last_followup: '09-Oct-2026',
+        lead_source: 'Executive Network',
+        country: 'United Arab Emirates',
+        city: 'Dubai',
+        address: 'Sobha Hartland, Meydan, MBR City',
+        remarks: 'Bulk investor deal for floor parcels.'
+    }
+};
+
+function openVerticalModal(vId) {
+    var v = verticalDataStore[vId] || verticalDataStore[1];
+    var html = '<div class="detail-grid">' +
+        '<div class="detail-item"><div class="detail-label">Vertical Reference</div><div class="detail-value">' + v.id + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Vertical Title</div><div class="detail-value">' + v.title + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Company Name</div><div class="detail-value">' + v.company + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">POC Name</div><div class="detail-value">' + v.poc + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Contact 1</div><div class="detail-value">' + v.contact1 + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Contact 2</div><div class="detail-value">' + v.contact2 + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Official Email</div><div class="detail-value">' + v.email + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">WhatsApp Contact</div><div class="detail-value">' + v.whatsapp + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Designation</div><div class="detail-value">' + v.designation + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Category</div><div class="detail-value">' + v.category + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Sub Category</div><div class="detail-value">' + v.sub_category + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Amount Quota</div><div class="detail-value">' + v.amount + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Current Status</div><div class="detail-value">' + v.status + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Last Follow-up Date</div><div class="detail-value">' + v.last_followup + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Next Follow-up Date</div><div class="detail-value">' + v.followup_date + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Lead Source</div><div class="detail-value">' + v.lead_source + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Country / City</div><div class="detail-value">' + v.country + ', ' + v.city + '</div></div>' +
+        '<div class="detail-item"><div class="detail-label">Office Address</div><div class="detail-value">' + v.address + '</div></div>' +
+        '<div class="detail-item" style="grid-column: 1 / -1;"><div class="detail-label">Operational Remarks</div><div class="detail-value">' + v.remarks + '</div></div>' +
+        '</div>';
+    $('#verticalPreviewModalBody').html(html);
+    $('#verticalPreviewModal').modal('show');
 }
 
 var catCascadeData = {

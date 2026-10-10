@@ -904,20 +904,68 @@ body.hold-transition.skin-blue.sidebar-mini {
     font-weight: 700 !important;
     padding: 3px 8px !important;
     border-radius: 6px !important;
-}
-
-.badge.bg-blue {
-    background-color: var(--crm-red) !important;
+    display: inline-block !important;
+    line-height: 1.2 !important;
 }
 
 .badge.bg-green {
-    background-color: var(--crm-accent) !important;
+    background-color: #059669 !important;
     color: #ffffff !important;
 }
 
+.badge.bg-blue {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+}
+
+.badge.bg-orange, .badge.bg-yellow {
+    background-color: #d97706 !important;
+    color: #ffffff !important;
+}
+
+.badge.bg-red {
+    background-color: #dc2626 !important;
+    color: #ffffff !important;
+}
+
+.badge.bg-skyblue, .badge.bg-gray {
+    background-color: #475569 !important;
+    color: #ffffff !important;
+}
+
+[data-crm-palette="black"] .badge,
+[data-theme="dark"][data-crm-palette="black"] .badge {
+    background-color: #27272a !important;
+    color: #ffffff !important;
+    border: 1px solid #3f3f46 !important;
+}
+
+[data-crm-palette="black"] .badge.bg-green,
 [data-theme="dark"][data-crm-palette="black"] .badge.bg-green {
     background-color: #ffffff !important;
     color: #000000 !important;
+    border: 1px solid #ffffff !important;
+}
+
+[data-crm-palette="black"] .badge.bg-blue,
+[data-theme="dark"][data-crm-palette="black"] .badge.bg-blue {
+    background-color: #18181b !important;
+    color: #e4e4e7 !important;
+    border: 1px solid #3f3f46 !important;
+}
+
+[data-crm-palette="black"] .badge.bg-orange,
+[data-theme="dark"][data-crm-palette="black"] .badge.bg-orange {
+    background-color: #27272a !important;
+    color: #e4e4e7 !important;
+    border: 1px solid #52525b !important;
+}
+
+[data-crm-palette="black"] .badge.bg-red,
+[data-theme="dark"][data-crm-palette="black"] .badge.bg-red {
+    background-color: #09090b !important;
+    color: #ffffff !important;
+    border: 1px solid #71717a !important;
 }
 
 .btn-success {
@@ -951,42 +999,106 @@ body.hold-transition.skin-blue.sidebar-mini {
     color: #000000 !important;
 }
 
-.badge.bg-orange {
-    background-color: #d97706 !important;
-}
-
-.badge.bg-red {
-    background-color: #dc2626 !important;
-}
-
-.badge.bg-skyblue {
-    background-color: #475569 !important;
+[data-theme="dark"][data-crm-palette="black"] .btn-primary {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
 }
 
 .table {
     color: var(--crm-text) !important;
     font-size: 13px !important;
+    background-color: transparent !important;
 }
 
 .table > thead > tr > th {
     background-color: var(--crm-border-subtle) !important;
-    color: var(--crm-text-muted) !important;
-    font-weight: 600 !important;
+    color: var(--crm-text) !important;
+    font-weight: 700 !important;
     font-size: 11px !important;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border-bottom: 1px solid var(--crm-border) !important;
+    border: 1px solid var(--crm-border) !important;
     padding: 10px 12px !important;
 }
 
 .table > tbody > tr > td {
-    border-top: 1px solid var(--crm-border) !important;
+    color: var(--crm-text) !important;
+    border: 1px solid var(--crm-border) !important;
     padding: 10px 12px !important;
     vertical-align: middle !important;
+    background-color: transparent !important;
 }
 
-.table-hover > tbody > tr:hover {
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(125, 125, 125, 0.04) !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+[data-theme="dark"] .table-striped > tbody > tr:nth-of-type(even) {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .table > thead > tr > th {
+    background-color: var(--crm-border-subtle) !important;
+    color: var(--crm-text) !important;
+    border: 1px solid var(--crm-border) !important;
+}
+
+[data-theme="dark"] .table > tbody > tr > td {
+    color: var(--crm-text) !important;
+    border: 1px solid var(--crm-border) !important;
+}
+
+.table-hover > tbody > tr:hover,
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
     background-color: var(--crm-table-hover) !important;
+    color: var(--crm-text) !important;
+}
+
+.table-bordered,
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: 1px solid var(--crm-border) !important;
+}
+
+.btn-default {
+    background-color: var(--crm-card-bg) !important;
+    color: var(--crm-text) !important;
+    border: 1px solid var(--crm-border) !important;
+    transition: all 0.15s ease;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active {
+    background-color: var(--crm-table-hover) !important;
+    color: var(--crm-text) !important;
+    border-color: var(--crm-accent) !important;
+}
+
+[data-theme="dark"] .btn-default {
+    background-color: var(--crm-card-bg) !important;
+    color: var(--crm-text) !important;
+    border-color: var(--crm-border) !important;
+}
+
+[data-theme="dark"] .btn-default:hover {
+    background-color: var(--crm-table-hover) !important;
+    color: var(--crm-text) !important;
+    border-color: var(--crm-accent) !important;
 }
 
 .form-control {
