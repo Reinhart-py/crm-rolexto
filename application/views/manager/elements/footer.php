@@ -1,5 +1,8 @@
- <footer class="main-footer">
+<footer class="crm-footer">
+<span>&copy; 2026 Rolexto CRM Platform. All rights reserved.</span>
+<span>Rolexto Real Estate &amp; Business Setup</span>
 </footer>
+</div>
 </div>
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
