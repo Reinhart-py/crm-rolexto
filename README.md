@@ -60,12 +60,14 @@ Managing enterprise sales and organizational hierarchies requires a system that:
 - **Hierarchical Team Management**: Multi-level organizational drill-down, subordinate relationship mapping, and performance reviews.
 - **Scheduled Interactions**: Distinct tracking for missed, weekly, daily, and upcoming follow-ups and meetings.
 - **Real-Time Closure Analytics**: Live MySQL-backed monthly, yearly, and all-time revenue closures and vertical performance.
-- **Pure Dual Palettes**:
-  - **Rolex Emerald Green (`#10b981`)**: Polished emerald green accents with deep obsidian dark or crisp slate surfaces.
-  - **Rolex Crimson Red (`#dc2626`)**: Bold ruby crimson accents with deep obsidian dark or crisp slate surfaces.
-  - *Zero color mixing*: Switch dynamically via the topbar toggle with automatic `localStorage` persistence.
-- **Dynamic Theme Branding**: Auto-swaps high-resolution brand logos (`green-dark.png` in Green mode, `red-dark.png` in Red mode) in real time.
-- **Reactive Chart Engine**: Charts instantly recolor to emerald green or crimson red upon toggling the theme palette.
+- **Four Direct Palettes**:
+  - **Green (`#10b981`)**: Polished emerald green accents with deep obsidian dark or crisp slate surfaces.
+  - **Red (`#dc2626`)**: Bold ruby crimson accents with deep obsidian dark or crisp slate surfaces.
+  - **Blue (`#2563eb`)**: Royal sapphire blue accents with deep obsidian dark or crisp slate surfaces.
+  - **Black (`#ffffff`/`#000000`)**: Pure luxury monochrome black and white palette.
+  - *Zero color mixing*: Switch dynamically via the topbar toggle or direct Theme settings with automatic `localStorage` persistence.
+- **Dynamic Theme Branding**: Auto-swaps high-resolution brand logos (`green-dark.png`, `red-dark.png`, `blue-dark.png`, and `black-dark.png`) in real time.
+- **Reactive Chart Engine**: Charts instantly recolor to Green, Red, Blue, or Black upon toggling the theme palette.
 - **Harmonized Activity Cards**: Monochromatic tonal progress tracks and clean executive badges eliminate rainbow template clutter.
 - **Independent Display Modes**: Toggle between Dark Mode and Light Mode independently without affecting system palette rules.
 - **Mobile & Android Optimized**: Touch-scrollable data tables, responsive grids, and an off-canvas drawer navigation.
@@ -307,12 +309,14 @@ Rolexto CRM incorporates an intentional luxury design system governed by CSS var
 | **Rolex Emerald Green** | `data-crm-palette="green"` | `#10b981` | `#059669` | `#090d16` / `#f8fafc` |
 | **Rolex Crimson Red** | `data-crm-palette="red"` | `#dc2626` | `#b91c1c` | `#090d16` / `#f8fafc` |
 
-#### Dual Theme System
-Toggle between Rolex Emerald Green and Rolex Crimson Red using the `#crmPaletteToggle` pill in the topbar. The active palette updates all primary buttons, active navigation markers, glowing card borders, and chart fills with zero hybrid color mixing.
+#### Direct Theme System
+Toggle between Green, Red, Blue, and Black using the `#crmPaletteToggle` button in the topbar or the Theme settings under Settings. The active palette updates all primary buttons, active navigation markers, glowing card borders, and chart fills with zero hybrid color mixing.
 
 #### Dynamic Logo Switching
-- **Rolex Emerald Green**: Automatically displays `assets/green-dark.png`.
-- **Rolex Crimson Red**: Automatically displays `assets/red-dark.png`.
+- **Green**: Automatically displays `assets/green-dark.png`.
+- **Red**: Automatically displays `assets/red-dark.png`.
+- **Blue**: Automatically displays `assets/blue-dark.png`.
+- **Black**: Automatically displays `assets/black-dark.png`.
 The 48px high-resolution logo updates live across the sidebar and authentication panels without page reload.
 
 #### Reactive Chart Recoloring
@@ -381,8 +385,10 @@ crm-rolexto/
 │           ├── elements/    # Header, navigation, and footer templates
 │           └── ...
 ├── assets/
-│   ├── green-dark.png       # Official Rolex Emerald Green high-res transparent brand logo
-│   ├── red-dark.png         # Official Rolex Crimson Red high-res transparent brand logo
+│   ├── green-dark.png       # Official Emerald Green high-res transparent brand logo
+│   ├── red-dark.png         # Official Crimson Red high-res transparent brand logo
+│   ├── blue-dark.png        # Official Royal Blue high-res transparent brand logo
+│   ├── black-dark.png       # Official Monochrome Black high-res transparent brand logo
 │   ├── bootstrap/           # Base responsive grid framework
 │   ├── dist/
 │   │   ├── css/
