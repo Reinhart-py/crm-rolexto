@@ -1,98 +1,88 @@
-<div align="center">
-
 # Rolexto CRM
 
-**High-Performance Enterprise Sales & Team Management Workspace**
+[![PHP Version](https://img.shields.io/badge/PHP-7.4%20%7C%208.0+-777bb4.svg?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
+[![Framework](https://img.shields.io/badge/Framework-CodeIgniter-ee4326.svg?style=flat-square&logo=codeigniter&logoColor=white)](https://codeigniter.com/)
+[![Database](https://img.shields.io/badge/Database-MySQL%20%2F%20MariaDB-4479a1.svg?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![UI Theme](https://img.shields.io/badge/UI-Rolex%20Green%20%7C%20Rolex%20Red-10b981.svg?style=flat-square)](https://github.com/Reinhart-py/crm-rolexto)
+[![Responsive](https://img.shields.io/badge/Mobile-Android%20%26%20iOS%20Ready-blue.svg?style=flat-square)](https://github.com/Reinhart-py/crm-rolexto)
+[![License](https://img.shields.io/badge/License-Proprietary-darkgreen.svg?style=flat-square)](LICENSE)
 
-[![PHP Version](https://img.shields.io/badge/PHP-7.4%20%7C%208.0+-777bb4?style=flat-square&logo=php&logoColor=white)](https://www.php.net/)
-[![CodeIgniter](https://img.shields.io/badge/Framework-CodeIgniter-ee4326?style=flat-square&logo=codeigniter&logoColor=white)](https://codeigniter.com/)
-[![Database](https://img.shields.io/badge/Database-MySQL%20%2F%20MariaDB-4479a1?style=flat-square&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![Interface](https://img.shields.io/badge/UI-Dual%20Palette%20%7C%20Responsive-10b981?style=flat-square)](https://github.com/Reinhart-py/crm-rolexto)
-[![License](https://img.shields.io/badge/License-Proprietary-blue?style=flat-square)](LICENSE)
+`Rolexto CRM` is a high-performance, enterprise-grade sales pipeline and team management workspace. It provides end-to-end lead lifecycle management, hierarchical organizational trees, scheduled follow-ups, closure analytics, and custom administrative governance with pure theme customization.
 
-*A full-featured CRM platform built for high-velocity sales pipelines, team performance tracking, lead management, and hierarchical organizational governance.*
+# Contents
 
-[Features](#features) • [Quickstart](#quickstart) • [Installation](#installation) • [Configuration](#configuration) • [Theme & Palettes](#theme--palettes) • [Credentials](#default-credentials) • [FAQ](#troubleshooting--faq)
-
-</div>
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Key Features](#features)
-- [Quickstart: Frontend Live Preview](#quickstart)
-- [Full Installation Guide](#installation)
-  - [Prerequisites](#prerequisites)
-  - [Apache / XAMPP / WAMP](#1-apache--xampp--wamp)
-  - [PHP Built-in Server](#2-php-built-in-server)
-  - [Production Deployment](#3-production-deployment-cpanel--vps)
+- [Why?](#why)
+- [Features](#features)
+- [Installation](#installation)
+  - [Method 1: Local Live Frontend Preview](#method-1-local-live-frontend-preview)
+  - [Method 2: Full Stack (XAMPP / WAMP / LAMP)](#method-2-full-stack-xampp--wamp--lamp)
+  - [Method 3: PHP Built-in Server](#method-3-php-built-in-server)
+  - [Method 4: Production (cPanel / Apache)](#method-4-production-cpanel--apache)
+- [Dependencies & Requirements](#dependencies--requirements)
 - [Configuration](#configuration)
-  - [Base URL](#base-url-configuration)
-  - [Database Credentials](#database-configuration)
-  - [Application Routes](#application-routes)
-- [Theme & Palette Architecture](#theme--palettes)
+  - [Base URL](#base-url)
+  - [Database Credentials](#database-credentials)
+  - [Routing Map](#routing-map)
+- [Theme & Palettes](#theme--palettes)
+  - [Dual Theme System](#dual-theme-system)
+  - [Display Mode Switcher](#display-mode-switcher)
 - [Default Credentials](#default-credentials)
 - [Repository Structure](#repository-structure)
 - [Troubleshooting & FAQ](#troubleshooting--faq)
 
----
+### Why?
 
-## Overview
+Managing enterprise sales and organizational hierarchies requires a system that:
 
-**Rolexto CRM** delivers an enterprise-grade administrative workspace designed to manage complex lead pipelines, multi-tier team hierarchies, scheduled follow-ups, and closure metrics. Built on a battle-tested MVC architecture with an overhauled, zero-dependency modern front-end design system, it provides instant data access across both desktop workstations and mobile devices.
+- Tracks leads across granular stages, sources, and categories without losing legacy parameters.
+- Models deep organizational charts with drill-down reporting from team leaders to direct contributors.
+- Visualizes activity streams (follow-ups, meetings, closures, verticals) in compact, high-contrast dashboards.
+- Gives administrators total control over brand aesthetics with pure, isolated color themes (Rolex Emerald Green and Rolex Crimson Red) with zero hybrid color mixing.
+- Operates flawlessly across desktop monitors and Android/mobile touchscreens with adaptive off-canvas navigation.
 
----
+`Rolexto CRM` checks all of those boxes.
 
-## Features
-
-- **Comprehensive Lead Pipeline**: Create, filter, assign, import, export, and track leads across custom categories, sources, and progression stages.
-- **Hierarchical Team Structure**: Multi-level organizational tree supporting manager-subordinate delegation, performance reviews, and role-based permissions.
-- **Actionable Follow-ups & Meetings**: Dedicated scheduling workflows for missed, daily, and upcoming follow-ups and client meetings.
-- **Closure & Vertical Tracking**: Live database-driven analytics for monthly, yearly, and all-time revenue closures and vertical performance.
-- **Dual Pure Theme Palettes**:
-  - **Rolex Emerald Green**: Pure `#10b981` emerald accent with obsidian black and crisp slate surfaces.
-  - **Rolex Crimson Red**: Pure `#dc2626` crimson accent with obsidian black and crisp slate surfaces.
-  - *No mixed colors* — switch instantly via the admin header toggle with persistent local storage.
-- **Independent Display Modes**: Every user can toggle between Dark Mode and Light Mode independently.
-- **Compact Executive Cards**: Streamlined doughnut metrics and 2-column stat badges designed for optimal information density without vertical clutter.
-- **Mobile & Android Optimized**: Off-canvas sliding drawer navigation, touch-scrolling data tables, and adaptive responsive layouts.
+### Features
 
 ---
 
-## Quickstart
+- **Lead Pipeline**: Complete CRUD workflows, status filtering, category grouping, bulk import/export, and team assignment.
+- **Hierarchical Team Management**: Multi-level organizational drill-down, subordinate relationship mapping, and performance reviews.
+- **Scheduled Interactions**: Distinct tracking for missed, weekly, daily, and upcoming follow-ups and meetings.
+- **Real-Time Closure Analytics**: Live MySQL-backed monthly, yearly, and all-time revenue closures and vertical performance.
+- **Pure Dual Palettes**:
+  - **Rolex Emerald Green (`#10b981`)**: Polished emerald green accents with deep obsidian dark or crisp slate surfaces.
+  - **Rolex Crimson Red (`#dc2626`)**: Bold ruby crimson accents with deep obsidian dark or crisp slate surfaces.
+  - *Zero color mixing*: Switch dynamically via the topbar toggle with automatic `localStorage` persistence.
+- **Independent Display Modes**: Every user can toggle between Dark Mode and Light Mode independently without affecting system palette rules.
+- **Compact Executive Cards**: Streamlined `110px` doughnut charts paired with modern 2-column key-value pill grids.
+- **Mobile & Android Optimized**: Touch-scrollable data tables, responsive grids, and an off-canvas drawer navigation.
 
-To run the interactive standalone interface locally without configuring PHP or MySQL:
+### Installation
+
+---
+
+> **Note**
+> You can preview the entire interface immediately using the standalone local server without configuring PHP or MySQL.
+
+#### Method 1: Local Live Frontend Preview
+
+Run the standalone preview server directly from the root repository directory:
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/Reinhart-py/crm-rolexto.git
-cd crm-rolexto
-
-# 2. Start the local server
-python -m http.server 8080
-
-# 3. Open in your browser
-# Navigate to: http://localhost:8080/preview.html
+$ git clone https://github.com/Reinhart-py/crm-rolexto.git
+$ cd crm-rolexto
+$ python -m http.server 8080
 ```
 
----
+Open your browser and navigate to:
+```text
+http://localhost:8080/preview.html
+```
 
-## Installation
+#### Method 2: Full Stack (XAMPP / WAMP / LAMP)
 
-### Prerequisites
-
-| Component | Minimum Requirement | Recommended |
-|---|---|---|
-| **PHP** | 7.4+ | 8.0 / 8.1 / 8.2 |
-| **PHP Extensions** | `mysqli`, `mbstring`, `gd`, `curl`, `json` | All enabled |
-| **Database** | MySQL 5.7+ or MariaDB 10.3+ | MySQL 8.0+ |
-| **Web Server** | Apache 2.4+ (`mod_rewrite` enabled) | Apache or Nginx |
-
-### 1. Apache / XAMPP / WAMP
-
-1. Move the repository folder into your web server's document root:
+1. Clone or copy the project into your web server document root:
    - **XAMPP (Windows)**: `C:\xampp\htdocs\crm`
    - **WAMP (Windows)**: `C:\wamp64\www\crm`
    - **Linux**: `/var/www/html/crm`
@@ -104,42 +94,55 @@ python -m http.server 8080
 
 3. Import your database dump (`.sql`) into `crm_rolexto`.
 
-4. Update your configuration in `application/config/config.php` and `application/config/database.php`.
+4. Configure your base URL and database connection (see [Configuration](#configuration)).
 
-5. Navigate to `http://localhost/crm/manager/login` in your browser.
+5. Navigate to:
+   ```text
+   http://localhost/crm/manager/login
+   ```
 
-### 2. PHP Built-in Server
+#### Method 3: PHP Built-in Server
 
-For rapid development with an active MySQL instance:
+For rapid backend development with PHP CLI and a running MySQL instance:
 
 ```bash
-php -S localhost:8000 index.php
+$ cd crm-rolexto
+$ php -S localhost:8000 index.php
 ```
 
-Ensure `application/config/config.php` has:
-```php
-$config['base_url'] = 'http://localhost:8000/';
-```
+Ensure `application/config/config.php` has `$config['base_url'] = 'http://localhost:8000/';`.
 
-### 3. Production Deployment (cPanel / VPS)
+#### Method 4: Production (cPanel / Apache)
 
-1. Upload the repository contents to your target web directory (`public_html` or subdomain root).
-2. Ensure `.htaccess` is present in the root folder with rewrite rules active.
-3. Import the database dump through phpMyAdmin or the MySQL command-line utility.
-4. Set production credentials in `application/config/database.php`.
-5. Set the canonical HTTPS domain in `application/config/config.php`.
+1. Upload repository files into your target web root (`public_html` or subdomain directory).
+2. Ensure `.htaccess` is present in the root folder with `RewriteEngine On`.
+3. Create the database and user via cPanel MySQL Database Wizard with `ALL PRIVILEGES`.
+4. Import the database schema via phpMyAdmin.
+5. Set production credentials in `application/config/database.php` and production URL in `application/config/config.php`.
+
+### Dependencies & Requirements
 
 ---
 
-## Configuration
+- **PHP**: 7.4 or 8.0+
+- **PHP Extensions**: `mysqli`, `mbstring`, `gd`, `curl`, `json`
+- **Database**: MySQL 5.7+ or MariaDB 10.3+
+- **Web Server**: Apache 2.4+ (with `mod_rewrite` enabled) or Nginx
+- **Browsers**: Modern Chromium (Chrome, Edge, Brave), Firefox, Safari (desktop & mobile)
 
-### Base URL Configuration
+### Configuration
+
+---
+
+#### Base URL
+
 File: `application/config/config.php`
 ```php
 $config['base_url'] = 'https://crm.rolextogroup.com/';
 ```
 
-### Database Configuration
+#### Database Credentials
+
 File: `application/config/database.php`
 ```php
 $active_group = 'default';
@@ -152,53 +155,58 @@ $db['default']['database'] = 'crm_rolexto';
 $db['default']['dbdriver'] = 'mysqli';
 ```
 
-### Application Routes
+#### Routing Map
+
 File: `application/config/routes.php`
 - `manager/login`: Authentication portal
 - `manager/dashboard`: Executive KPI workspace
-- `manager/leads`: Lead management directory
-- `manager/team`: Organizational chart and team administration
+- `manager/leads`: Lead directory and filter views
+- `manager/team`: Hierarchy charts and member records
 - `manager/verticals`: Vertical operational monitoring
-- `manager/roles`: Role and permission matrix
+- `manager/roles`: Role and permission management
+- `manager/users`: System user management
+
+### Theme & Palettes
 
 ---
 
-## Theme & Palettes
+The styling system is driven by CSS custom variables in `assets/dist/css/crm-theme.css`.
 
-The UI is built with CSS custom properties configured in `assets/dist/css/crm-theme.css`.
-
-| Palette | Token Attribute | Accent Color | Active Hover | Surface |
+| Theme Palette | HTML Attribute | Accent Token | Hover Token | Background (Dark / Light) |
 |---|---|---|---|---|
-| **Emerald Green** | `[data-crm-palette="green"]` | `#10b981` | `#059669` | `#0b0f19` (Dark) / `#ffffff` (Light) |
-| **Crimson Red** | `[data-crm-palette="red"]` | `#dc2626` | `#b91c1c` | `#0b0f19` (Dark) / `#ffffff` (Light) |
+| **Rolex Emerald Green** | `data-crm-palette="green"` | `#10b981` | `#059669` | `#0b0f19` / `#ffffff` |
+| **Rolex Crimson Red** | `data-crm-palette="red"` | `#dc2626` | `#b91c1c` | `#0b0f19` / `#ffffff` |
 
-- **Admin Palette Switcher**: Toggle between Green and Red themes using `#crmPaletteToggle` in the top bar.
-- **Display Mode Switcher**: Toggle between Dark Mode and Light Mode using `#crmThemeToggle` in the top bar.
+#### Dual Theme System
+Switch dynamically between Rolex Emerald Green and Rolex Crimson Red using the `#crmPaletteToggle` pill button in the topbar. The active palette updates all primary action buttons, active navigation markers, focus borders, and chart fills with zero color mixing.
+
+#### Display Mode Switcher
+Click the `#crmThemeToggle` (Sun / Moon) button in the topbar to switch between Dark Mode and Light Mode. Every user can customize their display mode independently with persistent local storage.
+
+### Default Credentials
 
 ---
 
-## Default Credentials
-
-For local testing and administration:
+For initial testing and local administration:
 
 | Role | Username | Password | Access Level |
 |---|---|---|---|
 | **Super Admin** | `jules` | `jules123` | Level 1 (Full Access) |
 | **Administrator** | `admin` | `admin123` | Level 1 (Full Access) |
 
+### Repository Structure
+
 ---
 
-## Repository Structure
-
-```text
+```shell
 crm-rolexto/
 ├── application/
-│   ├── config/              # Application, database, and route configs
+│   ├── config/              # App, database, and route configurations
 │   ├── controllers/         # CodeIgniter MVC controllers
-│   ├── models/              # Database models and analytical queries
+│   ├── models/              # Database analytical models
 │   └── views/
-│       └── manager/         # Dashboard, lead management, and subviews
-│           ├── elements/    # Reusable header, navigation, and footer templates
+│       └── manager/         # Dashboard, lead, and team view templates
+│           ├── elements/    # Header, navigation, and footer templates
 │           └── ...
 ├── assets/
 │   ├── bootstrap/           # Base responsive grid framework
@@ -206,36 +214,36 @@ crm-rolexto/
 │   │   ├── css/
 │   │   │   ├── crm-theme.css# Modern enterprise design system tokens
 │   │   │   └── AdminLTE.css # Layout base framework
-│   │   └── img/             # Brand logos, icons, and favicon assets
+│   │   └── img/             # Brand assets, logos, and favicon
 │   └── plugins/             # Chart.js, jQuery, Select2, DataTables
 ├── system/                  # Core CodeIgniter framework engine
-├── .htaccess                # Apache URL rewrite configuration
+├── .htaccess                # Apache rewrite rules
 ├── favicon.ico              # Root favicon
-├── index.php                # Application front controller
-├── preview.html             # Interactive frontend preview
+├── index.php                # Application entrypoint
+├── preview.html             # Standalone local frontend preview
 └── README.md                # Project documentation
 ```
 
+### Troubleshooting & FAQ
+
 ---
 
-## Troubleshooting & FAQ
-
 <details>
-<summary><strong>Q: Why does the dashboard return 404 when clicking internal links?</strong></summary>
+<summary><strong>Q: Why does clicking internal links result in a 404 Not Found error?</strong></summary>
 <br>
-Ensure Apache's <code>mod_rewrite</code> module is enabled and that <code>.htaccess</code> is present in your web root with <code>RewriteEngine On</code>. Also confirm that <code>$config['index_page']</code> in <code>application/config/config.php</code> is empty or properly configured.
+Confirm that Apache's <code>mod_rewrite</code> is enabled and that <code>.htaccess</code> is present in your web root. Check that <code>$config['index_page']</code> in <code>application/config/config.php</code> matches your server setup.
 </details>
 
 <details>
-<summary><strong>Q: Database connection error appears upon login?</strong></summary>
+<summary><strong>Q: Database connection error occurs when submitting login?</strong></summary>
 <br>
-Verify your credentials in <code>application/config/database.php</code>. If hosting on cPanel, ensure the database user has been granted <strong>ALL PRIVILEGES</strong> on the target database.
+Verify the credentials in <code>application/config/database.php</code>. If hosting on cPanel or a remote MySQL server, ensure the database user has been granted <strong>ALL PRIVILEGES</strong> on the target database.
 </details>
 
 <details>
-<summary><strong>Q: How can I preview the updated dashboard without a database?</strong></summary>
+<summary><strong>Q: How do I test the frontend without installing PHP?</strong></summary>
 <br>
-Run <code>python -m http.server 8080</code> in the project root directory and navigate to <code>http://localhost:8080/preview.html</code>.
+Run <code>python -m http.server 8080</code> in the root directory and open <code>http://localhost:8080/preview.html</code>. It renders the full layout, CSS tokens, view navigation, and Chart.js graphics without backend services.
 </details>
 
 ---
