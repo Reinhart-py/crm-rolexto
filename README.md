@@ -7,44 +7,54 @@
 [![Responsive](https://img.shields.io/badge/Mobile-Android%20%26%20iOS%20Ready-blue.svg?style=flat-square)](https://github.com/Reinhart-py/crm-rolexto)
 [![License](https://img.shields.io/badge/License-Proprietary-darkgreen.svg?style=flat-square)](LICENSE)
 
-`Rolexto CRM` is a high-performance, enterprise-grade sales pipeline and team management workspace. It provides end-to-end lead lifecycle management, hierarchical organizational trees, scheduled follow-ups, closure analytics, and custom administrative governance with pure theme customization.
+`Rolexto CRM` is a high-performance, enterprise-grade sales pipeline, customer relationship, and team governance workspace. Built with an isolated dual luxury theme system (Rolex Emerald Green & Rolex Crimson Red), it provides end-to-end lead lifecycle management, multi-level organizational trees, scheduled interaction tracking, closure analytics, and cross-platform responsive controls.
+
+---
 
 # Contents
 
 - [Why?](#why)
 - [Features](#features)
-- [Installation](#installation)
-  - [Method 1: Local Live Frontend Preview](#method-1-local-live-frontend-preview)
-  - [Method 2: Full Stack (XAMPP / WAMP / LAMP)](#method-2-full-stack-xampp--wamp--lamp)
-  - [Method 3: PHP Built-in Server](#method-3-php-built-in-server)
-  - [Method 4: Production (cPanel / Apache)](#method-4-production-cpanel--apache)
-- [Dependencies & Requirements](#dependencies--requirements)
+- [Deployment & Hosting Guide](#deployment--hosting-guide)
+  - [1. Cloudflare Pages (Instant Global Edge)](#1-cloudflare-pages-instant-global-edge)
+  - [2. Netlify (Automated Static & SPA)](#2-netlify-automated-static--spa)
+  - [3. Vercel (Edge Deployment)](#3-vercel-edge-deployment)
+  - [4. Termux on Android (Local Mobile Hosting)](#4-termux-on-android-local-mobile-hosting)
+  - [5. cPanel & Traditional Shared Hosting](#5-cpanel--traditional-shared-hosting)
+  - [6. Cloud VPS / Dedicated Server (Ubuntu, Debian, Nginx, Apache)](#6-cloud-vps--dedicated-server-ubuntu-debian-nginx-apache)
+  - [7. Docker & Container Platforms (Render, Railway, Fly.io)](#7-docker--container-platforms-render-railway-flyio)
+  - [8. Local Desktop Stacks (XAMPP, WAMP, Laragon, PHP CLI)](#8-local-desktop-stacks-xampp-wamp-laragon-php-cli)
+- [Theme & Palettes](#theme--palettes)
+  - [Dual Theme System](#dual-theme-system)
+  - [Dynamic Logo Switching](#dynamic-logo-switching)
+  - [Reactive Chart Recoloring](#reactive-chart-recoloring)
+  - [Harmonized Activity Cards](#harmonized-activity-cards)
 - [Configuration](#configuration)
   - [Base URL](#base-url)
   - [Database Credentials](#database-credentials)
   - [Routing Map](#routing-map)
-- [Theme & Palettes](#theme--palettes)
-  - [Dual Theme System](#dual-theme-system)
-  - [Display Mode Switcher](#display-mode-switcher)
 - [Default Credentials](#default-credentials)
 - [Repository Structure](#repository-structure)
 - [Troubleshooting & FAQ](#troubleshooting--faq)
+
+---
 
 ### Why?
 
 Managing enterprise sales and organizational hierarchies requires a system that:
 
 - Tracks leads across granular stages, sources, and categories without losing legacy parameters.
-- Models deep organizational charts with drill-down reporting from team leaders to direct contributors.
+- Models deep organizational charts with drill-down reporting from top leadership to direct contributors.
 - Visualizes activity streams (follow-ups, meetings, closures, verticals) in compact, high-contrast dashboards.
 - Gives administrators total control over brand aesthetics with pure, isolated color themes (Rolex Emerald Green and Rolex Crimson Red) with zero hybrid color mixing.
 - Operates flawlessly across desktop monitors and Android/mobile touchscreens with adaptive off-canvas navigation.
+- Runs everywhere: on serverless edge networks, traditional web servers, enterprise cloud VPS, and even locally on Android hardware via Termux.
 
 `Rolexto CRM` checks all of those boxes.
 
-### Features
-
 ---
+
+### Features
 
 - **Lead Pipeline**: Complete CRUD workflows, status filtering, category grouping, bulk import/export, and team assignment.
 - **Hierarchical Team Management**: Multi-level organizational drill-down, subordinate relationship mapping, and performance reviews.
@@ -54,100 +64,280 @@ Managing enterprise sales and organizational hierarchies requires a system that:
   - **Rolex Emerald Green (`#10b981`)**: Polished emerald green accents with deep obsidian dark or crisp slate surfaces.
   - **Rolex Crimson Red (`#dc2626`)**: Bold ruby crimson accents with deep obsidian dark or crisp slate surfaces.
   - *Zero color mixing*: Switch dynamically via the topbar toggle with automatic `localStorage` persistence.
-- **Independent Display Modes**: Every user can toggle between Dark Mode and Light Mode independently without affecting system palette rules.
-- **Compact Executive Cards**: Streamlined `110px` doughnut charts paired with modern 2-column key-value pill grids.
+- **Dynamic Theme Branding**: Auto-swaps high-resolution brand logos (`green-dark.jpg` in Green mode, `red-dark.jpg` in Red mode) in real time.
+- **Reactive Chart Engine**: Charts instantly recolor to emerald green or crimson red upon toggling the theme palette.
+- **Harmonized Activity Cards**: Monochromatic tonal progress tracks and clean executive badges eliminate rainbow template clutter.
+- **Independent Display Modes**: Toggle between Dark Mode and Light Mode independently without affecting system palette rules.
 - **Mobile & Android Optimized**: Touch-scrollable data tables, responsive grids, and an off-canvas drawer navigation.
-
-### Installation
 
 ---
 
-> **Note**
-> You can preview the entire interface immediately using the standalone local server without configuring PHP or MySQL.
+### Deployment & Hosting Guide
 
-#### Method 1: Local Live Frontend Preview
+Rolexto CRM supports both **instant static/SPA edge hosting** (for the modern interactive preview workspace) and **full-stack PHP/MySQL production hosting**. Choose your preferred platform below:
 
-Run the standalone preview server directly from the root repository directory:
+#### 1. Cloudflare Pages (Instant Global Edge)
 
+Deploy the fast, interactive interface globally with free SSL, zero cold starts, and Cloudflare CDN caching:
+
+##### Option A: Git Integration (Dashboard)
+1. Push your repository to GitHub or GitLab.
+2. In the [Cloudflare Dashboard](https://dash.cloudflare.com/), navigate to **Compute (Workers) > Pages > Connect to Git**.
+3. Select the `crm-rolexto` repository.
+4. Configure Build settings:
+   - **Framework preset**: `None`
+   - **Build command**: *(leave blank)*
+   - **Build output directory**: `.` *(root)*
+5. Click **Save and Deploy**. Cloudflare Pages automatically reads the included `_redirects` file and serves the complete CRM workspace at your `*.pages.dev` domain.
+
+##### Option B: Wrangler CLI (Direct Upload)
+```bash
+$ npm install -g wrangler
+$ wrangler pages deploy . --project-name=crm-rolexto
+```
+
+---
+
+#### 2. Netlify (Automated Static & SPA)
+
+Deploy in seconds with automated CI/CD and atomic deployments:
+
+##### Option A: Netlify Dashboard
+1. Log into [Netlify](https://app.netlify.com/) and click **Add new site > Import an existing project**.
+2. Select **GitHub** and authorize the `crm-rolexto` repository.
+3. Configure settings:
+   - **Base directory**: `.`
+   - **Build command**: *(leave blank)*
+   - **Publish directory**: `.`
+4. Click **Deploy crm-rolexto**. The repository includes `_redirects` configured for instant root-level routing.
+
+##### Option B: Netlify CLI
+```bash
+$ npm install -g netlify-cli
+$ netlify login
+$ netlify deploy --prod --dir=.
+```
+
+---
+
+#### 3. Vercel (Edge Deployment)
+
+Deploy to Vercel's global edge network:
+
+```bash
+$ npm install -g vercel
+$ cd crm-rolexto
+$ vercel --prod
+```
+
+When prompted:
+- **Set up and deploy?**: `y`
+- **Which scope?**: *(your account)*
+- **Link to existing project?**: `N`
+- **Project name**: `crm-rolexto`
+- **Directory**: `./`
+
+---
+
+#### 4. Termux on Android (Local Mobile Hosting)
+
+Run Rolexto CRM locally on your Android smartphone or tablet without root access. This turns any Android phone into a portable CRM server accessible over local Wi-Fi or directly in mobile browsers.
+
+##### Step 1: Install Termux
+Install Termux from [F-Droid](https://f-droid.org/packages/com.termux/) or GitHub releases (avoid the outdated Google Play Store build).
+
+##### Step 2: Install Required Packages
+Open Termux and execute:
+```bash
+$ pkg update && pkg upgrade -y
+$ pkg install git python php mariadb -y
+```
+
+##### Step 3: Clone Repository
 ```bash
 $ git clone https://github.com/Reinhart-py/crm-rolexto.git
 $ cd crm-rolexto
-$ python -m http.server 8080
 ```
 
-Open your browser and navigate to:
+##### Step 4: Choose Execution Mode
+
+###### Quick Mode: Standalone Preview
+```bash
+$ python -m http.server 8080
+```
+Open Chrome or Firefox on your Android device and navigate to:
 ```text
 http://localhost:8080/preview.html
 ```
 
-#### Method 2: Full Stack (XAMPP / WAMP / LAMP)
+###### Full Stack Mode: Local PHP & MariaDB
+```bash
+$ mariadbd-safe -u root &
+$ mariadb -u root -e "CREATE DATABASE crm_rolexto CHARACTER SET utf8mb4;"
+$ php -S 0.0.0.0:8080 index.php
+```
 
-1. Clone or copy the project into your web server document root:
-   - **XAMPP (Windows)**: `C:\xampp\htdocs\crm`
-   - **WAMP (Windows)**: `C:\wamp64\www\crm`
-   - **Linux**: `/var/www/html/crm`
+To access from other devices on the same Wi-Fi network:
+```bash
+$ ifconfig | grep "inet "
+```
+Open `http://<your-phone-ip>:8080` in any browser on your laptop or tablet.
 
-2. Create a new MySQL database:
-   ```sql
-   CREATE DATABASE crm_rolexto CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-   ```
+---
 
-3. Import your database dump (`.sql`) into `crm_rolexto`.
+#### 5. cPanel & Traditional Shared Hosting
 
-4. Configure your base URL and database connection (see [Configuration](#configuration)).
+Ideal for standard hosting environments (Hostinger, Namecheap, Bluehost, GoDaddy):
 
-5. Navigate to:
-   ```text
-   http://localhost/crm/manager/login
-   ```
+1. **Upload Files**:
+   - Compress the repository into a `.zip` archive or clone directly using cPanel **Git™ Version Control**.
+   - Extract into your target root: `public_html` (for main domain) or `public_html/crm` (for subfolder or subdomain).
+2. **Select PHP Version**:
+   - Open cPanel **MultiPHP Manager**.
+   - Select PHP **7.4** or **8.0+** (`ea-php74` / `ea-php80` / `alt-php80`).
+3. **Database Configuration**:
+   - Open **MySQL® Database Wizard**.
+   - Create database (e.g., `user_rolextocrm`).
+   - Create user and assign **ALL PRIVILEGES**.
+   - Open **phpMyAdmin**, select the new database, and import your `.sql` dump.
+4. **App Configuration**:
+   - In `application/config/config.php`:
+     ```php
+     $config['base_url'] = 'https://yourdomain.com/';
+     ```
+   - In `application/config/database.php`:
+     ```php
+     $db['default']['hostname'] = 'localhost';
+     $db['default']['username'] = 'user_dbuser';
+     $db['default']['password'] = 'your_strong_password';
+     $db['default']['database'] = 'user_rolextocrm';
+     ```
+5. **Verify URL Rewriting**:
+   - Ensure the included `.htaccess` file is present in the web root with `RewriteEngine On`.
 
-#### Method 3: PHP Built-in Server
+---
 
-For rapid backend development with PHP CLI and a running MySQL instance:
+#### 6. Cloud VPS / Dedicated Server (Ubuntu, Debian, Nginx, Apache)
 
+For high-concurrency production deployments on DigitalOcean, AWS EC2, Hetzner, Linode, or Vultr:
+
+##### Ubuntu / Debian Setup
+```bash
+$ sudo apt update && sudo apt upgrade -y
+$ sudo apt install nginx php8.0-fpm php8.0-mysql php8.0-mbstring php8.0-gd php8.0-curl php8.0-xml mariadb-server git -y
+```
+
+##### Nginx Server Block
+Create `/etc/nginx/sites-available/crm-rolexto`:
+```nginx
+server {
+    listen 80;
+    server_name crm.yourdomain.com;
+    root /var/www/crm-rolexto;
+    index index.php index.html preview.html;
+
+    location / {
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
+
+Enable site and configure SSL:
+```bash
+$ sudo ln -s /etc/nginx/sites-available/crm-rolexto /etc/nginx/sites-enabled/
+$ sudo nginx -t
+$ sudo systemctl reload nginx
+$ sudo apt install certbot python3-certbot-nginx -y
+$ sudo certbot --nginx -d crm.yourdomain.com
+```
+
+---
+
+#### 7. Docker & Container Platforms (Render, Railway, Fly.io)
+
+For cloud container runtimes, create a minimal `Dockerfile`:
+
+```dockerfile
+FROM php:8.0-apache
+RUN docker-php-ext-install mysqli && a2enmod rewrite
+COPY . /var/www/html/
+RUN chown -R www-data:www-data /var/www/html
+EXPOSE 80
+```
+
+Deploy commands:
+- **Railway**: `railway up`
+- **Fly.io**: `fly launch && fly deploy`
+- **Render**: Connect repository, select **Docker Web Service**, and set port to `80`.
+
+---
+
+#### 8. Local Desktop Stacks (XAMPP, WAMP, Laragon, PHP CLI)
+
+##### XAMPP / WAMP / Laragon
+1. Place repository in `htdocs` or `www` directory:
+   - XAMPP: `C:\xampp\htdocs\crm`
+   - Laragon: `C:\laragon\www\crm`
+2. Start Apache and MySQL services.
+3. Open `http://localhost/crm/manager/login`.
+
+##### PHP Built-in Server
 ```bash
 $ cd crm-rolexto
 $ php -S localhost:8000 index.php
 ```
 
-Ensure `application/config/config.php` has `$config['base_url'] = 'http://localhost:8000/';`.
-
-#### Method 4: Production (cPanel / Apache)
-
-1. Upload repository files into your target web root (`public_html` or subdomain directory).
-2. Ensure `.htaccess` is present in the root folder with `RewriteEngine On`.
-3. Create the database and user via cPanel MySQL Database Wizard with `ALL PRIVILEGES`.
-4. Import the database schema via phpMyAdmin.
-5. Set production credentials in `application/config/database.php` and production URL in `application/config/config.php`.
-
-### Dependencies & Requirements
-
 ---
 
-- **PHP**: 7.4 or 8.0+
-- **PHP Extensions**: `mysqli`, `mbstring`, `gd`, `curl`, `json`
-- **Database**: MySQL 5.7+ or MariaDB 10.3+
-- **Web Server**: Apache 2.4+ (with `mod_rewrite` enabled) or Nginx
-- **Browsers**: Modern Chromium (Chrome, Edge, Brave), Firefox, Safari (desktop & mobile)
+### Theme & Palettes
+
+Rolexto CRM incorporates an intentional luxury design system governed by CSS variables in `assets/dist/css/crm-theme.css`.
+
+| Theme Palette | HTML Attribute | Accent Token | Hover Token | Background (Dark / Light) |
+|---|---|---|---|---|
+| **Rolex Emerald Green** | `data-crm-palette="green"` | `#10b981` | `#059669` | `#090d16` / `#f8fafc` |
+| **Rolex Crimson Red** | `data-crm-palette="red"` | `#dc2626` | `#b91c1c` | `#090d16` / `#f8fafc` |
+
+#### Dual Theme System
+Toggle between Rolex Emerald Green and Rolex Crimson Red using the `#crmPaletteToggle` pill in the topbar. The active palette updates all primary buttons, active navigation markers, glowing card borders, and chart fills with zero hybrid color mixing.
+
+#### Dynamic Logo Switching
+- **Rolex Emerald Green**: Automatically displays `assets/green-dark.jpg`.
+- **Rolex Crimson Red**: Automatically displays `assets/red-dark.jpg`.
+The 46px high-resolution logo updates live across the sidebar and authentication panels without page reload.
+
+#### Reactive Chart Recoloring
+Graphs (`barChart3` Previous Performance and `barChart4` Team Projection) are managed by `window.renderDashboardCharts()`. When switching between Green and Red modes, the canvases cleanly reconstruct with the exact palette fill (`#10b981` or `#dc2626`), eliminating chart caching and ghosting.
+
+#### Harmonized Activity Cards
+The 8 activity cards (*My Followups*, *My Meetings*, *My Closures*, *My Vertical FU*, *Team Followups*, etc.) utilize:
+- Clean glowing borders on hover instead of heavy dark outlines.
+- Cohesive monochromatic tonal segment bars representing workload distribution.
+- Executive neutral number badges for routine metrics.
+- Vibrant luxury accent highlights on key milestones (*All Future* and *Total Revenue*).
+
+---
 
 ### Configuration
 
----
-
 #### Base URL
-
 File: `application/config/config.php`
 ```php
 $config['base_url'] = 'https://crm.rolextogroup.com/';
 ```
 
 #### Database Credentials
-
 File: `application/config/database.php`
 ```php
-$active_group = 'default';
-$active_record = TRUE;
-
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'your_database_user';
 $db['default']['password'] = 'your_database_password';
@@ -156,7 +346,6 @@ $db['default']['dbdriver'] = 'mysqli';
 ```
 
 #### Routing Map
-
 File: `application/config/routes.php`
 - `manager/login`: Authentication portal
 - `manager/dashboard`: Executive KPI workspace
@@ -166,37 +355,20 @@ File: `application/config/routes.php`
 - `manager/roles`: Role and permission management
 - `manager/users`: System user management
 
-### Theme & Palettes
-
 ---
-
-The styling system is driven by CSS custom variables in `assets/dist/css/crm-theme.css`.
-
-| Theme Palette | HTML Attribute | Accent Token | Hover Token | Background (Dark / Light) |
-|---|---|---|---|---|
-| **Rolex Emerald Green** | `data-crm-palette="green"` | `#10b981` | `#059669` | `#0b0f19` / `#ffffff` |
-| **Rolex Crimson Red** | `data-crm-palette="red"` | `#dc2626` | `#b91c1c` | `#0b0f19` / `#ffffff` |
-
-#### Dual Theme System
-Switch dynamically between Rolex Emerald Green and Rolex Crimson Red using the `#crmPaletteToggle` pill button in the topbar. The active palette updates all primary action buttons, active navigation markers, focus borders, and chart fills with zero color mixing.
-
-#### Display Mode Switcher
-Click the `#crmThemeToggle` (Sun / Moon) button in the topbar to switch between Dark Mode and Light Mode. Every user can customize their display mode independently with persistent local storage.
 
 ### Default Credentials
 
----
-
-For initial testing and local administration:
+For initial testing, demonstration, and local administration:
 
 | Role | Username | Password | Access Level |
 |---|---|---|---|
-| **Super Admin** | `jules` | `jules123` | Level 1 (Full Access) |
+| **Super Admin** | `jules` | `jules123` | Level 1 (Full Governance) |
 | **Administrator** | `admin` | `admin123` | Level 1 (Full Access) |
 
-### Repository Structure
-
 ---
+
+### Repository Structure
 
 ```shell
 crm-rolexto/
@@ -209,6 +381,8 @@ crm-rolexto/
 │           ├── elements/    # Header, navigation, and footer templates
 │           └── ...
 ├── assets/
+│   ├── green-dark.jpg       # Official Rolex Emerald Green high-res brand logo
+│   ├── red-dark.jpg         # Official Rolex Crimson Red high-res brand logo
 │   ├── bootstrap/           # Base responsive grid framework
 │   ├── dist/
 │   │   ├── css/
@@ -217,6 +391,7 @@ crm-rolexto/
 │   │   └── img/             # Brand assets, logos, and favicon
 │   └── plugins/             # Chart.js, jQuery, Select2, DataTables
 ├── system/                  # Core CodeIgniter framework engine
+├── _redirects               # Cloudflare Pages and Netlify edge routing configuration
 ├── .htaccess                # Apache rewrite rules
 ├── favicon.ico              # Root favicon
 ├── index.php                # Application entrypoint
@@ -224,26 +399,32 @@ crm-rolexto/
 └── README.md                # Project documentation
 ```
 
-### Troubleshooting & FAQ
-
 ---
 
+### Troubleshooting & FAQ
+
 <details>
-<summary><strong>Q: Why does clicking internal links result in a 404 Not Found error?</strong></summary>
+<summary><strong>Q: How do I deploy the preview on Cloudflare Pages or Netlify?</strong></summary>
 <br>
-Confirm that Apache's <code>mod_rewrite</code> is enabled and that <code>.htaccess</code> is present in your web root. Check that <code>$config['index_page']</code> in <code>application/config/config.php</code> matches your server setup.
+Connect the GitHub repository to Cloudflare Pages or Netlify, leave the build command blank, and set the publish directory to <code>.</code> (root). The included <code>_redirects</code> file automatically routes traffic to <code>preview.html</code>.
+</details>
+
+<details>
+<summary><strong>Q: Can I run this offline on an Android phone without a laptop?</strong></summary>
+<br>
+Yes. Install Termux from F-Droid, run <code>pkg install git python php mariadb</code>, clone the repository, and start <code>python -m http.server 8080</code>. Open <code>http://localhost:8080/preview.html</code> directly in your mobile browser.
+</details>
+
+<details>
+<summary><strong>Q: Why does clicking internal links return a 404 error on Apache?</strong></summary>
+<br>
+Verify that <code>mod_rewrite</code> is enabled on your Apache server and that <code>.htaccess</code> exists in your root folder. Check that <code>$config['base_url']</code> in <code>application/config/config.php</code> matches your exact domain or directory path.
 </details>
 
 <details>
 <summary><strong>Q: Database connection error occurs when submitting login?</strong></summary>
 <br>
-Verify the credentials in <code>application/config/database.php</code>. If hosting on cPanel or a remote MySQL server, ensure the database user has been granted <strong>ALL PRIVILEGES</strong> on the target database.
-</details>
-
-<details>
-<summary><strong>Q: How do I test the frontend without installing PHP?</strong></summary>
-<br>
-Run <code>python -m http.server 8080</code> in the root directory and open <code>http://localhost:8080/preview.html</code>. It renders the full layout, CSS tokens, view navigation, and Chart.js graphics without backend services.
+Verify the credentials in <code>application/config/database.php</code>. If hosting on cPanel or remote MySQL, ensure the database user has been granted <strong>ALL PRIVILEGES</strong> on the target database.
 </details>
 
 ---
