@@ -683,6 +683,9 @@ body.hold-transition.skin-blue.sidebar-mini {
     font-size: 12px;
     color: var(--crm-text-muted);
     background: var(--crm-card-bg);
+    clear: both !important;
+    width: 100% !important;
+    flex-shrink: 0 !important;
 }
 
 .content-wrapper,
@@ -697,6 +700,15 @@ body.hold-transition.skin-blue.sidebar-mini {
     padding: 24px 28px 48px 28px !important;
     min-height: calc(100vh - 60px);
     position: relative;
+    flex: 1 0 auto !important;
+}
+
+.crm-content-area::after,
+.crm-view-pane::after,
+.content::after {
+    content: "" !important;
+    display: table !important;
+    clear: both !important;
 }
 
 .crm-app-shell .container,
@@ -1667,42 +1679,104 @@ html.crm-is-authenticated #authOverlay {
     border-color: var(--crm-accent) !important;
     box-shadow: 0 0 16px var(--crm-accent-glow) !important;
 }
-@media (max-width: 991px) and (min-width: 641px) {
-    .crm-modern-stat-card {
-        margin-bottom: 16px;
-    }
-    .col-sm-3 {
-        width: 50% !important;
-        float: left !important;
-    }
-}
-@media (max-width: 640px) {
-    .crm-modern-stat-card {
-        margin-bottom: 14px;
-    }
-    .col-sm-3 {
-        width: 100% !important;
-        float: none !important;
-    }
-}
 @media (max-width: 767px) {
-    .content-wrapper {
-        padding: 12px 10px 30px !important;
+    .content-wrapper,
+    .crm-content-area {
+        padding: 10px 8px 32px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     .content {
-        padding: 8px !important;
+        padding: 0 !important;
+        width: 100% !important;
     }
     .box {
         margin-bottom: 14px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
         border-radius: 8px !important;
     }
     .box-header {
         padding: 10px 12px !important;
     }
     .box-body {
-        padding: 10px !important;
+        padding: 10px 8px !important;
     }
     .crm-breadcrumbs {
         display: none !important;
     }
+    body:not(.crm-force-table-mode) .table-responsive {
+        overflow-x: visible !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+    body:not(.crm-force-table-mode) .table-responsive > .table {
+        min-width: 100% !important;
+        width: 100% !important;
+        border: none !important;
+        display: block !important;
+    }
+    body:not(.crm-force-table-mode) .table-responsive > .table > thead {
+        display: none !important;
+    }
+    body:not(.crm-force-table-mode) .table-responsive > .table > tbody {
+        display: block !important;
+        width: 100% !important;
+    }
+    body:not(.crm-force-table-mode) .table-responsive > .table > tbody > tr {
+        display: block !important;
+        background: var(--crm-card-bg) !important;
+        border: 1px solid var(--crm-border) !important;
+        border-radius: 10px !important;
+        margin-bottom: 12px !important;
+        padding: 12px 14px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+    body:not(.crm-force-table-mode) .table-responsive > .table > tbody > tr > td {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        border: none !important;
+        border-bottom: 1px solid var(--crm-border-subtle) !important;
+        padding: 9px 4px !important;
+        white-space: normal !important;
+        font-size: 13px !important;
+        text-align: right !important;
+        word-break: break-word !important;
+    }
+    body:not(.crm-force-table-mode) .table-responsive > .table > tbody > tr > td:last-child {
+        border-bottom: none !important;
+        padding-top: 12px !important;
+        padding-bottom: 4px !important;
+        justify-content: flex-end !important;
+        gap: 8px !important;
+    }
+    body:not(.crm-force-table-mode) .table-responsive > .table > tbody > tr > td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--crm-text-muted);
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 0.03em;
+        text-align: left;
+        margin-right: 12px;
+        flex-shrink: 0;
+    }
+    body:not(.crm-force-table-mode) .table-responsive > .table > tbody > tr > td:last-child::before {
+        content: "Actions";
+    }
+    body:not(.crm-force-table-mode) .table-responsive > .table > tbody > tr > td .btn {
+        padding: 5px 12px !important;
+        font-size: 12px !important;
+        border-radius: 6px !important;
+    }
+    .crm-footer {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 8px !important;
+        padding: 16px 14px !important;
+    }
 }
+
