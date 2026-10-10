@@ -2177,15 +2177,19 @@ function quickAdminLogin() {
 }
 
 function handleLogout() {
-    localStorage.removeItem('crm_logged_in');
+    localStorage.setItem('crm_logged_in', 'false');
     $('#authOverlay').fadeIn(200);
 }
 
 function checkAuthStatus() {
     var loggedIn = localStorage.getItem('crm_logged_in');
-    if (!loggedIn) {
+    if (loggedIn === 'false') {
         $('#authOverlay').show();
     } else {
+        if (!loggedIn) {
+            localStorage.setItem('crm_logged_in', 'true');
+            localStorage.setItem('crm_user', 'Jules Admin');
+        }
         $('#authOverlay').hide();
         var uName = localStorage.getItem('crm_user') || 'Jules Admin';
         $('#currentSessionUserName').text(uName);
