@@ -588,8 +588,9 @@ if(!empty($myTleadp2)){  $myTleadstr2= implode(', ',$myTleadp2); }
     function renderDashboardCharts() {
         var curPalette = document.documentElement.getAttribute('data-crm-palette') || 'green';
         var isRed = curPalette === 'red';
-        var accentColor = isRed ? '#dc2626' : '#10b981';
-        var accentStroke = isRed ? '#b91c1c' : '#059669';
+        var isBlue = curPalette === 'blue';
+        var accentColor = isRed ? '#dc2626' : (isBlue ? '#2563eb' : '#10b981');
+        var accentStroke = isRed ? '#b91c1c' : (isBlue ? '#1d4ed8' : '#059669');
 
         if ($('#barChart3').length) {
             var b3 = document.getElementById('barChart3');

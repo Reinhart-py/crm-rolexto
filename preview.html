@@ -356,7 +356,7 @@
 <svg class="crm-svg-sm" viewBox="0 0 24 24" style="color:var(--crm-text-muted);"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
 <input type="text" id="topbar-quick-search" placeholder="Search leads, team...">
 </div>
-<button type="button" class="crm-palette-toggle-btn" id="crmPaletteToggle" title="Admin Theme Palette: Switch Green / Red">
+<button type="button" class="crm-palette-toggle-btn" id="crmPaletteToggle" title="Global System Palette (All Users): Green / Red / Blue">
 <span class="crm-palette-indicator" id="crmPaletteIndicator"></span>
 <span class="crm-palette-text" id="crmPaletteText">Green Mode</span>
 </button>
@@ -379,7 +379,7 @@
 <section class="content">
 <div class="row">
 <div class="col-lg-3 col-xs-6">
-<div class="small-box bg-aqua">
+<div class="small-box bg-aqua" style="cursor:pointer;" onclick="switchView('leads')">
 <div class="inner">
 <h3>18</h3>
 <p>My Total Leads</p>
@@ -389,7 +389,7 @@
 </div>
 </div>
 <div class="col-lg-3 col-xs-6">
-<div class="small-box bg-green">
+<div class="small-box bg-green" style="cursor:pointer;" onclick="switchView('verticals')">
 <div class="inner">
 <h3>7</h3>
 <p>My Verticals</p>
@@ -399,7 +399,7 @@
 </div>
 </div>
 <div class="col-lg-3 col-xs-6">
-<div class="small-box bg-yellow">
+<div class="small-box bg-yellow" style="cursor:pointer;" onclick="switchView('team-members')">
 <div class="inner">
 <h3>14</h3>
 <p>Team Users</p>
@@ -409,7 +409,7 @@
 </div>
 </div>
 <div class="col-lg-3 col-xs-6">
-<div class="small-box bg-red">
+<div class="small-box bg-red" style="cursor:pointer;" onclick="switchView('team-leads')">
 <div class="inner">
 <h3>56</h3>
 <p>Team Leads</p>
@@ -708,7 +708,7 @@
 
 <div class="crm-view-pane" id="view-add-lead">
 <section class="content-header">
-<h1><i class="fa fa-plus-circle"></i> Add Lead (Complete Original Form)</h1>
+<h1><i class="fa fa-plus-circle"></i> Add Lead (All 6 Fieldsets &amp; Back Office Matrix)</h1>
 </section>
 <section class="content">
 <div class="box box-primary">
@@ -717,64 +717,55 @@
 
 <div class="form-section-title"><i class="fa fa-user"></i> 1. Customer Information &amp; POC</div>
 <div class="row">
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="form-group">
-<label>Customer / Company POC Name <span class="text-danger">*</span></label>
-<input type="text" name="poc" class="form-control" placeholder="POC Full Name" required>
+<label>Customer Name <span class="text-danger">*</span></label>
+<input type="text" name="customer" id="lead_customer" class="form-control" placeholder="Company / Customer Name" style="text-transform: capitalize;" required>
 </div>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Customer POC Name <span class="text-danger">*</span></label>
+<input type="text" name="poc" id="lead_poc" class="form-control" placeholder="POC Full Name" required>
+</div>
+</div>
+<div class="col-sm-3">
 <div class="form-group">
 <label>POC Contact Number <span class="text-danger">*</span></label>
-<input type="text" name="contact1" class="form-control" placeholder="+971 50 000 0000" required>
+<input type="text" name="contact1" id="lead_contact1" class="form-control" placeholder="+971 50 000 0000" required>
 </div>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="form-group">
 <label>Email Address <span class="text-danger">*</span></label>
-<input type="email" name="email" class="form-control" placeholder="client@domain.com" required>
+<input type="email" name="email" id="lead_email" class="form-control" placeholder="client@domain.com" required>
 </div>
 </div>
 </div>
 
 <div class="row">
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="form-group">
 <label>Account Number</label>
-<input type="text" name="a_number" class="form-control" placeholder="ACC-00000">
+<input type="text" name="a_number" id="lead_a_number" class="form-control" placeholder="ACC-00000">
 </div>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="form-group">
 <label>Account Under Vertical</label>
-<input type="text" name="a_department" class="form-control" placeholder="Vertical Department">
+<input type="text" name="a_department" id="lead_a_department" class="form-control" placeholder="Vertical Department">
 </div>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="form-group">
 <label>Current Monthly Revenue Amount</label>
-<input type="number" name="r_amount" class="form-control" placeholder="0.00">
+<input type="number" name="r_amount" id="lead_r_amount" class="form-control" placeholder="0.00">
 </div>
 </div>
-</div>
-
-<div class="row">
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="form-group">
 <label>Current Monthly Revenue Date</label>
-<input type="date" name="r_date" class="form-control">
-</div>
-</div>
-<div class="col-sm-4">
-<div class="form-group">
-<label>Alternative POC Name</label>
-<input type="text" name="poc2" class="form-control" placeholder="Alternate POC">
-</div>
-</div>
-<div class="col-sm-4">
-<div class="form-group">
-<label>Alternative POC Contact</label>
-<input type="text" name="contact2" class="form-control" placeholder="+971 50 ...">
+<input type="date" name="r_date" id="lead_r_date" class="form-control">
 </div>
 </div>
 </div>
@@ -784,42 +775,41 @@
 <div class="col-sm-3">
 <div class="form-group">
 <label>Category <span class="text-danger">*</span></label>
-<select name="category" class="form-control" required>
+<select name="category" id="lead_category" class="form-control" required onchange="handleLeadCategoryCascade()">
 <option value="">Select Category</option>
-<option value="1">Enterprise</option>
-<option value="2">Commercial</option>
-<option value="3">Retail</option>
-<option value="4">Government</option>
+<option value="Enterprise Telecom" selected>Enterprise Telecom</option>
+<option value="Commercial SME">Commercial SME</option>
+<option value="Mobile Corporate Fleet">Mobile Corporate Fleet</option>
+<option value="Government &amp; Utility">Government &amp; Utility</option>
 </select>
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
 <label>Service Category <span class="text-danger">*</span></label>
-<select name="s_cat" class="form-control" required>
+<select name="s_cat" id="lead_s_cat" class="form-control" required onchange="handleLeadServiceCascade()">
 <option value="">Select Service Category</option>
-<option value="1">Real Estate Leasing</option>
-<option value="2">Business Setup</option>
-<option value="3">Commercial Hub</option>
-<option value="4">PRO Services</option>
+<option value="Dedicated Leased Lines" selected>Dedicated Leased Lines</option>
+<option value="Managed SD-WAN">Managed SD-WAN</option>
+<option value="SIP Trunking Voice">SIP Trunking Voice</option>
 </select>
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
 <label>Product Category <span class="text-danger">*</span></label>
-<select name="p_cat" class="form-control" required>
+<select name="p_cat" id="lead_p_cat" class="form-control" required>
 <option value="">Select Product Category</option>
-<option value="1">Offices &amp; Suites</option>
-<option value="2">Warehouses</option>
-<option value="3">Licensing Packages</option>
+<option value="1 Gbps Dedicated Fiber" selected>1 Gbps Dedicated Fiber</option>
+<option value="10 Gbps Metro Ethernet">10 Gbps Metro Ethernet</option>
+<option value="Dark Fiber Pair">Dark Fiber Pair</option>
 </select>
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
 <label>Product Details</label>
-<input type="text" name="p_details" class="form-control" placeholder="Product Details">
+<input type="text" name="p_details" id="lead_p_details" class="form-control" placeholder="Product Details &amp; Spec">
 </div>
 </div>
 </div>
@@ -828,74 +818,81 @@
 <div class="col-sm-3">
 <div class="form-group">
 <label>Quantity</label>
-<input type="number" name="qty" class="form-control" value="1">
+<input type="number" name="qty" id="lead_qty" class="form-control" value="1" min="1" oninput="calculateLeadRevenue()">
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
 <label>MRC (Monthly Recurring Charge)</label>
-<input type="number" name="mrc" class="form-control" placeholder="0.00">
+<input type="number" name="mrc" id="lead_mrc" class="form-control" placeholder="0.00" value="12500" oninput="calculateLeadRevenue()">
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
-<label>Revenue</label>
-<input type="number" name="revenue" class="form-control" placeholder="0.00">
+<label>Revenue (Annual Contract Value)</label>
+<input type="number" name="revenue" id="lead_revenue" class="form-control" placeholder="0.00" value="150000">
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
 <label>MRR (Monthly Recurring Revenue)</label>
-<input type="number" name="mrr" class="form-control" placeholder="0.00">
+<input type="number" name="mrr" id="lead_mrr" class="form-control" placeholder="0.00" value="12500">
 </div>
 </div>
 </div>
 
 <div class="row">
-<div class="col-sm-4">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Location / Area</label>
+<input type="text" name="location" id="lead_location" class="form-control" placeholder="e.g. Business Bay, Dubai" value="Business Bay, Dubai">
+</div>
+</div>
+<div class="col-sm-3">
 <div class="form-group">
 <label>Expected Closure Date</label>
-<input type="date" name="close_date" class="form-control">
+<input type="date" name="close_date" id="lead_close_date" class="form-control">
 </div>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="form-group">
 <label>Expected Closure Amount</label>
-<input type="number" name="expected_closure_amount" class="form-control" placeholder="0.00">
+<input type="number" name="close_amount" id="lead_close_amount" class="form-control" placeholder="0.00" value="150000">
 </div>
 </div>
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="form-group">
 <label>Status <span class="text-danger">*</span></label>
-<select name="status" class="form-control" required>
-<option value="1">New Lead</option>
-<option value="2">Follow Up</option>
-<option value="3">Meeting</option>
-<option value="39">Closed Won</option>
-<option value="42">Contract Issued</option>
+<select name="status" id="lead_status" class="form-control" required>
+<option value="Open" selected>Open</option>
+<option value="In Progress">In Progress</option>
+<option value="Follow Up">Follow Up</option>
+<option value="Meeting Done">Meeting Done</option>
+<option value="Closed Won">Closed Won</option>
+<option value="Closed Lost">Closed Lost</option>
 </select>
 </div>
 </div>
 </div>
 
-<div class="form-section-title"><i class="fa fa-map-marker"></i> 3. Address &amp; Source Details</div>
+<div class="form-section-title"><i class="fa fa-map-marker"></i> 3. More Category &amp; Commercial Profile</div>
 <div class="row">
 <div class="col-sm-4">
 <div class="form-group">
 <label>Address</label>
-<input type="text" name="address" class="form-control" placeholder="Street / Building Address">
+<input type="text" name="address" id="lead_address" class="form-control" placeholder="Street / Building Address">
 </div>
 </div>
 <div class="col-sm-4">
 <div class="form-group">
 <label>Country</label>
-<input type="text" name="country" class="form-control" value="United Arab Emirates">
+<input type="text" name="country" id="lead_country" class="form-control" value="United Arab Emirates">
 </div>
 </div>
 <div class="col-sm-4">
 <div class="form-group">
 <label>State / Emirate</label>
-<input type="text" name="state" class="form-control" value="Dubai">
+<input type="text" name="state" id="lead_state" class="form-control" value="Dubai">
 </div>
 </div>
 </div>
@@ -904,94 +901,111 @@
 <div class="col-sm-3">
 <div class="form-group">
 <label>City</label>
-<input type="text" name="city" class="form-control" value="Dubai">
+<input type="text" name="city" id="lead_city" class="form-control" value="Dubai">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Alternative POC Name</label>
+<input type="text" name="poc2" id="lead_poc2" class="form-control" placeholder="Alternate POC">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Alternative POC Contact</label>
+<input type="text" name="contact2" id="lead_contact2" class="form-control" placeholder="+971 50 ...">
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
 <label>Channel Partner</label>
-<input type="text" name="c_partner" class="form-control" placeholder="Partner Name">
+<input type="text" name="c_partner" id="lead_c_partner" class="form-control" placeholder="Approved Partner">
 </div>
 </div>
+</div>
+
+<div class="row">
 <div class="col-sm-3">
 <div class="form-group">
 <label>Lead Assigned To</label>
-<select name="lead_assign" class="form-control">
-<option value="1">Jules Admin</option>
-<option value="2">Masoud Manager</option>
-<option value="3">Sales Exec 1</option>
+<select name="lead_assign" id="lead_assign" class="form-control">
+<option value="Jules Admin">Jules Admin</option>
+<option value="Masoud Tariq" selected>Masoud Tariq</option>
+<option value="Karim Al-Hassan">Karim Al-Hassan</option>
+<option value="Rami Mansour">Rami Mansour</option>
 </select>
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
 <label>Lead Category</label>
-<input type="text" name="lead_cat" class="form-control" placeholder="Category Type">
+<select name="lead_cat" id="lead_cat" class="form-control">
+<option value="Hot">Hot</option>
+<option value="Warm" selected>Warm</option>
+<option value="Cold">Cold</option>
+</select>
 </div>
 </div>
-</div>
-
-<div class="row">
-<div class="col-sm-6">
+<div class="col-sm-3">
 <div class="form-group">
 <label>One-Time Charges (OTC)</label>
-<input type="number" name="otc" class="form-control" placeholder="0.00">
+<input type="number" name="otc" id="lead_otc" class="form-control" placeholder="0.00" value="2500">
 </div>
 </div>
-<div class="col-sm-6">
+<div class="col-sm-3">
 <div class="form-group">
 <label>Website Source Link</label>
-<input type="text" name="lead_source" class="form-control" placeholder="https:
+<input type="text" name="lead_source" id="lead_source" class="form-control" placeholder="https://...">
 </div>
 </div>
 </div>
 
-<div class="form-section-title"><i class="fa fa-calendar-check-o"></i> 4. Follow-Up Schedule</div>
+<div class="form-section-title"><i class="fa fa-calendar-check-o"></i> 4. Follow-Up Section</div>
 <div class="row">
 <div class="col-sm-4">
 <div class="form-group">
 <label>Next Follow-Up Date</label>
-<input type="date" name="followup_date" class="form-control">
+<input type="date" name="followup_date" id="lead_followup_date" class="form-control">
 </div>
 </div>
 <div class="col-sm-4">
 <div class="form-group">
 <label>Next Follow-Up Time</label>
-<input type="time" name="followup_time" class="form-control">
+<input type="time" name="followup_time" id="lead_followup_time" class="form-control">
 </div>
 </div>
 <div class="col-sm-4">
 <div class="form-group">
 <label>Follow-Up Remark</label>
-<input type="text" name="followup_remark" class="form-control" placeholder="Remark on next follow-up">
+<input type="text" name="followup_remark" id="lead_followup_remark" class="form-control" placeholder="Specific follow-up note">
 </div>
 </div>
 </div>
 
-<div class="form-section-title"><i class="fa fa-handshake-o"></i> 5. Meeting Schedule</div>
+<div class="form-section-title"><i class="fa fa-handshake-o"></i> 5. Meeting Section</div>
 <div class="row">
 <div class="col-sm-3">
 <div class="form-group">
 <label>Next Meeting Date</label>
-<input type="date" name="m_date" class="form-control">
+<input type="date" name="m_date" id="lead_m_date" class="form-control">
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
 <label>Next Meeting Time</label>
-<input type="time" name="m_time" class="form-control">
+<input type="time" name="m_time" id="lead_m_time" class="form-control">
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
 <label>Meeting POC</label>
-<input type="text" name="m_poc" class="form-control" placeholder="POC Name">
+<input type="text" name="m_poc" id="lead_m_poc" class="form-control" placeholder="POC Name">
 </div>
 </div>
 <div class="col-sm-3">
 <div class="form-group">
-<label>POC Mobile</label>
-<input type="text" name="m_mobile" class="form-control" placeholder="+971 50 ...">
+<label>Meeting Mobile</label>
+<input type="text" name="m_mobile" id="lead_m_mobile" class="form-control" placeholder="+971 50 ...">
 </div>
 </div>
 </div>
@@ -999,47 +1013,65 @@
 <div class="row">
 <div class="col-sm-4">
 <div class="form-group">
-<label>Attendee 1</label>
-<input type="text" name="a1" class="form-control" placeholder="Primary Attendee">
+<label>Meeting Address / Venue</label>
+<input type="text" name="m_address" id="lead_m_address" class="form-control" placeholder="Venue / Office Address">
 </div>
 </div>
 <div class="col-sm-4">
 <div class="form-group">
-<label>Attendee 2</label>
-<input type="text" name="a2" class="form-control" placeholder="Secondary Attendee">
+<label>Primary Attendee</label>
+<select name="a1" id="lead_a1" class="form-control">
+<option value="Jules Admin">Jules Admin</option>
+<option value="Masoud Tariq" selected>Masoud Tariq</option>
+<option value="Karim Al-Hassan">Karim Al-Hassan</option>
+</select>
 </div>
 </div>
 <div class="col-sm-4">
 <div class="form-group">
-<label>Meeting Remark</label>
-<input type="text" name="m_remark" class="form-control" placeholder="Meeting Agenda / Notes">
+<label>Secondary Attendee</label>
+<select name="a2" id="lead_a2" class="form-control">
+<option value="">None</option>
+<option value="Karim Al-Hassan">Karim Al-Hassan</option>
+<option value="Rami Mansour">Rami Mansour</option>
+</select>
 </div>
 </div>
 </div>
 
-<div class="form-section-title"><i class="fa fa-sitemap"></i> 6. Vertical Selection</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="form-group">
+<label>Meeting Remark</label>
+<input type="text" name="m_remark" id="lead_m_remark" class="form-control" placeholder="Meeting Agenda / Commercial Notes">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-sitemap"></i> 6. Vertical Section</div>
 <div class="row">
 <div class="col-sm-4">
 <div class="form-group">
 <label>Select Vertical</label>
-<select name="vertical_id" class="form-control">
+<select name="vertical_id" id="lead_vertical_id" class="form-control">
 <option value="">Choose Vertical</option>
-<option value="1">Prime Commercial Offices</option>
-<option value="2">Luxury Residential Estates</option>
-<option value="3">Business Setup &amp; Licensing</option>
+<option value="1" selected>Enterprise Telecom</option>
+<option value="2">Fixed Services</option>
+<option value="3">ICT Cloud Solutions</option>
+<option value="4">Mobile Corporate Postpaid</option>
 </select>
 </div>
 </div>
 <div class="col-sm-4">
 <div class="form-group">
 <label>Amount to Pay</label>
-<input type="number" name="v_amount" class="form-control" placeholder="0.00">
+<input type="number" name="v_amount" id="lead_v_amount" class="form-control" placeholder="0.00" value="12500">
 </div>
 </div>
 <div class="col-sm-4">
 <div class="form-group">
 <label>Vertical Remark</label>
-<input type="text" name="v_remark" class="form-control" placeholder="Vertical Remarks">
+<input type="text" name="v_remark" id="lead_v_remark" class="form-control" placeholder="Vertical Remarks">
 </div>
 </div>
 </div>
@@ -1048,8 +1080,8 @@
 <div class="row">
 <div class="col-sm-12">
 <div class="form-group">
-<label>Separate Remark</label>
-<textarea name="remark" class="form-control" rows="2" placeholder="Overall lead remarks"></textarea>
+<label>Commercial Remark</label>
+<textarea name="remark" id="lead_remark" class="form-control" rows="2" placeholder="Overall lead remarks"></textarea>
 </div>
 </div>
 </div>
@@ -1072,8 +1104,8 @@
 <td><input type="date" class="form-control" name="bo_date[]"></td>
 <td>
 <select class="form-control" name="bo_status[]">
-<option value="Not Applicable" selected>Not Applicable</option>
-<option value="Pending Approval">Pending Approval</option>
+<option value="Not Applicable">Not Applicable</option>
+<option value="Pending Approval" selected>Pending Approval</option>
 <option value="Query">Query</option>
 <option value="Approved">Approved</option>
 <option value="Expired">Expired</option>
@@ -1726,15 +1758,15 @@
 <tbody>
 <tr>
 <td>1</td>
-<td>Super Administrator</td>
-<td>None (Top Level)</td>
+<td>Managing Director / Super Admin</td>
+<td>Board of Directors</td>
 <td>Level 1</td>
 <td><span class="badge bg-green">Active</span></td>
 <td><button class="btn btn-xs btn-default" onclick="editRole(1)"><i class="fa fa-edit"></i> Edit</button></td>
 </tr>
 <tr>
 <td>2</td>
-<td>Back Office User</td>
+<td>Regional Operations Director</td>
 <td>Super Administrator</td>
 <td>Level 2</td>
 <td><span class="badge bg-green">Active</span></td>
@@ -1742,11 +1774,27 @@
 </tr>
 <tr>
 <td>3</td>
-<td>Sales Manager</td>
-<td>Super Administrator</td>
-<td>Level 2</td>
+<td>Sales Director (Masoud Tariq)</td>
+<td>Regional Operations Director</td>
+<td>Level 3</td>
 <td><span class="badge bg-green">Active</span></td>
 <td><button class="btn btn-xs btn-default" onclick="editRole(3)"><i class="fa fa-edit"></i> Edit</button></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Team Leader (Senior Agent)</td>
+<td>Sales Director</td>
+<td>Level 4</td>
+<td><span class="badge bg-green">Active</span></td>
+<td><button class="btn btn-xs btn-default" onclick="editRole(4)"><i class="fa fa-edit"></i> Edit</button></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Sales Executive / Back Office Specialist</td>
+<td>Team Leader</td>
+<td>Level 5</td>
+<td><span class="badge bg-green">Active</span></td>
+<td><button class="btn btn-xs btn-default" onclick="editRole(5)"><i class="fa fa-edit"></i> Edit</button></td>
 </tr>
 </tbody>
 </table>
@@ -2737,16 +2785,16 @@ JA
 <section class="content">
 <div class="row">
 <div class="col-sm-3">
-<div class="small-box bg-aqua"><div class="inner"><h3>AED 6.4M</h3><p>Team Revenue (YTD)</p></div><div class="icon"><i class="fa fa-money"></i></div></div>
+<div class="small-box bg-aqua" style="cursor:pointer;" onclick="switchView('leads')"><div class="inner"><h3>AED 6.4M</h3><p>Team Revenue (YTD)</p></div><div class="icon"><i class="fa fa-money"></i></div></div>
 </div>
 <div class="col-sm-3">
-<div class="small-box bg-green"><div class="inner"><h3>240</h3><p>Total Closed Deals</p></div><div class="icon"><i class="fa fa-trophy"></i></div></div>
+<div class="small-box bg-green" style="cursor:pointer;" onclick="switchView('verticals')"><div class="inner"><h3>240</h3><p>Total Closed Deals</p></div><div class="icon"><i class="fa fa-trophy"></i></div></div>
 </div>
 <div class="col-sm-3">
-<div class="small-box bg-yellow"><div class="inner"><h3>29.8%</h3><p>Avg Conversion Rate</p></div><div class="icon"><i class="fa fa-percent"></i></div></div>
+<div class="small-box bg-yellow" style="cursor:pointer;" onclick="switchView('team-members')"><div class="inner"><h3>29.8%</h3><p>Avg Conversion Rate</p></div><div class="icon"><i class="fa fa-percent"></i></div></div>
 </div>
 <div class="col-sm-3">
-<div class="small-box bg-red"><div class="inner"><h3>114%</h3><p>Target Quota Achieved</p></div><div class="icon"><i class="fa fa-bullseye"></i></div></div>
+<div class="small-box bg-red" style="cursor:pointer;" onclick="switchView('team-leads')"><div class="inner"><h3>114%</h3><p>Target Quota Achieved</p></div><div class="icon"><i class="fa fa-bullseye"></i></div></div>
 </div>
 </div>
 <div class="box box-primary">
@@ -2829,13 +2877,13 @@ JA
 <section class="content">
 <div class="row">
 <div class="col-sm-3">
-<div class="small-box bg-green"><div class="inner"><h3>AED 1.8M</h3><p>Personal Revenue</p></div><div class="icon"><i class="fa fa-money"></i></div></div>
+<div class="small-box bg-green" style="cursor:pointer;" onclick="switchView('verticals')"><div class="inner"><h3>AED 1.8M</h3><p>Personal Revenue</p></div><div class="icon"><i class="fa fa-money"></i></div></div>
 </div>
 <div class="col-sm-3">
-<div class="small-box bg-aqua"><div class="inner"><h3>62</h3><p>Total Closed Won</p></div><div class="icon"><i class="fa fa-handshake-o"></i></div></div>
+<div class="small-box bg-aqua" style="cursor:pointer;" onclick="switchView('leads')"><div class="inner"><h3>62</h3><p>Total Closed Won</p></div><div class="icon"><i class="fa fa-handshake-o"></i></div></div>
 </div>
 <div class="col-sm-3">
-<div class="small-box bg-yellow"><div class="inner"><h3>31.5%</h3><p>My Conversion Rate</p></div><div class="icon"><i class="fa fa-pie-chart"></i></div></div>
+<div class="small-box bg-yellow" style="cursor:pointer;" onclick="switchView('team-members')"><div class="inner"><h3>31.5%</h3><p>My Conversion Rate</p></div><div class="icon"><i class="fa fa-pie-chart"></i></div></div>
 </div>
 <div class="col-sm-3">
 <div class="small-box bg-blue"><div class="inner"><h3>118%</h3><p>Quota Target Met</p></div><div class="icon"><i class="fa fa-check-circle"></i></div></div>
@@ -3204,6 +3252,7 @@ JA
 </div>
 </section>
 </div>
+</div>
 <footer class="crm-footer">
 <span>&copy; 2026 Rolexto CRM Platform. All rights reserved.</span>
 <span>Rolexto Real Estate &amp; Business Setup</span>
@@ -3266,249 +3315,134 @@ JA
 var userDataStore = {
     'jules': {
         name: 'Jules Admin',
+        username: 'jules',
         dob: '1988-04-12',
+        gender: 'Male',
+        blood: 'O+',
+        national: 'Emirati',
         mobile: '+971 50 123 4567',
+        country_code: '+971',
+        uae_mobile: '+971 4 399 0011',
+        country_code2: '+971',
         address: 'Downtown Dubai, Boulevard Plaza',
         country: 'United Arab Emirates',
+        state: 'Dubai',
         city: 'Dubai',
-        username: 'jules',
-        salary: '45,000 AED',
-        leaving_date: 'N/A (Active)',
-        office_code: 'DXB-HQ-01',
-        work_location: 'Dubai Main Office',
-        blood_group: 'O+',
-        passport_expiry: '2030-08-15',
-        visa_ref: 'UAE-VISA-8849102',
+        emp_id: 'EMP-001',
+        office: 'DXB-HQ-01',
+        department: 'Executive Management',
+        manager: 'Board of Directors',
+        c_salary: '45,000 AED',
+        c_doj: '2020-01-15',
+        c_dol: 'N/A (Active)',
+        user_type: 'Level 1 - Super Administrator',
+        p_no: 'A12345678',
+        p_exdate: '2030-08-15',
+        visa_type: 'Employment Visa',
+        visa_no: 'UAE-VISA-8849102',
+        visa_by: 'GDRFA Dubai',
         visa_expiry: '2028-09-20',
-        eid_number: '784-1988-1234567-1',
+        eid_no: '784-1988-1234567-1',
         eid_expiry: '2028-09-20',
-        emergency_person: 'Sarah Jules',
-        emergency_relation: 'Spouse',
-        emergency_alt_number: '+971 50 987 6543',
+        h_contact_name: 'Sarah Jules',
+        h_contact_relation: 'Spouse',
+        h_contact_no: '+971 50 987 6543',
+        h_contact_no2: '+971 4 882 1199',
+        bank: 'Emirates NBD',
         bank_country: 'United Arab Emirates',
-        abc_short_code: 'ENBD-DXB',
-        branch_code: '042',
+        bank_no: '1029384756',
+        ifsc: 'ENBD-042',
+        iban: 'AE070331234567890123456',
         swift: 'EBIBAEAD',
-        gender: 'Male',
-        email: 'jules@rolextogroup.com',
-        uae_alt_contact: '+971 4 399 0011'
+        email: 'jules@rolextogroup.com'
     },
     'masoud': {
         name: 'Masoud Tariq',
+        username: 'masoud',
         dob: '1990-07-25',
+        gender: 'Male',
+        blood: 'A+',
+        national: 'UAE Resident',
         mobile: '+971 55 992 4810',
+        country_code: '+971',
+        uae_mobile: '+971 4 388 9900',
+        country_code2: '+971',
         address: 'Business Bay, Executive Towers',
         country: 'United Arab Emirates',
+        state: 'Dubai',
         city: 'Dubai',
-        username: 'masoud',
-        salary: '32,000 AED',
-        leaving_date: 'N/A (Active)',
-        office_code: 'DXB-HQ-02',
-        work_location: 'Dubai Main Office',
-        blood_group: 'A+',
-        passport_expiry: '2029-03-10',
-        visa_ref: 'UAE-VISA-5591029',
+        emp_id: 'EMP-002',
+        office: 'DXB-HQ-02',
+        department: 'Commercial Sales',
+        manager: 'Jules Admin',
+        c_salary: '32,000 AED',
+        c_doj: '2021-03-01',
+        c_dol: 'N/A (Active)',
+        user_type: 'Level 3 - Sales Director',
+        p_no: 'B87654321',
+        p_exdate: '2029-03-10',
+        visa_type: 'Investor Visa',
+        visa_no: 'UAE-VISA-5591029',
+        visa_by: 'GDRFA Dubai',
         visa_expiry: '2027-11-15',
-        eid_number: '784-1990-7654321-2',
+        eid_no: '784-1990-7654321-2',
         eid_expiry: '2027-11-15',
-        emergency_person: 'Tariq Al-Masoud',
-        emergency_relation: 'Brother',
-        emergency_alt_number: '+971 55 111 2233',
+        h_contact_name: 'Tariq Al-Masoud',
+        h_contact_relation: 'Brother',
+        h_contact_no: '+971 55 111 2233',
+        h_contact_no2: '+971 4 772 3344',
+        bank: 'Abu Dhabi Commercial Bank',
         bank_country: 'United Arab Emirates',
-        abc_short_code: 'ADCB-DXB',
-        branch_code: '108',
+        bank_no: '2093847561',
+        ifsc: 'ADCB-108',
+        iban: 'AE520031234567890123456',
         swift: 'ADCBAEAD',
-        gender: 'Male',
-        email: 'masoud@rolextogroup.com',
-        uae_alt_contact: '+971 4 388 9900'
+        email: 'masoud@rolextogroup.com'
     },
     'karim': {
         name: 'Karim Al-Hassan',
+        username: 'karim',
         dob: '1994-11-03',
+        gender: 'Male',
+        blood: 'B+',
+        national: 'Lebanese',
         mobile: '+971 52 443 1928',
+        country_code: '+971',
+        uae_mobile: '+971 4 220 5566',
+        country_code2: '+971',
         address: 'Dubai Marina, Marina Gate',
         country: 'United Arab Emirates',
+        state: 'Dubai',
         city: 'Dubai',
-        username: 'karim',
-        salary: '22,000 AED',
-        leaving_date: 'N/A (Active)',
-        office_code: 'DXB-HQ-03',
-        work_location: 'Dubai Main Office',
-        blood_group: 'B+',
-        passport_expiry: '2031-01-20',
-        visa_ref: 'UAE-VISA-7718290',
-        visa_expiry: '2028-04-10',
-        eid_number: '784-1994-3344556-3',
-        eid_expiry: '2028-04-10',
-        emergency_person: 'Hassan Al-Hassan',
-        emergency_relation: 'Father',
-        emergency_alt_number: '+971 52 000 4499',
+        emp_id: 'EMP-003',
+        office: 'DXB-HQ-03',
+        department: 'Prime Commercial',
+        manager: 'Masoud Tariq',
+        c_salary: '22,000 AED',
+        c_doj: '2022-06-10',
+        c_dol: 'N/A (Active)',
+        user_type: 'Level 4 - Senior Associate',
+        p_no: 'C99887766',
+        p_exdate: '2031-01-20',
+        visa_type: 'Employment Visa',
+        visa_no: 'UAE-VISA-4439120',
+        visa_by: 'GDRFA Dubai',
+        visa_expiry: '2028-05-18',
+        eid_no: '784-1994-9876543-3',
+        eid_expiry: '2028-05-18',
+        h_contact_name: 'Nour Al-Hassan',
+        h_contact_relation: 'Sister',
+        h_contact_no: '+971 52 998 8776',
+        h_contact_no2: '+971 4 551 2233',
+        bank: 'Mashreq Bank',
         bank_country: 'United Arab Emirates',
-        abc_short_code: 'FAB-DXB',
-        branch_code: '019',
-        swift: 'FABAAEA',
-        gender: 'Male',
-        email: 'karim@rolextogroup.com',
-        uae_alt_contact: '+971 4 422 7788'
+        bank_no: '3049586712',
+        ifsc: 'MSHQ-019',
+        iban: 'AE330311234567890123456',
+        swift: 'BOMLAEAD',
+        email: 'karim@rolextogroup.com'
     }
 };
-
-var orgHierarchy = {
-    'root': [
-        { id: 'u1', name: 'Jules Admin', dest: 'CEO / Super Admin', dept: 'Executive', contact: '+971 50 123 4567', email: 'jules@rolextogroup.com', loc: 'Dubai HQ', mgr: 'Board', subId: 'jules' }
-    ],
-    'jules': [
-        { id: 'u2', name: 'Masoud Tariq', dest: 'Sales Director', dept: 'Commercial Sales', contact: '+971 55 992 4810', email: 'masoud@rolextogroup.com', loc: 'Dubai HQ', mgr: 'Jules Admin', subId: 'masoud' },
-        { id: 'u4', name: 'Fatima Al-Zahra', dest: 'Operations Head', dept: 'Back Office & Compliance', contact: '+971 50 771 9900', email: 'fatima@rolextogroup.com', loc: 'Dubai HQ', mgr: 'Jules Admin', subId: 'fatima' }
-    ],
-    'masoud': [
-        { id: 'u3', name: 'Karim Al-Hassan', dest: 'Senior Associate', dept: 'Prime Commercial', contact: '+971 52 443 1928', email: 'karim@rolextogroup.com', loc: 'Dubai HQ', mgr: 'Masoud Tariq', subId: 'karim' },
-        { id: 'u5', name: 'Rami Mansour', dest: 'Vertical Specialist', dept: 'Residential Real Estate', contact: '+971 56 332 1099', email: 'rami@rolextogroup.com', loc: 'Dubai HQ', mgr: 'Masoud Tariq', subId: 'rami' }
-    ],
-    'fatima': [
-        { id: 'u6', name: 'Zaid Al-Najjar', dest: 'Verification Officer', dept: 'Back Office', contact: '+971 54 881 2033', email: 'zaid@rolextogroup.com', loc: 'Dubai HQ', mgr: 'Fatima Al-Zahra', subId: null }
-    ],
-    'karim': [
-        { id: 'u7', name: 'Nadia Qasim', dest: 'Junior Account Exec', dept: 'Prime Commercial', contact: '+971 55 660 1122', email: 'nadia@rolextogroup.com', loc: 'Dubai HQ', mgr: 'Karim Al-Hassan', subId: null }
-    ],
-    'rami': []
-};
-
-var hierarchyCrumbs = [{ id: 'root', label: 'Organization Root' }];
-
-function loadTeamLevel(levelId, label) {
-    if (levelId === 'root') {
-        hierarchyCrumbs = [{ id: 'root', label: 'Organization Root' }];
-    } else {
-        var existingIdx = -1;
-        for (var i = 0; i < hierarchyCrumbs.length; i++) {
-            if (hierarchyCrumbs[i].id === levelId) {
-                existingIdx = i;
-                break;
-            }
-        }
-        if (existingIdx !== -1) {
-            hierarchyCrumbs = hierarchyCrumbs.slice(0, existingIdx + 1);
-        } else {
-            hierarchyCrumbs.push({ id: levelId, label: label });
-        }
-    }
-    renderTeamBreadcrumbs();
-
-    var members = orgHierarchy[levelId] || [];
-    var tbody = $('#teamMembersTableBody');
-    tbody.empty();
-
-    if (!members.length) {
-        tbody.append('<tr><td colspan="9" class="text-center" style="padding:20px; color:#64748b;">No direct subordinates reporting under this member.</td></tr>');
-        return;
-    }
-
-    for (var idx = 0; idx < members.length; idx++) {
-        var m = members[idx];
-        var actionHtml = '';
-        if (m.subId && orgHierarchy[m.subId] && orgHierarchy[m.subId].length > 0) {
-            actionHtml = '<button class="btn btn-xs btn-success" onclick="loadTeamLevel(\'' + m.subId + '\', \'' + m.name + '\')"><i class="fa fa-sitemap"></i> View Team (' + orgHierarchy[m.subId].length + ')</button>';
-        } else {
-            actionHtml = '<span class="text-muted" style="font-size:12px;">Direct Contributor</span>';
-        }
-
-        var row = '<tr>' +
-            '<td>' + (idx + 1) + '</td>' +
-            '<td><strong>' + m.name + '</strong></td>' +
-            '<td>' + m.dest + '</td>' +
-            '<td>' + m.dept + '</td>' +
-            '<td>' + m.contact + '</td>' +
-            '<td>' + m.email + '</td>' +
-            '<td>' + m.loc + '</td>' +
-            '<td>' + m.mgr + '</td>' +
-            '<td>' + actionHtml + '</td>' +
-            '</tr>';
-        tbody.append(row);
-    }
-}
-
-function renderTeamBreadcrumbs() {
-    var bc = $('#teamBreadcrumb');
-    bc.empty();
-    for (var i = 0; i < hierarchyCrumbs.length; i++) {
-        var crumb = hierarchyCrumbs[i];
-        if (i > 0) {
-            bc.append('<span>&gt;</span>');
-        }
-        if (i === hierarchyCrumbs.length - 1) {
-            bc.append('<span style="font-weight:700; color:var(--crm-text);">' + crumb.label + '</span>');
-        } else {
-            bc.append('<a onclick="loadTeamLevel(\'' + crumb.id + '\')">' + crumb.label + '</a>');
-        }
-    }
-}
-
-
-function filterBOTable(status) {
-    $('#boFilterButtonGroup .btn').removeClass('active');
-    $(event.currentTarget).addClass('active');
-    if (status === 'all') {
-        $('#boRecordsTableBody tr').show();
-    } else {
-        $('#boRecordsTableBody tr').each(function() {
-            var st = $(this).attr('data-status');
-            if (st === status) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    }
-}
-
-
-function handleProfileLiveSave(e) {
-    e.preventDefault();
-    var newName = $('#prof_name').val();
-    $('#profileDisplayName').text(newName);
-    $('#disp_name').text(newName);
-    userDataStore['jules'].name = newName;
-    userDataStore['jules'].mobile = $('#prof_mobile').val();
-    userDataStore['jules'].address = $('#prof_address').val();
-    alert('Profile information updated successfully!');
-}
-
-function openUserPreview(uKey) {
-    var u = userDataStore[uKey];
-    if (!u) return;
-    var html = '<div class="detail-grid">' +
-        '<div class="detail-item"><div class="detail-label">Full Name</div><div class="detail-value">' + u.name + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Username</div><div class="detail-value">' + u.username + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Official Email</div><div class="detail-value">' + u.email + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Mobile Number</div><div class="detail-value">' + u.mobile + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">UAE Alternate Contact</div><div class="detail-value">' + u.uae_alt_contact + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Date of Birth</div><div class="detail-value">' + u.dob + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Gender</div><div class="detail-value">' + u.gender + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Blood Group</div><div class="detail-value">' + u.blood_group + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Address</div><div class="detail-value">' + u.address + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Country</div><div class="detail-value">' + u.country + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">City</div><div class="detail-value">' + u.city + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Monthly Salary</div><div class="detail-value">' + u.salary + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Date of Leaving</div><div class="detail-value">' + u.leaving_date + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Office Code</div><div class="detail-value">' + u.office_code + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Work Location</div><div class="detail-value">' + u.work_location + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Passport Expiry Date</div><div class="detail-value">' + u.passport_expiry + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Visa Reference Number</div><div class="detail-value">' + u.visa_ref + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Visa Expiry Date</div><div class="detail-value">' + u.visa_expiry + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Emirates ID (EID)</div><div class="detail-value">' + u.eid_number + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">EID Expiry Date</div><div class="detail-value">' + u.eid_expiry + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Emergency Contact Person</div><div class="detail-value">' + u.emergency_person + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Emergency Relation</div><div class="detail-value">' + u.emergency_relation + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Emergency Alt Phone</div><div class="detail-value">' + u.emergency_alt_number + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Bank Country</div><div class="detail-value">' + u.bank_country + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">ABC Short Code</div><div class="detail-value">' + u.abc_short_code + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Branch Code</div><div class="detail-value">' + u.branch_code + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">SWIFT Code</div><div class="detail-value">' + u.swift + '</div></div>' +
-        '</div>';
-    $('#userPreviewModalBody').html(html);
-    $('#userPreviewModal').modal('show');
-}
 
 var currentEditUserKey = null;
 function openUserEdit(uKey) {
@@ -3609,9 +3543,107 @@ function openLeadModal(leadId) {
     $('#leadPreviewModal').modal('show');
 }
 
+var catCascadeData = {
+    'Enterprise Telecom': {
+        services: [
+            { name: 'Dedicated Leased Lines', products: ['1 Gbps Dedicated Fiber', '10 Gbps Metro Ethernet', 'Dark Fiber Pair'] },
+            { name: 'Managed SD-WAN', products: ['Dual WAN Router', 'Cisco Meraki Appliance', 'Fortinet Secure Edge'] },
+            { name: 'SIP Trunking Voice', products: ['30 Channels PRI/SIP', '100 Channels Enterprise SIP', 'Cloud PBX Trunk'] }
+        ]
+    },
+    'Commercial SME': {
+        services: [
+            { name: 'Business Broadband', products: ['Super Pro 500 Mbps', 'Ultra Pro 1 Gbps', 'Basic Business 250 Mbps'] },
+            { name: 'Cloud Hosted PBX', products: ['5 Users Starter Pack', '20 Users Corporate', 'Enterprise Unlimited'] }
+        ]
+    },
+    'Mobile Corporate Fleet': {
+        services: [
+            { name: 'Postpaid Fleet Plans', products: ['National Unlimited Voice + 50GB', 'Global Executive Roaming', 'Data-Only SIM Bulk'] },
+            { name: 'Device Bundles', products: ['iPhone 16 Pro Fleet', 'Samsung Enterprise Galaxy', '5G Mobile Wi-Fi Hub'] }
+        ]
+    },
+    'Government & Utility': {
+        services: [
+            { name: 'Secure Sovereign Cloud', products: ['Gov Cloud Tier IV', 'Encrypted Private Gateway'] },
+            { name: 'Smart City IoT', products: ['Smart Metering Gateway', 'Surveillance Feed Transport'] }
+        ]
+    }
+};
+
+function handleLeadCategoryCascade() {
+    var cat = $('#lead_category').val();
+    var sSelect = $('#lead_s_cat');
+    var pSelect = $('#lead_p_cat');
+    sSelect.empty().append('<option value="">Select Service Category</option>');
+    pSelect.empty().append('<option value="">Select Product Category</option>');
+    if (cat && catCascadeData[cat]) {
+        var sList = catCascadeData[cat].services;
+        for (var i = 0; i < sList.length; i++) {
+            sSelect.append('<option value="' + sList[i].name + '">' + sList[i].name + '</option>');
+        }
+    }
+}
+
+function handleLeadServiceCascade() {
+    var cat = $('#lead_category').val();
+    var serv = $('#lead_s_cat').val();
+    var pSelect = $('#lead_p_cat');
+    pSelect.empty().append('<option value="">Select Product Category</option>');
+    if (cat && serv && catCascadeData[cat]) {
+        var sList = catCascadeData[cat].services;
+        for (var i = 0; i < sList.length; i++) {
+            if (sList[i].name === serv) {
+                var pList = sList[i].products;
+                for (var j = 0; j < pList.length; j++) {
+                    pSelect.append('<option value="' + pList[j] + '">' + pList[j] + '</option>');
+                }
+                break;
+            }
+        }
+    }
+}
+
+function calculateLeadRevenue() {
+    var q = parseFloat($('#lead_qty').val()) || 1;
+    var mrc = parseFloat($('#lead_mrc').val()) || 0;
+    var mrr = q * mrc;
+    var annualRev = mrr * 12;
+    $('#lead_mrr').val(mrr.toFixed(2));
+    $('#lead_revenue').val(annualRev.toFixed(2));
+    if (!$('#lead_close_amount').val() || parseFloat($('#lead_close_amount').val()) === 0) {
+        $('#lead_close_amount').val(annualRev.toFixed(2));
+    }
+}
+
 function handleLeadSave(e) {
     e.preventDefault();
-    alert('Lead saved successfully with all commercial, follow-up, and back-office fields!');
+    var cust = $('#lead_customer').val() || 'Client Company';
+    var poc = $('#lead_poc').val() || 'POC Name';
+    var phone = $('#lead_contact1').val() || '+971 50 ...';
+    var email = $('#lead_email').val() || '';
+    var cat = $('#lead_category').val() || 'Enterprise Telecom';
+    var rev = $('#lead_revenue').val() || '150,000';
+    var st = $('#lead_status').val() || 'Open';
+    var dt = new Date().toISOString().slice(0, 10);
+    var newId = Math.floor(10500 + Math.random() * 500);
+
+    var badgeClass = st === 'Closed Won' ? 'bg-green' : (st === 'In Progress' ? 'bg-blue' : 'bg-orange');
+    var newRow = '<tr>' +
+        '<td>#RLX-' + newId + '</td>' +
+        '<td><strong>' + cust + '</strong><br><small class="text-muted">' + poc + '</small></td>' +
+        '<td>' + phone + '</td>' +
+        '<td>' + cat + '</td>' +
+        '<td>AED ' + parseFloat(rev).toLocaleString() + '</td>' +
+        '<td>' + dt + '</td>' +
+        '<td><span class="badge ' + badgeClass + '">' + st + '</span></td>' +
+        '<td>' +
+        '<button class="btn btn-xs btn-default" onclick="openLeadModal(' + newId + ')"><i class="fa fa-eye"></i></button> ' +
+        '<button class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></button>' +
+        '</td>' +
+        '</tr>';
+    $('#leadsTable tbody').prepend(newRow);
+    alert('Lead #RLX-' + newId + ' for "' + cust + '" saved successfully with all 6 fieldsets and Back Office matrix!');
     switchView('leads');
 }
 
@@ -3706,6 +3738,8 @@ var viewTitles = {
 };
 
 function switchView(viewName) {
+window.crmNavigate = switchView;
+
     if (!viewName) return;
     if (!$('#view-' + viewName).length) {
         viewName = 'dashboard';
@@ -3741,30 +3775,47 @@ $(function() {
         $('#crmPaletteText').text(curPalette === 'red' ? 'Red Mode' : 'Green Mode');
     }
     function updateBrandLogos(pal) {
-        var logo = pal === 'red' ? 'assets/red-dark.png' : 'assets/green-dark.png';
-        $('.crm-brand-logo-img').attr('src', logo);
+        var logo = pal === 'red' ? 'assets/red-dark.png' : (pal === 'blue' ? 'assets/blue-dark.png' : 'assets/green-dark.png');
+        var img = $('.crm-brand-logo-img');
+        img.attr('src', logo).css('filter', 'none');
     }
-    updateBrandLogos(curPalette);
+
+    function applyGlobalPalette(pal) {
+        document.documentElement.setAttribute('data-crm-palette', pal);
+        localStorage.setItem('crm_global_palette', pal);
+        var label = pal === 'red' ? 'Red Mode' : (pal === 'blue' ? 'Blue Mode' : 'Green Mode');
+        $('#crmPaletteText').text(label);
+        updateBrandLogos(pal);
+        if (typeof renderDashboardCharts === 'function') {
+            renderDashboardCharts();
+        }
+    }
+
+    var initialGlobalPalette = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
+    applyGlobalPalette(initialGlobalPalette);
+
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'crm_global_palette' && e.newValue) {
+            applyGlobalPalette(e.newValue);
+        }
+    });
 
     $('#crmPaletteToggle').on('click', function(e) {
         e.preventDefault();
         var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
-        var next = cur === 'red' ? 'green' : 'red';
-        document.documentElement.setAttribute('data-crm-palette', next);
-        localStorage.setItem('crm_palette', next);
-        $('#crmPaletteText').text(next === 'red' ? 'Red Mode' : 'Green Mode');
-        updateBrandLogos(next);
-        if (typeof renderDashboardCharts === 'function') {
-            renderDashboardCharts();
-        }
+        var next = cur === 'green' ? 'red' : (cur === 'red' ? 'blue' : 'green');
+        applyGlobalPalette(next);
     });
+
+    var userThemeMode = localStorage.getItem('crm_user_theme_mode') || localStorage.getItem('crm_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', userThemeMode);
 
     $('#crmThemeToggle').on('click', function(e) {
         e.preventDefault();
-        var cur = document.documentElement.getAttribute('data-theme') || 'light';
+        var cur = document.documentElement.getAttribute('data-theme') || 'dark';
         var next = cur === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('crm_theme', next);
+        localStorage.setItem('crm_user_theme_mode', next);
         if (typeof renderDashboardCharts === 'function') {
             renderDashboardCharts();
         }
@@ -3807,8 +3858,10 @@ $(function() {
         var curPalette = document.documentElement.getAttribute('data-crm-palette') || 'green';
         var isRed = curPalette === 'red';
         var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        var barFill = isRed ? '#dc2626' : '#10b981';
-        var barStroke = isRed ? '#b91c1c' : '#059669';
+        var isBlue = curPalette === 'blue';
+        var barFill = isRed ? '#dc2626' : (isBlue ? '#2563eb' : '#10b981');
+        var barStroke = isRed ? '#b91c1c' : (isBlue ? '#1d4ed8' : '#059669');
+        
         var gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(226, 232, 240, 0.6)';
         var scaleTextColor = isDark ? '#94a3b8' : '#64748b';
 

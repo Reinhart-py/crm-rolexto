@@ -188,29 +188,40 @@ $r2 = $this->uri->segment(3);
 </header>
 <script>
 $(function() {
-    var curPalette = localStorage.getItem('crm_palette') || 'green';
-    document.documentElement.setAttribute('data-crm-palette', curPalette);
-    if ($('#crmPaletteText').length) {
-        $('#crmPaletteText').text(curPalette === 'red' ? 'Red' : 'Green');
-    }
     function updateBrandLogos(pal) {
         var base = '<?php echo base_url(); ?>';
-        var logo = pal === 'red' ? base + 'assets/red-dark.png' : base + 'assets/green-dark.png';
-        $('.crm-brand-logo-img').attr('src', logo);
+        var logo = pal === 'red' ? base + 'assets/red-dark.png' : (pal === 'blue' ? base + 'assets/blue-dark.png' : base + 'assets/green-dark.png');
+        var img = $('.crm-brand-logo-img');
+        img.attr('src', logo).css('filter', 'none');
     }
-    updateBrandLogos(curPalette);
+
+    function applyGlobalPalette(pal) {
+        document.documentElement.setAttribute('data-crm-palette', pal);
+        localStorage.setItem('crm_global_palette', pal);
+        if ($('#crmPaletteText').length) {
+            var label = pal === 'red' ? 'Red' : (pal === 'blue' ? 'Blue' : 'Green');
+            $('#crmPaletteText').text(label);
+        }
+        updateBrandLogos(pal);
+        if (typeof window.renderDashboardCharts === 'function') {
+            window.renderDashboardCharts();
+        }
+    }
+
+    var initialGlobalPalette = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
+    applyGlobalPalette(initialGlobalPalette);
+
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'crm_global_palette' && e.newValue) {
+            applyGlobalPalette(e.newValue);
+        }
+    });
 
     $('#crmPaletteToggle').on('click', function(e) {
         e.preventDefault();
         var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
-        var next = cur === 'red' ? 'green' : 'red';
-        document.documentElement.setAttribute('data-crm-palette', next);
-        localStorage.setItem('crm_palette', next);
-        $('#crmPaletteText').text(next === 'red' ? 'Red' : 'Green');
-        updateBrandLogos(next);
-        if (typeof window.renderDashboardCharts === 'function') {
-            window.renderDashboardCharts();
-        }
+        var next = cur === 'green' ? 'red' : (cur === 'red' ? 'blue' : 'green');
+        applyGlobalPalette(next);
     });
 
     $('#crmSidebarToggle').on('click', function(e) {
@@ -231,12 +242,17 @@ $(function() {
         e.preventDefault();
         $(this).parent('.crm-nav-item').toggleClass('open');
     });
+    var userThemeMode = localStorage.getItem('crm_user_theme_mode') || localStorage.getItem('crm_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', userThemeMode);
     $('#crmThemeToggle').on('click', function(e) {
         e.preventDefault();
-        var cur = document.documentElement.getAttribute('data-theme') || 'light';
+        var cur = document.documentElement.getAttribute('data-theme') || 'dark';
         var next = cur === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('crm_theme', next);
+        localStorage.setItem('crm_user_theme_mode', next);
+        if (typeof window.renderDashboardCharts === 'function') {
+            window.renderDashboardCharts();
+        }
     });
 });
 </script>
