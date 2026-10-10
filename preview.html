@@ -4,16 +4,21 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="icon" type="image/jpeg" href="assets/dist/img/favicon.jpg">
-<link rel="shortcut icon" href="assets/favicon.ico">
+<link rel="icon" id="crmFavicon" type="image/png" href="assets/green-dark.png">
+<link rel="shortcut icon" id="crmFaviconShortcut" type="image/png" href="assets/green-dark.png">
 <title>Rolexto CRM - Enterprise Workspace</title>
 <script>
 (function() {
     var saved = localStorage.getItem('crm_theme');
     var pref = saved ? saved : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', pref);
-    var savedPal = localStorage.getItem('crm_palette') || 'green';
+    var savedPal = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
     document.documentElement.setAttribute('data-crm-palette', savedPal);
+    var favLogo = savedPal === 'red' ? 'assets/red-dark.png' : (savedPal === 'blue' ? 'assets/blue-dark.png' : (savedPal === 'black' ? 'assets/black-dark.png' : 'assets/green-dark.png'));
+    var fav = document.getElementById('crmFavicon');
+    if (fav) { fav.href = favLogo; fav.type = 'image/png'; }
+    var favShort = document.getElementById('crmFaviconShortcut');
+    if (favShort) { favShort.href = favLogo; favShort.type = 'image/png'; }
 })();
 </script>
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -240,6 +245,7 @@
 <ul class="crm-subnav-list">
 <li><a href="#leads" class="crm-subnav-link" data-view="leads">All Leads</a></li>
 <li><a href="#add-lead" class="crm-subnav-link" data-view="add-lead">Add Lead</a></li>
+<li><a href="#custom-fields" class="crm-subnav-link" data-view="custom-fields">Custom Fields</a></li>
 <li><a href="#followups" class="crm-subnav-link" data-view="followups">Follow-ups</a></li>
 <li><a href="#meetings" class="crm-subnav-link" data-view="meetings">Meetings</a></li>
 <li><a href="#performance" class="crm-subnav-link" data-view="performance">Performance Report</a></li>
@@ -304,6 +310,7 @@
 <ul class="crm-subnav-list">
 <li><a href="#roles-permissions" class="crm-subnav-link" data-view="roles-permissions">Roles</a></li>
 <li><a href="#terms" class="crm-subnav-link" data-view="terms">Category</a></li>
+<li><a href="#custom-fields" class="crm-subnav-link" data-view="custom-fields">Custom Fields &amp; Logic</a></li>
 <li><a href="#theme-settings" class="crm-subnav-link" data-view="theme-settings">Theme</a></li>
 </ul>
 </li>
@@ -419,23 +426,38 @@
 
 <div class="row">
 <div class="col-md-6">
-<div class="box box-info">
+<div class="box box-info" style="margin-bottom:20px;">
 <div class="box-header with-border">
-<h3 class="box-title">Previous Year Performance</h3>
+<h3 class="box-title"><i class="fa fa-bar-chart" style="color:var(--crm-accent); margin-right:6px;"></i> Previous Year Performance</h3>
 </div>
-<div class="box-body">
-<canvas id="barChart3" style="height:230px"></canvas>
+<div class="box-body" style="padding:15px; position:relative;">
+<div class="chart" style="position:relative; height:230px; width:100%; overflow:hidden;">
+<canvas id="barChart3" height="230"></canvas>
+</div>
 </div>
 </div>
 </div>
 <div class="col-md-6">
-<div class="box box-info">
+<div class="box box-info" style="margin-bottom:20px;">
 <div class="box-header with-border">
-<h3 class="box-title">Team Projection</h3>
+<h3 class="box-title"><i class="fa fa-line-chart" style="color:var(--crm-accent); margin-right:6px;"></i> Team Projection</h3>
 </div>
-<div class="box-body">
-<canvas id="barChart4" style="height:230px"></canvas>
+<div class="box-body" style="padding:15px; position:relative;">
+<div class="chart" style="position:relative; height:230px; width:100%; overflow:hidden;">
+<canvas id="barChart4" height="230"></canvas>
 </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-xs-12">
+<div style="margin: 10px 0 16px 0; display:flex; align-items:center; justify-content:space-between; border-bottom: 1px solid var(--crm-border); padding-bottom: 10px;">
+<h3 style="margin:0; font-size:15px; font-weight:700; color:var(--crm-text); display:flex; align-items:center; gap:8px;">
+<i class="fa fa-th-large" style="color:var(--crm-accent)"></i> Operational Activity &amp; Closures Breakdown
+</h3>
+<span style="font-size:12px; color:var(--crm-text-muted); font-weight:600;">Real-time Pipeline Overview</span>
 </div>
 </div>
 </div>
@@ -649,50 +671,50 @@
 <th>Action</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody id="leadsTableBody">
+<tr id="lead_row_10492">
 <td><strong>#RLX-10492</strong></td>
-<td>Sheikh Mansoor Al-Ketbi</td>
-<td>+971 50 821 9920</td>
-<td>mansoor@al-ketbi.ae</td>
-<td>Prime Commercial</td>
-<td>Corporate Hub</td>
-<td>12,500</td>
-<td>12,500</td>
+<td>Emaar Properties / Zaid Al-Hashimi</td>
+<td>+971 50 334 1188</td>
+<td>zaid@emaar.ae</td>
+<td>Enterprise Telecom</td>
+<td>Corporate Hub Suite</td>
+<td>85,000</td>
+<td>85,000</td>
 <td><span class="badge bg-green">Active</span></td>
 <td>
-<button class="btn btn-xs btn-default" onclick="openLeadModal(10492)"><i class="fa fa-eye"></i> Preview</button>
-<a href="#add-lead" class="btn btn-xs btn-primary" data-view="add-lead"><i class="fa fa-edit"></i> Edit</a>
+<button type="button" class="btn btn-xs btn-default" onclick="openLeadModal(10492)"><i class="fa fa-eye"></i> Preview</button>
+<button type="button" class="btn btn-xs btn-primary" onclick="openEditLeadModal(10492)"><i class="fa fa-edit"></i> Edit</button>
 </td>
 </tr>
-<tr>
+<tr id="lead_row_10488">
 <td><strong>#RLX-10488</strong></td>
-<td>David Alexander Finch</td>
-<td>+44 7911 204918</td>
-<td>david.finch@finchcap.uk</td>
+<td>David Finch Commercial Advisory</td>
+<td>+971 50 821 9920</td>
+<td>david.finch@finchcommercial.ae</td>
 <td>Luxury Residential</td>
-<td>Penthouse Suite</td>
-<td>8,200</td>
-<td>8,200</td>
+<td>Penthouse Suite Floor 24</td>
+<td>18,500</td>
+<td>18,500</td>
 <td><span class="badge bg-blue">Meeting Set</span></td>
 <td>
-<button class="btn btn-xs btn-default" onclick="openLeadModal(10488)"><i class="fa fa-eye"></i> Preview</button>
-<a href="#add-lead" class="btn btn-xs btn-primary" data-view="add-lead"><i class="fa fa-edit"></i> Edit</a>
+<button type="button" class="btn btn-xs btn-default" onclick="openLeadModal(10488)"><i class="fa fa-eye"></i> Preview</button>
+<button type="button" class="btn btn-xs btn-primary" onclick="openEditLeadModal(10488)"><i class="fa fa-edit"></i> Edit</button>
 </td>
 </tr>
-<tr>
+<tr id="lead_row_10476">
 <td><strong>#RLX-10476</strong></td>
-<td>Dr. Ananya Singhania</td>
-<td>+91 98201 44820</td>
-<td>ananya.singhania@apexmed.in</td>
-<td>Business Setup</td>
-<td>Mainland License</td>
-<td>5,400</td>
-<td>5,400</td>
+<td>Sheikh Mansoor Al-Ketbi Holding</td>
+<td>+971 50 821 9920</td>
+<td>mansoor@al-ketbi.ae</td>
+<td>Prime Commercial Leasing</td>
+<td>Corner Suite 24</td>
+<td>18,500</td>
+<td>18,500</td>
 <td><span class="badge bg-orange">In Follow-up</span></td>
 <td>
-<button class="btn btn-xs btn-default" onclick="openLeadModal(10476)"><i class="fa fa-eye"></i> Preview</button>
-<a href="#add-lead" class="btn btn-xs btn-primary" data-view="add-lead"><i class="fa fa-edit"></i> Edit</a>
+<button type="button" class="btn btn-xs btn-default" onclick="openLeadModal(10476)"><i class="fa fa-eye"></i> Preview</button>
+<button type="button" class="btn btn-xs btn-primary" onclick="openEditLeadModal(10476)"><i class="fa fa-edit"></i> Edit</button>
 </td>
 </tr>
 </tbody>
@@ -1083,7 +1105,56 @@
 </div>
 </div>
 
-<div class="form-section-title"><i class="fa fa-briefcase"></i> 8. Back Office Activity Update Matrix (All 7 Verification Tiers)</div>
+<div class="form-section-title"><i class="fa fa-certificate"></i> 8. Compliance, Licensing &amp; Accounting Profile (Custom Fields)</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Trade License Number</label>
+<input type="text" name="trade_license_no" id="lead_trade_license_no" class="form-control" placeholder="TL-DXB-000000">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Trade License Issue Date</label>
+<input type="date" name="trade_license_issue_date" id="lead_trade_license_issue_date" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Trade License Expiry Date</label>
+<input type="date" name="trade_license_expiry_date" id="lead_trade_license_expiry_date" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Trade License Renewal Date</label>
+<input type="date" name="trade_license_renewal_date" id="lead_trade_license_renewal_date" class="form-control">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>FS YE (Financial Statement Year-End)</label>
+<input type="date" name="fs_ye" id="lead_fs_ye" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>VAT QE (VAT Quarterly Ending)</label>
+<select name="vat_qe" id="lead_vat_qe" class="form-control">
+<option value="">Select VAT Quarter</option>
+<option value="Q1 (31 March)">Q1 (31 March)</option>
+<option value="Q2 (30 June)">Q2 (30 June)</option>
+<option value="Q3 (30 September)">Q3 (30 September)</option>
+<option value="Q4 (31 December)">Q4 (31 December)</option>
+</select>
+</div>
+</div>
+</div>
+<div class="row" id="dynamicCustomFieldsAddLead" style="margin-top:5px;"></div>
+
+<div class="form-section-title"><i class="fa fa-briefcase"></i> 9. Back Office Activity Update Matrix (All 7 Verification Tiers)</div>
 <div class="table-responsive">
 <table class="table table-bordered table-striped" id="boLeadTable">
 <thead>
@@ -1309,75 +1380,75 @@
 </tr>
 </thead>
 <tbody id="boRecordsTableBody">
-<tr data-status="Approved">
-<td><span class="label label-primary">SPR / SRB</span></td>
-<td>#RLX-10488 David Finch</td>
-<td>09-Oct-2026</td>
-<td><span class="badge bg-green">Approved</span></td>
-<td>REF-SRB-992</td>
-<td>S-1</td>
-<td>Commercial trade license verified</td>
-<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for SPR / SRB');"><i class="fa fa-refresh"></i> Update</button></td>
+<tr id="bo_row_1" data-status="Approved">
+<td id="bo_cat_1"><span class="label label-primary">SPR / SRB</span></td>
+<td id="bo_lead_1">#RLX-10488 David Finch</td>
+<td id="bo_date_1">09-Oct-2026</td>
+<td id="bo_status_cell_1"><span class="badge bg-green">Approved</span></td>
+<td id="bo_ref_1">REF-SRB-992</td>
+<td id="bo_s_1">S-1</td>
+<td id="bo_remark_1">Commercial trade license verified</td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="openBackOfficeModal(1)"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
-<tr data-status="Pending Approval">
-<td><span class="label label-info">Company Code</span></td>
-<td>#RLX-10489 Al-Futtaim</td>
-<td>08-Oct-2026</td>
-<td><span class="badge bg-blue">Pending Approval</span></td>
-<td>CC-4019</td>
-<td>S-2</td>
-<td>Awaiting corporate registrar seal</td>
-<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Company Code');"><i class="fa fa-refresh"></i> Update</button></td>
+<tr id="bo_row_2" data-status="Pending Approval">
+<td id="bo_cat_2"><span class="label label-info">Company Code</span></td>
+<td id="bo_lead_2">#RLX-10489 Al-Futtaim</td>
+<td id="bo_date_2">08-Oct-2026</td>
+<td id="bo_status_cell_2"><span class="badge bg-blue">Pending Approval</span></td>
+<td id="bo_ref_2">CC-4019</td>
+<td id="bo_s_2">S-2</td>
+<td id="bo_remark_2">Awaiting corporate registrar seal</td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="openBackOfficeModal(2)"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
-<tr data-status="Approved">
-<td><span class="label label-default">Lead Cap Activity</span></td>
-<td>#RLX-10488 David Finch</td>
-<td>07-Oct-2026</td>
-<td><span class="badge bg-green">Approved</span></td>
-<td>LC-1102</td>
-<td>S-1</td>
-<td>Telecom capacity check cleared</td>
-<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Lead Cap Activity');"><i class="fa fa-refresh"></i> Update</button></td>
+<tr id="bo_row_3" data-status="Approved">
+<td id="bo_cat_3"><span class="label label-default">Lead Cap Activity</span></td>
+<td id="bo_lead_3">#RLX-10488 David Finch</td>
+<td id="bo_date_3">07-Oct-2026</td>
+<td id="bo_status_cell_3"><span class="badge bg-green">Approved</span></td>
+<td id="bo_ref_3">LC-1102</td>
+<td id="bo_s_3">S-1</td>
+<td id="bo_remark_3">Telecom capacity check cleared</td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="openBackOfficeModal(3)"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
-<tr data-status="Query">
-<td><span class="label label-warning">Document Code</span></td>
-<td>#RLX-10490 Sobha Realty</td>
-<td>06-Oct-2026</td>
-<td><span class="badge bg-orange">Query</span></td>
-<td>DC-7741</td>
-<td>S-1</td>
-<td>Passport copy signature mismatch</td>
-<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Document Code');"><i class="fa fa-refresh"></i> Update</button></td>
+<tr id="bo_row_4" data-status="Query">
+<td id="bo_cat_4"><span class="label label-warning">Document Code</span></td>
+<td id="bo_lead_4">#RLX-10490 Sobha Realty</td>
+<td id="bo_date_4">06-Oct-2026</td>
+<td id="bo_status_cell_4"><span class="badge bg-orange">Query</span></td>
+<td id="bo_ref_4">DC-7741</td>
+<td id="bo_s_4">S-1</td>
+<td id="bo_remark_4">Passport copy signature mismatch</td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="openBackOfficeModal(4)"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
-<tr data-status="Pending Approval">
-<td><span class="label label-info">Pending Document</span></td>
-<td>#RLX-10492 Emaar Towers</td>
-<td>05-Oct-2026</td>
-<td><span class="badge bg-blue">Pending Approval</span></td>
-<td>PD-3301</td>
-<td>S-2</td>
-<td>Awaiting Ejari registration document</td>
-<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Pending Document');"><i class="fa fa-refresh"></i> Update</button></td>
+<tr id="bo_row_5" data-status="Pending Approval">
+<td id="bo_cat_5"><span class="label label-info">Pending Document</span></td>
+<td id="bo_lead_5">#RLX-10492 Emaar Towers</td>
+<td id="bo_date_5">05-Oct-2026</td>
+<td id="bo_status_cell_5"><span class="badge bg-blue">Pending Approval</span></td>
+<td id="bo_ref_5">PD-3301</td>
+<td id="bo_s_5">S-2</td>
+<td id="bo_remark_5">Awaiting Ejari registration document</td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="openBackOfficeModal(5)"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
-<tr data-status="Approved">
-<td><span class="label label-success">Video Verification</span></td>
-<td>#RLX-10488 David Finch</td>
-<td>04-Oct-2026</td>
-<td><span class="badge bg-green">Approved</span></td>
-<td>VV-8812</td>
-<td>S-1</td>
-<td>Live video verification completed</td>
-<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Video Verification');"><i class="fa fa-refresh"></i> Update</button></td>
+<tr id="bo_row_6" data-status="Approved">
+<td id="bo_cat_6"><span class="label label-success">Video Verification</span></td>
+<td id="bo_lead_6">#RLX-10488 David Finch</td>
+<td id="bo_date_6">04-Oct-2026</td>
+<td id="bo_status_cell_6"><span class="badge bg-green">Approved</span></td>
+<td id="bo_ref_6">VV-8812</td>
+<td id="bo_s_6">S-1</td>
+<td id="bo_remark_6">Live video verification completed</td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="openBackOfficeModal(6)"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
-<tr data-status="Expired">
-<td><span class="label label-danger">Post Verification</span></td>
-<td>#RLX-10480 Damac Properties</td>
-<td>01-Oct-2026</td>
-<td><span class="badge bg-red">Expired</span></td>
-<td>PV-2209</td>
-<td>S-3</td>
-<td>Compliance grace period exceeded</td>
-<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Post Verification');"><i class="fa fa-refresh"></i> Update</button></td>
+<tr id="bo_row_7" data-status="Expired">
+<td id="bo_cat_7"><span class="label label-danger">Post Verification</span></td>
+<td id="bo_lead_7">#RLX-10480 Damac Properties</td>
+<td id="bo_date_7">01-Oct-2026</td>
+<td id="bo_status_cell_7"><span class="badge bg-red">Expired</span></td>
+<td id="bo_ref_7">PV-2209</td>
+<td id="bo_s_7">S-3</td>
+<td id="bo_remark_7">Compliance grace period exceeded</td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="openBackOfficeModal(7)"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
 </tbody>
 </table>
@@ -3297,6 +3368,164 @@ JA
 </div>
 </section>
 </div>
+
+<div class="crm-view-pane" id="view-custom-fields">
+<section class="content-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+<h1><i class="fa fa-sliders"></i> Custom Fields &amp; Business Logic Engine</h1>
+<div style="display:flex; gap:8px;">
+<button type="button" class="btn btn-sm btn-default" onclick="openCategoryModal()"><i class="fa fa-folder-open"></i> Manage Categories</button>
+<button type="button" class="crm-btn-primary" onclick="openAddCustomFieldModal()"><i class="fa fa-plus"></i> Add Custom Field</button>
+</div>
+</section>
+<section class="content">
+
+<div class="row">
+<div class="col-sm-3 col-xs-6">
+<div class="small-box bg-aqua">
+<div class="inner">
+<h3 id="statTotalCustomFields">6</h3>
+<p>Active Custom Fields</p>
+</div>
+<div class="icon"><i class="fa fa-list-alt"></i></div>
+<span class="small-box-footer">Configured across CRM</span>
+</div>
+</div>
+<div class="col-sm-3 col-xs-6">
+<div class="small-box bg-green">
+<div class="inner">
+<h3 id="statTotalCategories">4</h3>
+<p>Business Categories</p>
+</div>
+<div class="icon"><i class="fa fa-folder"></i></div>
+<span class="small-box-footer">Dynamic taxonomies</span>
+</div>
+</div>
+<div class="col-sm-3 col-xs-6">
+<div class="small-box bg-yellow">
+<div class="inner">
+<h3 id="statActiveReminders">4</h3>
+<p>Renewal / Expiry Rules</p>
+</div>
+<div class="icon"><i class="fa fa-bell-o"></i></div>
+<span class="small-box-footer">Automated date tracking</span>
+</div>
+</div>
+<div class="col-sm-3 col-xs-6">
+<div class="small-box bg-red">
+<div class="inner">
+<h3>4</h3>
+<p>Target Panels</p>
+</div>
+<div class="icon"><i class="fa fa-check-square-o"></i></div>
+<span class="small-box-footer">Forms &amp; Lead Previews</span>
+</div>
+</div>
+</div>
+
+<div class="box box-primary">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+<h3 class="box-title"><i class="fa fa-magic" style="color:var(--crm-accent)"></i> Industry Business Logic Presets</h3>
+<span style="font-size:12px; color:var(--crm-text-muted);">Instantly adapt CRM fields for any business sector without code changes</span>
+</div>
+<div class="box-body" style="display:flex; gap:10px; flex-wrap:wrap;">
+<button type="button" class="btn btn-default active" onclick="applyIndustryPreset('accounting')"><i class="fa fa-calculator text-primary"></i> Accounting &amp; Corporate Firm Preset</button>
+<button type="button" class="btn btn-default" onclick="applyIndustryPreset('realestate')"><i class="fa fa-building text-info"></i> Real Estate &amp; Leasing Preset</button>
+<button type="button" class="btn btn-default" onclick="applyIndustryPreset('telecom')"><i class="fa fa-phone text-success"></i> Telecom &amp; ICT Services Preset</button>
+<button type="button" class="btn btn-default" onclick="applyIndustryPreset('legal')"><i class="fa fa-gavel text-warning"></i> Legal &amp; Compliance Preset</button>
+</div>
+</div>
+
+<div class="box box-default">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+<h3 class="box-title"><i class="fa fa-table" style="color:var(--crm-accent)"></i> Configurable Custom Fields Register</h3>
+<div style="display:flex; gap:8px;">
+<button type="button" class="btn btn-sm btn-success" onclick="openAddCustomFieldModal()"><i class="fa fa-plus"></i> New Field</button>
+</div>
+</div>
+<div class="box-body">
+<div class="table-responsive">
+<table class="table table-bordered table-striped" id="customFieldsTable">
+<thead>
+<tr>
+<th style="width:60px;">Order</th>
+<th>Field Label</th>
+<th>Field Key</th>
+<th>Type</th>
+<th>Category</th>
+<th>Assigned Panels</th>
+<th>Required</th>
+<th>Permissions</th>
+<th>Date Logic / Reminders</th>
+<th>Status</th>
+<th style="width:160px;">Actions</th>
+</tr>
+</thead>
+<tbody id="customFieldsTableBody">
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="box box-default">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+<h3 class="box-title"><i class="fa fa-tags" style="color:var(--crm-accent)"></i> Custom Categories &amp; Subcategories Management</h3>
+<button type="button" class="btn btn-sm btn-primary" onclick="openCategoryModal()"><i class="fa fa-plus"></i> Create Category</button>
+</div>
+<div class="box-body">
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Category Name</th>
+<th>Subcategories</th>
+<th>Target Sector</th>
+<th>Assigned Fields</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="categoryManagerTableBody">
+<tr>
+<td><strong>Compliance &amp; Legal</strong></td>
+<td>Trade Licensing, MOA, Notarization</td>
+<td>All Businesses</td>
+<td><span class="badge bg-green">4 Fields</span></td>
+<td><span class="label label-success">Active</span></td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="editCategoryName('Compliance & Legal')"><i class="fa fa-edit"></i> Edit</button></td>
+</tr>
+<tr>
+<td><strong>Accounting &amp; Auditing</strong></td>
+<td>Year-End Financials, Audit Reports</td>
+<td>Accounting / Financial</td>
+<td><span class="badge bg-green">1 Field</span></td>
+<td><span class="label label-success">Active</span></td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="editCategoryName('Accounting & Auditing')"><i class="fa fa-edit"></i> Edit</button></td>
+</tr>
+<tr>
+<td><strong>Tax &amp; Regulatory</strong></td>
+<td>VAT Filing, Corporate Tax TRN</td>
+<td>Tax Firms</td>
+<td><span class="badge bg-green">1 Field</span></td>
+<td><span class="label label-success">Active</span></td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="editCategoryName('Tax & Regulatory')"><i class="fa fa-edit"></i> Edit</button></td>
+</tr>
+<tr>
+<td><strong>Real Estate &amp; Leasing</strong></td>
+<td>Ejari, Title Deeds, Property Leases</td>
+<td>Real Estate</td>
+<td><span class="badge bg-blue">0 Fields</span></td>
+<td><span class="label label-success">Active</span></td>
+<td><button type="button" class="btn btn-xs btn-default" onclick="editCategoryName('Real Estate & Leasing')"><i class="fa fa-edit"></i> Edit</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+</section>
+</div>
 </div>
 <footer class="crm-footer">
 <span>&copy; 2026 Rolexto CRM Platform. All rights reserved.</span>
@@ -3350,6 +3579,8 @@ JA
 <div class="modal-body" id="leadPreviewModalBody">
 </div>
 <div class="modal-footer">
+<button type="button" class="btn btn-primary" id="leadPreviewEditBtn" onclick="openEditLeadFromPreview()"><i class="fa fa-edit"></i> Edit Lead Details</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>
 </div>
 </div>
@@ -3367,6 +3598,400 @@ JA
 <div class="modal-footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="leadEditModal" tabindex="-1">
+<div class="modal-dialog modal-lg-custom">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title"><i class="fa fa-edit"></i> Edit Complete Lead Record</h4>
+</div>
+<form id="fullEditLeadForm" onsubmit="handleLeadUpdate(event)">
+<input type="hidden" id="edit_lead_id" name="id">
+<div class="modal-body" style="max-height: calc(85vh - 120px); overflow-y: auto;">
+<div class="form-section-title"><i class="fa fa-user"></i> 1. Customer Information &amp; POC</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Customer Name <span class="text-danger">*</span></label>
+<input type="text" id="edit_lead_customer" class="form-control" required>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Customer POC Name <span class="text-danger">*</span></label>
+<input type="text" id="edit_lead_poc" class="form-control" required>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>POC Contact Number <span class="text-danger">*</span></label>
+<input type="text" id="edit_lead_contact1" class="form-control" required>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Email Address <span class="text-danger">*</span></label>
+<input type="email" id="edit_lead_email" class="form-control" required>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Account Number</label>
+<input type="text" id="edit_lead_a_number" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Account Under Vertical</label>
+<input type="text" id="edit_lead_a_department" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Current Monthly Revenue</label>
+<input type="number" id="edit_lead_r_amount" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Revenue Date</label>
+<input type="date" id="edit_lead_r_date" class="form-control">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-briefcase"></i> 2. Commercial Terms &amp; Status</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Category</label>
+<input type="text" id="edit_lead_category" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Status</label>
+<select id="edit_lead_status" class="form-control">
+<option value="Open">Open</option>
+<option value="In Progress">In Progress</option>
+<option value="Follow Up">Follow Up</option>
+<option value="Meeting Done">Meeting Done</option>
+<option value="Closed Won">Closed Won</option>
+<option value="Closed Lost">Closed Lost</option>
+</select>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Total Contract Revenue</label>
+<input type="number" id="edit_lead_revenue" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>MRR Amount</label>
+<input type="number" id="edit_lead_mrr" class="form-control">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-certificate"></i> 3. Compliance, Licensing &amp; Accounting Profile (Custom Fields)</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Trade License Number</label>
+<input type="text" id="edit_lead_trade_license_no" class="form-control" placeholder="TL-DXB-000000">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Trade License Issue Date</label>
+<input type="date" id="edit_lead_trade_license_issue_date" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Trade License Expiry Date</label>
+<input type="date" id="edit_lead_trade_license_expiry_date" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Trade License Renewal Date</label>
+<input type="date" id="edit_lead_trade_license_renewal_date" class="form-control">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>FS YE (Financial Statement Year-End)</label>
+<input type="date" id="edit_lead_fs_ye" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>VAT QE (VAT Quarterly Ending)</label>
+<select id="edit_lead_vat_qe" class="form-control">
+<option value="">Select VAT Quarter</option>
+<option value="Q1 (31 March)">Q1 (31 March)</option>
+<option value="Q2 (30 June)">Q2 (30 June)</option>
+<option value="Q3 (30 September)">Q3 (30 September)</option>
+<option value="Q4 (31 December)">Q4 (31 December)</option>
+</select>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group">
+<label>Address / Location</label>
+<input type="text" id="edit_lead_location" class="form-control">
+</div>
+</div>
+</div>
+<div class="row" id="dynamicCustomFieldsEditLead" style="margin-top:5px;"></div>
+
+<div class="form-section-title"><i class="fa fa-comment-o"></i> 4. Commercial Remarks</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="form-group">
+<label>Notes</label>
+<textarea id="edit_lead_remark" class="form-control" rows="2"></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save Changes</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="boRecordModal" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title"><i class="fa fa-refresh"></i> Update Back Office Verification Status</h4>
+</div>
+<form id="boRowEditForm" onsubmit="saveBackOfficeRecord(event)">
+<input type="hidden" id="bo_modal_row_id">
+<div class="modal-body">
+<div class="form-group">
+<label>Category</label>
+<input type="text" id="bo_modal_cat" class="form-control" readonly>
+</div>
+<div class="form-group">
+<label>Lead / Client</label>
+<input type="text" id="bo_modal_lead" class="form-control" readonly>
+</div>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label>Date <span class="text-danger">*</span></label>
+<input type="text" id="bo_modal_date" class="form-control" required>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group">
+<label>Status <span class="text-danger">*</span></label>
+<select id="bo_modal_status" class="form-control" required>
+<option value="Approved">Approved</option>
+<option value="Pending Approval">Pending Approval</option>
+<option value="Query">Query</option>
+<option value="Expired">Expired</option>
+<option value="Rejected">Rejected</option>
+<option value="Not Applicable">Not Applicable</option>
+</select>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label>Reference Number</label>
+<input type="text" id="bo_modal_ref" class="form-control" placeholder="REF-000">
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group">
+<label>S Level</label>
+<input type="text" id="bo_modal_s" class="form-control" placeholder="S-1">
+</div>
+</div>
+</div>
+<div class="form-group">
+<label>Remark</label>
+<textarea id="bo_modal_remark" class="form-control" rows="2" placeholder="Verification notes"></textarea>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save Verification</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="customFieldModal" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title" id="customFieldModalTitle"><i class="fa fa-sliders"></i> Add / Edit Custom Field</h4>
+</div>
+<form id="customFieldForm" onsubmit="saveCustomField(event)">
+<input type="hidden" id="cf_id">
+<div class="modal-body">
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label>Field Label (Display Name) <span class="text-danger">*</span></label>
+<input type="text" id="cf_label" class="form-control" placeholder="e.g. Corporate Tax TRN" required oninput="autoGenerateKey(this.value)">
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group">
+<label>Field Key (Identifier) <span class="text-danger">*</span></label>
+<input type="text" id="cf_key" class="form-control" placeholder="e.g. corp_tax_trn" required>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Field Type <span class="text-danger">*</span></label>
+<select id="cf_type" class="form-control" onchange="toggleDropdownOptions(this.value)" required>
+<option value="text">Text (Single Line)</option>
+<option value="number">Number</option>
+<option value="date">Date</option>
+<option value="dropdown">Dropdown (Select)</option>
+<option value="currency">Currency Amount (AED)</option>
+<option value="checkbox">Checkbox (Yes / No)</option>
+</select>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Category Group <span class="text-danger">*</span></label>
+<select id="cf_category" class="form-control" required>
+<option value="Compliance & Legal">Compliance & Legal</option>
+<option value="Accounting & Auditing">Accounting & Auditing</option>
+<option value="Tax & Regulatory">Tax & Regulatory</option>
+<option value="Real Estate & Leasing">Real Estate & Leasing</option>
+<option value="General Commercial">General Commercial</option>
+</select>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Requirement</label>
+<select id="cf_required" class="form-control">
+<option value="false">Optional</option>
+<option value="true">Required (*)</option>
+</select>
+</div>
+</div>
+</div>
+<div class="form-group" id="cf_options_group" style="display:none;">
+<label>Dropdown Options (Comma-separated)</label>
+<input type="text" id="cf_options" class="form-control" placeholder="Option 1, Option 2, Option 3">
+</div>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label>Target Panels &amp; Forms</label>
+<div style="display:flex; gap:12px; flex-wrap:wrap; padding-top:4px;">
+<label style="font-weight:normal;"><input type="checkbox" id="cf_panel_add" checked> Add Lead Form</label>
+<label style="font-weight:normal;"><input type="checkbox" id="cf_panel_edit" checked> Edit Lead Form</label>
+<label style="font-weight:normal;"><input type="checkbox" id="cf_panel_preview" checked> Lead Preview Modal</label>
+<label style="font-weight:normal;"><input type="checkbox" id="cf_panel_details" checked> Lead Details View</label>
+</div>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group">
+<label>Role Permissions (Can View &amp; Edit)</label>
+<div style="display:flex; gap:12px; flex-wrap:wrap; padding-top:4px;">
+<label style="font-weight:normal;"><input type="checkbox" id="cf_role_admin" checked> Admin</label>
+<label style="font-weight:normal;"><input type="checkbox" id="cf_role_manager" checked> Manager</label>
+<label style="font-weight:normal;"><input type="checkbox" id="cf_role_bo" checked> Back Office</label>
+<label style="font-weight:normal;"><input type="checkbox" id="cf_role_agent" checked> Sales Agent</label>
+</div>
+</div>
+</div>
+</div>
+<div class="row" style="background:var(--crm-border-subtle); padding:10px 4px; border-radius:6px; margin:0 0 10px 0;">
+<div class="col-sm-6">
+<div class="form-group" style="margin-bottom:0;">
+<label style="display:flex; align-items:center; gap:8px;">
+<input type="checkbox" id="cf_reminder" onchange="toggleReminderDays(this.checked)"> Enable Automated Renewal / Expiry Reminder
+</label>
+<span style="font-size:12px; color:var(--crm-text-muted);">Triggers alerts on dashboard and compliance queue before date expiry</span>
+</div>
+</div>
+<div class="col-sm-6" id="cf_reminder_days_box" style="display:none;">
+<div class="form-group" style="margin-bottom:0;">
+<label>Alert Threshold (Days before deadline)</label>
+<input type="number" id="cf_reminder_days" class="form-control" value="30" min="1" max="180">
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save Custom Field</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="categoryModal" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4 class="modal-title"><i class="fa fa-folder"></i> Create / Edit Category</h4>
+</div>
+<form id="categoryCreateForm" onsubmit="saveCustomCategory(event)">
+<div class="modal-body">
+<div class="form-group">
+<label>Category Name <span class="text-danger">*</span></label>
+<input type="text" id="cat_new_name" class="form-control" placeholder="e.g. Accounting & Corporate Tax" required>
+</div>
+<div class="form-group">
+<label>Parent Category (Optional)</label>
+<select id="cat_new_parent" class="form-control">
+<option value="">None (Top-Level Category)</option>
+<option value="Corporate Services">Corporate Services</option>
+<option value="Compliance & Legal">Compliance & Legal</option>
+<option value="Real Estate">Real Estate</option>
+</select>
+</div>
+<div class="form-group">
+<label>Subcategories (Comma-separated)</label>
+<input type="text" id="cat_new_subcats" class="form-control" placeholder="e.g. Audit, VAT Return, Corporate Tax Filing">
+</div>
+<div class="form-group">
+<label>Target Industry Sector</label>
+<input type="text" id="cat_new_sector" class="form-control" placeholder="e.g. Accounting, Auditing & Advisory">
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save Category</button>
+</div>
+</form>
 </div>
 </div>
 </div>
@@ -3578,29 +4203,880 @@ function handleUserSave(e) {
     alert('User record for ' + u.name + ' successfully saved!');
 }
 
+var currentPreviewLeadId = null;
+
+function openEditLeadFromPreview() {
+    $('#leadPreviewModal').modal('hide');
+    if (currentPreviewLeadId) {
+        openEditLeadModal(currentPreviewLeadId);
+    }
+}
+
+var initialCustomFields = [
+    { id: 1, key: 'trade_license_no', label: 'Trade License Number', type: 'text', category: 'Compliance & Legal', required: true, hidden: false, order: 1, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } },
+    { id: 2, key: 'trade_license_issue_date', label: 'Trade License Issue Date', type: 'date', category: 'Compliance & Legal', required: true, hidden: false, order: 2, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } },
+    { id: 3, key: 'trade_license_expiry_date', label: 'Trade License Expiry Date', type: 'date', category: 'Compliance & Legal', required: true, hidden: false, order: 3, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } },
+    { id: 4, key: 'trade_license_renewal_date', label: 'Trade License Renewal Date', type: 'date', category: 'Compliance & Legal', required: false, hidden: false, order: 4, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } },
+    { id: 5, key: 'fs_ye', label: 'FS YE (Financial Statement Year-End)', type: 'date', category: 'Accounting & Auditing', required: true, hidden: false, order: 5, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } },
+    { id: 6, key: 'vat_qe', label: 'VAT QE (VAT Quarterly Ending)', type: 'dropdown', category: 'Tax & Regulatory', required: true, hidden: false, order: 6, options: ['Q1 (31 March)', 'Q2 (30 June)', 'Q3 (30 September)', 'Q4 (31 December)'], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } }
+];
+
+var crmCustomFieldsStore = [];
+try {
+    var storedCF = localStorage.getItem('crm_custom_fields_v1');
+    crmCustomFieldsStore = storedCF ? JSON.parse(storedCF) : initialCustomFields;
+} catch (e) {
+    crmCustomFieldsStore = initialCustomFields;
+}
+
+var initialLeadsData = {
+    10488: {
+        id: 10488,
+        customer: 'Al-Ketbi Holding LLC',
+        poc: 'Sheikh Mansoor Al-Ketbi',
+        contact1: '+971 50 821 9920',
+        email: 'mansoor@al-ketbi.ae',
+        a_number: 'ACC-COMM-8821',
+        a_department: 'Prime Commercial Leasing',
+        r_amount: '18500',
+        r_date: '2026-10-01',
+        category: 'Commercial / Corporate Office',
+        status: 'Closed Won',
+        product: 'Corner Suite Floor 24',
+        q_mrc: '1 / AED 18,500',
+        revenue: '222000',
+        mrr: '18500',
+        close_date: '2026-11-15',
+        close_amount: '222000',
+        location: 'Sheikh Zayed Road, Dubai, UAE',
+        next_followup: '12-Oct-2026 @ 11:00 AM',
+        next_meeting: '14-Oct-2026 @ 02:00 PM (Attendees: Jules Admin, Masoud)',
+        bo_status: 'Approved',
+        trade_license_no: 'TL-DXB-992014',
+        trade_license_issue_date: '2020-05-15',
+        trade_license_expiry_date: '2027-05-14',
+        trade_license_renewal_date: '2027-04-14',
+        fs_ye: '2026-12-31',
+        vat_qe: 'Q4 (31 December)',
+        remark: 'Audited financial statements signed off.'
+    },
+    10489: {
+        id: 10489,
+        customer: 'Emaar Properties PJSC',
+        poc: 'Sarah Jenkins',
+        contact1: '+971 55 491 8820',
+        email: 'sarah.jenkins@emaar.ae',
+        a_number: 'ACC-EMAAR-4019',
+        a_department: 'Enterprise Telecom',
+        r_amount: '45000',
+        r_date: '2026-10-05',
+        category: 'Enterprise Telecom',
+        status: 'In Progress',
+        product: 'High-Bandwidth Dedicated Fiber',
+        q_mrc: '1 / AED 45,000',
+        revenue: '540000',
+        mrr: '45000',
+        close_date: '2026-11-20',
+        close_amount: '540000',
+        location: 'Downtown Dubai, Emaar Square Bldg 3',
+        next_followup: '15-Oct-2026 @ 10:00 AM',
+        next_meeting: '18-Oct-2026 @ 03:00 PM',
+        bo_status: 'Pending Approval',
+        trade_license_no: 'TL-EMAAR-1092',
+        trade_license_issue_date: '2018-01-10',
+        trade_license_expiry_date: '2027-01-09',
+        trade_license_renewal_date: '2026-12-10',
+        fs_ye: '2026-12-31',
+        vat_qe: 'Q4 (31 December)',
+        remark: 'Awaiting corporate registrar validation.'
+    },
+    10490: {
+        id: 10490,
+        customer: 'Dubai Islamic Bank',
+        poc: 'Khalid Mansoor',
+        contact1: '+971 52 771 0033',
+        email: 'khalid@dib.ae',
+        a_number: 'ACC-DIB-7741',
+        a_department: 'Banking & Financial Solutions',
+        r_amount: '35000',
+        r_date: '2026-09-28',
+        category: 'Financial Services',
+        status: 'Follow Up',
+        product: 'Encrypted MPLS Gateway',
+        q_mrc: '2 / AED 35,000',
+        revenue: '420000',
+        mrr: '35000',
+        close_date: '2026-12-01',
+        close_amount: '420000',
+        location: 'Al Maktoum Road, Deira, Dubai',
+        next_followup: '14-Oct-2026 @ 11:30 AM',
+        next_meeting: '19-Oct-2026 @ 11:00 AM',
+        bo_status: 'Query',
+        trade_license_no: 'TL-DIB-44018',
+        trade_license_issue_date: '2015-08-20',
+        trade_license_expiry_date: '2026-11-30',
+        trade_license_renewal_date: '2026-10-25',
+        fs_ye: '2026-12-31',
+        vat_qe: 'Q3 (30 September)',
+        remark: 'Signature validation required on verification document.'
+    },
+    10492: {
+        id: 10492,
+        customer: 'Landmark Retail Group',
+        poc: 'Ramesh Patel',
+        contact1: '+971 50 334 9182',
+        email: 'ramesh@landmarkgroup.ae',
+        a_number: 'ACC-LANDMARK-3301',
+        a_department: 'Cloud Infrastructure',
+        r_amount: '62000',
+        r_date: '2026-10-02',
+        category: 'Cloud & Managed Hosting',
+        status: 'Open',
+        product: 'Retail Cloud Cluster',
+        q_mrc: '1 / AED 62,000',
+        revenue: '744000',
+        mrr: '62000',
+        close_date: '2026-11-30',
+        close_amount: '744000',
+        location: 'Landmark Tower, Dubai Marina',
+        next_followup: '16-Oct-2026 @ 09:30 AM',
+        next_meeting: '20-Oct-2026 @ 02:30 PM',
+        bo_status: 'Pending Approval',
+        trade_license_no: 'TL-LND-8820',
+        trade_license_issue_date: '2019-03-12',
+        trade_license_expiry_date: '2027-03-11',
+        trade_license_renewal_date: '2027-02-11',
+        fs_ye: '2026-12-31',
+        vat_qe: 'Q3 (30 September)',
+        remark: 'Ejari tenancy copy to be attached.'
+    },
+    10476: {
+        id: 10476,
+        customer: 'Damac Crescent Real Estate',
+        poc: 'Zaid Al-Nuaimi',
+        contact1: '+971 54 882 1099',
+        email: 'zaid@damaccrescent.ae',
+        a_number: 'ACC-DAMAC-9902',
+        a_department: 'Real Estate & Leasing',
+        r_amount: '88000',
+        r_date: '2026-09-15',
+        category: 'Real Estate & Leasing',
+        status: 'Closed Won',
+        product: 'Executive Suites Wing B',
+        q_mrc: '1 / AED 88,000',
+        revenue: '1056000',
+        mrr: '88000',
+        close_date: '2026-10-30',
+        close_amount: '1056000',
+        location: 'DAMAC Executive Heights, Barsha Heights',
+        next_followup: '11-Oct-2026 @ 04:00 PM',
+        next_meeting: '13-Oct-2026 @ 10:00 AM',
+        bo_status: 'Approved',
+        trade_license_no: 'TL-DAMAC-5519',
+        trade_license_issue_date: '2017-06-01',
+        trade_license_expiry_date: '2027-05-31',
+        trade_license_renewal_date: '2027-04-30',
+        fs_ye: '2026-12-31',
+        vat_qe: 'Q3 (30 September)',
+        remark: 'Full tenancy contract counter-signed.'
+    },
+    9001: {
+        id: 9001,
+        customer: 'Emirates Global Aluminum',
+        poc: 'Hassan Al-Maktoum',
+        contact1: '+971 50 112 3344',
+        email: 'hassan@ega.ae',
+        category: 'Industrial',
+        status: 'Open',
+        revenue: '320000',
+        trade_license_no: 'TL-EGA-0012',
+        trade_license_issue_date: '2016-04-10',
+        trade_license_expiry_date: '2027-04-09'
+    },
+    9002: {
+        id: 9002,
+        customer: 'Majid Al Futtaim Ventures',
+        poc: 'Dina Mansour',
+        contact1: '+971 55 998 7766',
+        email: 'dina@maf.ae',
+        category: 'Commercial',
+        status: 'In Progress',
+        revenue: '180000',
+        trade_license_no: 'TL-MAF-8821'
+    }
+};
+
+var leadDataStore = {};
+try {
+    var storedLeads = localStorage.getItem('crm_leads_data_v1');
+    leadDataStore = storedLeads ? JSON.parse(storedLeads) : initialLeadsData;
+} catch (e) {
+    leadDataStore = initialLeadsData;
+}
+
 function openLeadModal(leadId) {
-    var html = '<div class="detail-grid">' +
-        '<div class="detail-item"><div class="detail-label">Lead Reference</div><div class="detail-value">#RLX-' + leadId + '</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Customer POC Name</div><div class="detail-value">Sheikh Mansoor Al-Ketbi</div></div>' +
-        '<div class="detail-item"><div class="detail-label">POC Contact Number</div><div class="detail-value">+971 50 821 9920</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Email</div><div class="detail-value">mansoor@al-ketbi.ae</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Account Number</div><div class="detail-value">ACC-COMM-8821</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Account Under Vertical</div><div class="detail-value">Prime Commercial Leasing</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Monthly Revenue Amount</div><div class="detail-value">AED 18,500</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Current Revenue Date</div><div class="detail-value">01-Oct-2026</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Category / Service</div><div class="detail-value">Commercial / Corporate Office</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Product Details</div><div class="detail-value">Corner Suite Floor 24</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Quantity / MRC</div><div class="detail-value">1 / AED 18,500</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Revenue / MRR</div><div class="detail-value">AED 222,000 / AED 18,500</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Expected Closure Date</div><div class="detail-value">15-Nov-2026</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Expected Closure Amount</div><div class="detail-value">AED 222,000</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Address / Location</div><div class="detail-value">Sheikh Zayed Road, Dubai, UAE</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Next Follow-Up Date &amp; Time</div><div class="detail-value">12-Oct-2026 @ 11:00 AM</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Next Meeting Schedule</div><div class="detail-value">14-Oct-2026 @ 02:00 PM (Attendees: Jules Admin, Masoud)</div></div>' +
-        '<div class="detail-item"><div class="detail-label">Back Office Status</div><div class="detail-value">SRB Verified &amp; Approved</div></div>' +
-        '</div>';
+    currentPreviewLeadId = leadId;
+    var lead = leadDataStore[leadId];
+    if (!lead) {
+        lead = {
+            id: leadId,
+            customer: 'Client Organization #' + leadId,
+            poc: 'Assigned Lead POC',
+            contact1: '+971 50 000 0000',
+            email: 'contact@client-' + leadId + '.ae',
+            status: 'Open'
+        };
+        leadDataStore[leadId] = lead;
+    }
+
+    var html = '<div class="detail-grid">';
+
+    function addRow(label, value) {
+        if (value !== undefined && value !== null && value.toString().trim() !== '' && value !== 'N/A' && value !== '-') {
+            html += '<div class="detail-item"><div class="detail-label">' + label + '</div><div class="detail-value">' + value + '</div></div>';
+        }
+    }
+
+    addRow('Lead Reference', '#RLX-' + lead.id);
+    addRow('Customer Organization', lead.customer);
+    addRow('Customer POC Name', lead.poc);
+    addRow('POC Contact Number', lead.contact1);
+    addRow('Email Address', lead.email);
+    addRow('Account Number', lead.a_number);
+    addRow('Account Under Vertical', lead.a_department);
+    if (lead.r_amount) {
+        addRow('Monthly Revenue Amount', 'AED ' + parseFloat(lead.r_amount).toLocaleString());
+    }
+    addRow('Current Revenue Date', lead.r_date);
+    addRow('Category / Service', lead.category);
+    addRow('Status', lead.status);
+    addRow('Product Details', lead.product);
+    addRow('Quantity / MRC', lead.q_mrc);
+    if (lead.revenue) {
+        addRow('Total Revenue', 'AED ' + parseFloat(lead.revenue).toLocaleString());
+    }
+    if (lead.mrr) {
+        addRow('MRR Amount', 'AED ' + parseFloat(lead.mrr).toLocaleString());
+    }
+    addRow('Expected Closure Date', lead.close_date);
+    if (lead.close_amount) {
+        addRow('Expected Closure Amount', 'AED ' + parseFloat(lead.close_amount).toLocaleString());
+    }
+    addRow('Address / Location', lead.location);
+    addRow('Next Follow-Up Date & Time', lead.next_followup);
+    addRow('Next Meeting Schedule', lead.next_meeting);
+    addRow('Back Office Status', lead.bo_status);
+
+    crmCustomFieldsStore.forEach(function(cf) {
+        if (!cf.hidden && cf.panels && cf.panels.preview) {
+            var val = lead[cf.key];
+            if (val !== undefined && val !== null && val.toString().trim() !== '') {
+                var displayVal = val;
+                if (cf.type === 'currency') {
+                    displayVal = 'AED ' + parseFloat(val).toLocaleString();
+                } else if (cf.type === 'checkbox') {
+                    displayVal = (val === true || val === 'true' || val === '1') ? 'Yes' : 'No';
+                }
+                addRow(cf.label, displayVal);
+            }
+        }
+    });
+
+    addRow('Commercial Notes & Remarks', lead.remark);
+
+    html += '</div>';
+
     $('#leadPreviewModalBody').html(html);
     $('#leadPreviewModal').modal('show');
+}
+
+function openEditLeadModal(leadId) {
+    var lead = leadDataStore[leadId];
+    if (!lead) {
+        lead = { id: leadId, customer: 'Lead #' + leadId, poc: 'Client POC', contact1: '+971 50 000 0000', email: 'lead' + leadId + '@crm.ae' };
+        leadDataStore[leadId] = lead;
+    }
+
+    $('#edit_lead_id').val(lead.id);
+    $('#edit_lead_customer').val(lead.customer || '');
+    $('#edit_lead_poc').val(lead.poc || '');
+    $('#edit_lead_contact1').val(lead.contact1 || '');
+    $('#edit_lead_email').val(lead.email || '');
+    $('#edit_lead_a_number').val(lead.a_number || '');
+    $('#edit_lead_a_department').val(lead.a_department || '');
+    $('#edit_lead_r_amount').val(lead.r_amount || '');
+    $('#edit_lead_r_date').val(lead.r_date || '');
+    $('#edit_lead_category').val(lead.category || '');
+    $('#edit_lead_status').val(lead.status || 'Open');
+    $('#edit_lead_revenue').val(lead.revenue || '');
+    $('#edit_lead_mrr').val(lead.mrr || '');
+    $('#edit_lead_location').val(lead.location || '');
+    $('#edit_lead_remark').val(lead.remark || '');
+
+    $('#edit_lead_trade_license_no').val(lead.trade_license_no || '');
+    $('#edit_lead_trade_license_issue_date').val(lead.trade_license_issue_date || '');
+    $('#edit_lead_trade_license_expiry_date').val(lead.trade_license_expiry_date || '');
+    $('#edit_lead_trade_license_renewal_date').val(lead.trade_license_renewal_date || '');
+    $('#edit_lead_fs_ye').val(lead.fs_ye || '');
+    $('#edit_lead_vat_qe').val(lead.vat_qe || '');
+
+    var dynamicContainer = $('#dynamicCustomFieldsEditLead');
+    dynamicContainer.empty();
+
+    var standardKeys = ['trade_license_no', 'trade_license_issue_date', 'trade_license_expiry_date', 'trade_license_renewal_date', 'fs_ye', 'vat_qe'];
+    crmCustomFieldsStore.forEach(function(cf) {
+        if (!cf.hidden && standardKeys.indexOf(cf.key) === -1 && cf.panels && cf.panels.edit) {
+            var val = lead[cf.key] !== undefined ? lead[cf.key] : '';
+            var reqAttr = cf.required ? ' required' : '';
+            var reqStar = cf.required ? ' <span class="text-danger">*</span>' : '';
+            var fieldHtml = '<div class="col-sm-4"><div class="form-group">';
+            fieldHtml += '<label>' + cf.label + reqStar + '</label>';
+
+            if (cf.type === 'dropdown') {
+                fieldHtml += '<select class="form-control" id="dyn_edit_' + cf.key + '"' + reqAttr + '>';
+                fieldHtml += '<option value="">Select ' + cf.label + '</option>';
+                (cf.options || []).forEach(function(opt) {
+                    var selected = val === opt ? ' selected' : '';
+                    fieldHtml += '<option value="' + opt + '"' + selected + '>' + opt + '</option>';
+                });
+                fieldHtml += '</select>';
+            } else if (cf.type === 'checkbox') {
+                var checked = (val === true || val === 'true' || val === '1') ? ' checked' : '';
+                fieldHtml += '<div class="checkbox" style="margin-top:5px;"><label><input type="checkbox" id="dyn_edit_' + cf.key + '"' + checked + '> Yes / Confirmed</label></div>';
+            } else if (cf.type === 'date') {
+                fieldHtml += '<input type="date" class="form-control" id="dyn_edit_' + cf.key + '" value="' + val + '"' + reqAttr + '>';
+            } else if (cf.type === 'number' || cf.type === 'currency') {
+                fieldHtml += '<input type="number" step="any" class="form-control" id="dyn_edit_' + cf.key + '" value="' + val + '"' + reqAttr + '>';
+            } else {
+                fieldHtml += '<input type="text" class="form-control" id="dyn_edit_' + cf.key + '" value="' + val + '"' + reqAttr + '>';
+            }
+
+            fieldHtml += '</div></div>';
+            dynamicContainer.append(fieldHtml);
+        }
+    });
+
+    $('#leadEditModal').modal('show');
+}
+
+function handleLeadUpdate(e) {
+    e.preventDefault();
+    var id = $('#edit_lead_id').val();
+    if (!id || !leadDataStore[id]) {
+        id = id || 10488;
+        if (!leadDataStore[id]) {
+            leadDataStore[id] = { id: id };
+        }
+    }
+
+    var lead = leadDataStore[id];
+    lead.customer = $('#edit_lead_customer').val();
+    lead.poc = $('#edit_lead_poc').val();
+    lead.contact1 = $('#edit_lead_contact1').val();
+    lead.email = $('#edit_lead_email').val();
+    lead.a_number = $('#edit_lead_a_number').val();
+    lead.a_department = $('#edit_lead_a_department').val();
+    lead.r_amount = $('#edit_lead_r_amount').val();
+    lead.r_date = $('#edit_lead_r_date').val();
+    lead.category = $('#edit_lead_category').val();
+    lead.status = $('#edit_lead_status').val();
+    lead.revenue = $('#edit_lead_revenue').val();
+    lead.mrr = $('#edit_lead_mrr').val();
+    lead.location = $('#edit_lead_location').val();
+    lead.remark = $('#edit_lead_remark').val();
+
+    lead.trade_license_no = $('#edit_lead_trade_license_no').val();
+    lead.trade_license_issue_date = $('#edit_lead_trade_license_issue_date').val();
+    lead.trade_license_expiry_date = $('#edit_lead_trade_license_expiry_date').val();
+    lead.trade_license_renewal_date = $('#edit_lead_trade_license_renewal_date').val();
+    lead.fs_ye = $('#edit_lead_fs_ye').val();
+    lead.vat_qe = $('#edit_lead_vat_qe').val();
+
+    var standardKeys = ['trade_license_no', 'trade_license_issue_date', 'trade_license_expiry_date', 'trade_license_renewal_date', 'fs_ye', 'vat_qe'];
+    crmCustomFieldsStore.forEach(function(cf) {
+        if (standardKeys.indexOf(cf.key) === -1) {
+            var elem = $('#dyn_edit_' + cf.key);
+            if (elem.length) {
+                if (cf.type === 'checkbox') {
+                    lead[cf.key] = elem.is(':checked');
+                } else {
+                    lead[cf.key] = elem.val();
+                }
+            }
+        }
+    });
+
+    try {
+        localStorage.setItem('crm_leads_data_v1', JSON.stringify(leadDataStore));
+    } catch (err) {}
+
+    var row = $('#lead_row_' + id);
+    if (row.length) {
+        row.find('.lead-cust-cell').html('<strong>' + lead.customer + '</strong><br><small class="text-muted">' + lead.poc + '</small>');
+        row.find('.lead-phone-cell').text(lead.contact1);
+        row.find('.lead-cat-cell').text(lead.category);
+        if (lead.revenue) {
+            row.find('.lead-rev-cell').text('AED ' + parseFloat(lead.revenue).toLocaleString());
+        }
+        var badgeClass = lead.status === 'Closed Won' ? 'bg-green' : (lead.status === 'In Progress' ? 'bg-blue' : (lead.status === 'Open' ? 'bg-orange' : 'bg-gray'));
+        row.find('.lead-status-cell').html('<span class="badge ' + badgeClass + '">' + lead.status + '</span>');
+    }
+
+    $('#leadEditModal').modal('hide');
+    alert('Lead #RLX-' + id + ' ("' + lead.customer + '") updated and saved successfully without data loss!');
+}
+
+function filterBOTable(status) {
+    $('#boFilterButtonGroup .btn').removeClass('active');
+    if (status === 'all') {
+        $('#boFilterButtonGroup .btn:first-child').addClass('active');
+        $('#boRecordsTable tbody tr').show();
+    } else {
+        $('#boFilterButtonGroup .btn').each(function() {
+            if ($(this).text().indexOf(status) !== -1 || ($(this).find('.badge').text() && $(this).find('.badge').text().indexOf(status) !== -1)) {
+                $(this).addClass('active');
+            }
+        });
+        $('#boRecordsTable tbody tr').each(function() {
+            var rowStatus = $(this).attr('data-status');
+            if (rowStatus === status) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+}
+
+function openBackOfficeModal(rowId) {
+    $('#bo_modal_row_id').val(rowId);
+    var cat = $('#bo_cat_' + rowId).text().trim();
+    var lead = $('#bo_lead_' + rowId).text().trim();
+    var date = $('#bo_date_' + rowId).text().trim();
+    var status = $('#bo_row_' + rowId).attr('data-status') || $('#bo_status_cell_' + rowId).text().trim();
+    var ref = $('#bo_ref_' + rowId).text().trim();
+    var s = $('#bo_s_' + rowId).text().trim();
+    var remark = $('#bo_remark_' + rowId).text().trim();
+
+    $('#bo_modal_cat').val(cat);
+    $('#bo_modal_lead').val(lead);
+    $('#bo_modal_date').val(date);
+    $('#bo_modal_status').val(status);
+    $('#bo_modal_ref').val(ref);
+    $('#bo_modal_s').val(s);
+    $('#bo_modal_remark').val(remark);
+
+    $('#boRecordModal').modal('show');
+}
+
+function saveBackOfficeRecord(e) {
+    e.preventDefault();
+    var rowId = $('#bo_modal_row_id').val();
+    if (!rowId) return;
+
+    var date = $('#bo_modal_date').val();
+    var status = $('#bo_modal_status').val();
+    var ref = $('#bo_modal_ref').val();
+    var s = $('#bo_modal_s').val();
+    var remark = $('#bo_modal_remark').val();
+
+    var badgeClass = 'bg-gray';
+    if (status === 'Approved') badgeClass = 'bg-green';
+    else if (status === 'Pending Approval') badgeClass = 'bg-blue';
+    else if (status === 'Query') badgeClass = 'bg-orange';
+    else if (status === 'Expired' || status === 'Rejected') badgeClass = 'bg-red';
+
+    $('#bo_row_' + rowId).attr('data-status', status);
+    $('#bo_date_' + rowId).text(date);
+    $('#bo_status_cell_' + rowId).html('<span class="badge ' + badgeClass + '">' + status + '</span>');
+    $('#bo_ref_' + rowId).text(ref || '-');
+    $('#bo_s_' + rowId).text(s || '-');
+    $('#bo_remark_' + rowId).text(remark || '');
+
+    updateBOCounts();
+    $('#boRecordModal').modal('hide');
+    alert('Back office record updated successfully!');
+}
+
+function updateBOCounts() {
+    var counts = { all: 0, Query: 0, Pending: 0, Approved: 0, Expired: 0 };
+    $('#boRecordsTable tbody tr').each(function() {
+        counts.all++;
+        var st = $(this).attr('data-status') || '';
+        if (st === 'Query') counts.Query++;
+        else if (st === 'Pending Approval') counts.Pending++;
+        else if (st === 'Approved') counts.Approved++;
+        else if (st === 'Expired') counts.Expired++;
+    });
+
+    var btns = $('#boFilterButtonGroup .btn');
+    if (btns.length >= 5) {
+        $(btns[0]).text('All Records (' + counts.all + ')');
+        $(btns[1]).html('<span class="badge bg-orange">Query (' + counts.Query + ')</span>');
+        $(btns[2]).html('<span class="badge bg-blue">Pending (' + counts.Pending + ')</span>');
+        $(btns[3]).html('<span class="badge bg-green">Approved (' + counts.Approved + ')</span>');
+        $(btns[4]).html('<span class="badge bg-red">Expired (' + counts.Expired + ')</span>');
+    }
+}
+
+function renderCustomFieldsTable() {
+    var tbody = $('#customFieldsTableBody');
+    if (!tbody.length) return;
+    tbody.empty();
+
+    var total = 0, active = 0, reqCount = 0, catMap = {};
+    crmCustomFieldsStore.sort(function(a, b) { return a.order - b.order; });
+
+    crmCustomFieldsStore.forEach(function(cf, idx) {
+        total++;
+        if (!cf.hidden) active++;
+        if (cf.required) reqCount++;
+        catMap[cf.category] = (catMap[cf.category] || 0) + 1;
+
+        var typeBadgeClass = 'cf-badge-text';
+        if (cf.type === 'date') typeBadgeClass = 'cf-badge-date';
+        else if (cf.type === 'dropdown') typeBadgeClass = 'cf-badge-dropdown';
+        else if (cf.type === 'number') typeBadgeClass = 'cf-badge-number';
+        else if (cf.type === 'currency') typeBadgeClass = 'cf-badge-currency';
+        else if (cf.type === 'checkbox') typeBadgeClass = 'cf-badge-checkbox';
+
+        var statusBadge = cf.hidden ? '<span class="badge bg-gray"><i class="fa fa-eye-slash"></i> Hidden</span>' : '<span class="badge bg-green"><i class="fa fa-check"></i> Active</span>';
+        var reqBadge = cf.required ? '<span class="badge bg-red"><i class="fa fa-asterisk"></i> Required</span>' : '<span class="badge bg-default text-muted">Optional</span>';
+
+        var panelsHtml = '';
+        if (cf.panels) {
+            if (cf.panels.add) panelsHtml += '<span class="label label-default" style="font-size:10px; margin-right:2px;">Add</span>';
+            if (cf.panels.edit) panelsHtml += '<span class="label label-default" style="font-size:10px; margin-right:2px;">Edit</span>';
+            if (cf.panels.preview) panelsHtml += '<span class="label label-default" style="font-size:10px; margin-right:2px;">Preview</span>';
+            if (cf.panels.details) panelsHtml += '<span class="label label-default" style="font-size:10px; margin-right:2px;">Details</span>';
+        }
+
+        var rolesHtml = '';
+        if (cf.roles) {
+            if (cf.roles.admin) rolesHtml += '<span class="label label-primary" style="font-size:10px; margin-right:2px;">Admin</span>';
+            if (cf.roles.manager) rolesHtml += '<span class="label label-info" style="font-size:10px; margin-right:2px;">Mgr</span>';
+            if (cf.roles.agent) rolesHtml += '<span class="label label-warning" style="font-size:10px; margin-right:2px;">Agent</span>';
+        }
+
+        var row = '<tr>' +
+            '<td><span class="badge bg-blue">' + cf.order + '</span></td>' +
+            '<td><strong>' + cf.label + '</strong><br><small class="text-muted"><code>' + cf.key + '</code></small></td>' +
+            '<td><span class="cf-type-badge ' + typeBadgeClass + '">' + cf.type.toUpperCase() + '</span></td>' +
+            '<td><span class="label label-primary">' + cf.category + '</span></td>' +
+            '<td>' + reqBadge + '</td>' +
+            '<td>' + (panelsHtml || '-') + '</td>' +
+            '<td>' + (rolesHtml || '-') + '</td>' +
+            '<td>' + statusBadge + '</td>' +
+            '<td>' +
+            '<div class="btn-group btn-group-xs">' +
+            '<button type="button" class="btn btn-default" title="Move Up" onclick="moveCustomField(\'' + cf.key + '\', -1)"><i class="fa fa-arrow-up"></i></button>' +
+            '<button type="button" class="btn btn-default" title="Move Down" onclick="moveCustomField(\'' + cf.key + '\', 1)"><i class="fa fa-arrow-down"></i></button>' +
+            '<button type="button" class="btn btn-primary" title="Edit Field" onclick="openEditCustomFieldModal(\'' + cf.key + '\')"><i class="fa fa-pencil"></i></button>' +
+            '<button type="button" class="btn ' + (cf.hidden ? 'btn-success' : 'btn-warning') + '" title="' + (cf.hidden ? 'Unhide' : 'Hide') + '" onclick="toggleHideCustomField(\'' + cf.key + '\')"><i class="fa ' + (cf.hidden ? 'fa-eye' : 'fa-eye-slash') + '"></i></button>' +
+            '<button type="button" class="btn btn-danger" title="Delete Field" onclick="deleteCustomField(\'' + cf.key + '\')"><i class="fa fa-trash"></i></button>' +
+            '</div>' +
+            '</td>' +
+            '</tr>';
+        tbody.append(row);
+    });
+
+    $('#cf_stat_total').text(total);
+    $('#cf_stat_active').text(active);
+    $('#cf_stat_required').text(reqCount);
+    $('#cf_stat_categories').text(Object.keys(catMap).length);
+}
+
+function renderCustomFieldsOnForms() {
+    var addContainer = $('#dynamicCustomFieldsAddLead');
+    if (!addContainer.length) return;
+    addContainer.empty();
+
+    var standardKeys = ['trade_license_no', 'trade_license_issue_date', 'trade_license_expiry_date', 'trade_license_renewal_date', 'fs_ye', 'vat_qe'];
+    crmCustomFieldsStore.forEach(function(cf) {
+        if (!cf.hidden && standardKeys.indexOf(cf.key) === -1 && cf.panels && cf.panels.add) {
+            var reqAttr = cf.required ? ' required' : '';
+            var reqStar = cf.required ? ' <span class="text-danger">*</span>' : '';
+            var colHtml = '<div class="col-sm-4"><div class="form-group">';
+            colHtml += '<label>' + cf.label + reqStar + '</label>';
+
+            if (cf.type === 'dropdown') {
+                colHtml += '<select class="form-control" id="dyn_add_' + cf.key + '"' + reqAttr + '>';
+                colHtml += '<option value="">Select ' + cf.label + '</option>';
+                (cf.options || []).forEach(function(opt) {
+                    colHtml += '<option value="' + opt + '">' + opt + '</option>';
+                });
+                colHtml += '</select>';
+            } else if (cf.type === 'checkbox') {
+                colHtml += '<div class="checkbox" style="margin-top:5px;"><label><input type="checkbox" id="dyn_add_' + cf.key + '"> Yes / Confirmed</label></div>';
+            } else if (cf.type === 'date') {
+                colHtml += '<input type="date" class="form-control" id="dyn_add_' + cf.key + '"' + reqAttr + '>';
+            } else if (cf.type === 'number' || cf.type === 'currency') {
+                colHtml += '<input type="number" step="any" class="form-control" id="dyn_add_' + cf.key + '" placeholder="0.00"' + reqAttr + '>';
+            } else {
+                colHtml += '<input type="text" class="form-control" id="dyn_add_' + cf.key + '" placeholder="Enter ' + cf.label + '"' + reqAttr + '>';
+            }
+
+            colHtml += '</div></div>';
+            addContainer.append(colHtml);
+        }
+    });
+}
+
+function autoGenerateKey(label) {
+    if (!$('#cf_id').val()) {
+        var key = label.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+        $('#cf_key').val(key);
+    }
+}
+
+function toggleDropdownOptions(type) {
+    if (type === 'dropdown') {
+        $('#cf_options_group').slideDown(150);
+    } else {
+        $('#cf_options_group').slideUp(150);
+    }
+}
+
+function openAddCustomFieldModal() {
+    $('#customFieldModalTitle').html('<i class="fa fa-sliders"></i> Add New Custom Field');
+    $('#cf_id').val('');
+    $('#cf_label').val('');
+    $('#cf_key').val('').prop('readonly', false);
+    $('#cf_type').val('text');
+    $('#cf_category').val('Compliance & Legal');
+    $('#cf_required').val('false');
+    $('#cf_options').val('');
+    $('#cf_options_group').hide();
+    $('#cf_panel_add').prop('checked', true);
+    $('#cf_panel_edit').prop('checked', true);
+    $('#cf_panel_preview').prop('checked', true);
+    $('#cf_panel_details').prop('checked', true);
+    $('#cf_role_admin').prop('checked', true);
+    $('#cf_role_manager').prop('checked', true);
+    $('#cf_role_agent').prop('checked', true);
+    $('#customFieldModal').modal('show');
+}
+
+function openEditCustomFieldModal(key) {
+    var cf = null;
+    for (var i = 0; i < crmCustomFieldsStore.length; i++) {
+        if (crmCustomFieldsStore[i].key === key) {
+            cf = crmCustomFieldsStore[i];
+            break;
+        }
+    }
+    if (!cf) return;
+
+    $('#customFieldModalTitle').html('<i class="fa fa-pencil"></i> Edit Custom Field: ' + cf.label);
+    $('#cf_id').val(cf.id);
+    $('#cf_label').val(cf.label);
+    $('#cf_key').val(cf.key).prop('readonly', true);
+    $('#cf_type').val(cf.type);
+    $('#cf_category').val(cf.category);
+    $('#cf_required').val(cf.required ? 'true' : 'false');
+    $('#cf_options').val((cf.options || []).join(', '));
+    if (cf.type === 'dropdown') {
+        $('#cf_options_group').show();
+    } else {
+        $('#cf_options_group').hide();
+    }
+
+    $('#cf_panel_add').prop('checked', cf.panels ? !!cf.panels.add : true);
+    $('#cf_panel_edit').prop('checked', cf.panels ? !!cf.panels.edit : true);
+    $('#cf_panel_preview').prop('checked', cf.panels ? !!cf.panels.preview : true);
+    $('#cf_panel_details').prop('checked', cf.panels ? !!cf.panels.details : true);
+
+    $('#cf_role_admin').prop('checked', cf.roles ? !!cf.roles.admin : true);
+    $('#cf_role_manager').prop('checked', cf.roles ? !!cf.roles.manager : true);
+    $('#cf_role_agent').prop('checked', cf.roles ? !!cf.roles.agent : true);
+
+    $('#customFieldModal').modal('show');
+}
+
+function saveCustomField(e) {
+    e.preventDefault();
+    var id = $('#cf_id').val();
+    var key = $('#cf_key').val().trim();
+    var label = $('#cf_label').val().trim();
+    var type = $('#cf_type').val();
+    var cat = $('#cf_category').val();
+    var req = $('#cf_required').val() === 'true';
+    var optionsStr = $('#cf_options').val().trim();
+    var options = optionsStr ? optionsStr.split(',').map(function(s) { return s.trim(); }).filter(Boolean) : [];
+
+    var panels = {
+        add: $('#cf_panel_add').is(':checked'),
+        edit: $('#cf_panel_edit').is(':checked'),
+        preview: $('#cf_panel_preview').is(':checked'),
+        details: $('#cf_panel_details').is(':checked')
+    };
+
+    var roles = {
+        admin: $('#cf_role_admin').is(':checked'),
+        manager: $('#cf_role_manager').is(':checked'),
+        agent: $('#cf_role_agent').is(':checked')
+    };
+
+    if (id) {
+        for (var i = 0; i < crmCustomFieldsStore.length; i++) {
+            if (crmCustomFieldsStore[i].key === key) {
+                crmCustomFieldsStore[i].label = label;
+                crmCustomFieldsStore[i].type = type;
+                crmCustomFieldsStore[i].category = cat;
+                crmCustomFieldsStore[i].required = req;
+                crmCustomFieldsStore[i].options = options;
+                crmCustomFieldsStore[i].panels = panels;
+                crmCustomFieldsStore[i].roles = roles;
+                break;
+            }
+        }
+    } else {
+        var existing = crmCustomFieldsStore.some(function(item) { return item.key === key; });
+        if (existing) {
+            alert('A field with identifier key "' + key + '" already exists!');
+            return;
+        }
+        var newOrder = crmCustomFieldsStore.length + 1;
+        crmCustomFieldsStore.push({
+            id: Date.now(),
+            key: key,
+            label: label,
+            type: type,
+            category: cat,
+            required: req,
+            hidden: false,
+            order: newOrder,
+            options: options,
+            panels: panels,
+            roles: roles
+        });
+    }
+
+    try {
+        localStorage.setItem('crm_custom_fields_v1', JSON.stringify(crmCustomFieldsStore));
+    } catch (err) {}
+
+    renderCustomFieldsTable();
+    renderCustomFieldsOnForms();
+    $('#customFieldModal').modal('hide');
+    alert('Custom field "' + label + '" successfully configured and available system-wide!');
+}
+
+function toggleHideCustomField(key) {
+    for (var i = 0; i < crmCustomFieldsStore.length; i++) {
+        if (crmCustomFieldsStore[i].key === key) {
+            crmCustomFieldsStore[i].hidden = !crmCustomFieldsStore[i].hidden;
+            break;
+        }
+    }
+    try {
+        localStorage.setItem('crm_custom_fields_v1', JSON.stringify(crmCustomFieldsStore));
+    } catch (err) {}
+    renderCustomFieldsTable();
+    renderCustomFieldsOnForms();
+}
+
+function deleteCustomField(key) {
+    if (!confirm('Are you sure you want to remove the custom field "' + key + '"?')) return;
+    crmCustomFieldsStore = crmCustomFieldsStore.filter(function(cf) { return cf.key !== key; });
+    try {
+        localStorage.setItem('crm_custom_fields_v1', JSON.stringify(crmCustomFieldsStore));
+    } catch (err) {}
+    renderCustomFieldsTable();
+    renderCustomFieldsOnForms();
+}
+
+function moveCustomField(key, dir) {
+    var idx = -1;
+    for (var i = 0; i < crmCustomFieldsStore.length; i++) {
+        if (crmCustomFieldsStore[i].key === key) {
+            idx = i;
+            break;
+        }
+    }
+    if (idx === -1) return;
+    var targetIdx = idx + dir;
+    if (targetIdx < 0 || targetIdx >= crmCustomFieldsStore.length) return;
+
+    var temp = crmCustomFieldsStore[idx];
+    crmCustomFieldsStore[idx] = crmCustomFieldsStore[targetIdx];
+    crmCustomFieldsStore[targetIdx] = temp;
+
+    for (var j = 0; j < crmCustomFieldsStore.length; j++) {
+        crmCustomFieldsStore[j].order = j + 1;
+    }
+
+    try {
+        localStorage.setItem('crm_custom_fields_v1', JSON.stringify(crmCustomFieldsStore));
+    } catch (err) {}
+    renderCustomFieldsTable();
+    renderCustomFieldsOnForms();
+}
+
+function applyIndustryPreset(preset) {
+    if (!confirm('Apply the "' + preset + '" configuration template? This will add industry-tailored fields and categories.')) return;
+
+    if (preset === 'Accounting') {
+        var accountingFields = [
+            { id: 101, key: 'corporate_tax_trn', label: 'Corporate Tax TRN Number', type: 'text', category: 'Tax & Regulatory', required: true, hidden: false, order: 7, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } },
+            { id: 102, key: 'auditor_appointed', label: 'Appointed Audit Firm', type: 'text', category: 'Accounting & Auditing', required: false, hidden: false, order: 8, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } },
+            { id: 103, key: 'annual_revenue_bracket', label: 'Audited Turnover Bracket', type: 'dropdown', category: 'Accounting & Auditing', required: true, hidden: false, order: 9, options: ['Below AED 3M (Small Business Relief)', 'AED 3M - AED 50M', 'Above AED 50M (Pillar Two Scope)'], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } }
+        ];
+        accountingFields.forEach(function(f) {
+            if (!crmCustomFieldsStore.some(function(cf) { return cf.key === f.key; })) {
+                crmCustomFieldsStore.push(f);
+            }
+        });
+    } else if (preset === 'Real Estate') {
+        var reFields = [
+            { id: 201, key: 'rera_permit_no', label: 'RERA Broker Permit Number', type: 'text', category: 'Compliance & Legal', required: true, hidden: false, order: 7, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } },
+            { id: 202, key: 'property_title_deed', label: 'Title Deed / Oqood Ref', type: 'text', category: 'Real Estate & Leasing', required: false, hidden: false, order: 8, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } }
+        ];
+        reFields.forEach(function(f) {
+            if (!crmCustomFieldsStore.some(function(cf) { return cf.key === f.key; })) {
+                crmCustomFieldsStore.push(f);
+            }
+        });
+    } else if (preset === 'Telecom') {
+        var telFields = [
+            { id: 301, key: 'circuit_bandwidth_mbps', label: 'Dedicated Bandwidth (Mbps)', type: 'number', category: 'General Commercial', required: true, hidden: false, order: 7, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } }
+        ];
+        telFields.forEach(function(f) {
+            if (!crmCustomFieldsStore.some(function(cf) { return cf.key === f.key; })) {
+                crmCustomFieldsStore.push(f);
+            }
+        });
+    } else if (preset === 'Legal') {
+        var legFields = [
+            { id: 401, key: 'court_case_ref', label: 'Court / Arbitration Ref', type: 'text', category: 'Compliance & Legal', required: true, hidden: false, order: 7, options: [], panels: { add: true, edit: true, preview: true, details: true }, roles: { admin: true, manager: true, agent: true } }
+        ];
+        legFields.forEach(function(f) {
+            if (!crmCustomFieldsStore.some(function(cf) { return cf.key === f.key; })) {
+                crmCustomFieldsStore.push(f);
+            }
+        });
+    }
+
+    try {
+        localStorage.setItem('crm_custom_fields_v1', JSON.stringify(crmCustomFieldsStore));
+    } catch (err) {}
+    renderCustomFieldsTable();
+    renderCustomFieldsOnForms();
+    alert('Preset applied successfully! New fields are now active across all panels and forms.');
+}
+
+function saveCustomCategory(e) {
+    e.preventDefault();
+    var name = $('#cat_new_name').val().trim();
+    if (!name) return;
+
+    var opt = $('<option></option>').attr('value', name).text(name);
+    $('#cf_category').append(opt.clone());
+    $('#lead_category').append(opt.clone());
+
+    $('#categoryModal').modal('hide');
+    alert('Category "' + name + '" created successfully!');
+    $('#categoryCreateForm')[0].reset();
 }
 
 var verticalDataStore = {
@@ -3774,32 +5250,84 @@ function calculateLeadRevenue() {
 
 function handleLeadSave(e) {
     e.preventDefault();
+    var newId = Math.floor(10500 + Math.random() * 500);
     var cust = $('#lead_customer').val() || 'Client Company';
     var poc = $('#lead_poc').val() || 'POC Name';
     var phone = $('#lead_contact1').val() || '+971 50 ...';
     var email = $('#lead_email').val() || '';
     var cat = $('#lead_category').val() || 'Enterprise Telecom';
-    var rev = $('#lead_revenue').val() || '150,000';
+    var rev = $('#lead_revenue').val() || '150000';
     var st = $('#lead_status').val() || 'Open';
     var dt = new Date().toISOString().slice(0, 10);
-    var newId = Math.floor(10500 + Math.random() * 500);
+
+    var newLead = {
+        id: newId,
+        customer: cust,
+        poc: poc,
+        contact1: phone,
+        email: email,
+        a_number: $('#lead_a_number').val() || '',
+        a_department: $('#lead_a_department').val() || '',
+        r_amount: $('#lead_r_amount').val() || '',
+        r_date: $('#lead_r_date').val() || '',
+        category: cat,
+        status: st,
+        product: $('#lead_product').val() || '',
+        q_mrc: ($('#lead_qty').val() || '1') + ' / AED ' + ($('#lead_mrc').val() || '0'),
+        revenue: rev,
+        mrr: $('#lead_mrr').val() || '',
+        close_date: $('#lead_close_date').val() || '',
+        close_amount: $('#lead_close_amount').val() || rev,
+        location: $('#lead_location').val() || '',
+        next_followup: ($('#lead_followup_date').val() || '') + ' ' + ($('#lead_followup_time').val() || ''),
+        next_meeting: $('#lead_meet_date').val() || '',
+        bo_status: $('#lead_bo_status').val() || 'Pending Approval',
+        trade_license_no: $('#lead_trade_license_no').val() || '',
+        trade_license_issue_date: $('#lead_trade_license_issue_date').val() || '',
+        trade_license_expiry_date: $('#lead_trade_license_expiry_date').val() || '',
+        trade_license_renewal_date: $('#lead_trade_license_renewal_date').val() || '',
+        fs_ye: $('#lead_fs_ye').val() || '',
+        vat_qe: $('#lead_vat_qe').val() || '',
+        remark: $('#lead_remark').val() || ''
+    };
+
+    var standardKeys = ['trade_license_no', 'trade_license_issue_date', 'trade_license_expiry_date', 'trade_license_renewal_date', 'fs_ye', 'vat_qe'];
+    crmCustomFieldsStore.forEach(function(cf) {
+        if (standardKeys.indexOf(cf.key) === -1) {
+            var elem = $('#dyn_add_' + cf.key);
+            if (elem.length) {
+                if (cf.type === 'checkbox') {
+                    newLead[cf.key] = elem.is(':checked');
+                } else {
+                    newLead[cf.key] = elem.val();
+                }
+            }
+        }
+    });
+
+    leadDataStore[newId] = newLead;
+    try {
+        localStorage.setItem('crm_leads_data_v1', JSON.stringify(leadDataStore));
+    } catch (err) {}
 
     var badgeClass = st === 'Closed Won' ? 'bg-green' : (st === 'In Progress' ? 'bg-blue' : 'bg-orange');
-    var newRow = '<tr>' +
+    var newRow = '<tr id="lead_row_' + newId + '">' +
         '<td>#RLX-' + newId + '</td>' +
-        '<td><strong>' + cust + '</strong><br><small class="text-muted">' + poc + '</small></td>' +
-        '<td>' + phone + '</td>' +
-        '<td>' + cat + '</td>' +
-        '<td>AED ' + parseFloat(rev).toLocaleString() + '</td>' +
+        '<td class="lead-cust-cell"><strong>' + cust + '</strong><br><small class="text-muted">' + poc + '</small></td>' +
+        '<td class="lead-phone-cell">' + phone + '</td>' +
+        '<td class="lead-cat-cell">' + cat + '</td>' +
+        '<td class="lead-rev-cell">AED ' + parseFloat(rev).toLocaleString() + '</td>' +
         '<td>' + dt + '</td>' +
-        '<td><span class="badge ' + badgeClass + '">' + st + '</span></td>' +
+        '<td class="lead-status-cell"><span class="badge ' + badgeClass + '">' + st + '</span></td>' +
         '<td>' +
-        '<button class="btn btn-xs btn-default" onclick="openLeadModal(' + newId + ')"><i class="fa fa-eye"></i></button> ' +
-        '<button class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></button>' +
+        '<button type="button" class="btn btn-xs btn-default" onclick="openLeadModal(' + newId + ')"><i class="fa fa-eye"></i></button> ' +
+        '<button type="button" class="btn btn-xs btn-primary" onclick="openEditLeadModal(' + newId + ')"><i class="fa fa-edit"></i></button>' +
         '</td>' +
         '</tr>';
+
     $('#leadsTable tbody').prepend(newRow);
-    alert('Lead #RLX-' + newId + ' for "' + cust + '" saved successfully with all 6 fieldsets and Back Office matrix!');
+    alert('Lead #RLX-' + newId + ' for "' + cust + '" saved successfully with all 6 fieldsets, custom fields, and Back Office matrix!');
+    $('#addLeadDirectForm')[0].reset();
     switchView('leads');
 }
 
@@ -3889,6 +5417,7 @@ var viewTitles = {
     'add-user': 'Add User',
     'roles-permissions': 'Roles & Permissions',
     'terms': 'Category Management',
+    'custom-fields': 'Custom Fields & Logic',
     'theme-settings': 'Theme',
     'profile': 'Profile',
     'password': 'Change Password'
@@ -3932,10 +5461,25 @@ $(function() {
         var palName = curPalette === 'red' ? 'Red' : (curPalette === 'blue' ? 'Blue' : (curPalette === 'black' ? 'Black' : 'Green'));
         $('#crmPaletteText').text(palName);
     }
+    function updateFavicon(pal) {
+        var logo = pal === 'red' ? 'assets/red-dark.png' : (pal === 'blue' ? 'assets/blue-dark.png' : (pal === 'black' ? 'assets/black-dark.png' : 'assets/green-dark.png'));
+        var fav = document.getElementById('crmFavicon');
+        if (fav) {
+            fav.href = logo;
+            fav.type = 'image/png';
+        }
+        var favShort = document.getElementById('crmFaviconShortcut');
+        if (favShort) {
+            favShort.href = logo;
+            favShort.type = 'image/png';
+        }
+    }
+
     function updateBrandLogos(pal) {
         var logo = pal === 'red' ? 'assets/red-dark.png' : (pal === 'blue' ? 'assets/blue-dark.png' : (pal === 'black' ? 'assets/black-dark.png' : 'assets/green-dark.png'));
         var img = $('.crm-brand-logo-img');
         img.attr('src', logo).css('filter', 'none');
+        updateFavicon(pal);
     }
 
     function applyGlobalPalette(pal) {
@@ -4070,7 +5614,9 @@ $(function() {
             var p3 = b3.parentNode;
             var newB3 = document.createElement('canvas');
             newB3.id = 'barChart3';
+            newB3.height = 230;
             newB3.style.height = '230px';
+            newB3.style.width = '100%';
             p3.replaceChild(newB3, b3);
             new Chart(newB3.getContext('2d')).Bar({
                 labels: months,
@@ -4089,7 +5635,9 @@ $(function() {
             var p4 = b4.parentNode;
             var newB4 = document.createElement('canvas');
             newB4.id = 'barChart4';
+            newB4.height = 230;
             newB4.style.height = '230px';
+            newB4.style.width = '100%';
             p4.replaceChild(newB4, b4);
             new Chart(newB4.getContext('2d')).Bar({
                 labels: months,
@@ -4201,6 +5749,10 @@ $(function() {
             { value: 19, color: '#10b981', label: 'All Future' }
         ], pieOptions);
     }
+
+    updateBOCounts();
+    renderCustomFieldsTable();
+    renderCustomFieldsOnForms();
 
     var initialHash = window.location.hash.replace('#', '') || 'dashboard';
     if (viewTitles[initialHash]) {

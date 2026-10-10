@@ -4,14 +4,22 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="icon" type="image/jpeg" href="<?php echo base_url(); ?>assets/dist/img/favicon.jpg">
-<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
+<link rel="icon" id="crmFavicon" type="image/png" href="<?php echo base_url(); ?>assets/green-dark.png">
+<link rel="shortcut icon" id="crmFaviconShortcut" type="image/png" href="<?php echo base_url(); ?>assets/green-dark.png">
 <title><?php echo !empty($info['title']) ? $info['title'] : "Rolexto CRM - Enterprise Workspace"; ?></title>
 <script>
 (function() {
     var saved = localStorage.getItem('crm_theme');
     var pref = saved ? saved : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', pref);
+    var savedPal = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
+    document.documentElement.setAttribute('data-crm-palette', savedPal);
+    var baseUrl = '<?php echo base_url(); ?>';
+    var favLogo = baseUrl + (savedPal === 'red' ? 'assets/red-dark.png' : (savedPal === 'blue' ? 'assets/blue-dark.png' : (savedPal === 'black' ? 'assets/black-dark.png' : 'assets/green-dark.png')));
+    var fav = document.getElementById('crmFavicon');
+    if (fav) { fav.href = favLogo; fav.type = 'image/png'; }
+    var favShort = document.getElementById('crmFaviconShortcut');
+    if (favShort) { favShort.href = favLogo; favShort.type = 'image/png'; }
 })();
 </script>
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">

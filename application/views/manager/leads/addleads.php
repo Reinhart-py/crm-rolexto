@@ -536,6 +536,58 @@
 
       <div class="box box-default">
       <div class="box-header with-border">
+        <h3 class="box-title">Compliance, Licensing &amp; Accounting Profile (Custom Fields)</h3>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Trade License Number</label>
+              <input type="text" class="form-control" name="trade_license_no" placeholder="TL-DXB-000000">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Trade License Issue Date</label>
+              <input type="text" class="form-control datepicker" name="trade_license_issue_date" placeholder="DD-MM-YYYY">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Trade License Expiry Date</label>
+              <input type="text" class="form-control datepicker" name="trade_license_expiry_date" placeholder="DD-MM-YYYY">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Trade License Renewal Date</label>
+              <input type="text" class="form-control datepicker" name="trade_license_renewal_date" placeholder="DD-MM-YYYY">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>FS YE (Financial Statement Year-End)</label>
+              <input type="text" class="form-control datepicker" name="fs_ye" placeholder="DD-MM-YYYY">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>VAT QE (VAT Quarterly Ending)</label>
+              <select class="form-control" name="vat_qe">
+                <option value="">Select VAT Quarter</option>
+                <option value="Q1 (31 March)">Q1 (31 March)</option>
+                <option value="Q2 (30 June)">Q2 (30 June)</option>
+                <option value="Q3 (30 September)">Q3 (30 September)</option>
+                <option value="Q4 (31 December)">Q4 (31 December)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="box box-default">
+      <div class="box-header with-border">
         <h3 class="box-title">Back Office Update</h3>
       </div>
       

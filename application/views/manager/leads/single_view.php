@@ -370,6 +370,48 @@
 </div>
 </div>
 </div>
+
+<?php
+$cf_items = array(
+  'Trade License Number' => isset($p_info['trade_license_no']) ? $p_info['trade_license_no'] : '',
+  'Trade License Issue Date' => isset($p_info['trade_license_issue_date']) ? simple_date($p_info['trade_license_issue_date']) : '',
+  'Trade License Expiry Date' => isset($p_info['trade_license_expiry_date']) ? simple_date($p_info['trade_license_expiry_date']) : '',
+  'Trade License Renewal Date' => isset($p_info['trade_license_renewal_date']) ? simple_date($p_info['trade_license_renewal_date']) : '',
+  'FS YE (Financial Statement Year-End)' => isset($p_info['fs_ye']) ? simple_date($p_info['fs_ye']) : '',
+  'VAT QE (VAT Quarterly Ending)' => isset($p_info['vat_qe']) ? $p_info['vat_qe'] : ''
+);
+$has_cf_data = false;
+foreach ($cf_items as $cf_val) {
+  if (!empty($cf_val) && trim($cf_val) !== '' && $cf_val !== 'N/A' && $cf_val !== '0000-00-00') {
+    $has_cf_data = true;
+    break;
+  }
+}
+?>
+<?php if ($has_cf_data) { ?>
+<div class="box box-default">
+  <div class="box-header">
+    <div class="col-sm-12">
+      <h3 class="box-title"><b>Compliance, Licensing &amp; Accounting Profile (Custom Fields)</b></h3>
+    </div>
+  </div>
+  <div class="box-body">
+    <div class="table-responsive border">
+      <table class="table">
+        <?php foreach ($cf_items as $cf_lbl => $cf_val) { ?>
+          <?php if (!empty($cf_val) && trim($cf_val) !== '' && $cf_val !== 'N/A' && $cf_val !== '0000-00-00') { ?>
+            <tr>
+              <th scope="col" style="width:35%;"><?php echo $cf_lbl; ?></th>
+              <td scope="col"><?php echo $cf_val; ?></td>
+            </tr>
+          <?php } ?>
+        <?php } ?>
+      </table>
+    </div>
+  </div>
+</div>
+<?php } ?>
+
 <div class="box box-default">
       	<div class="box-header">
 		<div class="col-sm-12">

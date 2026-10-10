@@ -768,6 +768,58 @@
         </div>
 
 
+      <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">Compliance, Licensing &amp; Accounting Profile (Custom Fields)</h3>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Trade License Number</label>
+              <input type="text" class="form-control" name="trade_license_no" placeholder="TL-DXB-000000" value="<?php echo isset($list['trade_license_no']) ? $list['trade_license_no'] : ''; ?>">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Trade License Issue Date</label>
+              <input type="text" class="form-control datepicker" name="trade_license_issue_date" placeholder="DD-MM-YYYY" value="<?php echo isset($list['trade_license_issue_date']) ? $list['trade_license_issue_date'] : ''; ?>">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Trade License Expiry Date</label>
+              <input type="text" class="form-control datepicker" name="trade_license_expiry_date" placeholder="DD-MM-YYYY" value="<?php echo isset($list['trade_license_expiry_date']) ? $list['trade_license_expiry_date'] : ''; ?>">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>Trade License Renewal Date</label>
+              <input type="text" class="form-control datepicker" name="trade_license_renewal_date" placeholder="DD-MM-YYYY" value="<?php echo isset($list['trade_license_renewal_date']) ? $list['trade_license_renewal_date'] : ''; ?>">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>FS YE (Financial Statement Year-End)</label>
+              <input type="text" class="form-control datepicker" name="fs_ye" placeholder="DD-MM-YYYY" value="<?php echo isset($list['fs_ye']) ? $list['fs_ye'] : ''; ?>">
+            </div>
+          </div>
+          <div class="col-lg-4 col-sm-6">
+            <div class="form-group">
+              <label>VAT QE (VAT Quarterly Ending)</label>
+              <select class="form-control" name="vat_qe">
+                <option value="">Select VAT Quarter</option>
+                <option value="Q1 (31 March)" <?php if(isset($list['vat_qe']) && $list['vat_qe']=='Q1 (31 March)') echo 'selected'; ?>>Q1 (31 March)</option>
+                <option value="Q2 (30 June)" <?php if(isset($list['vat_qe']) && $list['vat_qe']=='Q2 (30 June)') echo 'selected'; ?>>Q2 (30 June)</option>
+                <option value="Q3 (30 September)" <?php if(isset($list['vat_qe']) && $list['vat_qe']=='Q3 (30 September)') echo 'selected'; ?>>Q3 (30 September)</option>
+                <option value="Q4 (31 December)" <?php if(isset($list['vat_qe']) && $list['vat_qe']=='Q4 (31 December)') echo 'selected'; ?>>Q4 (31 December)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
        <div class="box box-default">
       <div class="box-header with-border">
         <h3 class="box-title">Back Office Update</h3>

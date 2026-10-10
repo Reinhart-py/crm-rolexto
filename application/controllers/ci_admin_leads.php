@@ -400,6 +400,12 @@ function __construct()
 
 				'v_amount'=>$v_amount,
 				'v_remark'=>$v_remark,
+				'trade_license_no'=>isset($trade_license_no)?$trade_license_no:'',
+				'trade_license_issue_date'=>!empty($trade_license_issue_date)?db_date($trade_license_issue_date):'',
+				'trade_license_expiry_date'=>!empty($trade_license_expiry_date)?db_date($trade_license_expiry_date):'',
+				'trade_license_renewal_date'=>!empty($trade_license_renewal_date)?db_date($trade_license_renewal_date):'',
+				'fs_ye'=>!empty($fs_ye)?db_date($fs_ye):'',
+				'vat_qe'=>isset($vat_qe)?$vat_qe:'',
 
 
 				//'c_code'=>$c_code,				
@@ -581,6 +587,12 @@ function __construct()
 
 				'v_amount'=>$v_amount,
 				'v_remark'=>$v_remark,
+				'trade_license_no'=>isset($trade_license_no)?$trade_license_no:'',
+				'trade_license_issue_date'=>!empty($trade_license_issue_date)?db_date($trade_license_issue_date):'',
+				'trade_license_expiry_date'=>!empty($trade_license_expiry_date)?db_date($trade_license_expiry_date):'',
+				'trade_license_renewal_date'=>!empty($trade_license_renewal_date)?db_date($trade_license_renewal_date):'',
+				'fs_ye'=>!empty($fs_ye)?db_date($fs_ye):'',
+				'vat_qe'=>isset($vat_qe)?$vat_qe:'',
 				
 				'edited_by'=>$this->session->userdata('manager_id'),
 				'admin_status'=>1,
