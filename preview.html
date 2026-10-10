@@ -12,6 +12,8 @@
     var saved = localStorage.getItem('crm_theme');
     var pref = saved ? saved : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', pref);
+    var savedPal = localStorage.getItem('crm_palette') || 'green';
+    document.documentElement.setAttribute('data-crm-palette', savedPal);
 })();
 </script>
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -190,7 +192,7 @@
 <div class="auth-overlay" id="authOverlay" style="display:none;">
     <div class="auth-card">
         <div class="auth-header">
-            <img src="assets/dist/img/favicon.jpg" alt="Logo">
+            <img src="assets/green-dark.jpg" alt="Logo" class="crm-brand-logo-img">
             <h3>Manager Login</h3>
             <p>Rolexto CRM Portal</p>
         </div>
@@ -218,7 +220,7 @@
 <div class="wrapper">
 <aside class="crm-sidebar" id="crmSidebar">
 <a href="#dashboard" class="crm-sidebar-brand" data-view="dashboard">
-<img src="assets/dist/img/favicon.jpg" alt="Rolexto" style="height:32px; width:32px; border-radius:6px; object-fit:cover;">
+<img src="assets/green-dark.jpg" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:46px; width:46px; border-radius:10px; object-fit:cover;">
 <div class="brand-text">
 <span class="brand-title">Rolexto CRM</span>
 </div>
@@ -3202,7 +3204,6 @@ JA
 </div>
 </section>
 </div>
-</div>
 <footer class="crm-footer">
 <span>&copy; 2026 Rolexto CRM Platform. All rights reserved.</span>
 <span>Rolexto Real Estate &amp; Business Setup</span>
@@ -3728,6 +3729,9 @@ function switchView(viewName) {
         $('#crmMobileOverlay').removeClass('active');
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (viewName === 'dashboard' && typeof renderDashboardCharts === 'function') {
+        renderDashboardCharts();
+    }
 }
 
 $(function() {
@@ -3736,6 +3740,12 @@ $(function() {
     if ($('#crmPaletteText').length) {
         $('#crmPaletteText').text(curPalette === 'red' ? 'Red Mode' : 'Green Mode');
     }
+    function updateBrandLogos(pal) {
+        var logo = pal === 'red' ? 'assets/red-dark.jpg' : 'assets/green-dark.jpg';
+        $('.crm-brand-logo-img').attr('src', logo);
+    }
+    updateBrandLogos(curPalette);
+
     $('#crmPaletteToggle').on('click', function(e) {
         e.preventDefault();
         var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
@@ -3743,6 +3753,7 @@ $(function() {
         document.documentElement.setAttribute('data-crm-palette', next);
         localStorage.setItem('crm_palette', next);
         $('#crmPaletteText').text(next === 'red' ? 'Red Mode' : 'Green Mode');
+        updateBrandLogos(next);
         if (typeof renderDashboardCharts === 'function') {
             renderDashboardCharts();
         }
@@ -3792,48 +3803,71 @@ $(function() {
         $(this).parent('.crm-nav-item').toggleClass('open');
     });
 
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var barOptions = {
-        scaleBeginAtZero: true,
-        scaleShowGridLines: true,
-        scaleGridLineColor: 'rgba(226, 232, 240, 0.6)',
-        scaleGridLineWidth: 1,
-        scaleShowHorizontalLines: true,
-        scaleShowVerticalLines: false,
-        barShowStroke: false,
-        barValueSpacing: 12,
-        barDatasetSpacing: 1,
-        responsive: true,
-        maintainAspectRatio: false
-    };
+    function renderDashboardCharts() {
+        var curPalette = document.documentElement.getAttribute('data-crm-palette') || 'green';
+        var isRed = curPalette === 'red';
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var barFill = isRed ? '#dc2626' : '#10b981';
+        var barStroke = isRed ? '#b91c1c' : '#059669';
+        var gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(226, 232, 240, 0.6)';
+        var scaleTextColor = isDark ? '#94a3b8' : '#64748b';
 
-    var b3 = document.getElementById('barChart3');
-    if (b3) {
-        new Chart(b3.getContext('2d')).Bar({
-            labels: months,
-            datasets: [{
-                label: 'Previous Performance',
-                fillColor: '#10b981',
-                strokeColor: '#059669',
-                pointColor: '#10b981',
-                data: [14, 18, 16, 22, 20, 26, 24, 30, 36, 32, 40, 48]
-            }]
-        }, barOptions);
-    }
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var bOptions = {
+            scaleBeginAtZero: true,
+            scaleShowGridLines: true,
+            scaleGridLineColor: gridColor,
+            scaleGridLineWidth: 1,
+            scaleShowHorizontalLines: true,
+            scaleShowVerticalLines: false,
+            scaleFontColor: scaleTextColor,
+            barShowStroke: false,
+            barValueSpacing: 12,
+            barDatasetSpacing: 1,
+            responsive: true,
+            maintainAspectRatio: false
+        };
 
-    var b4 = document.getElementById('barChart4');
-    if (b4) {
-        new Chart(b4.getContext('2d')).Bar({
-            labels: months,
-            datasets: [{
-                label: 'Team Projection',
-                fillColor: '#10b981',
-                strokeColor: '#059669',
-                pointColor: '#10b981',
-                data: [20, 28, 25, 35, 32, 42, 40, 50, 58, 52, 65, 75]
-            }]
-        }, barOptions);
+        var b3 = document.getElementById('barChart3');
+        if (b3 && b3.parentNode) {
+            var p3 = b3.parentNode;
+            var newB3 = document.createElement('canvas');
+            newB3.id = 'barChart3';
+            newB3.style.height = '230px';
+            p3.replaceChild(newB3, b3);
+            new Chart(newB3.getContext('2d')).Bar({
+                labels: months,
+                datasets: [{
+                    label: 'Previous Performance',
+                    fillColor: barFill,
+                    strokeColor: barStroke,
+                    pointColor: barFill,
+                    data: [14, 18, 16, 22, 20, 26, 24, 30, 36, 32, 40, 48]
+                }]
+            }, bOptions);
+        }
+
+        var b4 = document.getElementById('barChart4');
+        if (b4 && b4.parentNode) {
+            var p4 = b4.parentNode;
+            var newB4 = document.createElement('canvas');
+            newB4.id = 'barChart4';
+            newB4.style.height = '230px';
+            p4.replaceChild(newB4, b4);
+            new Chart(newB4.getContext('2d')).Bar({
+                labels: months,
+                datasets: [{
+                    label: 'Team Projection',
+                    fillColor: barFill,
+                    strokeColor: barStroke,
+                    pointColor: barFill,
+                    data: [20, 28, 25, 35, 32, 42, 40, 50, 58, 52, 65, 75]
+                }]
+            }, bOptions);
+        }
     }
+    window.renderDashboardCharts = renderDashboardCharts;
+    renderDashboardCharts();
 
     var pieOptions = {
         segmentShowStroke: true,

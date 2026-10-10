@@ -33,7 +33,7 @@
 <div class="wrapper">
 <aside class="crm-sidebar" id="crmSidebar">
 <a href="<?php echo base_url(); ?>manager/dashboard" class="crm-sidebar-brand">
-<img src="<?php echo base_url(); ?>assets/dist/img/favicon.jpg" alt="Rolexto" style="height:32px; width:32px; border-radius:6px; object-fit:cover;">
+<img src="<?php echo base_url(); ?>assets/green-dark.jpg" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:46px; width:46px; border-radius:10px; object-fit:cover;">
 <div class="brand-text">
 <span class="brand-title">Rolexto CRM</span>
 </div>
@@ -193,6 +193,13 @@ $(function() {
     if ($('#crmPaletteText').length) {
         $('#crmPaletteText').text(curPalette === 'red' ? 'Red' : 'Green');
     }
+    function updateBrandLogos(pal) {
+        var base = '<?php echo base_url(); ?>';
+        var logo = pal === 'red' ? base + 'assets/red-dark.jpg' : base + 'assets/green-dark.jpg';
+        $('.crm-brand-logo-img').attr('src', logo);
+    }
+    updateBrandLogos(curPalette);
+
     $('#crmPaletteToggle').on('click', function(e) {
         e.preventDefault();
         var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
@@ -200,6 +207,10 @@ $(function() {
         document.documentElement.setAttribute('data-crm-palette', next);
         localStorage.setItem('crm_palette', next);
         $('#crmPaletteText').text(next === 'red' ? 'Red' : 'Green');
+        updateBrandLogos(next);
+        if (typeof window.renderDashboardCharts === 'function') {
+            window.renderDashboardCharts();
+        }
     });
 
     $('#crmSidebarToggle').on('click', function(e) {

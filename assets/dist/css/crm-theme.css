@@ -148,10 +148,24 @@ body.hold-transition.skin-blue.sidebar-mini {
 .crm-sidebar-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 18px 20px;
+    gap: 14px;
+    padding: 16px 20px;
     border-bottom: 1px solid var(--crm-sidebar-border);
     text-decoration: none !important;
+}
+
+.crm-brand-logo-img {
+    height: 46px !important;
+    width: 46px !important;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+}
+
+.crm-sidebar-brand:hover .crm-brand-logo-img {
+    transform: scale(1.04);
 }
 
 .brand-text {
@@ -160,7 +174,7 @@ body.hold-transition.skin-blue.sidebar-mini {
 }
 
 .brand-title {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 800;
     color: #ffffff;
     letter-spacing: -0.02em;
@@ -1119,66 +1133,111 @@ label {
 .crm-modern-stat-card {
     background: var(--crm-card-bg);
     border: 1px solid var(--crm-border);
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 14px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    transition: all 0.2s ease;
+    border-top: 2px solid var(--crm-accent);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.04);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .crm-modern-stat-card:hover {
-    border-color: var(--crm-primary);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transform: translateY(-1px);
+    border-color: var(--crm-accent);
+    box-shadow: 0 10px 28px -4px var(--crm-accent-glow), 0 0 0 1px var(--crm-accent-glow);
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .crm-modern-stat-card {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 6px 24px -4px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .crm-modern-stat-card:hover {
+    border-color: var(--crm-accent);
+    box-shadow: 0 12px 32px -4px var(--crm-accent-glow), 0 0 0 1px var(--crm-accent);
 }
 
 .crm-modern-stat-card .card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .crm-modern-stat-card .card-title {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--crm-text);
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 8px;
     margin: 0;
+    letter-spacing: -0.01em;
+}
+
+.crm-modern-stat-card .card-title i {
+    color: var(--crm-accent);
+    font-size: 14px;
 }
 
 .crm-modern-stat-card .card-total-pill {
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 700;
-    padding: 2px 8px;
-    background: var(--crm-primary-subtle);
-    color: var(--crm-primary);
-    border-radius: 20px;
-    border: 1px solid var(--crm-primary);
+    padding: 3px 10px;
+    background: var(--crm-accent-light) !important;
+    color: var(--crm-accent) !important;
+    border-radius: 9999px;
+    border: 1px solid var(--crm-accent-glow) !important;
+    letter-spacing: 0.02em;
 }
 
 .crm-seg-bar {
     display: flex;
-    height: 6px;
-    border-radius: 6px;
+    height: 5px;
+    border-radius: 9999px;
     overflow: hidden;
     background: var(--crm-border-subtle);
-    margin-bottom: 12px;
-    gap: 2px;
+    margin-bottom: 14px;
+    gap: 1.5px;
 }
 
 .crm-seg-bar .crm-seg {
     height: 100%;
-    border-radius: 3px;
     transition: width 0.3s ease;
+}
+
+.crm-seg-bar .crm-seg.bg-red {
+    background-color: var(--crm-accent) !important;
+    opacity: 1;
+}
+
+.crm-seg-bar .crm-seg.bg-orange {
+    background-color: var(--crm-accent) !important;
+    opacity: 0.8;
+}
+
+.crm-seg-bar .crm-seg.bg-skyblue {
+    background-color: var(--crm-accent) !important;
+    opacity: 0.62;
+}
+
+.crm-seg-bar .crm-seg.bg-blue {
+    background-color: var(--crm-accent) !important;
+    opacity: 0.44;
+}
+
+.crm-seg-bar .crm-seg.bg-green {
+    background-color: var(--crm-accent) !important;
+    opacity: 0.28;
 }
 
 .crm-modern-stat-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5px;
+    gap: 8px;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -1196,28 +1255,66 @@ label {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4px 8px;
-    background: var(--crm-border-subtle);
-    border-radius: 6px;
-    font-size: 11px;
+    padding: 7px 11px;
+    background: var(--crm-bg);
+    border-radius: 8px;
+    font-size: 11.5px;
     font-weight: 500;
-    color: var(--crm-text-muted);
-    text-decoration: none;
+    color: var(--crm-text);
+    text-decoration: none !important;
     transition: all 0.15s ease;
-    border: 1px solid transparent;
+    border: 1px solid var(--crm-border);
 }
 
 .crm-modern-stat-chip:hover {
     background: var(--crm-card-hover);
     color: var(--crm-text);
-    border-color: var(--crm-border);
+    border-color: var(--crm-accent-border);
+    transform: translateY(-1px);
 }
 
-.crm-modern-stat-chip .badge {
-    font-weight: 700;
-    font-size: 10.5px;
-    padding: 2px 7px;
-    border-radius: 4px;
+.crm-modern-stat-chip span:first-child {
+    color: var(--crm-text-muted);
+    font-weight: 500;
+}
+
+.crm-modern-stat-chip .badge,
+.crm-modern-stat-chip .badge.bg-red,
+.crm-modern-stat-chip .badge.bg-orange,
+.crm-modern-stat-chip .badge.bg-skyblue,
+.crm-modern-stat-chip .badge.bg-blue,
+.crm-modern-stat-chip .badge.bg-green {
+    background: var(--crm-card-bg) !important;
+    color: var(--crm-text) !important;
+    border: 1px solid var(--crm-border) !important;
+    font-weight: 700 !important;
+    font-size: 11.5px !important;
+    padding: 3px 8px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+li.full-width .crm-modern-stat-chip {
+    background: var(--crm-accent-light) !important;
+    border: 1px solid var(--crm-accent-glow) !important;
+}
+
+li.full-width .crm-modern-stat-chip span:first-child {
+    color: var(--crm-accent) !important;
+    font-weight: 700 !important;
+}
+
+li.full-width .crm-modern-stat-chip .badge,
+li.full-width .crm-modern-stat-chip .badge.bg-red,
+li.full-width .crm-modern-stat-chip .badge.bg-green,
+li.full-width .crm-modern-stat-chip .badge.bg-orange,
+li.full-width .crm-modern-stat-chip .badge.bg-blue,
+li.full-width .crm-modern-stat-chip .badge.bg-skyblue {
+    background: var(--crm-accent) !important;
+    color: #ffffff !important;
+    border: none !important;
+    font-weight: 800 !important;
+    box-shadow: 0 2px 8px var(--crm-accent-glow) !important;
 }
 
 .crm-level-1-card {

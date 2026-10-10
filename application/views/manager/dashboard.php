@@ -585,83 +585,70 @@ if(!empty($myTleadp2)){  $myTleadstr2= implode(', ',$myTleadp2); }
     
     
     
-    var barChartCanvas                   = $('#barChart3').get(0).getContext('2d')
-    var barChart                         = new Chart(barChartCanvas)
-    var barChartData                     = areaChartData3
-    barChartData.datasets[0].fillColor   = '#00a65a'
-    barChartData.datasets[0].strokeColor = '#00a65a'
-    barChartData.datasets[0].pointColor  = '#00a65a'
-    var barChartOptions                  = {
-      
-      scaleBeginAtZero        : true,
-      
-      scaleShowGridLines      : true,
-      
-      scaleGridLineColor      : 'rgba(0,0,0,.05)',
-      
-      scaleGridLineWidth      : 1,
-      
-      scaleShowHorizontalLines: true,
-      
-      scaleShowVerticalLines  : true,
-      
-      barShowStroke           : true,
-      
-      barStrokeWidth          : 2,
-      
-      barValueSpacing         : 25,
-      
-      barDatasetSpacing       : 1,
-      
-      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
-      
-      responsive              : true,
-      maintainAspectRatio     : true
+    function renderDashboardCharts() {
+        var curPalette = document.documentElement.getAttribute('data-crm-palette') || 'green';
+        var isRed = curPalette === 'red';
+        var accentColor = isRed ? '#dc2626' : '#10b981';
+        var accentStroke = isRed ? '#b91c1c' : '#059669';
+
+        if ($('#barChart3').length) {
+            var b3 = document.getElementById('barChart3');
+            var p3 = b3.parentNode;
+            var newB3 = document.createElement('canvas');
+            newB3.id = 'barChart3';
+            p3.replaceChild(newB3, b3);
+            var chart3 = new Chart(newB3.getContext('2d'));
+            var data3 = $.extend(true, {}, areaChartData3);
+            data3.datasets[0].fillColor = accentColor;
+            data3.datasets[0].strokeColor = accentStroke;
+            data3.datasets[0].pointColor = accentColor;
+            var opts3 = {
+                scaleBeginAtZero: true,
+                scaleShowGridLines: true,
+                scaleGridLineColor: 'rgba(0,0,0,.05)',
+                scaleGridLineWidth: 1,
+                scaleShowHorizontalLines: true,
+                scaleShowVerticalLines: true,
+                barShowStroke: true,
+                barStrokeWidth: 2,
+                barValueSpacing: 25,
+                barDatasetSpacing: 1,
+                responsive: true,
+                maintainAspectRatio: true
+            };
+            chart3.Bar(data3, opts3);
+        }
+
+        if ($('#barChart4').length) {
+            var b4 = document.getElementById('barChart4');
+            var p4 = b4.parentNode;
+            var newB4 = document.createElement('canvas');
+            newB4.id = 'barChart4';
+            p4.replaceChild(newB4, b4);
+            var chart4 = new Chart(newB4.getContext('2d'));
+            var data4 = $.extend(true, {}, areaChartData4);
+            data4.datasets[0].fillColor = accentColor;
+            data4.datasets[0].strokeColor = accentStroke;
+            data4.datasets[0].pointColor = accentColor;
+            var opts4 = {
+                scaleBeginAtZero: true,
+                scaleShowGridLines: true,
+                scaleGridLineColor: 'rgba(0,0,0,.05)',
+                scaleGridLineWidth: 2,
+                scaleShowHorizontalLines: true,
+                scaleShowVerticalLines: true,
+                barShowStroke: true,
+                barStrokeWidth: 2,
+                barValueSpacing: 25,
+                barDatasetSpacing: 1,
+                responsive: true,
+                maintainAspectRatio: false
+            };
+            chart4.Bar(data4, opts4);
+        }
     }
-
-    barChartOptions.datasetFill = false
-    barChart.Bar(barChartData, barChartOptions)
-
-
-    
-    
-    
-    var barChartCanvas                   = $('#barChart4').get(0).getContext('2d')
-    var barChart                         = new Chart(barChartCanvas)
-    var barChartData                     = areaChartData4
-    barChartData.datasets[0].fillColor   = '#f39c12'
-    barChartData.datasets[0].strokeColor = '#f39c12'
-    barChartData.datasets[0].pointColor  = '#f39c12'
-    var barChartOptions                  = {
-      
-      scaleBeginAtZero        : true,
-      
-      scaleShowGridLines      : true,
-      
-      scaleGridLineColor      : 'rgba(0,0,0,.05)',
-      
-      scaleGridLineWidth      : 2,
-      
-      scaleShowHorizontalLines: true,
-      
-      scaleShowVerticalLines  : true,
-      
-      barShowStroke           : true,
-      
-      barStrokeWidth          : 2,
-      
-      barValueSpacing         : 25,
-      
-      barDatasetSpacing       : 1,
-      
-      legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
-      
-      responsive              : true,
-      maintainAspectRatio     : false
-    }
-
-    barChartOptions.datasetFill = false
-    barChart.Bar(barChartData, barChartOptions)
+    window.renderDashboardCharts = renderDashboardCharts;
+    renderDashboardCharts();
 
     
 
