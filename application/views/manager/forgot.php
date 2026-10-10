@@ -7,11 +7,11 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         
-<link rel="icon" id="crmFavicon" type="image/png" href="<?php echo base_url(); ?>assets/green-dark.png">
-<link rel="shortcut icon" id="crmFaviconShortcut" type="image/png" href="<?php echo base_url(); ?>assets/green-dark.png">
+<link rel="icon" id="crmFavicon" type="image/png" href="<?php echo base_url(); ?>assets/red-dark.png">
+<link rel="shortcut icon" id="crmFaviconShortcut" type="image/png" href="<?php echo base_url(); ?>assets/red-dark.png">
 <script>
 (function() {
-    var savedPal = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
+    var savedPal = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'red';
     var baseUrl = '<?php echo base_url(); ?>';
     var favLogo = baseUrl + (savedPal === 'red' ? 'assets/red-dark.png' : (savedPal === 'blue' ? 'assets/blue-dark.png' : (savedPal === 'black' ? 'assets/black-dark.png' : 'assets/green-dark.png')));
     var fav = document.getElementById('crmFavicon');

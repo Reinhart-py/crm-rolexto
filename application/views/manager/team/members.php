@@ -1,13 +1,27 @@
 <?php require_once(APPPATH."views/manager/elements/header.php"); ?>
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper px-4"> <!-- Content Header (Page header) -->
+<div class="content-wrapper px-4">
   <section class="content-header">
     <h1> <?php echo $info['page_heading']; ?> </h1>
+    <ol class="breadcrumb">
+      <li><a href="<?php echo base_url(); ?>manager/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="<?php echo base_url(); ?>manager/team/members">All Team Members</a></li>
+      <?php if($this->uri->segment(5)) { 
+        $target_user = $this->comman_model->getAll(array('id'=>$this->uri->segment(5)),'','ci_user','first');
+        if(!empty($target_user)) {
+      ?>
+      <li class="active"><?php echo $target_user['name']; ?>'s Team</li>
+      <?php } } ?>
+    </ol>
   </section>
-  <!-- Main content -->
-  <section class="content"> <!-- /.row -->
-    <div class="row"> <!-- form close-->
+  <section class="content">
+    <?php if($this->uri->segment(5)) { ?>
+    <div style="margin-bottom:12px;">
+      <a href="<?php echo base_url(); ?>manager/team/members" class="btn btn-sm btn-default"><i class="fa fa-arrow-left"></i> Back to Main Team</a>
+    </div>
+    <?php } ?>
+    <div class="row">
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">

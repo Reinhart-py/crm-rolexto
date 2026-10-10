@@ -20,6 +20,17 @@
           <?php echo get_message($this->session->flashdata('message'),'message'); ?>
 
           <div class="x_col-sm-auto  text-center pt-4 pt-md-0">
+            <div class="pull-left" style="display:flex; align-items:center; gap:10px;">
+              <label style="margin:0; font-weight:600;">Filter by Type:</label>
+              <select id="termsTypeFilter" class="form-control" style="width:auto; display:inline-block; border-radius:4px;">
+                <option value="">All Categories</option>
+                <option value="p_cat">Service Category (p_cat)</option>
+                <option value="s_cat">Sub Category (s_cat)</option>
+                <option value="v_status">Vertical Status (v_status)</option>
+                <option value="lead_cat">Lead Category (lead_cat)</option>
+                <option value="source">Lead Source (source)</option>
+              </select>
+            </div>
             <div class="pull-right">
               <a href="<?php echo base_url(); ?>manager/terms/add" class="btn btn-success"> Add New</a>
             </div>
@@ -30,7 +41,6 @@
         </div>
         
           <div class="box">
-            <!-- /.box-header -->        
           <div class="box-body table-responsive" > 
           <table id="example1" class="table table-hover table-bordered">  
                 <thead> 
@@ -59,20 +69,36 @@
                       <td>
                       <a href="<?php echo base_url(); ?>manager/terms/edit/<?php echo base64_encode($li['id']); ?>" data-toggle="tooltip" title="Edit" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
                       </td>
-                   </tr>
+                    </tr>
                  <?php	} } ?>
                </tbody>
               </table>
               
             </div>
-            <!-- /.box-body -->
           </div>
-          <!-- /.box -->
         </div>
       </div>
       </section>
      </div>
 <script>
+$(document).ready(function() {
+  $('#termsTypeFilter').on('change', function() {
+    var sel = $(this).val().toLowerCase().trim();
+    $('#example1 tbody tr').each(function() {
+      if (!sel) {
+        $(this).show();
+      } else {
+        var rowType = $(this).find('td:nth-child(2)').text().toLowerCase().trim();
+        if (rowType === sel || rowType.indexOf(sel) !== -1) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      }
+    });
+  });
+});
+
 function do_confirm()
 {
     job=confirm("Before this action...redirect you to Confirm Delete page... ");

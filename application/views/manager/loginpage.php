@@ -7,11 +7,11 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         
-<link rel="icon" id="crmFavicon" type="image/png" href="<?php echo base_url(); ?>assets/green-dark.png">
-<link rel="shortcut icon" id="crmFaviconShortcut" type="image/png" href="<?php echo base_url(); ?>assets/green-dark.png">
+<link rel="icon" id="crmFavicon" type="image/png" href="<?php echo base_url(); ?>assets/red-dark.png">
+<link rel="shortcut icon" id="crmFaviconShortcut" type="image/png" href="<?php echo base_url(); ?>assets/red-dark.png">
 <script>
 (function() {
-    var savedPal = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
+    var savedPal = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'red';
     var baseUrl = '<?php echo base_url(); ?>';
     var favLogo = baseUrl + (savedPal === 'red' ? 'assets/red-dark.png' : (savedPal === 'blue' ? 'assets/blue-dark.png' : (savedPal === 'black' ? 'assets/black-dark.png' : 'assets/green-dark.png')));
     var fav = document.getElementById('crmFavicon');
@@ -64,17 +64,12 @@
   </div>
  
      <?php echo get_message($this->session->flashdata('error_message'),'error_message'); ?> <?php echo get_message($this->session->flashdata('message'),'message'); ?>
-     <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:6px; padding:10px 12px; margin-bottom:15px; font-size:12px; text-align:left;">
-       <strong>System Credentials:</strong><br>
-       Administrator: <code>jules</code> / <code>jules123</code><br>
-       Sales Manager: <code>masoud</code> / <code>masoud123</code>
-     </div>
     <form action="<?php echo base_url(); ?>manager/login" method="post" id="managerLoginForm">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="email" id="loginEmail" placeholder="Enter Username or Email" value="jules">
+        <input type="text" class="form-control" name="email" id="loginEmail" placeholder="Enter Username or Email" value="">
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="password" id="loginPassword" placeholder="Enter Password" value="jules123">
+        <input type="password" class="form-control" name="password" id="loginPassword" placeholder="Enter Password" value="">
       </div>
  
  <div class="row">
@@ -89,16 +84,7 @@
    </div> 
  </div>
  </div>
- <div class="row" style="margin-top:12px;">
- <div class="col-xs-6">
-   <button type="button" class="btn btn-default btn-block btn-xs" onclick="document.getElementById('loginEmail').value='jules';document.getElementById('loginPassword').value='jules123';document.getElementById('managerLoginForm').submit();">Jules (Admin)</button>
- </div>
- <div class="col-xs-6">
-   <button type="button" class="btn btn-default btn-block btn-xs" onclick="document.getElementById('loginEmail').value='masoud';document.getElementById('loginPassword').value='masoud123';document.getElementById('managerLoginForm').submit();">Masoud (Mgr)</button>
- </div>
- </div>
 
-         
       </form> 
        
  </div>      

@@ -157,31 +157,35 @@
               </div>
             </div>
             
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
               <div class="form-group">
                 <label>Location</label>
-                <input type="text" class="form-control" name="location"  >
+                <input type="text" class="form-control" name="location" >
               </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
               <div class="form-group">
                 <label>Status<span>*</span></label>
                 <select class="form-control" required name="status">
                 <option value="">Select Status</option>
-               
                   <?php if(isset($st_list) && !empty($st_list)){
                     foreach($st_list as $cli){
                   ?>
                   <option value="<?php echo $cli['id']; ?>" ><?php echo $cli['status']; ?></option>
-              <?php } }  ?>
+              <?php } } ?>
             </select>
               </div>
             </div>
-           
-             <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
               <div class="form-group">
                 <label>Exp. Close Date<span>*</span></label>
-                <input type="text" class="form-control datepicker2" required name="close_date"  >
+                <input type="text" class="form-control datepicker2" required name="close_date" >
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="form-group">
+                <label>Exp. Closure Amount</label>
+                <input type="text" class="form-control only_number" name="close_amount" id="close_amount" readonly placeholder="Auto-calculated" >
               </div>
             </div>
 
@@ -607,109 +611,121 @@
             </tr>
             <tr>
               <td><input type="text" class="form-control" name="bo_cat[]" value="SPR" readonly=""></td>
-              <td><input type="text" class="form-control datepicker" name="bo_date[]"  ></td>
+              <td><input type="text" class="form-control datepicker" name="bo_date[]" ></td>
               <td>
-                <select class="form-control" style="width: 100%;" name="bo_status[]">
+                <select class="form-control bo_status_select" style="width: 100%;" name="bo_status[]">
                   <option value="Not Applicable" selected="selected">Not Applicable</option>
                   <option value="Pending Approval">Pending Approval</option>
                   <option value="Query">Query</option>
                   <option value="Approved">Approved</option> 
                   <option value="Expired">Expired</option> 
-                  <option value="Other">Other</option>                    
+                  <option value="Other">Other</option> 
                 </select>
               </td>
               <td><input type="text" class="form-control" name="bo_ref[]" ></td>
-              <td><input type="text" class="form-control" name="bo_remark[]" ></td>
+              <td><input type="text" class="form-control bo_remark_input" name="bo_remark[]" ></td>
             </tr>
 
              <tr>
               <td><input type="text" class="form-control" name="bo_cat[]" value="Company Code" readonly=""></td>
-              <td><input type="text" class="form-control datepicker" name="bo_date[]"  ></td>
-              <td colspan="3">
-                <select style="display:none;" class="form-control" style="width: 100%;" name="bo_status[]">
-                  <option value="">Not Applicable</option>                                    
+              <td><input type="text" class="form-control datepicker" name="bo_date[]" ></td>
+              <td>
+                <select class="form-control bo_status_select" style="width: 100%;" name="bo_status[]">
+                  <option value="Not Applicable" selected="selected">Not Applicable</option>
+                  <option value="Pending Approval">Pending Approval</option>
+                  <option value="Query">Query</option>
+                  <option value="Approved">Approved</option> 
+                  <option value="Expired">Expired</option> 
+                  <option value="Other">Other</option> 
                 </select>
-             <input type="hidden" class="form-control" name="bo_ref[]" >
-             <input type="text" class="form-control" name="bo_remark[]" ></td>
+              </td>
+              <td><input type="text" class="form-control" name="bo_ref[]" ></td>
+              <td><input type="text" class="form-control bo_remark_input" name="bo_remark[]" ></td>
             </tr>
 
              <tr>
               <td><input type="text" class="form-control" name="bo_cat[]" value="Lead Activity" readonly=""></td>
-              <td><input type="text" class="form-control datepicker" name="bo_date[]"  ></td>
+              <td><input type="text" class="form-control datepicker" name="bo_date[]" ></td>
               <td>
-                <select class="form-control" style="width: 100%;" name="bo_status[]">
+                <select class="form-control bo_status_select" style="width: 100%;" name="bo_status[]">
                   <option value="Not Applicable" selected="selected">Not Applicable</option>
                   <option value="Pending Approval">Pending Approval</option>
                   <option value="Query">Query</option>
                   <option value="Approved">Approved</option> 
                   <option value="Expired">Expired</option> 
-                  <option value="Other">Other</option>                    
+                  <option value="Other">Other</option> 
                 </select>
               </td>
               <td><input type="text" class="form-control" name="bo_ref[]" ></td>
-              <td><input type="text" class="form-control" name="bo_remark[]" ></td>
+              <td><input type="text" class="form-control bo_remark_input" name="bo_remark[]" ></td>
             </tr>
 
              <tr>
               <td><input type="text" class="form-control" name="bo_cat[]" value="Document Col/Sub" readonly=""></td>
-              <td><input type="text" class="form-control datepicker" name="bo_date[]"  ></td>
+              <td><input type="text" class="form-control datepicker" name="bo_date[]" ></td>
               <td>
-               <select class="form-control" style="width: 100%;" name="bo_status[]">
+               <select class="form-control bo_status_select" style="width: 100%;" name="bo_status[]">
                   <option value="Not Applicable" selected="selected">Not Applicable</option>
                   <option value="Pending Approval">Pending Approval</option>
                   <option value="Query">Query</option>
                   <option value="Approved">Approved</option> 
                   <option value="Expired">Expired</option> 
-                  <option value="Other">Other</option>                    
+                  <option value="Other">Other</option> 
                 </select>
               </td>
               <td><input type="text" class="form-control" name="bo_ref[]" ></td>
-              <td><input type="text" class="form-control" name="bo_remark[]" ></td>
+              <td><input type="text" class="form-control bo_remark_input" name="bo_remark[]" ></td>
             </tr>
 
              <tr>
               <td><input type="text" class="form-control" name="bo_cat[]" value="Pending Documents" readonly=""></td>
-              <td><input type="text" class="form-control datepicker" name="bo_date[]"  ></td>
-              <td colspan="3">
-                <select style="display:none;" class="form-control" style="width: 100%;" name="bo_status[]">
-                  <option value="">Not Applicable</option>                                    
+              <td><input type="text" class="form-control datepicker" name="bo_date[]" ></td>
+              <td>
+                <select class="form-control bo_status_select" style="width: 100%;" name="bo_status[]">
+                  <option value="Not Applicable" selected="selected">Not Applicable</option>
+                  <option value="Pending Approval">Pending Approval</option>
+                  <option value="Query">Query</option>
+                  <option value="Approved">Approved</option> 
+                  <option value="Expired">Expired</option> 
+                  <option value="Other">Other</option> 
                 </select>
-             <input type="hidden" class="form-control" name="bo_ref[]" >
-             <input type="text" class="form-control" name="bo_remark[]" ></td>
+              </td>
+              <td><input type="text" class="form-control" name="bo_ref[]" ></td>
+              <td><input type="text" class="form-control bo_remark_input" name="bo_remark[]" ></td>
             </tr>
 
              <tr>
               <td><input type="text" class="form-control" name="bo_cat[]" value="Video Verification" readonly=""></td>
-              <td><input type="text" class="form-control datepicker" name="bo_date[]"  ></td>
+              <td><input type="text" class="form-control datepicker" name="bo_date[]" ></td>
               <td>
-                <select class="form-control" style="width: 100%;" name="bo_status[]">
+                <select class="form-control bo_status_select" style="width: 100%;" name="bo_status[]">
                   <option value="Not Applicable" selected="selected">Not Applicable</option>
                   <option value="Pending Approval">Pending Approval</option>
                   <option value="Query">Query</option>
                   <option value="Approved">Approved</option> 
                   <option value="Expired">Expired</option> 
-                  <option value="Other">Other</option>                    
+                  <option value="Other">Other</option> 
                 </select>
               </td>
               <td><input type="text" class="form-control" name="bo_ref[]" ></td>
-              <td><input type="text" class="form-control" name="bo_remark[]" ></td>
+              <td><input type="text" class="form-control bo_remark_input" name="bo_remark[]" ></td>
             </tr>
 
              <tr>
               <td><input type="text" class="form-control" name="bo_cat[]" value="Post Verification" readonly=""></td>
-              <td><input type="text" class="form-control datepicker" name="bo_date[]"  ></td>
+              <td><input type="text" class="form-control datepicker" name="bo_date[]" ></td>
               <td>
-                <select class="form-control" style="width: 100%;" name="bo_status[]">
+                <select class="form-control bo_status_select" style="width: 100%;" name="bo_status[]">
                   <option value="Not Applicable" selected="selected">Not Applicable</option>
                   <option value="Pending Approval">Pending Approval</option>
                   <option value="Query">Query</option>
                   <option value="Approved">Approved</option> 
                   <option value="Expired">Expired</option> 
-                  <option value="Other">Other</option>                    
+                  <option value="Other">Other</option> 
                 </select>
               </td>
               <td><input type="text" class="form-control" name="bo_ref[]" ></td>
-              <td><input type="text" class="form-control" name="bo_remark[]" ></td>
+              <td><input type="text" class="form-control bo_remark_input" name="bo_remark[]" ></td>
             </tr>
           </table>
 
@@ -747,101 +763,124 @@
 
  $(document).ready(function () { 
 
-  $(document).on("click", "#add_btn", function () {
-
-    
-
-   $('form[name=add_form]').validate({         
-
-  submitHandler: function(form) {
-
-      form.submit();
-
+  function calcAmounts() {
+    var qty = parseFloat($('[name="qty"]').val()) || 1;
+    var mrc = parseFloat($('[name="mrc"]').val()) || 0;
+    var rev = parseFloat($('[name="revenue"]').val()) || 0;
+    var otc = parseFloat($('[name="otc"]').val()) || 0;
+    $('[name="mrr"]').val(mrc + rev);
+    if ($('#close_amount').length) {
+      $('#close_amount').val((qty * mrc) + otc + rev);
     }
+  }
+  $('[name="qty"], [name="mrc"], [name="revenue"], [name="otc"]').on('input change', calcAmounts);
+  calcAmounts();
 
+  $(document).on("change", ".bo_status_select", function() {
+    var $row = $(this).closest("tr");
+    var $remark = $row.find(".bo_remark_input");
+    var cat = $row.find('input[name="bo_cat[]"]').val();
+    if ($(this).val() === "Query") {
+      var explanation = prompt('Status for "' + cat + '" set to Query. Please provide a mandatory query explanation / remark:', $remark.val());
+      if (explanation !== null && explanation.trim() !== '') {
+        $remark.val(explanation);
+      }
+      $remark.prop('required', true).attr('placeholder', 'Mandatory Query explanation').focus();
+    } else {
+      $remark.prop('required', false).attr('placeholder', '');
+    }
+  });
+
+  $(document).on("click", "#add_btn", function (e) {
+    var hasMissingRemark = false;
+    $(".bo_status_select").each(function() {
+      if ($(this).val() === "Query") {
+        var $rem = $(this).closest("tr").find(".bo_remark_input");
+        var cat = $(this).closest("tr").find('input[name="bo_cat[]"]').val();
+        if (!$rem.val() || $rem.val().trim() === '') {
+          alert('Please enter a remark explaining the Query for "' + cat + '"');
+          $rem.focus();
+          hasMissingRemark = true;
+          return false;
+        }
+      }
+    });
+    if (hasMissingRemark) {
+      e.preventDefault();
+      return false;
+    }
+    $('form[name=add_form]').validate({         
+      submitHandler: function(form) {
+        form.submit();
+      }
+    });
   });
 
 });
 
-
-var input = $('[name="mrc"],[name="revenue"]'),
-    input1 = $('[name="mrc"]'),
-    input2 = $('[name="revenue"]'),
-    input3 = $('[name="mrr"]');
-input.change(function () {
-    input3.val((parseInt(input1.val()) || 0) + (parseInt(input2.val()) || 0));
-});
-
-
-
-});
-
-
-
-
-</script>
-<script>
-
-   function get_state()
+function get_state()
 {
-  
-      var stateID = $("#country").val();     
-        $.ajax({
-              type: "POST",
-        data: 'c_id='+stateID,
-          url: "<?php echo base_url(); ?>" + "ci_admin_user/get_state",
-        success:function(result){
-        if(result)
-        {
+  var stateID = $("#country").val();     
+  $.ajax({
+    type: "POST",
+    data: 'c_id='+stateID,
+    url: "<?php echo base_url(); ?>" + "ci_admin_user/get_state",
+    success:function(result){
+      if(result)
+      {
         $('#state').html(result);
-        }
-        else
-        {
+      }
+      else
+      {
         alert('error');
-        }
-        }
-          });
-
-
+      }
+    }
+  });
 }
 
 function check_cname()
 {
-  
-      var c_name =$(".c_username").val();     
-        $.ajax({
-              type: "POST",
-        data: 'c_name='+c_name,
-          url: "<?php echo base_url(); ?>" + "ci_admin_user/check_name",
-        success:function(data){
-        if(data=='done')
-        {
+  var c_name =$(".c_username").val();     
+  $.ajax({
+    type: "POST",
+    data: 'c_name='+c_name,
+    url: "<?php echo base_url(); ?>" + "ci_admin_user/check_name",
+    success:function(data){
+      if(data=='done')
+      {
         $('.alert_msg').text('');
-        }
-        else
-        {
+      }
+      else
+      {
         $('.c_username').val('');
         $('.alert_msg').text('Company name already exist.');
-        }
-        }
-          });
-
-
+      }
+    }
+  });
 }
 
 function getpSubCat()
 {  
-        var stateID = $("#pcatselect").val();     
-        $.ajax({
-          type: "POST",
-          data: 'c_id='+stateID,
-          url: "<?php echo base_url(); ?>" + "ci_admin_terms/getSubCatAjax",
-          success:function(result){
-            if(result){
-              $('#psubcatselect').html(result);
-            }           
-        }
-        });
+  var stateID = $("#pcatselect").val();     
+  if (!stateID) {
+    $('#psubcatselect').html('<option value="">Select</option>');
+    return;
+  }
+  $.ajax({
+    type: "POST",
+    data: 'c_id='+stateID,
+    url: "<?php echo base_url(); ?>" + "ci_admin_terms/getSubCatAjax",
+    success:function(result){
+      if(result && result.trim() !== ''){
+        $('#psubcatselect').html(result);
+      } else {
+        $('#psubcatselect').html('<option value="">No sub-categories available</option>');
+      }         
+    },
+    error: function(){
+      $('#psubcatselect').html('<option value="">Error loading sub-categories</option>');
+    }
+  });
 }
 </script>
 <?php require_once(APPPATH."views/manager/elements/footer.php"); ?>

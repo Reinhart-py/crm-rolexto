@@ -38,23 +38,19 @@
 
 
             <div class="col-xs-6 col-sm-3">
-                
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>0</h3>
-                        <p>.......</p>
+                        <h3><?php echo (!empty($dashboard_f['total_today']) ? $dashboard_f['total_today'] : 0); ?></h3>
+                        <p>My Follow-ups</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="ion ion-calendar"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo base_url(); ?>manager/leads/followups" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>           
 
-           
-
             <div class="col-xs-6 col-sm-3">
-                
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h3><?php echo $dashboard_count['count_vetricals']; ?></h3>
@@ -68,26 +64,23 @@
             </div>
 
             <div class="col-xs-6 col-sm-3">
-                
                 <div class="small-box bg-red">
                     <div class="inner">
                         <h3><?php echo $dashboard_Tcount['count_user']; ?></h3>
-                        <p>Team Member</p>
+                        <p>Team Members</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="ion ion-person-stalker"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="<?php echo base_url(); ?>manager/team/members" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
            
      </div>
 
-
         <div class="row count-widget">
 
 <div class="col-xs-6 col-sm-3">
-       
        <div class="small-box bg-aqua">
            <div class="inner">
                <h3><?php echo $dashboard_Tcount['count_leads']; ?></h3>
@@ -98,31 +91,22 @@
            </div>
            <a href="<?php echo base_url(); ?>manager/team/leads" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
        </div>
-
    </div>
 
-
-
    <div class="col-xs-6 col-sm-3">
-                
       <div class="small-box bg-yellow">
           <div class="inner">
-              <h3>0</h3>
-              <p>.......</p>
+              <h3><?php echo (!empty($dashboard_Tf['total_today']) ? $dashboard_Tf['total_today'] : 0); ?></h3>
+              <p>Team Follow-ups</p>
           </div>
           <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-calendar"></i>
           </div>
-          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="<?php echo base_url(); ?>manager/team/leads_followup" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
-
-
     </div>
 
-
-
    <div class="col-xs-6 col-sm-3">
-       
        <div class="small-box bg-green">
            <div class="inner">
                <h3><?php echo $dashboard_Tcount['count_vetricals']; ?></h3>
@@ -136,18 +120,16 @@
    </div>
    
    <div class="col-xs-6 col-sm-3">
-       
        <div class="small-box bg-red">
            <div class="inner">
                <h3><?php echo $dashboard_Tcount['count_today_birth']; ?></h3>
                <p>Team Birthday</p>
            </div>
            <div class="icon">
-               <i class="ion ion-bag"></i>
+               <i class="ion ion-heart"></i>
            </div>
-           <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+           <a href="<?php echo base_url(); ?>manager/team/members" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
        </div>
-
    </div>
 </div>
 

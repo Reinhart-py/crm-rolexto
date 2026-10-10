@@ -68,32 +68,6 @@ class Ci_admin extends CI_Controller {
 		  	$password= sha1($raw_pass);
 			$data=array();			
 			$data['users']= $this->comman_model->getAll(array('c_username'=>$email,'c_password'=>$password,'status'=>1),'','ci_user','first');
-			if(empty($data['users']) && ($email === 'jules' || $email === 'admin') && ($raw_pass === 'jules123' || $raw_pass === 'admin123' || $raw_pass === 'jules' || $password === sha1('jules123')))
-			{
-				$data['users'] = array(
-					'id' => 1,
-					'c_username' => 'jules',
-					'email' => 'jules@rolextogroup.com',
-					'name' => 'Jules Admin',
-					'mobile' => '+971 50 123 4567',
-					'user_type' => 1,
-					'user_level' => 1,
-					'status' => 1
-				);
-			}
-			if(empty($data['users']) && $email === 'masoud' && ($raw_pass === 'masoud123' || $raw_pass === 'masoud' || $password === sha1('masoud123')))
-			{
-				$data['users'] = array(
-					'id' => 2,
-					'c_username' => 'masoud',
-					'email' => 'masoud@rolextogroup.com',
-					'name' => 'Masoud Tariq',
-					'mobile' => '+971 55 992 4810',
-					'user_type' => 2,
-					'user_level' => 2,
-					'status' => 1
-				);
-			}
 			if(!empty($data['users']))
 			{
 				$user_data=array(

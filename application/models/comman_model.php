@@ -4,23 +4,6 @@
 		{
 			parent::__construct();
 			$this->load->database();
-			if ($this->db->table_exists('ci_leads')) {
-				$cf_cols = array(
-					'trade_license_no' => 'VARCHAR(255) NULL',
-					'trade_license_issue_date' => 'DATE NULL',
-					'trade_license_expiry_date' => 'DATE NULL',
-					'trade_license_renewal_date' => 'DATE NULL',
-					'fs_ye' => 'DATE NULL',
-					'vat_qe' => 'VARCHAR(100) NULL',
-					'custom_fields' => 'TEXT NULL'
-				);
-				$existing_fields = $this->db->list_fields('ci_leads');
-				foreach ($cf_cols as $col => $type) {
-					if (!in_array($col, $existing_fields)) {
-						@$this->db->query("ALTER TABLE `ci_leads` ADD COLUMN `$col` $type");
-					}
-				}
-			}
 		} 
 	public function getAll($array,$order=array(),$table='ci_posts',$first=''){
 				$ret = array();

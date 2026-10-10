@@ -41,7 +41,7 @@
 <div class="wrapper">
 <aside class="crm-sidebar" id="crmSidebar">
 <a href="<?php echo base_url(); ?>manager/dashboard" class="crm-sidebar-brand">
-<img src="<?php echo base_url(); ?>assets/green-dark.png" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:48px; width:48px; border-radius:10px; object-fit:contain;">
+<img src="<?php echo base_url(); ?>assets/red-dark.png" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:48px; width:48px; border-radius:10px; object-fit:contain;">
 <div class="brand-text">
 <span class="brand-title">Rolexto CRM</span>
 </div>
@@ -209,7 +209,7 @@ $(function() {
         }
     }
 
-    var initialGlobalPalette = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
+    var initialGlobalPalette = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'red';
     applyGlobalPalette(initialGlobalPalette);
 
     window.addEventListener('storage', function(e) {
@@ -220,8 +220,8 @@ $(function() {
 
     $('#crmPaletteToggle').on('click', function(e) {
         e.preventDefault();
-        var cur = document.documentElement.getAttribute('data-crm-palette') || 'green';
-        var next = cur === 'green' ? 'red' : (cur === 'red' ? 'blue' : (cur === 'blue' ? 'black' : 'green'));
+        var cur = document.documentElement.getAttribute('data-crm-palette') || 'red';
+        var next = cur === 'red' ? 'blue' : (cur === 'blue' ? 'black' : (cur === 'black' ? 'green' : 'red'));
         applyGlobalPalette(next);
     });
 
@@ -244,6 +244,12 @@ $(function() {
         e.stopPropagation();
         var $item = $(this).closest('.crm-nav-item');
         $item.toggleClass('open');
+    });
+    $(document).on('click', '.crm-subnav-link', function() {
+        if ($(window).width() < 992) {
+            $('#crmSidebar').removeClass('crm-sidebar-open');
+            $('#crmMobileOverlay').removeClass('active');
+        }
     });
     var userThemeMode = localStorage.getItem('crm_user_theme_mode') || localStorage.getItem('crm_theme') || 'dark';
     document.documentElement.setAttribute('data-theme', userThemeMode);

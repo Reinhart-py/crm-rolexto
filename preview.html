@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="icon" id="crmFavicon" type="image/png" href="assets/green-dark.png">
-<link rel="shortcut icon" id="crmFaviconShortcut" type="image/png" href="assets/green-dark.png">
+<link rel="icon" id="crmFavicon" type="image/png" href="assets/red-dark.png">
+<link rel="shortcut icon" id="crmFaviconShortcut" type="image/png" href="assets/red-dark.png">
 <title>Rolexto CRM - Enterprise Workspace</title>
 <script>
 (function() {
     var saved = localStorage.getItem('crm_theme');
     var pref = saved ? saved : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', pref);
-    var savedPal = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
+    var savedPal = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'red';
     document.documentElement.setAttribute('data-crm-palette', savedPal);
     var favLogo = savedPal === 'red' ? 'assets/red-dark.png' : (savedPal === 'blue' ? 'assets/blue-dark.png' : (savedPal === 'black' ? 'assets/black-dark.png' : 'assets/green-dark.png'));
     var fav = document.getElementById('crmFavicon');
@@ -196,32 +196,21 @@
 <div class="auth-overlay" id="authOverlay">
     <div class="auth-card">
         <div class="auth-header">
-            <img src="assets/green-dark.png" alt="Logo" class="crm-brand-logo-img">
+            <img src="assets/red-dark.png" alt="Logo" class="crm-brand-logo-img">
             <h3>Enterprise Portal Login</h3>
             <p>Rolexto CRM Workspace</p>
-        </div>
-        <div class="auth-hint">
-            <strong>Authorized Access Credentials:</strong><br>
-            Administrator: <code>jules</code> / <code>jules123</code><br>
-            Sales Manager: <code>masoud</code> / <code>masoud123</code><br>
-            System Admin: <code>admin</code> / <code>admin123</code>
         </div>
         <form id="authForm" onsubmit="handleAuthSubmit(event)">
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" id="authUsername" class="form-control" value="jules" required autocomplete="username">
+                <input type="text" id="authUsername" class="form-control" value="" placeholder="Enter Username" required autocomplete="username">
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" id="authPassword" class="form-control" value="jules123" required autocomplete="current-password">
+                <input type="password" id="authPassword" class="form-control" value="" placeholder="Enter Password" required autocomplete="current-password">
             </div>
             <div id="authError" style="color:#ef4444; font-size:12px; margin-bottom:10px; display:none;">Invalid username or password</div>
             <button type="submit" class="auth-btn-primary">Sign In</button>
-            <div style="display:flex; gap:6px; margin-top:10px;">
-                <button type="button" class="auth-btn-secondary" style="margin-top:0; flex:1;" onclick="quickAdminLogin('jules')">Jules (Admin)</button>
-                <button type="button" class="auth-btn-secondary" style="margin-top:0; flex:1;" onclick="quickAdminLogin('masoud')">Masoud (Mgr)</button>
-                <button type="button" class="auth-btn-secondary" style="margin-top:0; flex:1;" onclick="quickAdminLogin('admin')">Admin</button>
-            </div>
         </form>
     </div>
 </div>
@@ -229,7 +218,7 @@
 <div class="wrapper">
 <aside class="crm-sidebar" id="crmSidebar">
 <a href="#dashboard" class="crm-sidebar-brand" data-view="dashboard">
-<img src="assets/green-dark.png" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:48px; width:48px; border-radius:10px; object-fit:contain;">
+<img src="assets/red-dark.png" alt="Rolexto" id="crmBrandLogo" class="crm-brand-logo-img" style="height:48px; width:48px; border-radius:10px; object-fit:contain;">
 <div class="brand-text">
 <span class="brand-title">Rolexto CRM</span>
 </div>
@@ -5908,7 +5897,7 @@ window.crmNavigate = switchView;
 }
 
 $(function() {
-    var curPalette = localStorage.getItem('crm_palette') || 'green';
+    var curPalette = localStorage.getItem('crm_palette') || 'red';
     document.documentElement.setAttribute('data-crm-palette', curPalette);
     if ($('#crmPaletteText').length) {
         var palName = curPalette === 'red' ? 'Red' : (curPalette === 'blue' ? 'Blue' : (curPalette === 'black' ? 'Black' : 'Green'));
@@ -5988,7 +5977,7 @@ $(function() {
     }
     window.applyThemeMode = applyThemeMode;
 
-    var initialGlobalPalette = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'green';
+    var initialGlobalPalette = localStorage.getItem('crm_global_palette') || localStorage.getItem('crm_palette') || 'red';
     applyGlobalPalette(initialGlobalPalette);
 
     var userThemeMode = localStorage.getItem('crm_user_theme_mode') || localStorage.getItem('crm_theme') || 'dark';
@@ -6008,15 +5997,30 @@ $(function() {
         if (!tbody.length) return;
         tbody.empty();
         if (level === 'masoud') {
-            $('#teamBreadcrumb').html('<a onclick="loadTeamLevel(\'root\')"><i class="fa fa-home"></i> Organization Root</a> <span>/</span> <span>Masoud Tariq Team</span>');
-            var row = '<tr><td>1</td><td><a href="javascript:void(0)" onclick="openUserPreview(\'masoud\')">Masoud Tariq</a></td><td>Senior Sales Director</td><td>Executive Sales</td><td>+971 55 992 4810</td><td>masoud@rolextogroup.com</td><td>Dubai Downtown</td><td>Jules Admin</td><td><button class="btn btn-xs btn-info" onclick="openUserPreview(\'masoud\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'masoud\')"><i class="fa fa-pencil"></i></button></td></tr>';
-            tbody.append(row);
+            $('#teamBreadcrumb').html('<a href="javascript:void(0)" onclick="loadTeamLevel(\'root\')"><i class="fa fa-home"></i> Organization Root</a> <span>/</span> <span>Masoud Tariq (Sales Director)</span>');
+            var r1 = '<tr><td data-label="S Number">1</td><td data-label="Name"><a href="javascript:void(0)" onclick="openUserPreview(\'tariq\')">Tariq Mansoor</a></td><td data-label="Applied Destination">Team Leader - Telecom</td><td data-label="Department">Enterprise Telecom</td><td data-label="Contact Number">+971 50 771 8829</td><td data-label="Email">tariq@rolextogroup.com</td><td data-label="Location">Dubai HQ</td><td data-label="Manager">Masoud Tariq</td><td data-label="Action"><button class="btn btn-xs btn-info" onclick="openUserPreview(\'tariq\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'tariq\')"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-default" onclick="loadTeamLevel(\'tariq\')"><i class="fa fa-sitemap"></i> Drilldown</button></td></tr>';
+            var r2 = '<tr><td data-label="S Number">2</td><td data-label="Name"><a href="javascript:void(0)" onclick="openUserPreview(\'fatima\')">Fatima Zahra</a></td><td data-label="Applied Destination">Team Leader - Real Estate</td><td data-label="Department">Real Estate Leasing</td><td data-label="Contact Number">+971 55 334 1120</td><td data-label="Email">fatima@rolextogroup.com</td><td data-label="Location">Downtown</td><td data-label="Manager">Masoud Tariq</td><td data-label="Action"><button class="btn btn-xs btn-info" onclick="openUserPreview(\'fatima\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'fatima\')"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-default" onclick="loadTeamLevel(\'fatima\')"><i class="fa fa-sitemap"></i> Drilldown</button></td></tr>';
+            var r3 = '<tr><td data-label="S Number">3</td><td data-label="Name"><a href="javascript:void(0)" onclick="openUserPreview(\'ahmed\')">Ahmed Bilal</a></td><td data-label="Applied Destination">Team Leader - Business Setup</td><td data-label="Department">Business Advisory</td><td data-label="Contact Number">+971 54 889 2234</td><td data-label="Email">ahmed@rolextogroup.com</td><td data-label="Location">Business Bay</td><td data-label="Manager">Masoud Tariq</td><td data-label="Action"><button class="btn btn-xs btn-info" onclick="openUserPreview(\'ahmed\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'ahmed\')"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-default" onclick="loadTeamLevel(\'ahmed\')"><i class="fa fa-sitemap"></i> Drilldown</button></td></tr>';
+            tbody.append(r1).append(r2).append(r3);
+        } else if (level === 'tariq') {
+            $('#teamBreadcrumb').html('<a href="javascript:void(0)" onclick="loadTeamLevel(\'root\')"><i class="fa fa-home"></i> Organization Root</a> <span>/</span> <a href="javascript:void(0)" onclick="loadTeamLevel(\'masoud\')">Masoud Tariq</a> <span>/</span> <span>Tariq Mansoor Team</span>');
+            var r1 = '<tr><td data-label="S Number">1</td><td data-label="Name"><a href="javascript:void(0)" onclick="openUserPreview(\'karim\')">Karim Al-Hassan</a></td><td data-label="Applied Destination">Senior Sales Executive</td><td data-label="Department">Enterprise Telecom</td><td data-label="Contact Number">+971 52 443 1928</td><td data-label="Email">karim@rolextogroup.com</td><td data-label="Location">Dubai HQ</td><td data-label="Manager">Tariq Mansoor</td><td data-label="Action"><button class="btn btn-xs btn-info" onclick="openUserPreview(\'karim\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'karim\')"><i class="fa fa-pencil"></i></button></td></tr>';
+            tbody.append(r1);
+        } else if (level === 'fatima') {
+            $('#teamBreadcrumb').html('<a href="javascript:void(0)" onclick="loadTeamLevel(\'root\')"><i class="fa fa-home"></i> Organization Root</a> <span>/</span> <a href="javascript:void(0)" onclick="loadTeamLevel(\'masoud\')">Masoud Tariq</a> <span>/</span> <span>Fatima Zahra Team</span>');
+            var r1 = '<tr><td data-label="S Number">1</td><td data-label="Name"><a href="javascript:void(0)" onclick="openUserPreview(\'layla\')">Layla Qasim</a></td><td data-label="Applied Destination">Leasing Consultant</td><td data-label="Department">Real Estate Leasing</td><td data-label="Contact Number">+971 56 778 9912</td><td data-label="Email">layla@rolextogroup.com</td><td data-label="Location">Downtown</td><td data-label="Manager">Fatima Zahra</td><td data-label="Action"><button class="btn btn-xs btn-info" onclick="openUserPreview(\'layla\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'layla\')"><i class="fa fa-pencil"></i></button></td></tr>';
+            tbody.append(r1);
+        } else if (level === 'ahmed') {
+            $('#teamBreadcrumb').html('<a href="javascript:void(0)" onclick="loadTeamLevel(\'root\')"><i class="fa fa-home"></i> Organization Root</a> <span>/</span> <a href="javascript:void(0)" onclick="loadTeamLevel(\'masoud\')">Masoud Tariq</a> <span>/</span> <span>Ahmed Bilal Team</span>');
+            var r1 = '<tr><td data-label="S Number">1</td><td data-label="Name"><a href="javascript:void(0)" onclick="openUserPreview(\'samir\')">Samir Daoud</a></td><td data-label="Applied Destination">Advisory Executive</td><td data-label="Department">Business Advisory</td><td data-label="Contact Number">+971 55 667 8821</td><td data-label="Email">samir@rolextogroup.com</td><td data-label="Location">Business Bay</td><td data-label="Manager">Ahmed Bilal</td><td data-label="Action"><button class="btn btn-xs btn-info" onclick="openUserPreview(\'samir\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'samir\')"><i class="fa fa-pencil"></i></button></td></tr>';
+            tbody.append(r1);
         } else {
-            $('#teamBreadcrumb').html('<a onclick="loadTeamLevel(\'root\')"><i class="fa fa-home"></i> Organization Root</a>');
-            var r1 = '<tr><td>1</td><td><a href="javascript:void(0)" onclick="openUserPreview(\'jules\')">Jules Admin</a></td><td>Executive Management</td><td>Board Administration</td><td>+971 50 123 4567</td><td>jules@rolextogroup.com</td><td>Dubai HQ</td><td>Board</td><td><button class="btn btn-xs btn-info" onclick="openUserPreview(\'jules\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'jules\')"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-default" onclick="loadTeamLevel(\'masoud\')"><i class="fa fa-sitemap"></i> Drilldown</button></td></tr>';
-            var r2 = '<tr><td>2</td><td><a href="javascript:void(0)" onclick="openUserPreview(\'masoud\')">Masoud Tariq</a></td><td>Senior Sales Director</td><td>Executive Sales</td><td>+971 55 992 4810</td><td>masoud@rolextogroup.com</td><td>Dubai Downtown</td><td>Jules Admin</td><td><button class="btn btn-xs btn-info" onclick="openUserPreview(\'masoud\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'masoud\')"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-default" onclick="loadTeamLevel(\'masoud\')"><i class="fa fa-sitemap"></i> Drilldown</button></td></tr>';
+            $('#teamBreadcrumb').html('<a href="javascript:void(0)" onclick="loadTeamLevel(\'root\')"><i class="fa fa-home"></i> Organization Root</a>');
+            var r1 = '<tr><td data-label="S Number">1</td><td data-label="Name"><a href="javascript:void(0)" onclick="openUserPreview(\'jules\')">Jules Admin</a></td><td data-label="Applied Destination">Executive Management</td><td data-label="Department">Board Administration</td><td data-label="Contact Number">+971 50 123 4567</td><td data-label="Email">jules@rolextogroup.com</td><td data-label="Location">Dubai HQ</td><td data-label="Manager">Board</td><td data-label="Action"><button class="btn btn-xs btn-info" onclick="openUserPreview(\'jules\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'jules\')"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-default" onclick="loadTeamLevel(\'masoud\')"><i class="fa fa-sitemap"></i> Drilldown</button></td></tr>';
+            var r2 = '<tr><td data-label="S Number">2</td><td data-label="Name"><a href="javascript:void(0)" onclick="openUserPreview(\'masoud\')">Masoud Tariq</a></td><td data-label="Applied Destination">Senior Sales Director</td><td data-label="Department">Executive Sales</td><td data-label="Contact Number">+971 55 992 4810</td><td data-label="Email">masoud@rolextogroup.com</td><td data-label="Location">Dubai Downtown</td><td data-label="Manager">Jules Admin</td><td data-label="Action"><button class="btn btn-xs btn-info" onclick="openUserPreview(\'masoud\')"><i class="fa fa-eye"></i></button> <button class="btn btn-xs btn-primary" onclick="openUserEdit(\'masoud\')"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-default" onclick="loadTeamLevel(\'masoud\')"><i class="fa fa-sitemap"></i> Drilldown</button></td></tr>';
             tbody.append(r1).append(r2);
         }
+        if (typeof initResponsiveTableLabels === 'function') initResponsiveTableLabels();
     }
     window.loadTeamLevel = loadTeamLevel;
 

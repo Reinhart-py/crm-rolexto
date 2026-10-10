@@ -95,7 +95,18 @@
 
                   <td><?php echo $li['title'];?></td>      
 
-                 <td><?php echo $li['level'];?></td> 
+                  <td><?php 
+                    $lvl_map = array(
+                      1 => 'Level 1 - Executive / Managing Director',
+                      2 => 'Level 2 - Operations Head',
+                      3 => 'Level 3 - Sales Manager',
+                      4 => 'Level 4 - Team Leader',
+                      5 => 'Level 5 - Sales Agent'
+                    );
+                    $lvl = (int)$li['level'];
+                    $lvl_name = isset($lvl_map[$lvl]) ? $lvl_map[$lvl] : 'Level '.$li['level'];
+                    echo '<span class="badge" style="background:#b91c1c; color:#fff; font-weight:600; padding:5px 10px; border-radius:4px; font-size:12px;">' . $lvl_name . '</span>';
+                  ?></td> 
 
                   <td><?php 
 
