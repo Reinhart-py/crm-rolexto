@@ -448,7 +448,7 @@
 <h3 class="box-title">My Followups</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChart1" style="height:110px; max-height:110px;"></canvas>
+<canvas id="pieChart1" style="height:65px; max-height:65px;"></canvas>
 </div>
 <div class="box-footer no-padding">
 <ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">4</span></a></li>
@@ -465,7 +465,7 @@
 <h3 class="box-title">My Meetings</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChart2" style="height:110px; max-height:110px;"></canvas>
+<canvas id="pieChart2" style="height:65px; max-height:65px;"></canvas>
 </div>
 <div class="box-footer no-padding">
 <ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">2</span></a></li>
@@ -482,7 +482,7 @@
 <h3 class="box-title">My Closures</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChartClosures" style="height:110px; max-height:110px;"></canvas>
+<canvas id="pieChartClosures" style="height:65px; max-height:65px;"></canvas>
 </div>
 <div class="box-footer no-padding">
 <ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>This Month</span><span class="badge bg-green">5</span></a></li>
@@ -499,7 +499,7 @@
 <h3 class="box-title">My Vertical FU</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChartVertFU" style="height:110px; max-height:110px;"></canvas>
+<canvas id="pieChartVertFU" style="height:65px; max-height:65px;"></canvas>
 </div>
 <div class="box-footer no-padding">
 <ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">1</span></a></li>
@@ -519,7 +519,7 @@
 <h3 class="box-title">Team Followups</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChart3" style="height:110px; max-height:110px;"></canvas>
+<canvas id="pieChart3" style="height:65px; max-height:65px;"></canvas>
 </div>
 <div class="box-footer no-padding">
 <ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">12</span></a></li>
@@ -536,7 +536,7 @@
 <h3 class="box-title">Team Meetings</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChart4" style="height:110px; max-height:110px;"></canvas>
+<canvas id="pieChart4" style="height:65px; max-height:65px;"></canvas>
 </div>
 <div class="box-footer no-padding">
 <ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">6</span></a></li>
@@ -553,7 +553,7 @@
 <h3 class="box-title">Team Closures</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChartTeamClosures" style="height:110px; max-height:110px;"></canvas>
+<canvas id="pieChartTeamClosures" style="height:65px; max-height:65px;"></canvas>
 </div>
 <div class="box-footer no-padding">
 <ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>This Month</span><span class="badge bg-green">14</span></a></li>
@@ -570,7 +570,7 @@
 <h3 class="box-title">Team Vertical FU</h3>
 </div>
 <div class="box-body">
-<canvas id="pieChartTeamVertFU" style="height:110px; max-height:110px;"></canvas>
+<canvas id="pieChartTeamVertFU" style="height:65px; max-height:65px;"></canvas>
 </div>
 <div class="box-footer no-padding">
 <ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">5</span></a></li>
@@ -1014,45 +1014,116 @@
 </div>
 </div>
 
-<div class="form-section-title"><i class="fa fa-briefcase"></i> 8. Back Office Activity Update</div>
+<div class="form-section-title"><i class="fa fa-briefcase"></i> 8. Back Office Activity Update Matrix (All 7 Verification Tiers)</div>
 <div class="table-responsive">
 <table class="table table-bordered table-striped" id="boLeadTable">
 <thead>
 <tr>
-<th>Category</th>
-<th>Date</th>
-<th>Status</th>
-<th>Reference</th>
-<th>S</th>
-<th>Remark</th>
+<th style="width:22%;">Category</th>
+<th style="width:16%;">Date</th>
+<th style="width:20%;">Status</th>
+<th style="width:18%;">Reference</th>
+<th>Remarks</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td><input type="text" class="form-control" name="bo_cat[]" value="SPR / SRB" readonly></td>
+<td><input type="date" class="form-control" name="bo_date[]"></td>
 <td>
-<select name="bo_cat[]" class="form-control">
-<option value="SRB">SRB</option>
-<option value="Company Code">Company Code</option>
-<option value="Lead Cap Activity">Lead Cap Activity</option>
-<option value="Document Code">Document Code</option>
-<option value="Pending Document">Pending Document</option>
-<option value="Video Verification">Video Verification</option>
-<option value="Post Verification">Post Verification</option>
-</select>
-</td>
-<td><input type="date" name="bo_date[]" class="form-control"></td>
-<td>
-<select name="bo_status[]" class="form-control">
-<option value="Not Applicable">Not Applicable</option>
+<select class="form-control" name="bo_status[]">
+<option value="Not Applicable" selected>Not Applicable</option>
 <option value="Pending Approval">Pending Approval</option>
 <option value="Query">Query</option>
 <option value="Approved">Approved</option>
-<option value="Rejected">Rejected</option>
+<option value="Expired">Expired</option>
+<option value="Other">Other</option>
 </select>
 </td>
-<td><input type="text" name="bo_ref[]" class="form-control" placeholder="Ref code"></td>
-<td><input type="text" name="bo_s[]" class="form-control" placeholder="S"></td>
-<td><input type="text" name="bo_remark[]" class="form-control" placeholder="Remark"></td>
+<td><input type="text" class="form-control" name="bo_ref[]" placeholder="SPR Ref"></td>
+<td><input type="text" class="form-control" name="bo_remark[]" placeholder="Telecom SPR remarks"></td>
+</tr>
+<tr>
+<td><input type="text" class="form-control" name="bo_cat[]" value="Company Code" readonly></td>
+<td><input type="date" class="form-control" name="bo_date[]"></td>
+<td colspan="3">
+<input type="hidden" name="bo_status[]" value="Not Applicable">
+<input type="hidden" name="bo_ref[]" value="">
+<input type="text" class="form-control" name="bo_remark[]" placeholder="Corporate registrar license code & notes">
+</td>
+</tr>
+<tr>
+<td><input type="text" class="form-control" name="bo_cat[]" value="Lead Cap Activity" readonly></td>
+<td><input type="date" class="form-control" name="bo_date[]"></td>
+<td>
+<select class="form-control" name="bo_status[]">
+<option value="Not Applicable" selected>Not Applicable</option>
+<option value="Pending Approval">Pending Approval</option>
+<option value="Query">Query</option>
+<option value="Approved">Approved</option>
+<option value="Expired">Expired</option>
+<option value="Other">Other</option>
+</select>
+</td>
+<td><input type="text" class="form-control" name="bo_ref[]" placeholder="Cap Code"></td>
+<td><input type="text" class="form-control" name="bo_remark[]" placeholder="Capacity validation remarks"></td>
+</tr>
+<tr>
+<td><input type="text" class="form-control" name="bo_cat[]" value="Document Code" readonly></td>
+<td><input type="date" class="form-control" name="bo_date[]"></td>
+<td colspan="3">
+<input type="hidden" name="bo_status[]" value="Not Applicable">
+<input type="hidden" name="bo_ref[]" value="">
+<input type="text" class="form-control" name="bo_remark[]" placeholder="Document intake filing code">
+</td>
+</tr>
+<tr>
+<td><input type="text" class="form-control" name="bo_cat[]" value="Pending Document" readonly></td>
+<td><input type="date" class="form-control" name="bo_date[]"></td>
+<td>
+<select class="form-control" name="bo_status[]">
+<option value="Not Applicable" selected>Not Applicable</option>
+<option value="Pending Approval">Pending Approval</option>
+<option value="Query">Query</option>
+<option value="Approved">Approved</option>
+<option value="Expired">Expired</option>
+<option value="Other">Other</option>
+</select>
+</td>
+<td><input type="text" class="form-control" name="bo_ref[]" placeholder="Doc Ref"></td>
+<td><input type="text" class="form-control" name="bo_remark[]" placeholder="Pending compliance items"></td>
+</tr>
+<tr>
+<td><input type="text" class="form-control" name="bo_cat[]" value="Video Verification" readonly></td>
+<td><input type="date" class="form-control" name="bo_date[]"></td>
+<td>
+<select class="form-control" name="bo_status[]">
+<option value="Not Applicable" selected>Not Applicable</option>
+<option value="Pending Approval">Pending Approval</option>
+<option value="Query">Query</option>
+<option value="Approved">Approved</option>
+<option value="Expired">Expired</option>
+<option value="Other">Other</option>
+</select>
+</td>
+<td><input type="text" class="form-control" name="bo_ref[]" placeholder="Session Ref"></td>
+<td><input type="text" class="form-control" name="bo_remark[]" placeholder="Live video confirmation remarks"></td>
+</tr>
+<tr>
+<td><input type="text" class="form-control" name="bo_cat[]" value="Post Verification" readonly></td>
+<td><input type="date" class="form-control" name="bo_date[]"></td>
+<td>
+<select class="form-control" name="bo_status[]">
+<option value="Not Applicable" selected>Not Applicable</option>
+<option value="Pending Approval">Pending Approval</option>
+<option value="Query">Query</option>
+<option value="Approved">Approved</option>
+<option value="Expired">Expired</option>
+<option value="Other">Other</option>
+</select>
+</td>
+<td><input type="text" class="form-control" name="bo_ref[]" placeholder="Post Ref"></td>
+<td><input type="text" class="form-control" name="bo_remark[]" placeholder="Final post-audit clearance"></td>
 </tr>
 </tbody>
 </table>
@@ -1143,8 +1214,15 @@
 </div>
 
 <div class="box box-default">
-<div class="box-header with-border">
-<h3 class="box-title">Recent Back Office Records</h3>
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+<h3 class="box-title">Back Office Verification Records</h3>
+<div class="btn-group btn-group-sm" id="boFilterButtonGroup">
+<button type="button" class="btn btn-default active" onclick="filterBOTable('all')">All Records (7)</button>
+<button type="button" class="btn btn-default" onclick="filterBOTable('Query')"><span class="badge bg-orange">Query (1)</span></button>
+<button type="button" class="btn btn-default" onclick="filterBOTable('Pending Approval')"><span class="badge bg-blue">Pending (2)</span></button>
+<button type="button" class="btn btn-default" onclick="filterBOTable('Approved')"><span class="badge bg-green">Approved (3)</span></button>
+<button type="button" class="btn btn-default" onclick="filterBOTable('Expired')"><span class="badge bg-red">Expired (1)</span></button>
+</div>
 </div>
 <div class="box-body">
 <div class="table-responsive">
@@ -1152,37 +1230,85 @@
 <thead>
 <tr>
 <th>Category</th>
+<th>Lead / Client</th>
 <th>Date</th>
 <th>Status</th>
 <th>Reference</th>
 <th>S</th>
 <th>Remark</th>
+<th>Action</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td><span class="label label-primary">SRB</span></td>
+<tbody id="boRecordsTableBody">
+<tr data-status="Approved">
+<td><span class="label label-primary">SPR / SRB</span></td>
+<td>#RLX-10488 David Finch</td>
 <td>09-Oct-2026</td>
 <td><span class="badge bg-green">Approved</span></td>
 <td>REF-SRB-992</td>
 <td>S-1</td>
 <td>Commercial trade license verified</td>
+<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for SPR / SRB');"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
-<tr>
+<tr data-status="Pending Approval">
 <td><span class="label label-info">Company Code</span></td>
+<td>#RLX-10489 Al-Futtaim</td>
 <td>08-Oct-2026</td>
 <td><span class="badge bg-blue">Pending Approval</span></td>
 <td>CC-4019</td>
 <td>S-2</td>
 <td>Awaiting corporate registrar seal</td>
+<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Company Code');"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
-<tr>
-<td><span class="label label-warning">Video Verification</span></td>
+<tr data-status="Approved">
+<td><span class="label label-default">Lead Cap Activity</span></td>
+<td>#RLX-10488 David Finch</td>
 <td>07-Oct-2026</td>
+<td><span class="badge bg-green">Approved</span></td>
+<td>LC-1102</td>
+<td>S-1</td>
+<td>Telecom capacity check cleared</td>
+<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Lead Cap Activity');"><i class="fa fa-refresh"></i> Update</button></td>
+</tr>
+<tr data-status="Query">
+<td><span class="label label-warning">Document Code</span></td>
+<td>#RLX-10490 Sobha Realty</td>
+<td>06-Oct-2026</td>
+<td><span class="badge bg-orange">Query</span></td>
+<td>DC-7741</td>
+<td>S-1</td>
+<td>Passport copy signature mismatch</td>
+<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Document Code');"><i class="fa fa-refresh"></i> Update</button></td>
+</tr>
+<tr data-status="Pending Approval">
+<td><span class="label label-info">Pending Document</span></td>
+<td>#RLX-10492 Emaar Towers</td>
+<td>05-Oct-2026</td>
+<td><span class="badge bg-blue">Pending Approval</span></td>
+<td>PD-3301</td>
+<td>S-2</td>
+<td>Awaiting Ejari registration document</td>
+<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Pending Document');"><i class="fa fa-refresh"></i> Update</button></td>
+</tr>
+<tr data-status="Approved">
+<td><span class="label label-success">Video Verification</span></td>
+<td>#RLX-10488 David Finch</td>
+<td>04-Oct-2026</td>
 <td><span class="badge bg-green">Approved</span></td>
 <td>VV-8812</td>
 <td>S-1</td>
-<td>Identity confirmed via live video session</td>
+<td>Live video verification completed</td>
+<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Video Verification');"><i class="fa fa-refresh"></i> Update</button></td>
+</tr>
+<tr data-status="Expired">
+<td><span class="label label-danger">Post Verification</span></td>
+<td>#RLX-10480 Damac Properties</td>
+<td>01-Oct-2026</td>
+<td><span class="badge bg-red">Expired</span></td>
+<td>PV-2209</td>
+<td>S-3</td>
+<td>Compliance grace period exceeded</td>
+<td><button class="btn btn-xs btn-default" onclick="alert('Status updated for Post Verification');"><i class="fa fa-refresh"></i> Update</button></td>
 </tr>
 </tbody>
 </table>
@@ -1275,6 +1401,17 @@
 <h3 class="box-title">Hierarchical Team Structure</h3>
 </div>
 <div class="box-body">
+<div class="team-subnav-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; padding:10px 14px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px;">
+<a href="#team-members" class="btn btn-xs btn-default" data-view="team-members"><i class="fa fa-users"></i> Members</a>
+<a href="#hierarchy-chart" class="btn btn-xs btn-default" data-view="hierarchy-chart"><i class="fa fa-sitemap"></i> Org Chart</a>
+<a href="#team-leads" class="btn btn-xs btn-default" data-view="team-leads"><i class="fa fa-cubes"></i> Leads</a>
+<a href="#team-verticals" class="btn btn-xs btn-default" data-view="team-verticals"><i class="fa fa-briefcase"></i> Verticals</a>
+<a href="#team-followups" class="btn btn-xs btn-default" data-view="team-followups"><i class="fa fa-calendar"></i> Follow-ups</a>
+<a href="#team-meetings" class="btn btn-xs btn-default" data-view="team-meetings"><i class="fa fa-handshake-o"></i> Meetings</a>
+<a href="#assigned-meetings" class="btn btn-xs btn-default" data-view="assigned-meetings"><i class="fa fa-exchange"></i> Assign Meetings</a>
+<a href="#assigned-leads" class="btn btn-xs btn-default" data-view="assigned-leads"><i class="fa fa-user-plus"></i> Assign Leads</a>
+<a href="#dept-performance" class="btn btn-xs btn-default" data-view="dept-performance"><i class="fa fa-bar-chart"></i> Performance Report</a>
+</div>
 <div class="drilldown-breadcrumb" id="teamBreadcrumb">
 <a onclick="loadTeamLevel('root')"><i class="fa fa-home"></i> Organization Root</a>
 </div>
@@ -1304,6 +1441,17 @@
 
 <div class="crm-view-pane" id="view-team-leads">
 <section class="content-header">
+<div class="team-subnav-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; padding:10px 14px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px;">
+<a href="#team-members" class="btn btn-xs btn-default" data-view="team-members"><i class="fa fa-users"></i> Members</a>
+<a href="#hierarchy-chart" class="btn btn-xs btn-default" data-view="hierarchy-chart"><i class="fa fa-sitemap"></i> Org Chart</a>
+<a href="#team-leads" class="btn btn-xs btn-default" data-view="team-leads"><i class="fa fa-cubes"></i> Leads</a>
+<a href="#team-verticals" class="btn btn-xs btn-default" data-view="team-verticals"><i class="fa fa-briefcase"></i> Verticals</a>
+<a href="#team-followups" class="btn btn-xs btn-default" data-view="team-followups"><i class="fa fa-calendar"></i> Follow-ups</a>
+<a href="#team-meetings" class="btn btn-xs btn-default" data-view="team-meetings"><i class="fa fa-handshake-o"></i> Meetings</a>
+<a href="#assigned-meetings" class="btn btn-xs btn-default" data-view="assigned-meetings"><i class="fa fa-exchange"></i> Assign Meetings</a>
+<a href="#assigned-leads" class="btn btn-xs btn-default" data-view="assigned-leads"><i class="fa fa-user-plus"></i> Assign Leads</a>
+<a href="#dept-performance" class="btn btn-xs btn-default" data-view="dept-performance"><i class="fa fa-bar-chart"></i> Performance Report</a>
+</div>
 <h1><i class="fa fa-cubes"></i> Team Leads</h1>
 </section>
 <section class="content">
@@ -1411,6 +1559,17 @@
 
 <div class="crm-view-pane" id="view-team-verticals">
 <section class="content-header">
+<div class="team-subnav-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; padding:10px 14px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px;">
+<a href="#team-members" class="btn btn-xs btn-default" data-view="team-members"><i class="fa fa-users"></i> Members</a>
+<a href="#hierarchy-chart" class="btn btn-xs btn-default" data-view="hierarchy-chart"><i class="fa fa-sitemap"></i> Org Chart</a>
+<a href="#team-leads" class="btn btn-xs btn-default" data-view="team-leads"><i class="fa fa-cubes"></i> Leads</a>
+<a href="#team-verticals" class="btn btn-xs btn-default" data-view="team-verticals"><i class="fa fa-briefcase"></i> Verticals</a>
+<a href="#team-followups" class="btn btn-xs btn-default" data-view="team-followups"><i class="fa fa-calendar"></i> Follow-ups</a>
+<a href="#team-meetings" class="btn btn-xs btn-default" data-view="team-meetings"><i class="fa fa-handshake-o"></i> Meetings</a>
+<a href="#assigned-meetings" class="btn btn-xs btn-default" data-view="assigned-meetings"><i class="fa fa-exchange"></i> Assign Meetings</a>
+<a href="#assigned-leads" class="btn btn-xs btn-default" data-view="assigned-leads"><i class="fa fa-user-plus"></i> Assign Leads</a>
+<a href="#dept-performance" class="btn btn-xs btn-default" data-view="dept-performance"><i class="fa fa-bar-chart"></i> Performance Report</a>
+</div>
 <h1><i class="fa fa-sitemap"></i> Team Verticals</h1>
 </section>
 <section class="content">
@@ -1751,6 +1910,891 @@
 </section>
 </div>
 
+
+<div class="crm-view-pane" id="view-hierarchy-chart">
+<section class="content-header">
+<h1><i class="fa fa-sitemap"></i> Organization Hierarchy Chart</h1>
+<div class="team-subnav-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; padding:10px 14px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px;">
+<a href="#team-members" class="btn btn-xs btn-default" data-view="team-members"><i class="fa fa-users"></i> Members</a>
+<a href="#hierarchy-chart" class="btn btn-xs btn-default" data-view="hierarchy-chart"><i class="fa fa-sitemap"></i> Org Chart</a>
+<a href="#team-leads" class="btn btn-xs btn-default" data-view="team-leads"><i class="fa fa-cubes"></i> Leads</a>
+<a href="#team-verticals" class="btn btn-xs btn-default" data-view="team-verticals"><i class="fa fa-briefcase"></i> Verticals</a>
+<a href="#team-followups" class="btn btn-xs btn-default" data-view="team-followups"><i class="fa fa-calendar"></i> Follow-ups</a>
+<a href="#team-meetings" class="btn btn-xs btn-default" data-view="team-meetings"><i class="fa fa-handshake-o"></i> Meetings</a>
+<a href="#assigned-meetings" class="btn btn-xs btn-default" data-view="assigned-meetings"><i class="fa fa-exchange"></i> Assign Meetings</a>
+<a href="#assigned-leads" class="btn btn-xs btn-default" data-view="assigned-leads"><i class="fa fa-user-plus"></i> Assign Leads</a>
+<a href="#dept-performance" class="btn btn-xs btn-default" data-view="dept-performance"><i class="fa fa-bar-chart"></i> Performance Report</a>
+</div>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border">
+<h3 class="box-title">Enterprise Reporting Structure</h3>
+</div>
+<div class="box-body">
+<div class="row">
+<div class="col-sm-12 text-center" style="margin-bottom:20px;">
+<div style="display:inline-block; padding:12px 24px; background:var(--crm-primary); color:#fff; border-radius:8px; font-weight:700; box-shadow:0 2px 6px rgba(0,0,0,0.15);">
+<i class="fa fa-star"></i> Jules Admin (Super Administrator - Level 1)
+<div style="font-size:11px; font-weight:400; opacity:0.9;">Rolexto Corporate HQ • Executive Board</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12 text-center" style="margin-bottom:20px;">
+<div style="display:inline-block; width:2px; height:20px; background:var(--crm-border);"></div><br>
+<div style="display:inline-block; padding:10px 20px; background:var(--crm-border-subtle); border:1px solid var(--crm-border); border-radius:8px; font-weight:700; cursor:pointer;" onclick="switchView('team-members'); loadTeamLevel('masoud');">
+<i class="fa fa-user-circle"></i> Masoud Tariq (Regional Sales Director - Level 2)
+<div style="font-size:11px; font-weight:400; color:var(--crm-text-muted);">Direct Reports: 3 Team Leads • 18 Agents • Quota: AED 10M</div>
+</div>
+</div>
+</div>
+<div class="row text-center">
+<div class="col-sm-4">
+<div style="padding:12px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px; margin-bottom:10px;">
+<div style="font-weight:700; color:var(--crm-primary);"><i class="fa fa-users"></i> Tariq Al-Sayed</div>
+<div style="font-size:11px; color:var(--crm-text-muted);">Team Lead (Enterprise) - Level 3</div>
+<div style="font-size:10.5px; margin-top:6px; padding:4px; background:var(--crm-border-subtle); border-radius:4px;">
+Subordinates: Omar Khaled, Sarah Jenkins<br>Revenue: AED 2.8M (112%)
+</div>
+<button class="btn btn-xs btn-default" style="margin-top:6px;" onclick="switchView('team-members'); loadTeamLevel('tariq');"><i class="fa fa-arrow-right"></i> Inspect Team</button>
+</div>
+</div>
+<div class="col-sm-4">
+<div style="padding:12px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px; margin-bottom:10px;">
+<div style="font-weight:700; color:var(--crm-primary);"><i class="fa fa-users"></i> Fatima Al-Zahra</div>
+<div style="font-size:11px; color:var(--crm-text-muted);">Team Lead (SME Commercial) - Level 3</div>
+<div style="font-size:10.5px; margin-top:6px; padding:4px; background:var(--crm-border-subtle); border-radius:4px;">
+Subordinates: Khalid Mansoor, Layla Qasim<br>Revenue: AED 2.1M (105%)
+</div>
+<button class="btn btn-xs btn-default" style="margin-top:6px;" onclick="switchView('team-members'); loadTeamLevel('fatima');"><i class="fa fa-arrow-right"></i> Inspect Team</button>
+</div>
+</div>
+<div class="col-sm-4">
+<div style="padding:12px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px; margin-bottom:10px;">
+<div style="font-weight:700; color:var(--crm-primary);"><i class="fa fa-users"></i> Ahmed Mansoor</div>
+<div style="font-size:11px; color:var(--crm-text-muted);">Team Lead (Government Accounts) - Level 3</div>
+<div style="font-size:10.5px; margin-top:6px; padding:4px; background:var(--crm-border-subtle); border-radius:4px;">
+Subordinates: Zayd Al-Otaiba, Reem Al-Nuaimi<br>Revenue: AED 1.5M (98%)
+</div>
+<button class="btn btn-xs btn-default" style="margin-top:6px;" onclick="switchView('team-members'); loadTeamLevel('ahmed');"><i class="fa fa-arrow-right"></i> Inspect Team</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-team-followups">
+<section class="content-header">
+<h1><i class="fa fa-calendar"></i> Team Follow-ups Agenda</h1>
+<div class="team-subnav-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; padding:10px 14px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px;">
+<a href="#team-members" class="btn btn-xs btn-default" data-view="team-members"><i class="fa fa-users"></i> Members</a>
+<a href="#hierarchy-chart" class="btn btn-xs btn-default" data-view="hierarchy-chart"><i class="fa fa-sitemap"></i> Org Chart</a>
+<a href="#team-leads" class="btn btn-xs btn-default" data-view="team-leads"><i class="fa fa-cubes"></i> Leads</a>
+<a href="#team-verticals" class="btn btn-xs btn-default" data-view="team-verticals"><i class="fa fa-briefcase"></i> Verticals</a>
+<a href="#team-followups" class="btn btn-xs btn-default" data-view="team-followups"><i class="fa fa-calendar"></i> Follow-ups</a>
+<a href="#team-meetings" class="btn btn-xs btn-default" data-view="team-meetings"><i class="fa fa-handshake-o"></i> Meetings</a>
+<a href="#assigned-meetings" class="btn btn-xs btn-default" data-view="assigned-meetings"><i class="fa fa-exchange"></i> Assign Meetings</a>
+<a href="#assigned-leads" class="btn btn-xs btn-default" data-view="assigned-leads"><i class="fa fa-user-plus"></i> Assign Leads</a>
+<a href="#dept-performance" class="btn btn-xs btn-default" data-view="dept-performance"><i class="fa fa-bar-chart"></i> Performance Report</a>
+</div>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+<h3 class="box-title">Follow-up Calendar &amp; Schedule</h3>
+<div style="display:flex; gap:8px;">
+<select class="form-control input-sm" style="width:160px;" id="teamFUFilterAgent" onchange="filterTeamFUTable()">
+<option value="">All Team Agents</option>
+<option value="Omar Khaled">Omar Khaled</option>
+<option value="Sarah Jenkins">Sarah Jenkins</option>
+<option value="Khalid Mansoor">Khalid Mansoor</option>
+<option value="Zayd Al-Otaiba">Zayd Al-Otaiba</option>
+</select>
+<select class="form-control input-sm" style="width:140px;" id="teamFUFilterStatus" onchange="filterTeamFUTable()">
+<option value="">All Statuses</option>
+<option value="Today">Today</option>
+<option value="Upcoming">Upcoming</option>
+<option value="Missed">Missed</option>
+</select>
+</div>
+</div>
+<div class="box-body">
+<div class="table-responsive">
+<table class="table table-bordered table-striped" id="teamFUTable">
+<thead>
+<tr>
+<th>Lead Ref</th>
+<th>Customer Name</th>
+<th>Contact</th>
+<th>Scheduled Date</th>
+<th>Time</th>
+<th>Assigned Executive</th>
+<th>Vertical</th>
+<th>Status</th>
+<th>Follow-up Remarks</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#RLX-10488</td>
+<td>David Alexander Finch</td>
+<td>+971 50 119 2200</td>
+<td>10-Oct-2026</td>
+<td>03:30 PM</td>
+<td>Omar Khaled</td>
+<td>Prime Commercial</td>
+<td><span class="badge bg-green">Today</span></td>
+<td>Review second floor lease addendum</td>
+<td><button class="btn btn-xs btn-default" onclick="openLeadModal(10488)"><i class="fa fa-eye"></i> View</button></td>
+</tr>
+<tr>
+<td>#RLX-10489</td>
+<td>Al-Futtaim Enterprises</td>
+<td>+971 52 882 1190</td>
+<td>11-Oct-2026</td>
+<td>10:00 AM</td>
+<td>Sarah Jenkins</td>
+<td>Business Setup</td>
+<td><span class="badge bg-blue">Upcoming</span></td>
+<td>Confirm corporate board resolution intake</td>
+<td><button class="btn btn-xs btn-default" onclick="openLeadModal(10489)"><i class="fa fa-eye"></i> View</button></td>
+</tr>
+<tr>
+<td>#RLX-10490</td>
+<td>Sobha Realty Group</td>
+<td>+971 55 334 7712</td>
+<td>09-Oct-2026</td>
+<td>04:00 PM</td>
+<td>Khalid Mansoor</td>
+<td>Luxury Residential</td>
+<td><span class="badge bg-red">Missed</span></td>
+<td>Call back regarding unit allocation</td>
+<td><button class="btn btn-xs btn-default" onclick="openLeadModal(10490)"><i class="fa fa-eye"></i> View</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-team-meetings">
+<section class="content-header">
+<h1><i class="fa fa-handshake-o"></i> Team Meetings Schedule</h1>
+<div class="team-subnav-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; padding:10px 14px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px;">
+<a href="#team-members" class="btn btn-xs btn-default" data-view="team-members"><i class="fa fa-users"></i> Members</a>
+<a href="#hierarchy-chart" class="btn btn-xs btn-default" data-view="hierarchy-chart"><i class="fa fa-sitemap"></i> Org Chart</a>
+<a href="#team-leads" class="btn btn-xs btn-default" data-view="team-leads"><i class="fa fa-cubes"></i> Leads</a>
+<a href="#team-verticals" class="btn btn-xs btn-default" data-view="team-verticals"><i class="fa fa-briefcase"></i> Verticals</a>
+<a href="#team-followups" class="btn btn-xs btn-default" data-view="team-followups"><i class="fa fa-calendar"></i> Follow-ups</a>
+<a href="#team-meetings" class="btn btn-xs btn-default" data-view="team-meetings"><i class="fa fa-handshake-o"></i> Meetings</a>
+<a href="#assigned-meetings" class="btn btn-xs btn-default" data-view="assigned-meetings"><i class="fa fa-exchange"></i> Assign Meetings</a>
+<a href="#assigned-leads" class="btn btn-xs btn-default" data-view="assigned-leads"><i class="fa fa-user-plus"></i> Assign Leads</a>
+<a href="#dept-performance" class="btn btn-xs btn-default" data-view="dept-performance"><i class="fa fa-bar-chart"></i> Performance Report</a>
+</div>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border">
+<h3 class="box-title">Logged Team Meetings &amp; Briefs</h3>
+</div>
+<div class="box-body">
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Lead Ref</th>
+<th>Company / Client</th>
+<th>Date &amp; Time</th>
+<th>Venue / Location</th>
+<th>Primary Attendee (A1)</th>
+<th>Secondary Attendee (A2)</th>
+<th>POC Mobile</th>
+<th>Agenda &amp; Remarks</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#RLX-10488</td>
+<td>David Finch &amp; Partners</td>
+<td>10-Oct-2026 02:00 PM</td>
+<td>Rolexto Tower 1, Executive Room</td>
+<td>Omar Khaled</td>
+<td>Tariq Al-Sayed</td>
+<td>+971 50 119 2200</td>
+<td>Commercial lease term discussion</td>
+<td><span class="badge bg-green">Confirmed</span></td>
+</tr>
+<tr>
+<td>#RLX-10491</td>
+<td>Emirates Global Logix</td>
+<td>11-Oct-2026 11:30 AM</td>
+<td>DIFC Gate Precinct 4</td>
+<td>Sarah Jenkins</td>
+<td>Masoud Tariq</td>
+<td>+971 50 441 9901</td>
+<td>Corporate licensing sign-off</td>
+<td><span class="badge bg-blue">Scheduled</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-assigned-meetings">
+<section class="content-header">
+<h1><i class="fa fa-exchange"></i> Reassign Team Meetings</h1>
+<div class="team-subnav-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; padding:10px 14px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px;">
+<a href="#team-members" class="btn btn-xs btn-default" data-view="team-members"><i class="fa fa-users"></i> Members</a>
+<a href="#hierarchy-chart" class="btn btn-xs btn-default" data-view="hierarchy-chart"><i class="fa fa-sitemap"></i> Org Chart</a>
+<a href="#team-leads" class="btn btn-xs btn-default" data-view="team-leads"><i class="fa fa-cubes"></i> Leads</a>
+<a href="#team-verticals" class="btn btn-xs btn-default" data-view="team-verticals"><i class="fa fa-briefcase"></i> Verticals</a>
+<a href="#team-followups" class="btn btn-xs btn-default" data-view="team-followups"><i class="fa fa-calendar"></i> Follow-ups</a>
+<a href="#team-meetings" class="btn btn-xs btn-default" data-view="team-meetings"><i class="fa fa-handshake-o"></i> Meetings</a>
+<a href="#assigned-meetings" class="btn btn-xs btn-default" data-view="assigned-meetings"><i class="fa fa-exchange"></i> Assign Meetings</a>
+<a href="#assigned-leads" class="btn btn-xs btn-default" data-view="assigned-leads"><i class="fa fa-user-plus"></i> Assign Leads</a>
+<a href="#dept-performance" class="btn btn-xs btn-default" data-view="dept-performance"><i class="fa fa-bar-chart"></i> Performance Report</a>
+</div>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border">
+<h3 class="box-title">Meeting Reassignment Workflow</h3>
+</div>
+<form onsubmit="event.preventDefault(); alert('Meeting attendees reassigned successfully!'); switchView('team-meetings');">
+<div class="box-body">
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Select Meeting / Lead <span class="text-danger">*</span></label>
+<select class="form-control" required>
+<option value="">Choose Meeting</option>
+<option value="1">#RLX-10488 - David Finch (10-Oct 02:00 PM)</option>
+<option value="2">#RLX-10491 - Emirates Global (11-Oct 11:30 AM)</option>
+</select>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>New Primary Attendee (A1) <span class="text-danger">*</span></label>
+<select class="form-control" required>
+<option value="">Select Primary Attendee</option>
+<option value="Omar Khaled">Omar Khaled</option>
+<option value="Sarah Jenkins">Sarah Jenkins</option>
+<option value="Khalid Mansoor">Khalid Mansoor</option>
+<option value="Masoud Tariq">Masoud Tariq</option>
+</select>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>New Secondary Attendee (A2)</label>
+<select class="form-control">
+<option value="">Select Secondary Attendee</option>
+<option value="Tariq Al-Sayed">Tariq Al-Sayed</option>
+<option value="Fatima Al-Zahra">Fatima Al-Zahra</option>
+<option value="Ahmed Mansoor">Ahmed Mansoor</option>
+</select>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="form-group">
+<label>Reassignment Reason / Transfer Notes <span class="text-danger">*</span></label>
+<input type="text" class="form-control" placeholder="Reason for reassigning attendee" required>
+</div>
+</div>
+</div>
+</div>
+<div class="box-footer" style="display:flex; justify-content:flex-end; gap:10px;">
+<button type="reset" class="btn btn-default">Reset</button>
+<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Transfer Meeting Attendees</button>
+</div>
+</form>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-assigned-leads">
+<section class="content-header">
+<h1><i class="fa fa-user-plus"></i> Lead Distribution &amp; Reassignment</h1>
+<div class="team-subnav-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; padding:10px 14px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px;">
+<a href="#team-members" class="btn btn-xs btn-default" data-view="team-members"><i class="fa fa-users"></i> Members</a>
+<a href="#hierarchy-chart" class="btn btn-xs btn-default" data-view="hierarchy-chart"><i class="fa fa-sitemap"></i> Org Chart</a>
+<a href="#team-leads" class="btn btn-xs btn-default" data-view="team-leads"><i class="fa fa-cubes"></i> Leads</a>
+<a href="#team-verticals" class="btn btn-xs btn-default" data-view="team-verticals"><i class="fa fa-briefcase"></i> Verticals</a>
+<a href="#team-followups" class="btn btn-xs btn-default" data-view="team-followups"><i class="fa fa-calendar"></i> Follow-ups</a>
+<a href="#team-meetings" class="btn btn-xs btn-default" data-view="team-meetings"><i class="fa fa-handshake-o"></i> Meetings</a>
+<a href="#assigned-meetings" class="btn btn-xs btn-default" data-view="assigned-meetings"><i class="fa fa-exchange"></i> Assign Meetings</a>
+<a href="#assigned-leads" class="btn btn-xs btn-default" data-view="assigned-leads"><i class="fa fa-user-plus"></i> Assign Leads</a>
+<a href="#dept-performance" class="btn btn-xs btn-default" data-view="dept-performance"><i class="fa fa-bar-chart"></i> Performance Report</a>
+</div>
+</section>
+<section class="content">
+<div class="box box-primary">
+<div class="box-header with-border" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+<h3 class="box-title">Bulk Lead Allocation Console</h3>
+<div style="display:flex; gap:8px; align-items:center;">
+<label style="margin:0; font-size:12px;">Transfer selected to:</label>
+<select class="form-control input-sm" style="width:160px;" id="bulkTransferTarget">
+<option value="Omar Khaled">Omar Khaled</option>
+<option value="Sarah Jenkins">Sarah Jenkins</option>
+<option value="Khalid Mansoor">Khalid Mansoor</option>
+<option value="Layla Qasim">Layla Qasim</option>
+<option value="Zayd Al-Otaiba">Zayd Al-Otaiba</option>
+</select>
+<button class="btn btn-sm btn-primary" onclick="alert('Selected leads reassigned!');"><i class="fa fa-share"></i> Reassign</button>
+</div>
+</div>
+<div class="box-body">
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th style="width:30px;"><input type="checkbox" checked></th>
+<th>Ref #</th>
+<th>Customer Name</th>
+<th>Product / Vertical</th>
+<th>Current Executive</th>
+<th>Stage</th>
+<th>Revenue</th>
+<th>Created Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><input type="checkbox" checked></td>
+<td>#RLX-10488</td>
+<td>David Alexander Finch</td>
+<td>Prime Commercial Offices</td>
+<td>Omar Khaled</td>
+<td><span class="badge bg-green">Follow Up</span></td>
+<td>AED 45,000</td>
+<td>01-Oct-2026</td>
+</tr>
+<tr>
+<td><input type="checkbox"></td>
+<td>#RLX-10489</td>
+<td>Al-Futtaim Commercial</td>
+<td>Business Setup</td>
+<td>Sarah Jenkins</td>
+<td><span class="badge bg-blue">Meeting</span></td>
+<td>AED 28,000</td>
+<td>03-Oct-2026</td>
+</tr>
+<tr>
+<td><input type="checkbox"></td>
+<td>#RLX-10490</td>
+<td>Sobha Realty Group</td>
+<td>Luxury Residential</td>
+<td>Khalid Mansoor</td>
+<td><span class="badge bg-orange">New Lead</span></td>
+<td>AED 120,000</td>
+<td>04-Oct-2026</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-dept-performance">
+<section class="content-header">
+<h1><i class="fa fa-bar-chart"></i> Team &amp; Department Performance Report</h1>
+<div class="team-subnav-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:15px; padding:10px 14px; background:var(--crm-card-bg); border:1px solid var(--crm-border); border-radius:8px;">
+<a href="#team-members" class="btn btn-xs btn-default" data-view="team-members"><i class="fa fa-users"></i> Members</a>
+<a href="#hierarchy-chart" class="btn btn-xs btn-default" data-view="hierarchy-chart"><i class="fa fa-sitemap"></i> Org Chart</a>
+<a href="#team-leads" class="btn btn-xs btn-default" data-view="team-leads"><i class="fa fa-cubes"></i> Leads</a>
+<a href="#team-verticals" class="btn btn-xs btn-default" data-view="team-verticals"><i class="fa fa-briefcase"></i> Verticals</a>
+<a href="#team-followups" class="btn btn-xs btn-default" data-view="team-followups"><i class="fa fa-calendar"></i> Follow-ups</a>
+<a href="#team-meetings" class="btn btn-xs btn-default" data-view="team-meetings"><i class="fa fa-handshake-o"></i> Meetings</a>
+<a href="#assigned-meetings" class="btn btn-xs btn-default" data-view="assigned-meetings"><i class="fa fa-exchange"></i> Assign Meetings</a>
+<a href="#assigned-leads" class="btn btn-xs btn-default" data-view="assigned-leads"><i class="fa fa-user-plus"></i> Assign Leads</a>
+<a href="#dept-performance" class="btn btn-xs btn-default" data-view="dept-performance"><i class="fa fa-bar-chart"></i> Performance Report</a>
+</div>
+</section>
+<section class="content">
+<div class="row">
+<div class="col-sm-3">
+<div class="small-box bg-aqua"><div class="inner"><h3>AED 6.4M</h3><p>Team Revenue (YTD)</p></div><div class="icon"><i class="fa fa-money"></i></div></div>
+</div>
+<div class="col-sm-3">
+<div class="small-box bg-green"><div class="inner"><h3>240</h3><p>Total Closed Deals</p></div><div class="icon"><i class="fa fa-trophy"></i></div></div>
+</div>
+<div class="col-sm-3">
+<div class="small-box bg-yellow"><div class="inner"><h3>29.8%</h3><p>Avg Conversion Rate</p></div><div class="icon"><i class="fa fa-percent"></i></div></div>
+</div>
+<div class="col-sm-3">
+<div class="small-box bg-red"><div class="inner"><h3>114%</h3><p>Target Quota Achieved</p></div><div class="icon"><i class="fa fa-bullseye"></i></div></div>
+</div>
+</div>
+<div class="box box-primary">
+<div class="box-header with-border">
+<h3 class="box-title">Executive Performance Scorecard</h3>
+</div>
+<div class="box-body">
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Executive</th>
+<th>Role Level</th>
+<th>Leads</th>
+<th>Follow-ups</th>
+<th>Meetings</th>
+<th>Closures</th>
+<th>Revenue (AED)</th>
+<th>Target (AED)</th>
+<th>Achievement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Omar Khaled</td>
+<td>Level 4 Senior Exec</td>
+<td>74</td>
+<td>142</td>
+<td>38</td>
+<td>24</td>
+<td>AED 1,480,000</td>
+<td>AED 1,200,000</td>
+<td><span class="badge bg-green">123%</span></td>
+</tr>
+<tr>
+<td>Sarah Jenkins</td>
+<td>Level 4 Sales Exec</td>
+<td>68</td>
+<td>119</td>
+<td>31</td>
+<td>19</td>
+<td>AED 1,320,000</td>
+<td>AED 1,200,000</td>
+<td><span class="badge bg-green">110%</span></td>
+</tr>
+<tr>
+<td>Khalid Mansoor</td>
+<td>Level 4 Sales Exec</td>
+<td>59</td>
+<td>98</td>
+<td>26</td>
+<td>16</td>
+<td>AED 1,050,000</td>
+<td>AED 1,000,000</td>
+<td><span class="badge bg-green">105%</span></td>
+</tr>
+<tr>
+<td>Zayd Al-Otaiba</td>
+<td>Level 4 Sales Exec</td>
+<td>45</td>
+<td>82</td>
+<td>20</td>
+<td>11</td>
+<td>AED 890,000</td>
+<td>AED 900,000</td>
+<td><span class="badge bg-yellow">98%</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-performance">
+<section class="content-header">
+<h1><i class="fa fa-line-chart"></i> My Performance Report</h1>
+</section>
+<section class="content">
+<div class="row">
+<div class="col-sm-3">
+<div class="small-box bg-green"><div class="inner"><h3>AED 1.8M</h3><p>Personal Revenue</p></div><div class="icon"><i class="fa fa-money"></i></div></div>
+</div>
+<div class="col-sm-3">
+<div class="small-box bg-aqua"><div class="inner"><h3>62</h3><p>Total Closed Won</p></div><div class="icon"><i class="fa fa-handshake-o"></i></div></div>
+</div>
+<div class="col-sm-3">
+<div class="small-box bg-yellow"><div class="inner"><h3>31.5%</h3><p>My Conversion Rate</p></div><div class="icon"><i class="fa fa-pie-chart"></i></div></div>
+</div>
+<div class="col-sm-3">
+<div class="small-box bg-blue"><div class="inner"><h3>118%</h3><p>Quota Target Met</p></div><div class="icon"><i class="fa fa-check-circle"></i></div></div>
+</div>
+</div>
+<div class="box box-primary">
+<div class="box-header with-border">
+<h3 class="box-title">Recent Closures &amp; Commission Pipeline</h3>
+</div>
+<div class="box-body">
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Lead Ref</th>
+<th>Customer Name</th>
+<th>Product / Vertical</th>
+<th>Contract Value</th>
+<th>Closure Date</th>
+<th>Commission Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#RLX-10488</td>
+<td>David Alexander Finch</td>
+<td>Prime Commercial Offices</td>
+<td>AED 145,000</td>
+<td>08-Oct-2026</td>
+<td><span class="badge bg-green">Approved</span></td>
+</tr>
+<tr>
+<td>#RLX-10482</td>
+<td>Emaar Corporate Services</td>
+<td>Commercial Hub Suite</td>
+<td>AED 88,000</td>
+<td>04-Oct-2026</td>
+<td><span class="badge bg-green">Paid</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<div class="crm-view-pane" id="view-add-user">
+<section class="content-header">
+<h1><i class="fa fa-user-plus"></i> Add New User Registration (Complete 32 Parameters)</h1>
+</section>
+<section class="content">
+<div class="box box-primary">
+<form id="fullAddUserForm" onsubmit="event.preventDefault(); alert('New user registered successfully!'); switchView('view-users');">
+<div class="box-body">
+
+<div class="form-section-title"><i class="fa fa-cog"></i> 1. System Details</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Official Username / Email <span class="text-danger">*</span></label>
+<input type="email" class="form-control" placeholder="user@rolextogroup.com" required>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>User Type / Role Level <span class="text-danger">*</span></label>
+<select class="form-control" required>
+<option value="1">Level 1 - Super Administrator</option>
+<option value="2">Level 2 - Regional Director</option>
+<option value="3">Level 3 - Team Manager</option>
+<option value="4" selected>Level 4 - Sales Executive</option>
+<option value="5">Level 5 - Back Office Staff</option>
+</select>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Assigned Upline / Manager <span class="text-danger">*</span></label>
+<select class="form-control" required>
+<option value="1">Jules Admin (Super Admin)</option>
+<option value="2" selected>Masoud Tariq (Regional Director)</option>
+<option value="3">Tariq Al-Sayed (Team Lead)</option>
+</select>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Account Status</label>
+<select class="form-control">
+<option value="1" selected>Active</option>
+<option value="0">Inactive</option>
+</select>
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-user"></i> 2. Personal &amp; Identification Details</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Full Name <span class="text-danger">*</span></label>
+<input type="text" class="form-control" placeholder="Full Legal Name" required>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Personal Email</label>
+<input type="email" class="form-control" placeholder="personal@gmail.com">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Date of Birth</label>
+<input type="date" class="form-control">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Gender</label>
+<select class="form-control">
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+</select>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Blood Group</label>
+<select class="form-control">
+<option value="A+">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
+<option value="O+" selected>O+</option>
+<option value="O-">O-</option>
+<option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
+</select>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Primary Contact Mobile <span class="text-danger">*</span></label>
+<input type="text" class="form-control" placeholder="+971 50 000 0000" required>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>UAE Alternate Mobile</label>
+<input type="text" class="form-control" placeholder="+971 4 000 0000">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Nationality</label>
+<input type="text" class="form-control" value="United Arab Emirates">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Passport Number</label>
+<input type="text" class="form-control" placeholder="N00000000">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Passport Expiry</label>
+<input type="date" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Emirates ID (EID)</label>
+<input type="text" class="form-control" placeholder="784-0000-0000000-0">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>EID Expiry Date</label>
+<input type="date" class="form-control">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Visa Type</label>
+<input type="text" class="form-control" placeholder="Employment / Investor">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Visa Reference Number</label>
+<input type="text" class="form-control" placeholder="VISA-000000">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Visa Expiry Date</label>
+<input type="date" class="form-control">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-briefcase"></i> 3. Corporate &amp; Employment Details</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Employee ID</label>
+<input type="text" class="form-control" placeholder="EMP-2026-000">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Office Location Code</label>
+<select class="form-control">
+<option value="DXB-HQ-01">Dubai Main HQ (DXB-HQ-01)</option>
+<option value="AUH-02">Abu Dhabi Branch (AUH-02)</option>
+<option value="SHJ-03">Sharjah Hub (SHJ-03)</option>
+</select>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Department</label>
+<select class="form-control">
+<option value="Enterprise Sales">Enterprise Sales</option>
+<option value="Commercial Leasing">Commercial Leasing</option>
+<option value="Government Relations">Government Relations</option>
+<option value="Back Office & Compliance">Back Office & Compliance</option>
+</select>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Current Monthly Salary (AED)</label>
+<input type="number" class="form-control" placeholder="15000">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Date of Joining (DOJ)</label>
+<input type="date" class="form-control">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Date of Leaving (DOL)</label>
+<input type="date" class="form-control">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-phone"></i> 4. Emergency Contacts</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Emergency Contact Person</label>
+<input type="text" class="form-control" placeholder="Contact Name">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Relationship</label>
+<input type="text" class="form-control" placeholder="Spouse / Parent / Sibling">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Primary Emergency Number</label>
+<input type="text" class="form-control" placeholder="+971 50 ...">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Alternate Emergency Number</label>
+<input type="text" class="form-control" placeholder="+971 ...">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-university"></i> 5. Banking &amp; Remittance Details</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Bank Name</label>
+<input type="text" class="form-control" placeholder="Emirates NBD / ADCB / FAB">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Bank Country</label>
+<input type="text" class="form-control" value="United Arab Emirates">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Account Number</label>
+<input type="text" class="form-control" placeholder="000000000000">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Branch / IFSC Code</label>
+<input type="text" class="form-control" placeholder="042">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>IBAN Number</label>
+<input type="text" class="form-control" placeholder="AE00 0000 0000 0000 0000 000">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>SWIFT / BIC Code</label>
+<input type="text" class="form-control" placeholder="EBIBAEAD">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-map-marker"></i> 6. Residential Address</div>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label>Residential Address</label>
+<input type="text" class="form-control" placeholder="Building, Street, Unit">
+</div>
+</div>
+<div class="col-sm-2">
+<div class="form-group">
+<label>Country</label>
+<input type="text" class="form-control" value="United Arab Emirates">
+</div>
+</div>
+<div class="col-sm-2">
+<div class="form-group">
+<label>State / Emirate</label>
+<input type="text" class="form-control" value="Dubai">
+</div>
+</div>
+<div class="col-sm-2">
+<div class="form-group">
+<label>City</label>
+<input type="text" class="form-control" value="Dubai">
+</div>
+</div>
+</div>
+
+</div>
+<div class="box-footer" style="display:flex; justify-content:flex-end; gap:10px;">
+<button type="button" class="btn btn-default" onclick="switchView('view-users')">Cancel</button>
+<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Register Complete User</button>
+</div>
+</form>
+</div>
+</section>
+</div>
 </div>
 <footer class="crm-footer">
 <span>&copy; 2026 Rolexto CRM Platform. All rights reserved.</span>
@@ -1989,6 +3033,24 @@ function renderTeamBreadcrumbs() {
         } else {
             bc.append('<a onclick="loadTeamLevel(\'' + crumb.id + '\')">' + crumb.label + '</a>');
         }
+    }
+}
+
+
+function filterBOTable(status) {
+    $('#boFilterButtonGroup .btn').removeClass('active');
+    $(event.currentTarget).addClass('active');
+    if (status === 'all') {
+        $('#boRecordsTableBody tr').show();
+    } else {
+        $('#boRecordsTableBody tr').each(function() {
+            var st = $(this).attr('data-status');
+            if (st === status) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
     }
 }
 

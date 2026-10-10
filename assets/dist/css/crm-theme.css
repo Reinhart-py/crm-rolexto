@@ -935,43 +935,56 @@ label {
 }
 
 .crm-compact-card {
-    border-radius: 10px;
-    margin-bottom: 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .crm-compact-card .box-header {
-    padding: 8px 12px;
+    padding: 4px 8px;
     min-height: auto;
     border-bottom: 1px solid var(--crm-border);
 }
 
 .crm-compact-card .box-title {
-    font-size: 12.5px;
+    font-size: 11px;
     font-weight: 700;
     color: var(--crm-text);
 }
 
 .crm-compact-card .box-body {
-    padding: 8px 10px;
+    padding: 3px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.crm-compact-card canvas {
+    height: 65px !important;
+    max-height: 65px !important;
+    max-width: 125px !important;
 }
 
 .crm-compact-stats-list {
     list-style: none;
-    padding: 6px 8px 8px;
+    padding: 3px 5px 5px;
     margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5px;
+    gap: 2.5px;
+}
+
+.crm-compact-stats-list li:last-child {
+    grid-column: span 2;
 }
 
 .crm-compact-stats-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4px 7px;
+    padding: 2px 5px;
     background: var(--crm-border-subtle);
-    border-radius: 6px;
-    font-size: 11px;
+    border-radius: 4px;
+    font-size: 9.5px;
     font-weight: 500;
     color: var(--crm-text-muted);
     text-decoration: none;
@@ -986,9 +999,9 @@ label {
 
 .crm-compact-stats-item .badge {
     font-weight: 700;
-    font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 4px;
+    font-size: 9px;
+    padding: 1px 4px;
+    border-radius: 3px;
 }
 
 @media (max-width: 991px) {

@@ -263,7 +263,7 @@
               <h3 class="box-title">My Followups</h3>            
             </div>
                     <div class="box-body">
-                    <canvas id="pieChart1" style="height:110px; max-height:110px;"></canvas>
+                    <canvas id="pieChart1" style="height:65px; max-height:65px;"></canvas>
                     </div>
 
                     <div class="box-footer no-padding">
@@ -282,7 +282,7 @@
               <h3 class="box-title">My Meetings</h3>            
             </div>
                      <div class="box-body">
-                    <canvas id="pieChart2" style="height:110px; max-height:110px;"></canvas>
+                    <canvas id="pieChart2" style="height:65px; max-height:65px;"></canvas>
                     </div>
 
                     <div class="box-footer no-padding">
@@ -301,7 +301,7 @@
               <h3 class="box-title">My Closures</h3>            
             </div>
                      <div class="box-body">
-                    <canvas id="pieChartClosures" style="height:110px; max-height:110px;"></canvas>
+                    <canvas id="pieChartClosures" style="height:65px; max-height:65px;"></canvas>
                     </div>
 
                     <div class="box-footer no-padding">
@@ -320,7 +320,7 @@
               <h3 class="box-title">My Vertical FU</h3>            
             </div>
                      <div class="box-body">
-                    <canvas id="pieChartVertFU" style="height:110px; max-height:110px;"></canvas>
+                    <canvas id="pieChartVertFU" style="height:65px; max-height:65px;"></canvas>
                     </div>
 
                     <div class="box-footer no-padding">
@@ -341,7 +341,7 @@
               <h3 class="box-title">Team Followups</h3>            
             </div>
                      <div class="box-body">
-                    <canvas id="pieChart3" style="height:110px; max-height:110px;"></canvas>
+                    <canvas id="pieChart3" style="height:65px; max-height:65px;"></canvas>
                     </div>
 
                     <div class="box-footer no-padding">
@@ -360,7 +360,7 @@
               <h3 class="box-title">Team Meetings</h3>            
             </div>
                      <div class="box-body">
-                    <canvas id="pieChart4" style="height:110px; max-height:110px;"></canvas>
+                    <canvas id="pieChart4" style="height:65px; max-height:65px;"></canvas>
                     </div>
 
                     <div class="box-footer no-padding">
@@ -379,7 +379,7 @@
               <h3 class="box-title">Team Closures</h3>            
             </div>
                      <div class="box-body">
-                    <canvas id="pieChartTeamClosures" style="height:110px; max-height:110px;"></canvas>
+                    <canvas id="pieChartTeamClosures" style="height:65px; max-height:65px;"></canvas>
                     </div>
 
                     <div class="box-footer no-padding">
@@ -398,7 +398,7 @@
               <h3 class="box-title">Team Vertical FU</h3>            
             </div>
                      <div class="box-body">
-                    <canvas id="pieChartTeamVertFU" style="height:110px; max-height:110px;"></canvas>
+                    <canvas id="pieChartTeamVertFU" style="height:65px; max-height:65px;"></canvas>
                     </div>
 
                     <div class="box-footer no-padding">
