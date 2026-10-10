@@ -443,141 +443,180 @@
 
 <div class="row">
 <div class="col-sm-3">
-<div class="box box-info crm-compact-card">
-<div class="box-header with-border">
-<h3 class="box-title">My Followups</h3>
+<div class="crm-modern-stat-card">
+<div class="card-top">
+<h4 class="card-title"><i class="fa fa-calendar-check-o text-primary"></i> My Followups</h4>
+<span class="card-total-pill">48 Total</span>
 </div>
-<div class="box-body">
-<canvas id="pieChart1" style="height:65px; max-height:65px;"></canvas>
+<div class="crm-seg-bar">
+<div class="crm-seg bg-red" style="width:8%;" title="All Missed: 4"></div>
+<div class="crm-seg bg-orange" style="width:17%;" title="Last 7 Days: 8"></div>
+<div class="crm-seg bg-skyblue" style="width:13%;" title="Today: 6"></div>
+<div class="crm-seg bg-blue" style="width:25%;" title="Next 7 Days: 12"></div>
+<div class="crm-seg bg-green" style="width:37%;" title="All Future: 18"></div>
 </div>
-<div class="box-footer no-padding">
-<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">4</span></a></li>
-<li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">8</span></a></li>
-<li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">6</span></a></li>
-<li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">12</span></a></li>
-<li style="list-style:none;"><a href="#followups" data-view="followups" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">18</span></a></li></ul>
-</div>
-</div>
-</div>
-<div class="col-sm-3">
-<div class="box box-info crm-compact-card">
-<div class="box-header with-border">
-<h3 class="box-title">My Meetings</h3>
-</div>
-<div class="box-body">
-<canvas id="pieChart2" style="height:65px; max-height:65px;"></canvas>
-</div>
-<div class="box-footer no-padding">
-<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">2</span></a></li>
-<li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">4</span></a></li>
-<li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">3</span></a></li>
-<li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">6</span></a></li>
-<li style="list-style:none;"><a href="#meetings" data-view="meetings" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">9</span></a></li></ul>
-</div>
+<ul class="crm-modern-stat-grid">
+<li><a href="#followups" data-view="followups" class="crm-modern-stat-chip"><span>All Missed</span><span class="badge bg-red">4</span></a></li>
+<li><a href="#followups" data-view="followups" class="crm-modern-stat-chip"><span>Last 7 Days</span><span class="badge bg-orange">8</span></a></li>
+<li><a href="#followups" data-view="followups" class="crm-modern-stat-chip"><span>Today</span><span class="badge bg-skyblue">6</span></a></li>
+<li><a href="#followups" data-view="followups" class="crm-modern-stat-chip"><span>Next 7 Days</span><span class="badge bg-blue">12</span></a></li>
+<li class="full-width"><a href="#followups" data-view="followups" class="crm-modern-stat-chip"><span>All Future</span><span class="badge bg-green">18</span></a></li>
+</ul>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info crm-compact-card">
-<div class="box-header with-border">
-<h3 class="box-title">My Closures</h3>
+<div class="crm-modern-stat-card">
+<div class="card-top">
+<h4 class="card-title"><i class="fa fa-handshake-o text-primary"></i> My Meetings</h4>
+<span class="card-total-pill">24 Total</span>
 </div>
-<div class="box-body">
-<canvas id="pieChartClosures" style="height:65px; max-height:65px;"></canvas>
+<div class="crm-seg-bar">
+<div class="crm-seg bg-red" style="width:8%;" title="All Missed: 2"></div>
+<div class="crm-seg bg-orange" style="width:17%;" title="Last 7 Days: 4"></div>
+<div class="crm-seg bg-skyblue" style="width:13%;" title="Today: 3"></div>
+<div class="crm-seg bg-blue" style="width:25%;" title="Next 7 Days: 6"></div>
+<div class="crm-seg bg-green" style="width:37%;" title="All Future: 9"></div>
 </div>
-<div class="box-footer no-padding">
-<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>This Month</span><span class="badge bg-green">5</span></a></li>
-<li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>Last Month</span><span class="badge bg-blue">8</span></a></li>
-<li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>This Year</span><span class="badge bg-skyblue">34</span></a></li>
-<li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>All Time Closed</span><span class="badge bg-orange">62</span></a></li>
-<li style="list-style:none;"><a href="#leads" data-view="leads" class="crm-compact-stats-item"><span>Total Revenue</span><span class="badge bg-red">AED 1.8M</span></a></li></ul>
-</div>
+<ul class="crm-modern-stat-grid">
+<li><a href="#meetings" data-view="meetings" class="crm-modern-stat-chip"><span>All Missed</span><span class="badge bg-red">2</span></a></li>
+<li><a href="#meetings" data-view="meetings" class="crm-modern-stat-chip"><span>Last 7 Days</span><span class="badge bg-orange">4</span></a></li>
+<li><a href="#meetings" data-view="meetings" class="crm-modern-stat-chip"><span>Today</span><span class="badge bg-skyblue">3</span></a></li>
+<li><a href="#meetings" data-view="meetings" class="crm-modern-stat-chip"><span>Next 7 Days</span><span class="badge bg-blue">6</span></a></li>
+<li class="full-width"><a href="#meetings" data-view="meetings" class="crm-modern-stat-chip"><span>All Future</span><span class="badge bg-green">9</span></a></li>
+</ul>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info crm-compact-card">
-<div class="box-header with-border">
-<h3 class="box-title">My Vertical FU</h3>
+<div class="crm-modern-stat-card">
+<div class="card-top">
+<h4 class="card-title"><i class="fa fa-trophy text-primary"></i> My Closures</h4>
+<span class="card-total-pill">62 Deals</span>
 </div>
-<div class="box-body">
-<canvas id="pieChartVertFU" style="height:65px; max-height:65px;"></canvas>
+<div class="crm-seg-bar">
+<div class="crm-seg bg-green" style="width:15%;" title="This Month: 5"></div>
+<div class="crm-seg bg-blue" style="width:20%;" title="Last Month: 8"></div>
+<div class="crm-seg bg-skyblue" style="width:30%;" title="This Year: 34"></div>
+<div class="crm-seg bg-orange" style="width:35%;" title="All Time Closed: 62"></div>
 </div>
-<div class="box-footer no-padding">
-<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">1</span></a></li>
-<li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">3</span></a></li>
-<li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">2</span></a></li>
-<li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">4</span></a></li>
-<li style="list-style:none;"><a href="#verticals" data-view="verticals" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">7</span></a></li></ul>
+<ul class="crm-modern-stat-grid">
+<li><a href="#leads" data-view="leads" class="crm-modern-stat-chip"><span>This Month</span><span class="badge bg-green">5</span></a></li>
+<li><a href="#leads" data-view="leads" class="crm-modern-stat-chip"><span>Last Month</span><span class="badge bg-blue">8</span></a></li>
+<li><a href="#leads" data-view="leads" class="crm-modern-stat-chip"><span>This Year</span><span class="badge bg-skyblue">34</span></a></li>
+<li><a href="#leads" data-view="leads" class="crm-modern-stat-chip"><span>All Time</span><span class="badge bg-orange">62</span></a></li>
+<li class="full-width"><a href="#leads" data-view="leads" class="crm-modern-stat-chip"><span>Total Revenue</span><span class="badge bg-red">AED 1.8M</span></a></li>
+</ul>
 </div>
+</div>
+<div class="col-sm-3">
+<div class="crm-modern-stat-card">
+<div class="card-top">
+<h4 class="card-title"><i class="fa fa-briefcase text-primary"></i> My Vertical FU</h4>
+<span class="card-total-pill">17 Total</span>
+</div>
+<div class="crm-seg-bar">
+<div class="crm-seg bg-red" style="width:6%;" title="All Missed: 1"></div>
+<div class="crm-seg bg-orange" style="width:18%;" title="Last 7 Days: 3"></div>
+<div class="crm-seg bg-skyblue" style="width:12%;" title="Today: 2"></div>
+<div class="crm-seg bg-blue" style="width:24%;" title="Next 7 Days: 4"></div>
+<div class="crm-seg bg-green" style="width:40%;" title="All Future: 7"></div>
+</div>
+<ul class="crm-modern-stat-grid">
+<li><a href="#verticals" data-view="verticals" class="crm-modern-stat-chip"><span>All Missed</span><span class="badge bg-red">1</span></a></li>
+<li><a href="#verticals" data-view="verticals" class="crm-modern-stat-chip"><span>Last 7 Days</span><span class="badge bg-orange">3</span></a></li>
+<li><a href="#verticals" data-view="verticals" class="crm-modern-stat-chip"><span>Today</span><span class="badge bg-skyblue">2</span></a></li>
+<li><a href="#verticals" data-view="verticals" class="crm-modern-stat-chip"><span>Next 7 Days</span><span class="badge bg-blue">4</span></a></li>
+<li class="full-width"><a href="#verticals" data-view="verticals" class="crm-modern-stat-chip"><span>All Future</span><span class="badge bg-green">7</span></a></li>
+</ul>
 </div>
 </div>
 </div>
 
 <div class="row">
 <div class="col-sm-3">
-<div class="box box-info crm-compact-card">
-<div class="box-header with-border">
-<h3 class="box-title">Team Followups</h3>
+<div class="crm-modern-stat-card">
+<div class="card-top">
+<h4 class="card-title"><i class="fa fa-calendar-check-o text-primary"></i> Team Followups</h4>
+<span class="card-total-pill">134 Total</span>
 </div>
-<div class="box-body">
-<canvas id="pieChart3" style="height:65px; max-height:65px;"></canvas>
+<div class="crm-seg-bar">
+<div class="crm-seg bg-red" style="width:9%;" title="All Missed: 12"></div>
+<div class="crm-seg bg-orange" style="width:16%;" title="Last 7 Days: 22"></div>
+<div class="crm-seg bg-skyblue" style="width:13%;" title="Today: 18"></div>
+<div class="crm-seg bg-blue" style="width:26%;" title="Next 7 Days: 34"></div>
+<div class="crm-seg bg-green" style="width:36%;" title="All Future: 48"></div>
 </div>
-<div class="box-footer no-padding">
-<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">12</span></a></li>
-<li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">22</span></a></li>
-<li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">18</span></a></li>
-<li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">34</span></a></li>
-<li style="list-style:none;"><a href="#team-followups" data-view="team-followups" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">48</span></a></li></ul>
-</div>
-</div>
-</div>
-<div class="col-sm-3">
-<div class="box box-info crm-compact-card">
-<div class="box-header with-border">
-<h3 class="box-title">Team Meetings</h3>
-</div>
-<div class="box-body">
-<canvas id="pieChart4" style="height:65px; max-height:65px;"></canvas>
-</div>
-<div class="box-footer no-padding">
-<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">6</span></a></li>
-<li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">14</span></a></li>
-<li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">8</span></a></li>
-<li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">18</span></a></li>
-<li style="list-style:none;"><a href="#team-meetings" data-view="team-meetings" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">24</span></a></li></ul>
-</div>
+<ul class="crm-modern-stat-grid">
+<li><a href="#team-followups" data-view="team-followups" class="crm-modern-stat-chip"><span>All Missed</span><span class="badge bg-red">12</span></a></li>
+<li><a href="#team-followups" data-view="team-followups" class="crm-modern-stat-chip"><span>Last 7 Days</span><span class="badge bg-orange">22</span></a></li>
+<li><a href="#team-followups" data-view="team-followups" class="crm-modern-stat-chip"><span>Today</span><span class="badge bg-skyblue">18</span></a></li>
+<li><a href="#team-followups" data-view="team-followups" class="crm-modern-stat-chip"><span>Next 7 Days</span><span class="badge bg-blue">34</span></a></li>
+<li class="full-width"><a href="#team-followups" data-view="team-followups" class="crm-modern-stat-chip"><span>All Future</span><span class="badge bg-green">48</span></a></li>
+</ul>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info crm-compact-card">
-<div class="box-header with-border">
-<h3 class="box-title">Team Closures</h3>
+<div class="crm-modern-stat-card">
+<div class="card-top">
+<h4 class="card-title"><i class="fa fa-handshake-o text-primary"></i> Team Meetings</h4>
+<span class="card-total-pill">70 Total</span>
 </div>
-<div class="box-body">
-<canvas id="pieChartTeamClosures" style="height:65px; max-height:65px;"></canvas>
+<div class="crm-seg-bar">
+<div class="crm-seg bg-red" style="width:9%;" title="All Missed: 6"></div>
+<div class="crm-seg bg-orange" style="width:20%;" title="Last 7 Days: 14"></div>
+<div class="crm-seg bg-skyblue" style="width:11%;" title="Today: 8"></div>
+<div class="crm-seg bg-blue" style="width:26%;" title="Next 7 Days: 18"></div>
+<div class="crm-seg bg-green" style="width:34%;" title="All Future: 24"></div>
 </div>
-<div class="box-footer no-padding">
-<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>This Month</span><span class="badge bg-green">14</span></a></li>
-<li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>Last Month</span><span class="badge bg-blue">21</span></a></li>
-<li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>This Year</span><span class="badge bg-skyblue">118</span></a></li>
-<li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>All Time Closed</span><span class="badge bg-orange">240</span></a></li>
-<li style="list-style:none;"><a href="#team-leads" data-view="team-leads" class="crm-compact-stats-item"><span>Total Revenue</span><span class="badge bg-red">AED 6.4M</span></a></li></ul>
-</div>
+<ul class="crm-modern-stat-grid">
+<li><a href="#team-meetings" data-view="team-meetings" class="crm-modern-stat-chip"><span>All Missed</span><span class="badge bg-red">6</span></a></li>
+<li><a href="#team-meetings" data-view="team-meetings" class="crm-modern-stat-chip"><span>Last 7 Days</span><span class="badge bg-orange">14</span></a></li>
+<li><a href="#team-meetings" data-view="team-meetings" class="crm-modern-stat-chip"><span>Today</span><span class="badge bg-skyblue">8</span></a></li>
+<li><a href="#team-meetings" data-view="team-meetings" class="crm-modern-stat-chip"><span>Next 7 Days</span><span class="badge bg-blue">18</span></a></li>
+<li class="full-width"><a href="#team-meetings" data-view="team-meetings" class="crm-modern-stat-chip"><span>All Future</span><span class="badge bg-green">24</span></a></li>
+</ul>
 </div>
 </div>
 <div class="col-sm-3">
-<div class="box box-info crm-compact-card">
-<div class="box-header with-border">
-<h3 class="box-title">Team Vertical FU</h3>
+<div class="crm-modern-stat-card">
+<div class="card-top">
+<h4 class="card-title"><i class="fa fa-trophy text-primary"></i> Team Closures</h4>
+<span class="card-total-pill">240 Deals</span>
 </div>
-<div class="box-body">
-<canvas id="pieChartTeamVertFU" style="height:65px; max-height:65px;"></canvas>
+<div class="crm-seg-bar">
+<div class="crm-seg bg-green" style="width:12%;" title="This Month: 14"></div>
+<div class="crm-seg bg-blue" style="width:18%;" title="Last Month: 21"></div>
+<div class="crm-seg bg-skyblue" style="width:30%;" title="This Year: 118"></div>
+<div class="crm-seg bg-orange" style="width:40%;" title="All Time Closed: 240"></div>
 </div>
-<div class="box-footer no-padding">
-<ul class="crm-compact-stats-list"><li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>All Missed</span><span class="badge bg-red">5</span></a></li>
-<li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>Last 7 Days</span><span class="badge bg-orange">9</span></a></li>
-<li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>Today</span><span class="badge bg-skyblue">6</span></a></li>
-<li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>Next 7 Days</span><span class="badge bg-blue">11</span></a></li>
-<li style="list-style:none;"><a href="#team-verticals" data-view="team-verticals" class="crm-compact-stats-item"><span>All Future</span><span class="badge bg-green">19</span></a></li></ul>
+<ul class="crm-modern-stat-grid">
+<li><a href="#team-leads" data-view="team-leads" class="crm-modern-stat-chip"><span>This Month</span><span class="badge bg-green">14</span></a></li>
+<li><a href="#team-leads" data-view="team-leads" class="crm-modern-stat-chip"><span>Last Month</span><span class="badge bg-blue">21</span></a></li>
+<li><a href="#team-leads" data-view="team-leads" class="crm-modern-stat-chip"><span>This Year</span><span class="badge bg-skyblue">118</span></a></li>
+<li><a href="#team-leads" data-view="team-leads" class="crm-modern-stat-chip"><span>All Time</span><span class="badge bg-orange">240</span></a></li>
+<li class="full-width"><a href="#team-leads" data-view="team-leads" class="crm-modern-stat-chip"><span>Total Revenue</span><span class="badge bg-red">AED 6.4M</span></a></li>
+</ul>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="crm-modern-stat-card">
+<div class="card-top">
+<h4 class="card-title"><i class="fa fa-briefcase text-primary"></i> Team Vertical FU</h4>
+<span class="card-total-pill">50 Total</span>
+</div>
+<div class="crm-seg-bar">
+<div class="crm-seg bg-red" style="width:10%;" title="All Missed: 5"></div>
+<div class="crm-seg bg-orange" style="width:18%;" title="Last 7 Days: 9"></div>
+<div class="crm-seg bg-skyblue" style="width:12%;" title="Today: 6"></div>
+<div class="crm-seg bg-blue" style="width:22%;" title="Next 7 Days: 11"></div>
+<div class="crm-seg bg-green" style="width:38%;" title="All Future: 19"></div>
+</div>
+<ul class="crm-modern-stat-grid">
+<li><a href="#team-verticals" data-view="team-verticals" class="crm-modern-stat-chip"><span>All Missed</span><span class="badge bg-red">5</span></a></li>
+<li><a href="#team-verticals" data-view="team-verticals" class="crm-modern-stat-chip"><span>Last 7 Days</span><span class="badge bg-orange">9</span></a></li>
+<li><a href="#team-verticals" data-view="team-verticals" class="crm-modern-stat-chip"><span>Today</span><span class="badge bg-skyblue">6</span></a></li>
+<li><a href="#team-verticals" data-view="team-verticals" class="crm-modern-stat-chip"><span>Next 7 Days</span><span class="badge bg-blue">11</span></a></li>
+<li class="full-width"><a href="#team-verticals" data-view="team-verticals" class="crm-modern-stat-chip"><span>All Future</span><span class="badge bg-green">19</span></a></li>
+</ul>
 </div>
 </div>
 </div>
@@ -1859,27 +1898,384 @@
 
 <div class="crm-view-pane" id="view-profile">
 <section class="content-header">
-<h1><i class="fa fa-user"></i> User Profile</h1>
+<h1><i class="fa fa-user-circle"></i> User Profile &amp; Account Settings</h1>
 </section>
 <section class="content">
-<div class="box box-primary">
-<div class="box-header with-border">
-<h3 class="box-title">Profile Information</h3>
+
+<div class="box box-primary" style="border-radius:12px; overflow:hidden; margin-bottom:20px;">
+<div style="background:linear-gradient(135deg, var(--crm-primary) 0%, #1e293b 100%); padding:24px; color:#fff; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+<div style="display:flex; align-items:center; gap:16px;">
+<div style="width:72px; height:72px; border-radius:50%; background:rgba(255,255,255,0.2); border:3px solid #fff; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:800; color:#fff;">
+JA
 </div>
-<div class="box-body">
+<div>
+<h2 style="margin:0; font-size:20px; font-weight:700; color:#fff;" id="profileDisplayName">Jules Admin</h2>
+<div style="font-size:12px; opacity:0.9; margin-top:3px;"><i class="fa fa-shield"></i> Super Administrator (Role Level 1) • <i class="fa fa-building-o"></i> Dubai Corporate HQ (DXB-HQ-01)</div>
+<div style="font-size:11.5px; opacity:0.8; margin-top:2px;"><i class="fa fa-envelope"></i> jules@rolextogroup.com • <i class="fa fa-phone"></i> +971 50 123 4567</div>
+</div>
+</div>
+<div>
+<button class="btn btn-danger btn-sm" onclick="handleLogout()"><i class="fa fa-power-off"></i> Logout</button>
+</div>
+</div>
+
+<div class="box-body" style="padding:0;">
+<div class="nav-tabs-custom" style="box-shadow:none; margin:0; border-radius:0;">
+<ul class="nav nav-tabs" id="profileTabsHeader" style="padding:10px 16px 0; background:var(--crm-border-subtle); border-bottom:1px solid var(--crm-border);">
+<li class="active"><a href="#tab-profile-overview" data-toggle="tab" style="font-weight:600;"><i class="fa fa-id-card-o"></i> 1. Profile Overview (32 Parameters)</a></li>
+<li><a href="#tab-profile-edit" data-toggle="tab" style="font-weight:600;"><i class="fa fa-edit"></i> 2. Edit Profile</a></li>
+<li><a href="#tab-profile-security" data-toggle="tab" style="font-weight:600;"><i class="fa fa-lock"></i> 3. Security &amp; Password</a></li>
+<li><a href="#tab-profile-branding" data-toggle="tab" style="font-weight:600;"><i class="fa fa-paint-brush"></i> 4. CRM Logo &amp; Corporate Branding</a></li>
+</ul>
+
+<div class="tab-content" style="padding:20px;">
+
+<div class="tab-pane active" id="tab-profile-overview">
+<div class="form-section-title"><i class="fa fa-cog"></i> 1. System Details</div>
+<div class="detail-grid" style="margin-bottom:20px;">
+<div class="detail-item"><div class="detail-label">Username / Official Email</div><div class="detail-value">jules@rolextogroup.com</div></div>
+<div class="detail-item"><div class="detail-label">User Type / Role</div><div class="detail-value"><span class="badge bg-green">Level 1 - Super Administrator</span></div></div>
+<div class="detail-item"><div class="detail-label">Upline / Assigned Manager</div><div class="detail-value">Executive Board (Self)</div></div>
+<div class="detail-item"><div class="detail-label">Account Status</div><div class="detail-value"><span class="badge bg-green">Active &amp; Verified</span></div></div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-user"></i> 2. Personal &amp; Identity Details</div>
+<div class="detail-grid" style="margin-bottom:20px;">
+<div class="detail-item"><div class="detail-label">Full Legal Name</div><div class="detail-value" id="disp_name">Jules Admin</div></div>
+<div class="detail-item"><div class="detail-label">Personal Email</div><div class="detail-value">jules@rolextogroup.com</div></div>
+<div class="detail-item"><div class="detail-label">Date of Birth</div><div class="detail-value">12-Apr-1988</div></div>
+<div class="detail-item"><div class="detail-label">Gender</div><div class="detail-value">Male</div></div>
+<div class="detail-item"><div class="detail-label">Primary Mobile</div><div class="detail-value">+971 50 123 4567</div></div>
+<div class="detail-item"><div class="detail-label">UAE Alternate Contact</div><div class="detail-value">+971 4 399 0011</div></div>
+<div class="detail-item"><div class="detail-label">Blood Group</div><div class="detail-value"><span class="badge bg-red">O+</span></div></div>
+<div class="detail-item"><div class="detail-label">Nationality</div><div class="detail-value">United Arab Emirates</div></div>
+<div class="detail-item"><div class="detail-label">Passport Number</div><div class="detail-value">N10948821</div></div>
+<div class="detail-item"><div class="detail-label">Passport Expiry</div><div class="detail-value">15-Aug-2030</div></div>
+<div class="detail-item"><div class="detail-label">Emirates ID (EID)</div><div class="detail-value">784-1988-1234567-1</div></div>
+<div class="detail-item"><div class="detail-label">EID Expiry Date</div><div class="detail-value">20-Sep-2028</div></div>
+<div class="detail-item"><div class="detail-label">Visa Type</div><div class="detail-value">Golden / Investor Visa</div></div>
+<div class="detail-item"><div class="detail-label">Visa Reference Number</div><div class="detail-value">UAE-VISA-8849102</div></div>
+<div class="detail-item"><div class="detail-label">Visa Issued By</div><div class="detail-value">GDRFA Dubai</div></div>
+<div class="detail-item"><div class="detail-label">Visa Expiry Date</div><div class="detail-value">20-Sep-2028</div></div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-briefcase"></i> 3. Corporate &amp; Employment Details</div>
+<div class="detail-grid" style="margin-bottom:20px;">
+<div class="detail-item"><div class="detail-label">Employee ID</div><div class="detail-value">RLX-HQ-001</div></div>
+<div class="detail-item"><div class="detail-label">Office Code / Location</div><div class="detail-value">Dubai HQ (DXB-HQ-01)</div></div>
+<div class="detail-item"><div class="detail-label">Department</div><div class="detail-value">Executive Management</div></div>
+<div class="detail-item"><div class="detail-label">Monthly Salary</div><div class="detail-value">AED 45,000</div></div>
+<div class="detail-item"><div class="detail-label">Date of Joining (DOJ)</div><div class="detail-value">01-Jan-2022</div></div>
+<div class="detail-item"><div class="detail-label">Date of Leaving (DOL)</div><div class="detail-value">N/A (Active)</div></div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-phone"></i> 4. Emergency Contacts</div>
+<div class="detail-grid" style="margin-bottom:20px;">
+<div class="detail-item"><div class="detail-label">Contact Person Name</div><div class="detail-value">Sarah Jules</div></div>
+<div class="detail-item"><div class="detail-label">Relationship</div><div class="detail-value">Spouse</div></div>
+<div class="detail-item"><div class="detail-label">Primary Emergency Contact</div><div class="detail-value">+971 50 987 6543</div></div>
+<div class="detail-item"><div class="detail-label">Alternative Emergency Contact</div><div class="detail-value">+971 4 399 0012</div></div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-university"></i> 5. Banking &amp; Remittance Details</div>
+<div class="detail-grid" style="margin-bottom:20px;">
+<div class="detail-item"><div class="detail-label">Bank Name</div><div class="detail-value">Emirates NBD</div></div>
+<div class="detail-item"><div class="detail-label">Bank Country</div><div class="detail-value">United Arab Emirates</div></div>
+<div class="detail-item"><div class="detail-label">Account Number</div><div class="detail-value">101009488210</div></div>
+<div class="detail-item"><div class="detail-label">Branch / IFSC Code</div><div class="detail-value">042</div></div>
+<div class="detail-item"><div class="detail-label">IBAN Number</div><div class="detail-value">AE07 0260 0010 1009 4882 10</div></div>
+<div class="detail-item"><div class="detail-label">SWIFT / BIC Code</div><div class="detail-value">EBIBAEAD</div></div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-map-marker"></i> 6. Residential Address</div>
 <div class="detail-grid">
-<div class="detail-item"><div class="detail-label">Name</div><div class="detail-value">Jules Admin</div></div>
-<div class="detail-item"><div class="detail-label">Username</div><div class="detail-value">jules</div></div>
-<div class="detail-item"><div class="detail-label">Email</div><div class="detail-value">jules@rolextogroup.com</div></div>
-<div class="detail-item"><div class="detail-label">Mobile</div><div class="detail-value">+971 50 123 4567</div></div>
-<div class="detail-item"><div class="detail-label">Role</div><div class="detail-value">Super Administrator (Level 1)</div></div>
-<div class="detail-item"><div class="detail-label">Location</div><div class="detail-value">Dubai HQ</div></div>
+<div class="detail-item"><div class="detail-label">Address</div><div class="detail-value">Boulevard Plaza Tower 1, Downtown Dubai</div></div>
+<div class="detail-item"><div class="detail-label">Country</div><div class="detail-value">United Arab Emirates</div></div>
+<div class="detail-item"><div class="detail-label">State / Emirate</div><div class="detail-value">Dubai</div></div>
+<div class="detail-item"><div class="detail-label">City</div><div class="detail-value">Dubai</div></div>
 </div>
 </div>
-<div class="box-footer">
-<button class="btn btn-danger" onclick="handleLogout()"><i class="fa fa-power-off"></i> Logout</button>
+
+<div class="tab-pane" id="tab-profile-edit">
+<form id="profileLiveEditForm" onsubmit="handleProfileLiveSave(event)">
+<div class="form-section-title"><i class="fa fa-user"></i> Personal &amp; Identity Updates</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Full Legal Name <span class="text-danger">*</span></label>
+<input type="text" id="prof_name" class="form-control" value="Jules Admin" required>
 </div>
 </div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Personal Email <span class="text-danger">*</span></label>
+<input type="email" id="prof_email" class="form-control" value="jules@rolextogroup.com" required>
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Date of Birth</label>
+<input type="date" id="prof_dob" class="form-control" value="1988-04-12">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Gender</label>
+<select id="prof_gender" class="form-control">
+<option value="Male" selected>Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+</select>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Blood Group</label>
+<select id="prof_blood" class="form-control">
+<option value="A+">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
+<option value="O+" selected>O+</option>
+<option value="O-">O-</option>
+<option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
+</select>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Primary Contact Mobile <span class="text-danger">*</span></label>
+<input type="text" id="prof_mobile" class="form-control" value="+971 50 123 4567" required>
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>UAE Alternate Mobile</label>
+<input type="text" id="prof_uae_mobile" class="form-control" value="+971 4 399 0011">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Passport Number</label>
+<input type="text" id="prof_passport" class="form-control" value="N10948821">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Passport Expiry</label>
+<input type="date" id="prof_passport_exp" class="form-control" value="2030-08-15">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Emirates ID (EID)</label>
+<input type="text" id="prof_eid" class="form-control" value="784-1988-1234567-1">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>EID Expiry Date</label>
+<input type="date" id="prof_eid_exp" class="form-control" value="2028-09-20">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Visa Type</label>
+<input type="text" id="prof_visa_type" class="form-control" value="Golden / Investor Visa">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Visa Reference Number</label>
+<input type="text" id="prof_visa_ref" class="form-control" value="UAE-VISA-8849102">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Visa Issued By</label>
+<input type="text" id="prof_visa_by" class="form-control" value="GDRFA Dubai">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Visa Expiry Date</label>
+<input type="date" id="prof_visa_exp" class="form-control" value="2028-09-20">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-briefcase"></i> Employment &amp; Banking Updates</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>Office Code</label>
+<input type="text" id="prof_office" class="form-control" value="DXB-HQ-01">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Monthly Salary (AED)</label>
+<input type="text" id="prof_salary" class="form-control" value="45,000 AED">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Bank Name</label>
+<input type="text" id="prof_bank" class="form-control" value="Emirates NBD">
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+<div class="form-group">
+<label>IBAN Number</label>
+<input type="text" id="prof_iban" class="form-control" value="AE07 0260 0010 1009 4882 10">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>SWIFT Code</label>
+<input type="text" id="prof_swift" class="form-control" value="EBIBAEAD">
+</div>
+</div>
+<div class="col-sm-4">
+<div class="form-group">
+<label>Branch / IFSC Code</label>
+<input type="text" id="prof_branch" class="form-control" value="042">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-phone"></i> Emergency Contacts</div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Contact Person</label>
+<input type="text" id="prof_emg_person" class="form-control" value="Sarah Jules">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Relationship</label>
+<input type="text" id="prof_emg_rel" class="form-control" value="Spouse">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Primary Emergency Contact</label>
+<input type="text" id="prof_emg_phone" class="form-control" value="+971 50 987 6543">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>Alternative Emergency Contact</label>
+<input type="text" id="prof_emg_alt" class="form-control" value="+971 4 399 0012">
+</div>
+</div>
+</div>
+
+<div class="form-section-title"><i class="fa fa-map-marker"></i> Residential Address</div>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label>Address</label>
+<input type="text" id="prof_address" class="form-control" value="Boulevard Plaza Tower 1, Downtown Dubai">
+</div>
+</div>
+<div class="col-sm-2">
+<div class="form-group">
+<label>Country</label>
+<input type="text" id="prof_country" class="form-control" value="United Arab Emirates">
+</div>
+</div>
+<div class="col-sm-2">
+<div class="form-group">
+<label>State / Emirate</label>
+<input type="text" id="prof_state" class="form-control" value="Dubai">
+</div>
+</div>
+<div class="col-sm-2">
+<div class="form-group">
+<label>City</label>
+<input type="text" id="prof_city" class="form-control" value="Dubai">
+</div>
+</div>
+</div>
+
+<div style="display:flex; justify-content:flex-end; gap:10px; margin-top:15px;">
+<button type="reset" class="btn btn-default">Reset</button>
+<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save Profile Changes</button>
+</div>
+</form>
+</div>
+
+<div class="tab-pane" id="tab-profile-security">
+<div style="max-width:540px;">
+<div class="form-section-title"><i class="fa fa-key"></i> Update Account Password</div>
+<form onsubmit="event.preventDefault(); alert('Security credentials updated successfully!');">
+<div class="form-group">
+<label>Current Password <span class="text-danger">*</span></label>
+<input type="password" class="form-control" placeholder="••••••••" required>
+</div>
+<div class="form-group">
+<label>New Password <span class="text-danger">*</span></label>
+<input type="password" class="form-control" placeholder="Min. 8 characters" required>
+</div>
+<div class="form-group">
+<label>Confirm New Password <span class="text-danger">*</span></label>
+<input type="password" class="form-control" placeholder="Re-enter new password" required>
+</div>
+<button type="submit" class="btn btn-primary"><i class="fa fa-lock"></i> Update Password</button>
+</form>
+</div>
+</div>
+
+<div class="tab-pane" id="tab-profile-branding">
+<div style="max-width:650px;">
+<div class="form-section-title"><i class="fa fa-paint-brush"></i> CRM Logo &amp; Corporate Identity (editlogo.php)</div>
+<form onsubmit="event.preventDefault(); alert('Corporate branding logo updated successfully!');">
+<div class="form-group">
+<label>Logo Title <span class="text-danger">*</span></label>
+<input type="text" class="form-control" value="Rolexto Group CRM Platform" required>
+</div>
+<div class="form-group">
+<label>Active Brand Logo</label>
+<div style="display:flex; align-items:center; gap:16px; margin:10px 0; padding:12px; background:var(--crm-border-subtle); border-radius:8px;">
+<div style="width:64px; height:64px; background:var(--crm-primary); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff;">
+<svg style="width:36px; height:36px; fill:none; stroke:#fff; stroke-width:2;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+</div>
+<div>
+<div style="font-weight:700;">Rolexto Imperial Crown</div>
+<div style="font-size:11.5px; color:var(--crm-text-muted);">Vector SVG Crown Emblem • Current Resolution: 512x512</div>
+</div>
+</div>
+<input type="file" class="form-control" style="padding:4px;">
+<p class="help-block" style="font-size:11px; margin-top:4px;">Supports PNG, JPG, or SVG formatted brand assets.</p>
+</div>
+<div class="form-group">
+<label>Branding Display Status</label>
+<select class="form-control">
+<option value="1" selected>Enabled across all user consoles</option>
+<option value="0">Disabled (Default system branding)</option>
+</select>
+</div>
+<button type="submit" class="btn btn-success"><i class="fa fa-cloud-upload"></i> Save Branding Settings</button>
+</form>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
 </section>
 </div>
 
@@ -3052,6 +3448,18 @@ function filterBOTable(status) {
             }
         });
     }
+}
+
+
+function handleProfileLiveSave(e) {
+    e.preventDefault();
+    var newName = $('#prof_name').val();
+    $('#profileDisplayName').text(newName);
+    $('#disp_name').text(newName);
+    userDataStore['jules'].name = newName;
+    userDataStore['jules'].mobile = $('#prof_mobile').val();
+    userDataStore['jules'].address = $('#prof_address').val();
+    alert('Profile information updated successfully!');
 }
 
 function openUserPreview(uKey) {
